@@ -1,0 +1,7 @@
+{
+  "tool_name": "PowerShell",
+  "tool_input_preview": "{\"command\":\"Remove-Item -Recurse -Force \\\"G:\\\\AI\\\\Project\\\\.brorush-next\\\" -ErrorAction SilentlyContinue; cd G:\\\\AI\\\\Project\\\\BRORUSH; npx next build --no-lint 2>&1 | Select-String -Pattern \\\"✓|error|...",
+  "error": "Exit code 1\n \u001b[7m✓\u001b[0m Compiled successfully in 25.8s\r\nunhandledRejection \u001b[7mError\u001b[0m: Cannot find module 'react/jsx-runtime'\r\n- G:\\AI\\Project\\BRORUSH\\node_modules\\next\\dist\\\u001b[7mcompiled\u001b[0m\\jest-worker\\processChild.js\r\n  type: '\u001b[7mError\u001b[0m',",
+  "timestamp": "2026-06-10T13:24:21.997Z",
+  "retry_count": 1
+}
