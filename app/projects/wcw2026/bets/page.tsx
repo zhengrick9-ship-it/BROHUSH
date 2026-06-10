@@ -1,28 +1,44 @@
 'use client'
-import { createClient } from '@/lib/supabase/client'
 import { useEffect, useState } from 'react'
 
 export default function BetsPage() {
-  const supabase = createClient()
   const [bets, setBets] = useState<any[]>([])
   const [matches, setMatches] = useState<any[]>([])
-  const [showForm, setShowForm] = useState(false)
-  const [form, setForm] = useState({ match_id: '', direction: 'A', odds: '', stake: '100' })
 
-  const load = async () => {
-    const [{ data: m }, { data: b }] = await Promise.all([
-      supabase.from('matches').select('*').order('match_date').order('id'),
-      supabase.from('bets').select('*').order('created_at', { ascending: false })
-    ])
-    setMatches(m || [])
-    setBets(b || [])
-  }
-
-  useEffect(() => { load() }, [])
+  useEffect(() => {
+    fetch('/api/data').then(r => r.json()).then(d => { setMatches(d.matches); setBets(d.bets) })
+  }, [])
 
   const matchMap = new Map(matches.map(m => [m.id, m]))
-  const totalStake = bets.reduce((s, b) => s + b.stake, 0)
-  const totalProfit = bets.reduce((s, b) => s + (b.profit || 0), 0)
+  const musBets = bets.filter(b => b.person === '木四')
+  const tkBets = bets.filter(b => b.person === '听课')
+
+  const renderTable = (bs: any[], person: string, color: string) => (
+    <div className="mb-6">
+      <h2 className="font-semibold text-sm mb-2" style={{color}}>👤 {person}</h2>
+      <table className="w-full text-sm">
+        <thead><tr className="border-b text-left text-gray-400 text-xs">
+          <th className="pb-2 font-medium">日期</th><th className="pb-2 font-medium">比赛</th>
+          <th className="pb-2 font-medium">方向</th><th className="pb-2 font-medium">赔率</th>
+          <th className="pb-2 font-medium">金额</th><th className="pb-2 font-medium">结果</th><th className="pb-2 font-medium">盈亏</th>
+        </tr></thead>
+        <tbody>
+          {bs.map(b => {
+            const m = matchMap.get(b.match_id)
+            return <tr key={b.id} className="border-b hover:bg-gray-50">
+              <td className="py-2 text-xs">{m?.match_date?.slice(5)}</td>
+              <td className="py-2 text-xs">{m ? `${m.home_team} vs ${m.away_team}` : '-'}</td>
+              <td className="py-2"><span className={`text-xs font-medium px-1.5 py-0.5 rounded ${b.direction === 'H' ? 'bg-blue-100 text-blue-700' : b.direction === 'A' ? 'bg-orange-100 text-orange-700' : 'bg-gray-100 text-gray-600'}`}>{b.direction === 'H' ? '主胜' : b.direction === 'A' ? '客胜' : '平'}</span></td>
+              <td className="py-2">{b.odds}</td>
+              <td className="py-2">{b.stake}元</td>
+              <td className="py-2"><span className={`text-xs px-1.5 py-0.5 rounded ${b.result === 'won' ? 'bg-green-100 text-green-700' : b.result === 'lost' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-500'}`}>{b.result === 'won' ? '✅' : b.result === 'lost' ? '❌' : '⏳'}</span></td>
+              <td className={`py-2 font-medium ${b.profit > 0 ? 'text-green-600' : b.profit < 0 ? 'text-red-600' : ''}`}>{b.result === 'pending' ? '-' : `${b.profit > 0 ? '+' : ''}${b.profit}`}</td>
+            </tr>
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
 
   return (
     <div className="flex-1 p-4 md:p-6 max-w-6xl mx-auto w-full">
@@ -32,51 +48,8 @@ export default function BetsPage() {
         <span className="text-gray-600">投注</span>
       </div>
       <h1 className="text-xl font-bold mb-4">💰 投注记录</h1>
-
-      <div className="flex gap-4 mb-4 text-sm">
-        <div className="bg-white rounded-lg border px-3 py-2">投入: <strong>{totalStake}元</strong></div>
-        <div className="bg-white rounded-lg border px-3 py-2">盈亏: <strong className={totalProfit > 0 ? 'text-green-600' : totalProfit < 0 ? 'text-red-600' : ''}>{totalProfit > 0 ? '+' : ''}{totalProfit}元</strong></div>
-        <div className="bg-white rounded-lg border px-3 py-2">共 <strong>{bets.length}</strong> 注</div>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b text-left text-gray-400 text-xs">
-              <th className="pb-2 font-medium">日期</th><th className="pb-2 font-medium">比赛</th>
-              <th className="pb-2 font-medium">方向</th><th className="pb-2 font-medium">赔率</th>
-              <th className="pb-2 font-medium">金额</th><th className="pb-2 font-medium">结果</th><th className="pb-2 font-medium">盈亏</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bets.map(b => {
-              const m = matchMap.get(b.match_id)
-              return (
-                <tr key={b.id} className="border-b hover:bg-gray-50">
-                  <td className="py-2.5 text-xs">{m?.match_date?.slice(5)}</td>
-                  <td className="py-2.5 text-xs">{m ? ${m.home_team} vs  : '-'}</td>
-                  <td className="py-2.5">
-                    <span className={	ext-xs font-medium px-1.5 py-0.5 rounded }>
-                      {b.direction === 'H' ? '主胜' : b.direction === 'A' ? '客胜' : '平'}
-                    </span>
-                  </td>
-                  <td className="py-2.5">{b.odds}</td>
-                  <td className="py-2.5">{b.stake}元</td>
-                  <td className="py-2.5">
-                    <span className={	ext-xs px-1.5 py-0.5 rounded }>
-                      {b.result === 'won' ? '✅ 赢' : b.result === 'lost' ? '❌ 输' : '⏳'}
-                    </span>
-                  </td>
-                  <td className={py-2.5 font-medium }>
-                    {b.result === 'pending' ? '-' : ${b.profit > 0 ? '+' : ''}}
-                  </td>
-                </tr>
-              )
-            })}
-            {bets.length === 0 && <tr><td colSpan={7} className="py-8 text-center text-gray-400">还没有投注记录</td></tr>}
-          </tbody>
-        </table>
-      </div>
+      {musBets.length > 0 && renderTable(musBets, '木四', '#7c3aed')}
+      {tkBets.length > 0 && renderTable(tkBets, '听课', '#2563eb')}
     </div>
   )
 }
