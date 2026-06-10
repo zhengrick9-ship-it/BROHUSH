@@ -57,9 +57,6 @@ export default function HomePage() {
               {error}
             </div>
           )}
-          <div className="mt-12 text-white/20 text-sm">
-            💡 提示：两个字，是一种植物和数字的组合~
-          </div>
         </div>
       </div>
     )
