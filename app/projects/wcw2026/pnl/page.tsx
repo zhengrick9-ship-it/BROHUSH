@@ -74,13 +74,20 @@ export default function PnLPage() {
   }
 
   return (
-    <div className="flex-1 p-4 md:p-6 max-w-6xl mx-auto w-full animate-fade-in">
-      <div className="flex items-center gap-2 text-xs text-gray-400 font-mono mb-1">
-        <a href="/" className="hover:text-gray-600">BRORUSH</a><span>/</span>
-        <a href="/projects/wcw2026" className="hover:text-gray-600">WCW2026</a><span>/</span>
-        <span className="text-gray-500">盈亏</span>
+    <div className="flex-1 p-4 md:p-6 max-w-6xl mx-auto w-full">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3 text-sm">
+          <a href="/" className="text-gray-400 hover:text-gray-600 transition-colors">← 首页</a>
+          <span className="text-gray-200">/</span>
+          <a href="/projects/wcw2026" className="text-gray-400 hover:text-gray-600 transition-colors">WCW2026</a>
+          <span className="text-gray-200">/</span>
+          <span className="text-gray-900 font-medium">盈亏</span>
+        </div>
+        <span className="text-xs text-gray-400 bg-gray-50 border border-gray-100 px-2 py-1 rounded-md">
+          {typeof window !== 'undefined' ? localStorage.getItem('brorush_name') : ''}
+        </span>
       </div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6 tracking-tight">📊 盈亏统计</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">📊 盈亏统计</h1>
       {renderPnL(musBets, '木四')}
       {renderPnL(tkBets, '听课')}
     </div>

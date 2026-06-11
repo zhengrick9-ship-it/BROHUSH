@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 export default function HomePage() {
   const [name, setName] = useState('')
@@ -18,7 +19,7 @@ export default function HomePage() {
       localStorage.setItem('brorush_name', name.trim())
       setVerified(true)
     } else {
-      setError('不对哦，再想想~')
+      setError('验证失败，请重新输入')
       setTimeout(() => setError(''), 2000)
     }
   }
@@ -32,26 +33,30 @@ export default function HomePage() {
   if (!verified) {
     return (
       <div className="flex min-h-screen items-center justify-center px-4 bg-white">
-        <div className="text-center max-w-md animate-fade-in">
-          <div className="text-5xl mb-6">👋</div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-2 tracking-tight">你谁啊？</h1>
-          <p className="text-gray-400 text-lg mb-10">输入暗号才能进</p>
-          <div className="flex gap-3 justify-center">
-            <input
-              type="text"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleEnter()}
-              className="text-lg px-5 py-3 rounded-xl border border-gray-200 text-gray-900 placeholder-gray-300 w-48 text-center font-medium focus:outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-50 transition-all"
-              placeholder="输入暗号"
-              autoFocus
-            />
+        <div className="w-full max-w-sm">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-bold text-gray-900">BRORUSH</h1>
+            <p className="text-gray-400 text-sm mt-1">项目协作记录系统</p>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700">名称</label>
+              <input
+                type="text"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleEnter()}
+                className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-300 focus:outline-none focus:border-gray-400 focus:ring-2 focus:ring-gray-100 transition-all"
+                placeholder="请输入名称"
+                autoFocus
+              />
+            </div>
+            {error && <p className="text-sm text-red-500">{error}</p>}
             <button onClick={handleEnter}
-              className="text-lg px-7 py-3 rounded-xl bg-orange-500 text-white font-medium hover:bg-orange-600 active:scale-95 transition-all shadow-sm">
-              进入 →
+              className="w-full py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors">
+              进入
             </button>
           </div>
-          {error && <div className="mt-6 text-orange-500 font-medium">{error}</div>}
         </div>
       </div>
     )
@@ -77,21 +82,15 @@ function Dashboard() {
 
   return (
     <div className="flex-1 p-6 max-w-4xl mx-auto w-full">
-      <header className="mb-10 flex items-start justify-between animate-fade-in">
+      <header className="mb-10 flex items-start justify-between">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 rounded-full bg-orange-500" />
-            <span className="text-xs text-gray-400 font-mono tracking-wider uppercase">BRORUSH</span>
-          </div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">项目协作</h1>
+          <h1 className="text-2xl font-bold text-gray-900">BRORUSH</h1>
+          <p className="text-gray-400 text-sm mt-0.5">项目协作记录系统</p>
         </div>
-        <div className="text-right">
-          <div className="inline-flex items-center gap-1.5 text-sm text-orange-600 bg-orange-50 border border-orange-200 px-3 py-1.5 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-            {myName}
-          </div>
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-gray-400 bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-md">{myName}</span>
           <button onClick={() => { localStorage.removeItem('brorush_name'); location.reload() }}
-            className="text-xs text-gray-400 hover:text-gray-600 mt-2 block ml-auto">切换身份</button>
+            className="text-xs text-gray-400 hover:text-gray-600">退出</button>
         </div>
       </header>
 
@@ -99,35 +98,31 @@ function Dashboard() {
         <span className="text-xs text-gray-400 font-mono uppercase tracking-wider">项目</span>
       </div>
 
-      <a href="/projects/wcw2026" className="block animate-fade-in" style={{animationDelay:'0.1s'}}>
-        <div className="card p-6 hover:shadow-lg transition-all duration-200">
+      <Link href="/projects/wcw2026" className="block">
+        <div className="card p-5 hover:shadow-md transition-all">
           <div className="flex items-start justify-between mb-3">
-            <div>
-              <span className="text-2xl mr-2 align-middle">🌍</span>
-              <span className="text-lg font-semibold text-gray-900">WCW2026 世界杯</span>
+            <div className="flex items-center gap-3">
+              <span className="text-xl">🌍</span>
+              <div>
+                <span className="font-semibold text-gray-900">WCW2026 世界杯</span>
+                <p className="text-xs text-gray-400 mt-0.5">24 场投注方案跟踪 · 盈亏统计 · 赛果更新</p>
+              </div>
             </div>
-            <span className="tag tag-value">● 进行中</span>
+            <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md">进行中</span>
           </div>
-          <p className="text-sm text-gray-500 mb-4">24 场投注方案跟踪 · 盈亏统计 · 赛果更新</p>
           {myBets.length > 0 && (
-            <div className="flex gap-6 text-sm border-t border-gray-100 pt-4">
-              <div><div className="text-xs text-gray-400">总投入</div><div className="font-semibold text-gray-900 font-mono-custom">{totalStake}元</div></div>
-              <div><div className="text-xs text-gray-400">盈亏</div><div className={`font-semibold font-mono-custom ${totalProfit > 0 ? 'text-green-600' : totalProfit < 0 ? 'text-red-500' : 'text-gray-900'}`}>{totalProfit > 0 ? '+' : ''}{totalProfit}元</div></div>
-              <div><div className="text-xs text-gray-400">ROI</div><div className={`font-semibold font-mono-custom ${Number(roi) > 0 ? 'text-green-600' : Number(roi) < 0 ? 'text-red-500' : 'text-gray-900'}`}>{roi}%</div></div>
-              {completed > 0 && <div><div className="text-xs text-gray-400">战绩</div><div className="font-semibold text-gray-900 font-mono-custom">{won}W/{completed-won}L</div></div>}
+            <div className="flex gap-6 text-sm border-t border-gray-100 pt-3 mt-1">
+              <div><span className="text-xs text-gray-400">总投入</span><div className="font-semibold text-gray-900 font-mono-custom">{totalStake}元</div></div>
+              <div><span className="text-xs text-gray-400">盈亏</span><div className={`font-semibold font-mono-custom ${totalProfit > 0 ? 'text-green-600' : totalProfit < 0 ? 'text-red-500' : ''}`}>{totalProfit > 0 ? '+' : ''}{totalProfit}元</div></div>
+              <div><span className="text-xs text-gray-400">ROI</span><div className={`font-semibold font-mono-custom ${Number(roi) > 0 ? 'text-green-600' : Number(roi) < 0 ? 'text-red-500' : ''}`}>{roi}%</div></div>
+              {completed > 0 && <div><span className="text-xs text-gray-400">战绩</span><div className="font-semibold text-gray-900 font-mono-custom">{won}W/{completed-won}L</div></div>}
             </div>
           )}
         </div>
-      </a>
+      </Link>
 
       <div className="mt-8 text-center">
-        <div className="inline-flex items-center gap-3 text-sm text-gray-400 bg-gray-50 border border-gray-100 rounded-full px-5 py-2">
-          <span>👤 木四 14注</span>
-          <span className="w-1 h-1 rounded-full bg-gray-300" />
-          <span>👤 听课 14注</span>
-          <span className="w-1 h-1 rounded-full bg-gray-300" />
-          <span>各 1400 元</span>
-        </div>
+        <span className="text-xs text-gray-300">👤 木四 · 👤 听课 · 各 14 注 1400 元</span>
       </div>
     </div>
   )
