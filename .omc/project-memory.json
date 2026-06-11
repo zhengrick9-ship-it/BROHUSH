@@ -1,0 +1,271 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1781167915891,
+  "projectRoot": "G:\\AI\\Project\\BRORUSH",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "15.2.0",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "19.0.0",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.0.0",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "app",
+      "lib",
+      "public"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "app": {
+      "path": "app",
+      "purpose": "Application code",
+      "fileCount": 3,
+      "lastAccessed": 1781167915408,
+      "keyFiles": [
+        "globals.css",
+        "layout.tsx",
+        "page.tsx"
+      ]
+    },
+    "lib": {
+      "path": "lib",
+      "purpose": "Library code",
+      "fileCount": 0,
+      "lastAccessed": 1781167915410,
+      "keyFiles": []
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 0,
+      "lastAccessed": 1781167915526,
+      "keyFiles": []
+    },
+    "app\\api": {
+      "path": "app\\api",
+      "purpose": "API routes",
+      "fileCount": 0,
+      "lastAccessed": 1781167915531,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "C:\\Users\\Rick\\.claude",
+      "accessCount": 5,
+      "lastAccessed": 1781168168605,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins",
+      "accessCount": 3,
+      "lastAccessed": 1781167994764,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\cache\\claude-plugins-official\\supabase\\0.1.11\\agents\\claude\\.mcp.json",
+      "accessCount": 3,
+      "lastAccessed": 1781169486657,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\mcp.json",
+      "accessCount": 3,
+      "lastAccessed": 1781169971806,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\settings.json",
+      "accessCount": 3,
+      "lastAccessed": 1781171152596,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\mcp-needs-auth-cache.json",
+      "accessCount": 2,
+      "lastAccessed": 1781169498442,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\cache\\claude-plugins-official\\github\\unknown\\.mcp.json",
+      "accessCount": 2,
+      "lastAccessed": 1781170459772,
+      "type": "file"
+    },
+    {
+      "path": "app\\page.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1781176000747,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\cache\\claude-plugins-official\\playwright\\unknown\\.mcp.json",
+      "accessCount": 1,
+      "lastAccessed": 1781168001524,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\cache\\omc\\oh-my-claudecode\\4.14.6\\.mcp.json",
+      "accessCount": 1,
+      "lastAccessed": 1781168002774,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\cache\\omc\\oh-my-claudecode\\4.14.6",
+      "accessCount": 1,
+      "lastAccessed": 1781168012199,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\cache\\omc",
+      "accessCount": 1,
+      "lastAccessed": 1781168176299,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\marketplaces",
+      "accessCount": 1,
+      "lastAccessed": 1781168177145,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\marketplaces\\claude-plugins-official\\external_plugins\\playwright\\.mcp.json",
+      "accessCount": 1,
+      "lastAccessed": 1781168183951,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\AppData\\Local\\Temp\\claude\\G--AI-Project-BRORUSH\\6017a030-24fb-4a2d-951b-8aaf0f23e662\\tasks\\bfltxm8u3.output",
+      "accessCount": 1,
+      "lastAccessed": 1781168448001,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\AppData\\Local\\Claude\\claude_desktop_config.json",
+      "accessCount": 1,
+      "lastAccessed": 1781168554372,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\AppData\\Local\\Temp\\claude",
+      "accessCount": 1,
+      "lastAccessed": 1781168563475,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\Rick\\AppData\\Local\\Temp\\claude\\data",
+      "accessCount": 1,
+      "lastAccessed": 1781168563768,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\Rick\\AppData\\Local\\Temp\\claude\\G--AI-Project-BRORUSH\\6017a030-24fb-4a2d-951b-8aaf0f23e662\\tasks\\basx71j6z.output",
+      "accessCount": 1,
+      "lastAccessed": 1781168626257,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\AppData\\Local\\Temp\\claude\\G--AI-Project-BRORUSH\\6017a030-24fb-4a2d-951b-8aaf0f23e662\\tasks\\bk8kv6hgb.output",
+      "accessCount": 1,
+      "lastAccessed": 1781169079001,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 1,
+      "lastAccessed": 1781170339081,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\settings.local.json",
+      "accessCount": 1,
+      "lastAccessed": 1781170391824,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\.claude\\plugins\\cache\\claude-plugins-official\\github\\bbbff6ab54f0\\.mcp.json",
+      "accessCount": 1,
+      "lastAccessed": 1781170459282,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\Rick\\AppData\\Local\\Temp\\claude\\G--AI-Project-BRORUSH\\221232f7-2cc8-4564-9608-fea8c5a91568\\tasks\\bu5bf73qo.output",
+      "accessCount": 1,
+      "lastAccessed": 1781170964165,
+      "type": "file"
+    },
+    {
+      "path": "app\\globals.css",
+      "accessCount": 1,
+      "lastAccessed": 1781175898777,
+      "type": "file"
+    },
+    {
+      "path": "app\\layout.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1781175910300,
+      "type": "file"
+    },
+    {
+      "path": "app\\projects\\wcw2026\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1781176026411,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

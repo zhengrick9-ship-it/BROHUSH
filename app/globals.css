@@ -1,1 +1,73 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bg-dark: #0a0a0f;
+  --color-bg-card: #13131a;
+  --color-bg-card-hover: #1a1a24;
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-card: rgba(255, 255, 255, 0.08);
+  --color-accent: #8b5cf6;
+  --color-accent-glow: rgba(139, 92, 246, 0.3);
+  --color-accent-blue: #3b82f6;
+  --color-green: #22c55e;
+  --color-red: #ef4444;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #475569;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+}
+
+body {
+  background: #0a0a0f;
+  color: #f1f5f9;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+}
+
+.glass {
+  background: rgba(19, 19, 26, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-hover:hover {
+  background: rgba(26, 26, 36, 0.9);
+  border-color: rgba(139, 92, 246, 0.2);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.08);
+}
+
+.text-glow {
+  text-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+}
+
+.card-gradient {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(59, 130, 246, 0.05));
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.25); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* 数字字体用于金额 */
+.font-mono-custom {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-variant-numeric: tabular-nums;
+}
