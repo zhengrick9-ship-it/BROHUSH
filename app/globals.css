@@ -1,38 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #ffffff;
-  --color-bg-subtle: #f9f9f9;
-  --color-bg-card: #ffffff;
-  --color-border: #e5e5e5;
-  --color-border-light: #f0f0f0;
-  --color-accent: #f97316;
-  --color-accent-hover: #ea580c;
-  --color-accent-light: #fff7ed;
+  --color-bg: #080808;
+  --color-bg-card: #141413;
+  --color-bg-card-hover: #1a1a18;
+  --color-border: #1f1e1d;
+  --color-border-light: #2a2927;
+  --color-accent: #146ef5;
+  --color-accent-hover: #0055d4;
   --color-green: #22c55e;
   --color-red: #ef4444;
-  --color-text: #0a0a0a;
-  --color-text-secondary: #737373;
-  --color-text-muted: #a3a3a3;
+  --color-text: #f1f1ef;
+  --color-text-secondary: #b0aea5;
+  --color-text-muted: #5e5d59;
 }
 
 body {
-  background: #ffffff;
-  color: #0a0a0a;
+  background: #080808;
+  color: #f1f1ef;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 .card {
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
+  background: #141413;
+  border: 1px solid #1f1e1d;
+  border-radius: 16px;
   transition: all 0.2s ease;
 }
-
 .card:hover {
-  border-color: #d4d4d4;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  border-color: #2a2927;
+  background: #1a1a18;
 }
 
 .tag {
@@ -44,32 +42,37 @@ body {
   font-weight: 500;
 }
 
-.tag-value { background: #fff7ed; color: #f97316; border: 1px solid #fed7aa; }
-.tag-cu { background: #fef2f2; color: #ef4444; border: 1px solid #fecaca; }
-.tag-edge { background: #f5f5f5; color: #737373; border: 1px solid #e5e5e5; }
-.tag-win { background: #f0fdf4; color: #22c55e; border: 1px solid #bbf7d0; }
-.tag-lose { background: #fef2f2; color: #ef4444; border: 1px solid #fecaca; }
-.tag-pending { background: #f5f5f5; color: #a3a3a3; border: 1px solid #e5e5e5; }
-.tag-h { background: #eff6ff; color: #3b82f6; border: 1px solid #bfdbfe; }
-.tag-a { background: #fff7ed; color: #f97316; border: 1px solid #fed7aa; }
-.tag-d { background: #f5f5f5; color: #737373; border: 1px solid #e5e5e5; }
+.tag-value { background: rgba(20, 110, 245, 0.1); color: #5b9ef4; border: 1px solid rgba(20, 110, 245, 0.2); }
+.tag-cu { background: rgba(201, 97, 63, 0.1); color: #d97757; border: 1px solid rgba(201, 97, 63, 0.2); }
+.tag-edge { background: rgba(255,255,255,0.04); color: #87867f; border: 1px solid rgba(255,255,255,0.06); }
+.tag-win { background: rgba(34, 197, 94, 0.1); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.2); }
+.tag-lose { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); }
+.tag-pending { background: rgba(255,255,255,0.04); color: #5e5d59; border: 1px solid rgba(255,255,255,0.06); }
+.tag-h { background: rgba(20, 110, 245, 0.1); color: #5b9ef4; border: 1px solid rgba(20, 110, 245, 0.2); }
+.tag-a { background: rgba(201, 97, 63, 0.1); color: #d97757; border: 1px solid rgba(201, 97, 63, 0.2); }
+.tag-d { background: rgba(255,255,255,0.04); color: #87867f; border: 1px solid rgba(255,255,255,0.06); }
 
 .stat-card {
-  background: #f9f9f9;
-  border-radius: 10px;
-  padding: 12px 16px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255,255,255,0.04);
 }
 
 .font-mono-custom {
   font-family: "SF Mono", "Fira Code", monospace;
   font-variant-numeric: tabular-nums;
+}
+
+.nav-link {
+  color: #5e5d59;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: #b0aea5;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.06) transparent;
 }

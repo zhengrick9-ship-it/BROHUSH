@@ -40,11 +40,11 @@ export default function PnLPage() {
       </div>
 
       <div className="grid grid-cols-5 gap-3 mb-4">
-        <div className="stat-card"><div className="text-xs text-gray-400">总投入</div><div className="text-lg font-bold text-gray-900 font-mono-custom">{s.stake}元</div></div>
-        <div className="stat-card"><div className="text-xs text-gray-400">净盈亏</div><div className={`text-lg font-bold font-mono-custom ${s.profit > 0 ? 'text-green-600' : s.profit < 0 ? 'text-red-500' : 'text-gray-900'}`}>{s.profit > 0 ? '+' : ''}{s.profit}元</div></div>
-        <div className="stat-card"><div className="text-xs text-gray-400">ROI</div><div className={`text-lg font-bold font-mono-custom ${roi > 0 ? 'text-green-600' : roi < 0 ? 'text-red-500' : 'text-gray-900'}`}>{roi.toFixed(1)}%</div></div>
-        <div className="stat-card"><div className="text-xs text-gray-400">胜率</div><div className="text-lg font-bold text-gray-900 font-mono-custom">{s.won+s.lost > 0 ? `${winRate.toFixed(1)}%` : '-'}</div></div>
-        <div className="stat-card"><div className="text-xs text-gray-400">战绩</div><div className="text-lg font-bold text-gray-900 font-mono-custom">{s.won}W {s.lost}L</div></div>
+        <div className="stat-card"><div className="text-xs text-[#5e5d59]">总投入</div><div className="text-lg font-bold text-[#f1f1ef] font-mono-custom">{s.stake}元</div></div>
+        <div className="stat-card"><div className="text-xs text-[#5e5d59]">净盈亏</div><div className={`text-lg font-bold font-mono-custom ${s.profit > 0 ? 'text-[#4ade80]' : s.profit < 0 ? 'text-[#f87171]' : 'text-[#f1f1ef]'}`}>{s.profit > 0 ? '+' : ''}{s.profit}元</div></div>
+        <div className="stat-card"><div className="text-xs text-[#5e5d59]">ROI</div><div className={`text-lg font-bold font-mono-custom ${roi > 0 ? 'text-[#4ade80]' : roi < 0 ? 'text-[#f87171]' : 'text-[#f1f1ef]'}`}>{roi.toFixed(1)}%</div></div>
+        <div className="stat-card"><div className="text-xs text-[#5e5d59]">胜率</div><div className="text-lg font-bold text-[#f1f1ef] font-mono-custom">{s.won+s.lost > 0 ? `${winRate.toFixed(1)}%` : '-'}</div></div>
+        <div className="stat-card"><div className="text-xs text-[#5e5d59]">战绩</div><div className="text-lg font-bold text-[#f1f1ef] font-mono-custom">{s.won}W {s.lost}L</div></div>
       </div>
 
       {Object.entries(daily).sort().reverse().map(([date, dayBets]) => {
@@ -75,19 +75,17 @@ export default function PnLPage() {
 
   return (
     <div className="flex-1 p-4 md:p-6 max-w-6xl mx-auto w-full">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-8 pt-2">
         <div className="flex items-center gap-3 text-sm">
-          <a href="/" className="text-gray-400 hover:text-gray-600 transition-colors">← 首页</a>
-          <span className="text-gray-200">/</span>
-          <a href="/projects/wcw2026" className="text-gray-400 hover:text-gray-600 transition-colors">WCW2026</a>
-          <span className="text-gray-200">/</span>
-          <span className="text-gray-900 font-medium">盈亏</span>
+          <a href="/" className="nav-link">← 首页</a>
+          <span className="text-[#3d3d3a]">/</span>
+          <a href="/projects/wcw2026" className="nav-link">WCW2026</a>
+          <span className="text-[#3d3d3a]">/</span>
+          <span className="text-[#f1f1ef]">盈亏</span>
         </div>
-        <span className="text-xs text-gray-400 bg-gray-50 border border-gray-100 px-2 py-1 rounded-md">
-          {typeof window !== 'undefined' ? localStorage.getItem('brorush_name') : ''}
-        </span>
+        <span className="text-sm text-[#5e5d59]">{typeof window !== 'undefined' ? localStorage.getItem('brorush_name') : ''}</span>
       </div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">📊 盈亏统计</h1>
+      <h1 className="text-2xl font-bold text-[#f1f1ef] mb-6">📊 盈亏统计</h1>
       {renderPnL(musBets, '木四')}
       {renderPnL(tkBets, '听课')}
     </div>
