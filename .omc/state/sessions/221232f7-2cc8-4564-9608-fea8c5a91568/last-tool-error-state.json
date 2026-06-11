@@ -1,7 +1,0 @@
-{
-  "tool_name": "PowerShell",
-  "tool_input_preview": "{\"command\":\"Get-Command gh -ErrorAction SilentlyContinue; if ($?) { gh auth status 2>&1 } else { Write-Output \\\"gh CLI not found\\\" }\",\"description\":\"Check if gh CLI is installed and authenticated\"}",
-  "error": "Exit code 1\n\u001b[32;1mCommandType    \u001b[0m\u001b[32;1m Name                                              \u001b[0m\u001b[32;1m Version   \u001b[0m\u001b[32;1m Source\u001b[0m\r\n\u001b[32;1m-----------    \u001b[0m \u001b[32;1m----                                              \u001b[0m \u001b[32;1m-------   \u001b[0m \u001b[32;1m------\u001b[0m\r\nApplication     gh.exe                                             0.0.0.0    C:\\Users\\Rick\\AppData\\Local\\Microsoft\\WinGet\\Links\\gh.exe\r\n\u001b[31;1mYou are not logged into any GitHub hosts. To log in, run: gh auth login\u001b[0m",
-  "timestamp": "2026-06-11T09:34:53.963Z",
-  "retry_count": 1
-}

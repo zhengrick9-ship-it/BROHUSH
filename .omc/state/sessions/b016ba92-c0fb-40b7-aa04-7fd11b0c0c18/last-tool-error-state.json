@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"claude plugin install refactoring-ui-plugin@refactoring-ui-plugin 2>&1\",\"description\":\"安装 refactoring-ui-plugin\"}",
-  "error": "Exit code 1\nInstalling plugin \"refactoring-ui-plugin@refactoring-ui-plugin\"...✘ Failed to install plugin \"refactoring-ui-plugin@refactoring-ui-plugin\": Plugin \"refactoring-ui-plugin\" not found in marketplace \"refactoring-ui-plugin\". Your local copy may be out of date — try `claude plugin marketplace update refactoring-ui-plugin`.",
-  "timestamp": "2026-06-11T11:06:10.146Z",
-  "retry_count": 3
-}

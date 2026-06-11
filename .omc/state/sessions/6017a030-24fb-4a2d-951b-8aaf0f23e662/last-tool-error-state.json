@@ -1,7 +1,0 @@
-{
-  "tool_name": "PowerShell",
-  "tool_input_preview": "{\"command\":\"$headers = @{ \\\"X-Source-Name\\\" = \\\"claude-code-plugin\\\"; \\\"X-Source-Version\\\" = \\\"0.1.11\\\"; \\\"Authorization\\\" = \\\"Bearer sbp_41258e247f810395ccf908cb1f4a13e72d42e9ed\\\" }; $body = @{ jsonr...",
-  "error": "Exit code 1\nFAILED (406): Response status code does not indicate success: 406 (Not Acceptable).",
-  "timestamp": "2026-06-11T09:19:06.132Z",
-  "retry_count": 1
-}
