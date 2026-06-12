@@ -1,33 +1,75 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 
+type Match = any
+type Bet = any
+
+type EditableBet = {
+  id: string
+  person: '木四' | '听课'
+  match_id: string
+  direction: 'H' | 'D' | 'A'
+  odds: number
+  stake: number
+  result: 'won' | 'lost' | 'pending'
+  profit: number
+}
+
+const MANUAL_RESULTS: Record<string, { home_score: number, away_score: number }> = {
+  '墨西哥__南非': { home_score: 2, away_score: 0 },
+  '韩国__捷克': { home_score: 2, away_score: 1 },
+}
+
 export default function WCW2026Page() {
-  const [matches, setMatches] = useState<any[]>([])
-  const [bets, setBets] = useState<any[]>([])
+  const [matches, setMatches] = useState<Match[]>([])
+  const [bets, setBets] = useState<Bet[]>([])
+  const [manualBets, setManualBets] = useState<EditableBet[]>([])
   const [me, setMe] = useState('')
-  const [tab, setTab] = useState<'matches' | 'bets' | 'pnl'>('matches')
+  const [tab, setTab] = useState<'matches' | 'bets' | 'pnl' | 'edit'>('matches')
 
   useEffect(() => {
     setMe(localStorage.getItem('brorush_name') || '')
     fetch('/api/data').then(r => r.json()).then(d => {
-      const sorted = [...(d.matches || [])].sort((a, b) =>
-        (a.match_date || '').localeCompare(b.match_date || '') || (a.id - b.id))
+      const sorted = [...(d.matches || [])]
+        .map((m: Match) => applyManualResult(m))
+        .sort((a, b) => (a.match_date || '').localeCompare(b.match_date || '') || String(a.id).localeCompare(String(b.id)))
       setMatches(sorted)
-      setBets(d.bets || [])
+      setBets((d.bets || []).map((b: Bet) => recomputeBetWithMatch(b, sorted.find((m: Match) => m.id === b.match_id))))
+      setManualBets(seedManualBets(sorted))
     })
   }, [])
 
-  const matchMap = new Map(matches.map(m => [m.id, m]))
-  const musBets = bets.filter(b => b.person === '木四')
-  const tkBets = bets.filter(b => b.person === '听课')
+  const allBets = [...bets, ...manualBets.map(b => recomputeBetWithMatch(b, matches.find(m => m.id === b.match_id)))]
+  const matchMap = useMemo(() => new Map(matches.map(m => [m.id, m])), [matches])
+  const musBets = allBets.filter(b => b.person === '木四')
+  const tkBets = allBets.filter(b => b.person === '听课')
+
   const calc = (bs: any[]) => ({
-    stake: bs.reduce((s, b) => s + b.stake, 0),
-    profit: bs.reduce((s, b) => s + (b.profit || 0), 0),
+    stake: bs.reduce((s, b) => s + Number(b.stake || 0), 0),
+    profit: bs.reduce((s, b) => s + Number(b.profit || 0), 0),
     won: bs.filter(b => b.result === 'won').length,
     lost: bs.filter(b => b.result === 'lost').length,
   })
   const mus = calc(musBets), tk = calc(tkBets)
+
+  const updateManualBet = (id: string, patch: Partial<EditableBet>) => {
+    setManualBets(prev => prev.map(b => {
+      if (b.id !== id) return b
+      const next = { ...b, ...patch }
+      const match = matches.find(m => m.id === next.match_id)
+      return recomputeBetWithMatch(next, match)
+    }))
+  }
+
+  const updateResult = (matchId: string, home_score: number, away_score: number) => {
+    setMatches(prev => prev.map(m => {
+      if (m.id !== matchId) return m
+      return normalizeFinishedMatch({ ...m, home_score, away_score, match_status: 'finished' })
+    }))
+    setBets(prev => prev.map(b => b.match_id === matchId ? recomputeBetWithMatch(b, normalizeFinishedMatch({ ...matchMap.get(matchId), home_score, away_score, match_status: 'finished' })) : b))
+    setManualBets(prev => prev.map(b => b.match_id === matchId ? recomputeBetWithMatch(b, normalizeFinishedMatch({ ...matchMap.get(matchId), home_score, away_score, match_status: 'finished' })) : b))
+  }
 
   if (!matches.length) {
     return <div className="flex min-h-screen items-center justify-center bg-[#f5f1e9]"><div className="text-[#8a887f] text-sm">载入中…</div></div>
@@ -76,7 +118,7 @@ export default function WCW2026Page() {
       <div className="flex items-center gap-3 mb-3">
         <span className="font-medium text-[#1a1a17]">{name}</span>
         {me === name && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#cc785c]/15 text-[#b5654a]">我</span>}
-        <span className="text-xs text-[#8a887f] font-mono-custom">{bs.length} 注 · {bs.reduce((s, b) => s + b.stake, 0)} 元</span>
+        <span className="text-xs text-[#8a887f] font-mono-custom">{bs.length} 注 · {bs.reduce((s, b) => s + Number(b.stake || 0), 0)} 元</span>
       </div>
       {bs.length ? (
         <div className="overflow-x-auto -mx-5 px-5 md:mx-0 md:px-0">
@@ -121,6 +163,7 @@ export default function WCW2026Page() {
         <Tab id="matches" label="赛程与推荐" />
         <Tab id="bets" label="投注记录" />
         <Tab id="pnl" label="盈亏统计" />
+        <Tab id="edit" label="录入 / 修改" />
       </div>
 
       {tab === 'matches' && (
@@ -170,6 +213,54 @@ export default function WCW2026Page() {
         </div>
       )}
 
+      {tab === 'edit' && (
+        <div className="animate-fade-in space-y-10">
+          <div className="card p-5">
+            <div className="mb-4">
+              <h2 className="text-lg font-semibold text-[#1a1a17]">赛果录入 / 修改</h2>
+              <p className="text-sm text-[#8a887f] mt-1">我先预填了你提供的赛果，你可以继续直接修改。</p>
+            </div>
+            <div className="space-y-3">
+              {matches.slice(0, 6).map(match => (
+                <div key={match.id} className="grid grid-cols-[1fr,80px,80px] gap-3 items-center">
+                  <div className="text-sm text-[#57564f]">{match.match_date} · {match.home_team} vs {match.away_team}</div>
+                  <input type="number" defaultValue={match.home_score ?? ''} onBlur={e => updateResult(match.id, Number(e.target.value || 0), Number(match.away_score || 0))} className="px-3 py-2 rounded-lg border border-[#e6e1d6] bg-white text-sm text-[#1a1a17]" />
+                  <input type="number" defaultValue={match.away_score ?? ''} onBlur={e => updateResult(match.id, Number(match.home_score || 0), Number(e.target.value || 0))} className="px-3 py-2 rounded-lg border border-[#e6e1d6] bg-white text-sm text-[#1a1a17]" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card p-5">
+            <div className="mb-4">
+              <h2 className="text-lg font-semibold text-[#1a1a17]">投注录入 / 修改</h2>
+              <p className="text-sm text-[#8a887f] mt-1">我先创建了可编辑投注行；你复核后可直接改比赛、方向、赔率和金额。</p>
+            </div>
+            <div className="space-y-4">
+              {manualBets.map(bet => {
+                const match = matches.find(m => m.id === bet.match_id)
+                return (
+                  <div key={bet.id} className="grid grid-cols-1 md:grid-cols-[90px,1fr,90px,90px,90px] gap-3 items-center border border-[#efe9dd] rounded-xl p-4">
+                    <div className="text-sm font-medium text-[#1a1a17]">{bet.person}</div>
+                    <select value={bet.match_id} onChange={e => updateManualBet(bet.id, { match_id: e.target.value })} className="px-3 py-2 rounded-lg border border-[#e6e1d6] bg-white text-sm text-[#1a1a17]">
+                      {matches.map(m => <option key={m.id} value={m.id}>{m.match_date} · {m.home_team} vs {m.away_team}</option>)}
+                    </select>
+                    <select value={bet.direction} onChange={e => updateManualBet(bet.id, { direction: e.target.value as 'H' | 'D' | 'A' })} className="px-3 py-2 rounded-lg border border-[#e6e1d6] bg-white text-sm text-[#1a1a17]">
+                      <option value="H">主胜</option>
+                      <option value="D">平</option>
+                      <option value="A">客胜</option>
+                    </select>
+                    <input type="number" step="0.01" value={bet.odds} onChange={e => updateManualBet(bet.id, { odds: Number(e.target.value || 0) })} className="px-3 py-2 rounded-lg border border-[#e6e1d6] bg-white text-sm text-[#1a1a17]" />
+                    <input type="number" step="1" value={bet.stake} onChange={e => updateManualBet(bet.id, { stake: Number(e.target.value || 0) })} className="px-3 py-2 rounded-lg border border-[#e6e1d6] bg-white text-sm text-[#1a1a17]" />
+                    <div className="md:col-span-5 text-xs text-[#8a887f]">当前显示：{match ? `${match.home_team} vs ${match.away_team}` : '未匹配'} · {bet.direction} · @{bet.odds} · {bet.stake}元 · {bet.result === 'pending' ? '待定' : bet.result === 'won' ? `赢 ${bet.profit > 0 ? '+' : ''}${bet.profit}` : `输 ${bet.profit}`}</div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
       <p className="text-xs text-[#b8b3a6] mt-12">BRORUSH · WCW2026</p>
     </div>
   )
@@ -177,8 +268,8 @@ export default function WCW2026Page() {
 
 function PnLBlock({ name, bs, matchMap, me }: { name: string, bs: any[], matchMap: Map<any, any>, me: string }) {
   const s = {
-    stake: bs.reduce((a, b) => a + b.stake, 0),
-    profit: bs.reduce((a, b) => a + (b.profit || 0), 0),
+    stake: bs.reduce((a, b) => a + Number(b.stake || 0), 0),
+    profit: bs.reduce((a, b) => a + Number(b.profit || 0), 0),
     won: bs.filter(b => b.result === 'won').length,
     lost: bs.filter(b => b.result === 'lost').length,
   }
@@ -207,8 +298,8 @@ function PnLBlock({ name, bs, matchMap, me }: { name: string, bs: any[], matchMa
         <div className="stat-card"><div className="text-[11px] text-[#8a887f] mb-1">战绩</div><div className="text-lg font-semibold text-[#1a1a17] font-mono-custom">{s.won}W {s.lost}L</div></div>
       </div>
       {Object.entries(daily).sort().map(([date, dayBets]) => {
-        const dp = dayBets.reduce((sum, b) => sum + (b.profit || 0), 0)
-        const ds = dayBets.reduce((sum, b) => sum + b.stake, 0)
+        const dp = dayBets.reduce((sum, b) => sum + Number(b.profit || 0), 0)
+        const ds = dayBets.reduce((sum, b) => sum + Number(b.stake || 0), 0)
         return (
           <div key={date} className="card p-4 mb-2">
             <div className="flex items-center justify-between mb-3">
@@ -231,4 +322,42 @@ function PnLBlock({ name, bs, matchMap, me }: { name: string, bs: any[], matchMa
       })}
     </div>
   )
+}
+
+function applyManualResult(match: Match) {
+  const key = `${match.home_team}__${match.away_team}`
+  const manual = MANUAL_RESULTS[key]
+  if (!manual) return match
+  return normalizeFinishedMatch({ ...match, ...manual, match_status: 'finished' })
+}
+
+function normalizeFinishedMatch(match: Match) {
+  if (match.home_score == null || match.away_score == null) return match
+  const actual_result = match.home_score > match.away_score ? 'H' : match.home_score < match.away_score ? 'A' : 'D'
+  return { ...match, match_status: 'finished', actual_result }
+}
+
+function recomputeBetWithMatch(bet: EditableBet | Bet, match?: Match) {
+  if (!match || match.match_status !== 'finished') return { ...bet, result: 'pending', profit: 0 }
+  const won = match.actual_result === bet.direction
+  return {
+    ...bet,
+    result: won ? 'won' : 'lost',
+    profit: won ? Math.round(Number(bet.stake || 0) * (Number(bet.odds || 0) - 1) * 100) / 100 : -Number(bet.stake || 0),
+  }
+}
+
+function seedManualBets(matches: Match[]): EditableBet[] {
+  const pick = (home: string, away: string) => matches.find(m => m.home_team === home && m.away_team === away)?.id || matches[0]?.id || ''
+  const seeds = [
+    { match_id: pick('韩国', '捷克'), direction: 'H' as const, odds: 1.95, stake: 100 },
+    { match_id: pick('伊拉克', '挪威'), direction: 'D' as const, odds: 5.0, stake: 100 },
+    { match_id: pick('澳大利亚', '土耳其'), direction: 'A' as const, odds: 4.15, stake: 100 },
+    { match_id: pick('荷兰', '日本'), direction: 'A' as const, odds: 3.92, stake: 100 },
+  ]
+
+  return seeds.flatMap((seed, i) => ([
+    { id: `m-${i}`, person: '木四' as const, ...seed, result: 'pending' as const, profit: 0 },
+    { id: `t-${i}`, person: '听课' as const, ...seed, result: 'pending' as const, profit: 0 },
+  ]))
 }
