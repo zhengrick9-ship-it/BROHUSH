@@ -1,36 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0a08;
-  --color-bg-card: #141412;
-  --color-bg-card-hover: #1a1a17;
-  --color-border: #2a2a26;
-  --color-border-light: #34332e;
+  --color-bg: #f5f1e9;
+  --color-bg-card: #ffffff;
+  --color-border: #e6e1d6;
   --color-accent: #cc785c;
   --color-accent-hover: #b5654a;
-  --color-green: #4f9d69;
-  --color-red: #d4604a;
-  --color-text: #f5f4ef;
-  --color-text-secondary: #b3b1a7;
-  --color-text-muted: #6f6e69;
+  --color-text: #1a1a17;
+  --color-text-secondary: #57564f;
+  --color-text-muted: #8a887f;
 }
 
 body {
-  background: #0a0a08;
-  color: #f5f4ef;
+  background: #f5f1e9;
+  color: #1a1a17;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.01em;
 }
 
 .card {
-  background: #141412;
-  border: 1px solid #232320;
+  background: #ffffff;
+  border: 1px solid #e6e1d6;
   border-radius: 16px;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .card:hover {
-  border-color: #34332e;
+  border-color: #d6d0c2;
 }
 
 .tag {
@@ -43,19 +39,19 @@ body {
   letter-spacing: 0;
 }
 
-.tag-value { background: rgba(204,120,92,0.12); color: #e0a08a; }
-.tag-cu    { background: rgba(204,120,92,0.12); color: #e0a08a; }
-.tag-edge  { background: rgba(255,255,255,0.05); color: #8f8e87; }
-.tag-win   { background: rgba(79,157,105,0.14);  color: #6fc28a; }
-.tag-lose  { background: rgba(212,96,74,0.14);   color: #e07a64; }
-.tag-pending { background: rgba(255,255,255,0.05); color: #6f6e69; }
-.tag-h { background: rgba(204,120,92,0.12); color: #e0a08a; }
-.tag-a { background: rgba(110,140,200,0.12); color: #97aede; }
-.tag-d { background: rgba(255,255,255,0.05); color: #8f8e87; }
+.tag-value { background: rgba(204,120,92,0.12); color: #b5654a; }
+.tag-cu    { background: rgba(204,120,92,0.12); color: #b5654a; }
+.tag-edge  { background: rgba(0,0,0,0.05); color: #57564f; }
+.tag-win   { background: rgba(56,142,90,0.13);  color: #2f8a52; }
+.tag-lose  { background: rgba(196,76,56,0.12);  color: #c44c38; }
+.tag-pending { background: rgba(0,0,0,0.05); color: #8a887f; }
+.tag-h { background: rgba(204,120,92,0.12); color: #b5654a; }
+.tag-a { background: rgba(70,100,170,0.12); color: #4664aa; }
+.tag-d { background: rgba(0,0,0,0.05); color: #57564f; }
 
 .stat-card {
-  background: #141412;
-  border: 1px solid #232320;
+  background: #ffffff;
+  border: 1px solid #e6e1d6;
   border-radius: 12px;
   padding: 16px 18px;
 }
@@ -67,17 +63,17 @@ body {
 }
 
 .nav-link {
-  color: #6f6e69;
+  color: #8a887f;
   transition: color 0.2s;
 }
-.nav-link:hover { color: #b3b1a7; }
+.nav-link:hover { color: #1a1a17; }
 
 .section-label {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #6f6e69;
+  color: #8a887f;
 }
 
 @keyframes fade-in {
@@ -88,5 +84,5 @@ body {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.08) transparent;
+  scrollbar-color: rgba(0,0,0,0.12) transparent;
 }
