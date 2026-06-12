@@ -80,9 +80,8 @@ export default function HomePage() {
 
         <section className="login-panel">
           <p className="section-label mb-3">进入看板</p>
-          <h2 className="font-display text-3xl text-[var(--text)]">输入你的名字</h2>
           <form
-            className="mt-8 space-y-3"
+            className="mt-5 space-y-3"
             onSubmit={(event) => {
               event.preventDefault()
               handleEnter()
