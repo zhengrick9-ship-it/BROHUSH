@@ -5,4 +5,7 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .omc/
-.claude/settings.local.json
+.claude/
+.playwright-mcp/
+投注记录/
+output/

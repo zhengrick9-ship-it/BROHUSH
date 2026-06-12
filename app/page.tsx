@@ -1,72 +1,120 @@
 'use client'
-import { useState, useEffect } from 'react'
+
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+
+import { DogMark } from '@/app/components/DogMark'
 
 export default function HomePage() {
   const [name, setName] = useState('')
   const [error, setError] = useState('')
   const [checking, setChecking] = useState(true)
+  const [submitting, setSubmitting] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    const v = localStorage.getItem('brorush_name')
-    if (v === '木四' || v === '听课') {
-      router.replace('/projects/wcw2026')
+    const saved = localStorage.getItem('twodogs_name')
+    if (saved === '木四' || saved === '听课') {
+      fetch('/api/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: saved }),
+      }).then((response) => {
+        if (response.ok) {
+          router.replace('/projects/wcw2026')
+        } else {
+          localStorage.removeItem('twodogs_name')
+          setChecking(false)
+        }
+      })
     } else {
       setChecking(false)
     }
   }, [router])
 
-  const handleEnter = () => {
-    const n = name.trim()
-    if (n === '木四' || n === '听课') {
-      localStorage.setItem('brorush_name', n)
-      router.replace('/projects/wcw2026')
-    } else {
-      setError('验证失败，请重新输入')
-      setTimeout(() => setError(''), 2000)
+  const handleEnter = async () => {
+    const normalizedName = name.trim()
+    if (normalizedName !== '木四' && normalizedName !== '听课') {
+      setError('名字不对')
+      return
     }
+
+    setSubmitting(true)
+    setError('')
+
+    const response = await fetch('/api/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: normalizedName }),
+    })
+    if (!response.ok) {
+      const body = await response.json()
+      setSubmitting(false)
+      setError(body.error || '无法登录')
+      return
+    }
+
+    localStorage.setItem('twodogs_name', normalizedName)
+    router.replace('/projects/wcw2026')
   }
 
   if (checking) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f5f1e9]">
-        <div className="text-[#8a887f] text-sm">载入中…</div>
-      </div>
-    )
+    return <LoadingScreen />
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-6 bg-[#f5f1e9]">
-      <div className="w-full max-w-sm">
-        <div className="mb-10">
-          <div className="flex items-center gap-2.5 mb-8">
-            <div className="w-2 h-2 rounded-full bg-[#cc785c]" />
-            <span className="text-sm font-medium tracking-tight text-[#1a1a17]">BRORUSH</span>
+    <main className="min-h-screen px-6 py-10 md:py-16">
+      <div className="mx-auto grid min-h-[calc(100vh-8rem)] max-w-6xl items-center gap-14 lg:grid-cols-[1.2fr_0.8fr]">
+        <section className="max-w-2xl">
+          <div className="mb-14 flex items-center gap-4 text-[var(--accent)]">
+            <DogMark />
+            <span className="text-sm font-semibold tracking-[0.18em] text-[var(--text)]">
+              2DOGS
+            </span>
           </div>
-          <h1 className="text-3xl font-semibold tracking-tight text-[#1a1a17] leading-tight">欢迎回来</h1>
-          <p className="text-[#8a887f] text-sm mt-2 leading-relaxed">输入你的名称以进入项目空间</p>
-        </div>
-        <div className="space-y-3">
-          <input
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && handleEnter()}
-            className="w-full px-4 py-3 bg-white border border-[#e6e1d6] rounded-xl text-sm text-[#1a1a17] placeholder-[#8a887f] focus:outline-none focus:border-[#cc785c] focus:ring-4 focus:ring-[#cc785c]/10 transition-all"
-            placeholder="名称"
-            autoFocus
-          />
-          {error && <p className="text-sm text-[#c44c38]">{error}</p>}
-          <button
-            onClick={handleEnter}
-            className="w-full py-3 bg-[#cc785c] text-white text-sm font-medium rounded-xl hover:bg-[#b5654a] transition-colors"
+          <p className="section-label mb-5">WCW2026 · 共同投注档案</p>
+          <h1 className="font-display text-5xl leading-[0.98] tracking-[-0.04em] text-[var(--text)] md:text-7xl">
+            YO BRO
+          </h1>
+        </section>
+
+        <section className="login-panel">
+          <p className="section-label mb-3">进入看板</p>
+          <h2 className="font-display text-3xl text-[var(--text)]">输入你的名字</h2>
+          <form
+            className="mt-8 space-y-3"
+            onSubmit={(event) => {
+              event.preventDefault()
+              handleEnter()
+            }}
           >
-            进入
-          </button>
-        </div>
-        <p className="text-xs text-[#b8b3a6] mt-10">BRORUSH · 项目协作记录系统</p>
+            <input
+              type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              className="input"
+              placeholder="名字"
+              aria-label="输入你的名字"
+              autoFocus
+            />
+            {error && <p className="text-sm text-[var(--red)]">{error}</p>}
+            <button
+              type="submit"
+              disabled={submitting}
+              className="primary-button w-full"
+            >
+              {submitting ? '进入中…' : '进入 2DOGS'}
+            </button>
+          </form>
+        </section>
       </div>
+    </main>
+  )
+}
+function LoadingScreen() {
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="text-sm text-[var(--muted)]">载入中…</div>
     </div>
   )
 }

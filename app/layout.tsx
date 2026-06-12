@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BRORUSH",
-  description: "项目协作记录系统",
+  title: "2DOGS · WCW2026",
+  description: "世界杯共同投注、赛果与收益记录",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

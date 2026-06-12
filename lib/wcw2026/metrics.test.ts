@@ -1,0 +1,217 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+
+import {
+  buildTimeline,
+  getRoundKey,
+  settleBet,
+  settleTicket,
+  summarizeBets,
+} from './metrics.ts'
+import type { Bet, Match, TicketRecord } from './types.ts'
+
+const finishedMatch: Match = {
+  id: 'match-1',
+  match_date: '2026-06-12',
+  stage: 'group',
+  round_number: 1,
+  home_team: '韩国',
+  away_team: '捷克',
+  odds_h: 2.43,
+  odds_d: 3.2,
+  odds_a: 3,
+  prediction: 'H',
+  model_prob_h: 0.5,
+  model_prob_d: 0.25,
+  model_prob_a: 0.25,
+  edge_pct: 10,
+  strategy_tag: 'Value',
+  actual_result: 'H',
+  home_score: 2,
+  away_score: 1,
+  match_status: 'finished',
+}
+
+const winningBet: Bet = {
+  id: 'bet-1',
+  match_id: 'match-1',
+  direction: 'H',
+  odds: 2.43,
+  stake: 100,
+  result: 'pending',
+  profit: 0,
+  created_at: '2026-06-10T12:00:00Z',
+}
+
+test('settleBet calculates net profit from the finished match result', () => {
+  assert.deepEqual(settleBet(winningBet, finishedMatch), {
+    ...winningBet,
+    result: 'won',
+    profit: 143,
+  })
+})
+
+test('summarizeBets counts shared bets once and uses settled stake for ROI', () => {
+  const settled = settleBet(winningBet, finishedMatch)
+  const pending = {
+    ...winningBet,
+    id: 'bet-2',
+    match_id: 'match-2',
+    stake: 80,
+  }
+
+  assert.deepEqual(summarizeBets([settled, pending]), {
+    totalStake: 180,
+    settledStake: 100,
+    settledProfit: 143,
+    roi: 143,
+    won: 1,
+    lost: 0,
+    pending: 1,
+  })
+})
+
+test('getRoundKey uses group round metadata and stable knockout labels', () => {
+  assert.deepEqual(getRoundKey(finishedMatch), {
+    id: 'group-1',
+    label: '小组赛 第 1 轮',
+    order: 1,
+  })
+  assert.deepEqual(getRoundKey({ ...finishedMatch, stage: 'final', round_number: null }), {
+    id: 'final',
+    label: '决赛',
+    order: 90,
+  })
+})
+
+test('buildTimeline accumulates stake on bet date and profit on settlement date', () => {
+  const settled = settleBet(winningBet, finishedMatch)
+  assert.deepEqual(buildTimeline([settled], [finishedMatch]), [
+    { date: '2026-06-10', stake: 100, profit: 0 },
+    { date: '2026-06-12', stake: 100, profit: 143 },
+  ])
+})
+
+test('ticket-level stakes are counted once without settling unfinished parlays', () => {
+  const ticket: TicketRecord = {
+    id: 'ticket-1',
+    label: '6×1',
+    stake: 10,
+    baseStake: 2,
+    multiplier: 5,
+    passTypes: [6],
+    purchasedAt: '2026-06-11T13:09:26+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: 'ticket.jpg',
+    legs: [],
+  }
+
+  assert.equal(summarizeBets([winningBet], [ticket]).totalStake, 110)
+  assert.deepEqual(buildTimeline([winningBet], [finishedMatch], [ticket])[0], {
+    date: '2026-06-10',
+    stake: 100,
+    profit: 0,
+  })
+  assert.deepEqual(buildTimeline([winningBet], [finishedMatch], [ticket])[1], {
+    date: '2026-06-11',
+    stake: 110,
+    profit: 0,
+  })
+})
+
+test('settleTicket applies the home handicap before checking a leg', () => {
+  const ticket: TicketRecord = {
+    id: 'sixfold',
+    label: '6×1',
+    stake: 10,
+    baseStake: 2,
+    multiplier: 5,
+    passTypes: [6],
+    purchasedAt: '2026-06-11T13:00:00+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: 'ticket.jpg',
+    legs: [
+      {
+        sourceMatchNumber: 2,
+        market: 'handicap',
+        handicap: -1,
+        direction: 'H',
+        odds: 5.95,
+      },
+      ...Array.from({ length: 5 }, (_, index) => ({
+        sourceMatchNumber: 10 + index,
+        market: 'win_draw_loss' as const,
+        handicap: 0,
+        direction: 'H' as const,
+        odds: 2,
+      })),
+    ],
+  }
+  const matches = [
+    { ...finishedMatch, source_match_number: 2 },
+    ...Array.from({ length: 5 }, (_, index) => ({
+      ...finishedMatch,
+      id: `pending-${index}`,
+      source_match_number: 10 + index,
+      match_status: 'scheduled' as const,
+      actual_result: null,
+      home_score: null,
+      away_score: null,
+    })),
+  ]
+
+  assert.deepEqual(settleTicket(ticket, matches), {
+    ...ticket,
+    result: 'lost',
+    profit: -10,
+    settledAt: '2026-06-12',
+  })
+})
+
+test('settleTicket pays only combinations made entirely from winning legs', () => {
+  const ticket: TicketRecord = {
+    id: 'system',
+    label: '3 场 2/3 关',
+    stake: 8,
+    baseStake: 2,
+    multiplier: 1,
+    passTypes: [2, 3],
+    purchasedAt: '2026-06-11T13:00:00+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: 'ticket.jpg',
+    legs: [
+      { sourceMatchNumber: 1, market: 'win_draw_loss', handicap: 0, direction: 'H', odds: 2 },
+      { sourceMatchNumber: 2, market: 'win_draw_loss', handicap: 0, direction: 'H', odds: 3 },
+      { sourceMatchNumber: 3, market: 'win_draw_loss', handicap: 0, direction: 'A', odds: 4 },
+    ],
+  }
+  const matches = [1, 2, 3].map((number) => ({
+    ...finishedMatch,
+    id: `match-${number}`,
+    source_match_number: number,
+  }))
+
+  assert.deepEqual(settleTicket(ticket, matches), {
+    ...ticket,
+    result: 'won',
+    profit: 4,
+    settledAt: '2026-06-12',
+  })
+})
+
+test('shared dashboard can aggregate two identical participant portfolios', () => {
+  const settled = settleBet(winningBet, finishedMatch)
+  assert.deepEqual(summarizeBets([settled], [], 2), {
+    totalStake: 200,
+    settledStake: 200,
+    settledProfit: 286,
+    roi: 143,
+    won: 1,
+    lost: 0,
+    pending: 0,
+  })
+  assert.equal(buildTimeline([settled], [finishedMatch], [], 2)[0].stake, 200)
+})

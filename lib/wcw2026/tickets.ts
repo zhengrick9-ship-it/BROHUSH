@@ -1,0 +1,48 @@
+import type { TicketRecord } from './types.ts'
+
+export const PARLAY_TICKETS: TicketRecord[] = [
+  {
+    id: 'photo-system-20260611',
+    label: '8 场 · 2/3/4/5/6/7/8 关',
+    stake: 494,
+    baseStake: 2,
+    multiplier: 1,
+    passTypes: [2, 3, 4, 5, 6, 7, 8],
+    purchasedAt: '2026-06-11T13:06:00+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: '2fc71534e974e4176bccff1730b103bf.jpg',
+    needsReview: true,
+    legs: [
+      { sourceMatchNumber: 2, market: 'handicap', handicap: -1, direction: 'H', odds: 5.95 },
+      { sourceMatchNumber: 6, market: 'win_draw_loss', handicap: 0, direction: 'A', odds: 5.25 },
+      { sourceMatchNumber: 11, market: 'win_draw_loss', handicap: 0, direction: 'A', odds: 3.92 },
+      { sourceMatchNumber: 9, market: 'handicap', handicap: 1, direction: 'A', odds: 5.3 },
+      { sourceMatchNumber: 12, market: 'handicap', handicap: -1, direction: 'H', odds: 3.55 },
+      { sourceMatchNumber: 16, market: 'win_draw_loss', handicap: 0, direction: 'A', odds: 5.85 },
+      { sourceMatchNumber: 19, market: 'win_draw_loss', handicap: 0, direction: 'A', odds: 8.9 },
+      { sourceMatchNumber: 21, market: 'handicap', handicap: -1, direction: 'H', odds: 4.25 },
+    ],
+  },
+  {
+    id: 'photo-sixfold-20260611',
+    label: '6×1 · 5 倍',
+    stake: 10,
+    baseStake: 2,
+    multiplier: 5,
+    passTypes: [6],
+    purchasedAt: '2026-06-11T13:09:26+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: 'ce27aabff5143e369df4b3d337dfdaef.jpg',
+    needsReview: true,
+    legs: [
+      { sourceMatchNumber: 2, market: 'handicap', handicap: -1, direction: 'H', odds: 5.95 },
+      { sourceMatchNumber: 4, market: 'handicap', handicap: -1, direction: 'H', odds: 3.7 },
+      { sourceMatchNumber: 6, market: 'win_draw_loss', handicap: 0, direction: 'A', odds: 5.25 },
+      { sourceMatchNumber: 11, market: 'win_draw_loss', handicap: 0, direction: 'A', odds: 3.92 },
+      { sourceMatchNumber: 9, market: 'handicap', handicap: 1, direction: 'A', odds: 5.3 },
+      { sourceMatchNumber: 15, market: 'handicap', handicap: -1, direction: 'H', odds: 3.1 },
+    ],
+  },
+]

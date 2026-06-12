@@ -15,6 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "allowImportingTsExtensions": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [
@@ -31,10 +32,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "../brorush-next/types/**/*.ts",
     ".next/types/**/*.ts",
-    "next-env.d.ts",
-    "../.brorush-next/types/**/*.ts"
+    "next-env.d.ts"
   ],
   "exclude": [
     "node_modules"
