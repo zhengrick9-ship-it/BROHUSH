@@ -5,87 +5,108 @@ import Link from 'next/link'
 export default function WCW2026Page() {
   const [matches, setMatches] = useState<any[]>([])
   const [bets, setBets] = useState<any[]>([])
+  const [me, setMe] = useState('')
 
   useEffect(() => {
+    setMe(localStorage.getItem('brorush_name') || '')
     fetch('/api/data').then(r => r.json()).then(d => { setMatches(d.matches); setBets(d.bets) })
   }, [])
 
   const musBets = bets.filter(b => b.person === '木四')
   const tkBets = bets.filter(b => b.person === '听课')
-  const calc = (bs: any[]) => ({ stake: bs.reduce((s, b) => s + b.stake, 0), profit: bs.reduce((s, b) => s + (b.profit || 0), 0), won: bs.filter(b => b.result === 'won').length, lost: bs.filter(b => b.result === 'lost').length })
-  const mus = calc(musBets); const tk = calc(tkBets)
+  const calc = (bs: any[]) => ({
+    stake: bs.reduce((s, b) => s + b.stake, 0),
+    profit: bs.reduce((s, b) => s + (b.profit || 0), 0),
+    won: bs.filter(b => b.result === 'won').length,
+    lost: bs.filter(b => b.result === 'lost').length,
+  })
+  const mus = calc(musBets), tk = calc(tkBets)
 
-  if (!matches.length) return <div className="flex min-h-screen items-center justify-center bg-[#080808]"><div className="text-[#5e5d59]">加载中...</div></div>
+  if (!matches.length) {
+    return <div className="flex min-h-screen items-center justify-center bg-[#0a0a08]"><div className="text-[#6f6e69] text-sm">载入中…</div></div>
+  }
+
+  const Person = ({ name, s }: { name: string, s: ReturnType<typeof calc> }) => {
+    const roi = s.stake > 0 ? (s.profit / s.stake) * 100 : 0
+    const pc = s.profit > 0 ? 'text-[#6fc28a]' : s.profit < 0 ? 'text-[#e07a64]' : 'text-[#f5f4ef]'
+    return (
+      <div className="stat-card">
+        <div className="flex items-center justify-between mb-4">
+          <span className="font-medium text-[#f5f4ef]">{name}</span>
+          {me === name && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#cc785c]/15 text-[#e0a08a]">我</span>}
+        </div>
+        <div className="grid grid-cols-4 gap-2">
+          <div><div className="text-[11px] text-[#6f6e69] mb-1">投入</div><div className="text-sm font-semibold font-mono-custom text-[#f5f4ef]">{s.stake}</div></div>
+          <div><div className="text-[11px] text-[#6f6e69] mb-1">盈亏</div><div className={`text-sm font-semibold font-mono-custom ${pc}`}>{s.profit > 0 ? '+' : ''}{s.profit}</div></div>
+          <div><div className="text-[11px] text-[#6f6e69] mb-1">ROI</div><div className={`text-sm font-semibold font-mono-custom ${pc}`}>{roi.toFixed(0)}%</div></div>
+          <div><div className="text-[11px] text-[#6f6e69] mb-1">战绩</div><div className="text-sm font-semibold font-mono-custom text-[#f5f4ef]">{s.won}/{s.lost}</div></div>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="flex-1 p-4 md:p-6 max-w-7xl mx-auto w-full">
-      {/* 导航 */}
-      <div className="flex items-center justify-between mb-8 pt-2">
-        <div className="flex items-center gap-3 text-sm">
-          <Link href="/" className="nav-link">← 首页</Link>
-          <span className="text-[#3d3d3a]">/</span>
-          <span className="text-[#f1f1ef]">WCW2026</span>
+    <div className="flex-1 w-full max-w-6xl mx-auto px-5 md:px-8 py-8">
+      <div className="flex items-center justify-between mb-12">
+        <div className="flex items-center gap-2.5">
+          <div className="w-2 h-2 rounded-full bg-[#cc785c]" />
+          <Link href="/" className="text-sm font-medium text-[#f5f4ef]">BRORUSH</Link>
         </div>
-        <span className="text-sm text-[#5e5d59]">{typeof window !== 'undefined' ? localStorage.getItem('brorush_name') : ''}</span>
-      </div>
-
-      <h1 className="text-2xl font-bold text-[#f1f1ef] mb-1">🌍 WCW2026 世界杯</h1>
-      <p className="text-[#5e5d59] text-sm mb-8">24 场投注方案跟踪</p>
-
-      {/* 双人概览 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <div className="card p-5">
-          <div className="flex items-center gap-2 mb-3"><span>👤</span><span className="font-semibold text-[#f1f1ef]">木四</span></div>
-          <div className="grid grid-cols-4 gap-3 text-sm">
-            <div><div className="text-xs text-[#5e5d59]">投入</div><div className="font-semibold font-mono-custom text-[#f1f1ef]">{mus.stake}元</div></div>
-            <div><div className="text-xs text-[#5e5d59]">盈亏</div><div className={`font-semibold font-mono-custom ${mus.profit > 0 ? 'text-[#4ade80]' : mus.profit < 0 ? 'text-[#f87171]' : ''}`}>{mus.profit > 0 ? '+' : ''}{mus.profit}</div></div>
-            <div><div className="text-xs text-[#5e5d59]">ROI</div><div className={`font-semibold font-mono-custom ${mus.profit > 0 ? 'text-[#4ade80]' : mus.profit < 0 ? 'text-[#f87171]' : ''}`}>{mus.stake > 0 ? ((mus.profit/mus.stake)*100).toFixed(1) : '0'}%</div></div>
-            <div><div className="text-xs text-[#5e5d59]">战绩</div><div className="font-semibold text-[#f1f1ef]">{mus.won}W {mus.lost}L</div></div>
-          </div>
-        </div>
-        <div className="card p-5">
-          <div className="flex items-center gap-2 mb-3"><span>👤</span><span className="font-semibold text-[#f1f1ef]">听课</span></div>
-          <div className="grid grid-cols-4 gap-3 text-sm">
-            <div><div className="text-xs text-[#5e5d59]">投入</div><div className="font-semibold font-mono-custom text-[#f1f1ef]">{tk.stake}元</div></div>
-            <div><div className="text-xs text-[#5e5d59]">盈亏</div><div className={`font-semibold font-mono-custom ${tk.profit > 0 ? 'text-[#4ade80]' : tk.profit < 0 ? 'text-[#f87171]' : ''}`}>{tk.profit > 0 ? '+' : ''}{tk.profit}</div></div>
-            <div><div className="text-xs text-[#5e5d59]">ROI</div><div className={`font-semibold font-mono-custom ${tk.profit > 0 ? 'text-[#4ade80]' : tk.profit < 0 ? 'text-[#f87171]' : ''}`}>{tk.stake > 0 ? ((tk.profit/tk.stake)*100).toFixed(1) : '0'}%</div></div>
-            <div><div className="text-xs text-[#5e5d59]">战绩</div><div className="font-semibold text-[#f1f1ef]">{tk.won}W {tk.lost}L</div></div>
-          </div>
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-[#6f6e69]">{me}</span>
+          <button onClick={() => { localStorage.removeItem('brorush_name'); location.href = '/' }} className="nav-link text-sm">退出</button>
         </div>
       </div>
 
-      {/* 标签 */}
-      <div className="flex gap-4 mb-6 border-b border-[#1f1e1d]">
-        <span className="px-1 pb-3 text-sm font-medium text-[#f1f1ef] border-b-2 border-[#146ef5]">📅 赛程</span>
-        <Link href="/projects/wcw2026/bets" className="px-1 pb-3 text-sm text-[#5e5d59] hover:text-[#b0aea5] border-b-2 border-transparent transition-colors">💰 投注记录</Link>
-        <Link href="/projects/wcw2026/pnl" className="px-1 pb-3 text-sm text-[#5e5d59] hover:text-[#b0aea5] border-b-2 border-transparent transition-colors">📊 盈亏</Link>
+      <div className="mb-12">
+        <p className="section-label mb-3">WCW2026 · 世界杯</p>
+        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-[#f5f4ef] leading-tight">投注方案与赛果跟踪</h1>
+        <p className="text-[#8f8e87] text-sm mt-3 leading-relaxed">{matches.length} 场比赛 · 模型推荐 · 双人投注与盈亏</p>
       </div>
 
-      {/* 赛程 */}
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead><tr className="border-b border-[#1f1e1d] text-left text-xs text-[#5e5d59]">
-            <th className="pb-3 font-medium">日期</th><th className="pb-3 font-medium">组</th>
-            <th className="pb-3 font-medium">比赛</th><th className="pb-3 font-medium">预测</th>
-            <th className="pb-3 font-medium">赔率</th><th className="pb-3 font-medium">边缘</th>
-            <th className="pb-3 font-medium">标签</th><th className="pb-3 font-medium">赛果</th>
-          </tr></thead>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-12">
+        <Person name="木四" s={mus} />
+        <Person name="听课" s={tk} />
+      </div>
+
+      <div className="flex items-center gap-6 mb-6 border-b border-[#232320]">
+        <span className="pb-3 text-sm font-medium text-[#f5f4ef] border-b-2 border-[#cc785c] -mb-px">赛程与推荐</span>
+        <Link href="/projects/wcw2026/bets" className="pb-3 text-sm text-[#6f6e69] hover:text-[#b3b1a7] transition-colors">投注记录</Link>
+        <Link href="/projects/wcw2026/pnl" className="pb-3 text-sm text-[#6f6e69] hover:text-[#b3b1a7] transition-colors">盈亏统计</Link>
+      </div>
+
+      <div className="overflow-x-auto -mx-5 px-5 md:mx-0 md:px-0">
+        <table className="w-full text-sm border-collapse">
+          <thead>
+            <tr className="text-left text-[11px] text-[#6f6e69] border-b border-[#232320]">
+              <th className="pb-3 pr-4 font-medium">日期</th>
+              <th className="pb-3 pr-4 font-medium">比赛</th>
+              <th className="pb-3 pr-4 font-medium">推荐</th>
+              <th className="pb-3 pr-4 font-medium">概率 H/D/A</th>
+              <th className="pb-3 pr-4 font-medium">赔率 H/D/A</th>
+              <th className="pb-3 pr-4 font-medium">边缘</th>
+              <th className="pb-3 pr-4 font-medium">策略</th>
+              <th className="pb-3 font-medium">赛果</th>
+            </tr>
+          </thead>
           <tbody>
             {matches.map(m => (
-              <tr key={m.id} className="border-b border-[#1f1e1d]/50 hover:bg-white/[0.02] transition-colors">
-                <td className="py-3 text-xs text-[#5e5d59] font-mono">{m.match_date?.slice(5)}</td>
-                <td className="py-3 text-xs text-[#5e5d59]">{m.group_name}</td>
-                <td className="py-3 text-sm"><span className="text-[#f1f1ef]">{m.home_team}</span><span className="text-[#3d3d3a] mx-1">vs</span><span className="text-[#f1f1ef]">{m.away_team}</span></td>
-                <td className="py-3"><span className={`tag ${m.prediction === 'H' ? 'tag-h' : m.prediction === 'A' ? 'tag-a' : 'tag-d'}`}>{m.prediction === 'H' ? '主胜' : m.prediction === 'A' ? '客胜' : '平'}</span><div className="text-xs text-[#5e5d59] mt-0.5 font-mono">{Math.round((m.model_prob_h||0)*100)}/{Math.round((m.model_prob_d||0)*100)}/{Math.round((m.model_prob_a||0)*100)}</div></td>
-                <td className="py-3 text-xs text-[#87867f] font-mono">{m.odds_h}/{m.odds_d}/{m.odds_a}</td>
-                <td className="py-3 text-xs text-[#4ade80] font-medium font-mono">+{m.edge_pct}%</td>
-                <td className="py-3"><span className={`tag ${m.strategy_tag === 'CU' ? 'tag-cu' : m.strategy_tag === 'Value' ? 'tag-value' : 'tag-edge'}`}>{m.strategy_tag}</span></td>
-                <td className="py-3">{m.match_status === 'finished' ? <span className={`text-sm font-semibold ${m.actual_result === m.prediction ? 'text-[#4ade80]' : 'text-[#f87171]'}`}>{m.home_score}-{m.away_score}</span> : <span className="text-xs text-[#3d3d3a]">—</span>}</td>
+              <tr key={m.id} className="border-b border-[#1c1c19] hover:bg-white/[0.015] transition-colors">
+                <td className="py-3 pr-4 text-xs text-[#6f6e69] font-mono-custom whitespace-nowrap">{m.match_date?.slice(5)}</td>
+                <td className="py-3 pr-4 whitespace-nowrap"><span className="text-[#f5f4ef]">{m.home_team}</span><span className="text-[#3a3a36] mx-1.5">vs</span><span className="text-[#f5f4ef]">{m.away_team}</span></td>
+                <td className="py-3 pr-4"><span className={`tag ${m.prediction === 'H' ? 'tag-h' : m.prediction === 'A' ? 'tag-a' : 'tag-d'}`}>{m.prediction === 'H' ? '主胜' : m.prediction === 'A' ? '客胜' : '平'}</span></td>
+                <td className="py-3 pr-4 text-xs text-[#8f8e87] font-mono-custom whitespace-nowrap">{Math.round((m.model_prob_h || 0) * 100)}/{Math.round((m.model_prob_d || 0) * 100)}/{Math.round((m.model_prob_a || 0) * 100)}</td>
+                <td className="py-3 pr-4 text-xs text-[#8f8e87] font-mono-custom whitespace-nowrap">{m.odds_h}/{m.odds_d}/{m.odds_a}</td>
+                <td className="py-3 pr-4 text-xs font-mono-custom text-[#6fc28a] whitespace-nowrap">+{m.edge_pct}%</td>
+                <td className="py-3 pr-4"><span className={`tag ${m.strategy_tag === 'CU' ? 'tag-cu' : m.strategy_tag === 'Value' ? 'tag-value' : 'tag-edge'}`}>{m.strategy_tag}</span></td>
+                <td className="py-3 whitespace-nowrap">{m.match_status === 'finished' ? <span className={`text-sm font-semibold font-mono-custom ${m.actual_result === m.prediction ? 'text-[#6fc28a]' : 'text-[#e07a64]'}`}>{m.home_score}-{m.away_score}</span> : <span className="text-xs text-[#3a3a36]">—</span>}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      <p className="text-xs text-[#3a3a36] mt-12">BRORUSH · WCW2026</p>
     </div>
   )
 }

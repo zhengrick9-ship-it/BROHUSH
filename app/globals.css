@@ -1,78 +1,92 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #080808;
-  --color-bg-card: #141413;
-  --color-bg-card-hover: #1a1a18;
-  --color-border: #1f1e1d;
-  --color-border-light: #2a2927;
-  --color-accent: #146ef5;
-  --color-accent-hover: #0055d4;
-  --color-green: #22c55e;
-  --color-red: #ef4444;
-  --color-text: #f1f1ef;
-  --color-text-secondary: #b0aea5;
-  --color-text-muted: #5e5d59;
+  --color-bg: #0a0a08;
+  --color-bg-card: #141412;
+  --color-bg-card-hover: #1a1a17;
+  --color-border: #2a2a26;
+  --color-border-light: #34332e;
+  --color-accent: #cc785c;
+  --color-accent-hover: #b5654a;
+  --color-green: #4f9d69;
+  --color-red: #d4604a;
+  --color-text: #f5f4ef;
+  --color-text-secondary: #b3b1a7;
+  --color-text-muted: #6f6e69;
 }
 
 body {
-  background: #080808;
-  color: #f1f1ef;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  background: #0a0a08;
+  color: #f5f4ef;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
   -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
 }
 
 .card {
-  background: #141413;
-  border: 1px solid #1f1e1d;
+  background: #141412;
+  border: 1px solid #232320;
   border-radius: 16px;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 .card:hover {
-  border-color: #2a2927;
-  background: #1a1a18;
+  border-color: #34332e;
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 2px 10px;
-  border-radius: 9999px;
+  padding: 2px 9px;
+  border-radius: 6px;
   font-size: 12px;
   font-weight: 500;
+  letter-spacing: 0;
 }
 
-.tag-value { background: rgba(20, 110, 245, 0.1); color: #5b9ef4; border: 1px solid rgba(20, 110, 245, 0.2); }
-.tag-cu { background: rgba(201, 97, 63, 0.1); color: #d97757; border: 1px solid rgba(201, 97, 63, 0.2); }
-.tag-edge { background: rgba(255,255,255,0.04); color: #87867f; border: 1px solid rgba(255,255,255,0.06); }
-.tag-win { background: rgba(34, 197, 94, 0.1); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.2); }
-.tag-lose { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); }
-.tag-pending { background: rgba(255,255,255,0.04); color: #5e5d59; border: 1px solid rgba(255,255,255,0.06); }
-.tag-h { background: rgba(20, 110, 245, 0.1); color: #5b9ef4; border: 1px solid rgba(20, 110, 245, 0.2); }
-.tag-a { background: rgba(201, 97, 63, 0.1); color: #d97757; border: 1px solid rgba(201, 97, 63, 0.2); }
-.tag-d { background: rgba(255,255,255,0.04); color: #87867f; border: 1px solid rgba(255,255,255,0.06); }
+.tag-value { background: rgba(204,120,92,0.12); color: #e0a08a; }
+.tag-cu    { background: rgba(204,120,92,0.12); color: #e0a08a; }
+.tag-edge  { background: rgba(255,255,255,0.05); color: #8f8e87; }
+.tag-win   { background: rgba(79,157,105,0.14);  color: #6fc28a; }
+.tag-lose  { background: rgba(212,96,74,0.14);   color: #e07a64; }
+.tag-pending { background: rgba(255,255,255,0.05); color: #6f6e69; }
+.tag-h { background: rgba(204,120,92,0.12); color: #e0a08a; }
+.tag-a { background: rgba(110,140,200,0.12); color: #97aede; }
+.tag-d { background: rgba(255,255,255,0.05); color: #8f8e87; }
 
 .stat-card {
-  background: rgba(255,255,255,0.03);
+  background: #141412;
+  border: 1px solid #232320;
   border-radius: 12px;
-  padding: 14px 16px;
-  border: 1px solid rgba(255,255,255,0.04);
+  padding: 16px 18px;
 }
 
 .font-mono-custom {
-  font-family: "SF Mono", "Fira Code", monospace;
+  font-family: "SF Mono", "JetBrains Mono", "Fira Code", ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
 }
 
 .nav-link {
-  color: #5e5d59;
+  color: #6f6e69;
   transition: color 0.2s;
 }
-.nav-link:hover {
-  color: #b0aea5;
+.nav-link:hover { color: #b3b1a7; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6f6e69;
 }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.4s ease both; }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.06) transparent;
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
 }
