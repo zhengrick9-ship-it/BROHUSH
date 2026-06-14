@@ -40,6 +40,8 @@ export function parseMatchResultInput(input: unknown): {
 export function parseBetInput(input: unknown): {
   id?: string
   matchId: string
+  market: 'win_draw_loss' | 'handicap'
+  handicap: number
   direction: Outcome
   odds: number
   stake: number
@@ -49,6 +51,8 @@ export function parseBetInput(input: unknown): {
   const id = typeof input.id === 'string' && input.id ? input.id : undefined
   const matchId = typeof input.matchId === 'string' ? input.matchId.trim() : ''
   const direction = input.direction
+  const market = input.market === 'handicap' ? 'handicap' : 'win_draw_loss'
+  const handicap = market === 'handicap' ? Number(input.handicap || 0) : 0
   const odds = Number(input.odds)
   const stake = Number(input.stake)
 
@@ -56,10 +60,13 @@ export function parseBetInput(input: unknown): {
   if (!outcomes.has(direction as Outcome)) throw new Error('投注方向无效')
   if (!Number.isFinite(odds) || odds <= 1) throw new Error('赔率必须大于 1')
   if (!Number.isFinite(stake) || stake <= 0) throw new Error('金额必须大于 0')
+  if (!Number.isFinite(handicap)) throw new Error('让球数无效')
 
   return {
     ...(id ? { id } : {}),
     matchId,
+    market,
+    handicap,
     direction: direction as Outcome,
     odds: roundMoney(odds),
     stake: roundMoney(stake),
@@ -77,4 +84,3 @@ function isScore(value: unknown): value is number {
 function roundMoney(value: number) {
   return Math.round(value * 100) / 100
 }
-

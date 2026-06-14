@@ -51,6 +51,21 @@ test('settleBet calculates net profit from the finished match result', () => {
   })
 })
 
+test('settleBet applies handicap market outcome', () => {
+  assert.deepEqual(
+    settleBet(
+      {
+        ...winningBet,
+        market: 'handicap',
+        handicap: -1,
+        direction: 'D',
+      },
+      finishedMatch,
+    ).result,
+    'won',
+  )
+})
+
 test('summarizeBets counts shared bets once and uses settled stake for ROI', () => {
   const settled = settleBet(winningBet, finishedMatch)
   const pending = {
@@ -63,6 +78,7 @@ test('summarizeBets counts shared bets once and uses settled stake for ROI', () 
   assert.deepEqual(summarizeBets([settled, pending]), {
     totalStake: 180,
     settledStake: 100,
+    settledPayout: 243,
     settledProfit: 143,
     roi: 143,
     won: 1,
@@ -165,6 +181,12 @@ test('settleTicket applies the home handicap before checking a leg', () => {
   assert.deepEqual(settleTicket(ticket, matches), {
     ...ticket,
     result: 'lost',
+    payout: 0,
+    settledStake: 10,
+    minPayout: 0,
+    maxPayout: 0,
+    minProfit: -10,
+    maxProfit: -10,
     profit: -10,
     settledAt: '2026-06-12',
   })
@@ -197,6 +219,12 @@ test('settleTicket pays only combinations made entirely from winning legs', () =
   assert.deepEqual(settleTicket(ticket, matches), {
     ...ticket,
     result: 'won',
+    payout: 12,
+    settledStake: 8,
+    minPayout: 12,
+    maxPayout: 12,
+    minProfit: 4,
+    maxProfit: 4,
     profit: 4,
     settledAt: '2026-06-12',
   })
@@ -207,6 +235,7 @@ test('shared dashboard can aggregate two identical participant portfolios', () =
   assert.deepEqual(summarizeBets([settled], [], 2), {
     totalStake: 200,
     settledStake: 200,
+    settledPayout: 486,
     settledProfit: 286,
     roi: 143,
     won: 1,
@@ -214,4 +243,74 @@ test('shared dashboard can aggregate two identical participant portfolios', () =
     pending: 0,
   })
   assert.equal(buildTimeline([settled], [finishedMatch], [], 2)[0].stake, 200)
+})
+
+test('system ticket recognizes settled combinations before every leg finishes', () => {
+  const ticket: TicketRecord = {
+    id: 'partial-system',
+    label: '3 场 2 关',
+    stake: 6,
+    baseStake: 2,
+    multiplier: 1,
+    passTypes: [2],
+    purchasedAt: '2026-06-11T13:00:00+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: 'ticket.jpg',
+    legs: [
+      { sourceMatchNumber: 1, market: 'win_draw_loss', handicap: 0, direction: 'H', odds: 2 },
+      { sourceMatchNumber: 2, market: 'win_draw_loss', handicap: 0, direction: 'A', odds: 3 },
+      { sourceMatchNumber: 3, market: 'win_draw_loss', handicap: 0, direction: 'H', odds: 4 },
+    ],
+  }
+  const matches: Match[] = [
+    { ...finishedMatch, source_match_number: 1 },
+    {
+      ...finishedMatch,
+      id: 'lost',
+      source_match_number: 2,
+      actual_result: 'H',
+    },
+    {
+      ...finishedMatch,
+      id: 'pending',
+      source_match_number: 3,
+      match_status: 'scheduled',
+      actual_result: null,
+      home_score: null,
+      away_score: null,
+    },
+  ]
+
+  const settled = settleTicket(ticket, matches)
+  assert.equal(settled.result, 'pending')
+  assert.equal(settled.settledStake, 4)
+  assert.equal(settled.payout, 0)
+  assert.equal(settled.minProfit, -6)
+  assert.equal(settled.maxProfit, 10)
+})
+
+test('system ticket treats multiple selections in one match as alternatives', () => {
+  const ticket: TicketRecord = {
+    id: 'multi-option',
+    label: '4 场 2/3/4 关',
+    stake: 36,
+    baseStake: 2,
+    multiplier: 1,
+    passTypes: [2, 3, 4],
+    purchasedAt: '2026-06-14T12:00:00+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: 'ticket.jpg',
+    legs: [
+      { sourceMatchNumber: 1, market: 'handicap', handicap: -3, direction: 'D', odds: 4.8 },
+      { sourceMatchNumber: 2, market: 'win_draw_loss', handicap: 0, direction: 'D', odds: 3.43 },
+      { sourceMatchNumber: 3, market: 'win_draw_loss', handicap: 0, direction: 'H', odds: 3.15 },
+      { sourceMatchNumber: 3, market: 'win_draw_loss', handicap: 0, direction: 'D', odds: 2.65 },
+      { sourceMatchNumber: 4, market: 'handicap', handicap: -1, direction: 'H', odds: 3.4 },
+    ],
+  }
+  const settled = settleTicket(ticket, [])
+  assert.equal(settled.settledStake, 0)
+  assert.equal(settled.maxPayout, 906.79)
 })

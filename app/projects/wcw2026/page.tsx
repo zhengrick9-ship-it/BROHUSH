@@ -6,19 +6,18 @@ import { useRouter } from 'next/navigation'
 import { CapitalLines } from '@/app/components/CapitalLines'
 import { DogMark } from '@/app/components/DogMark'
 import {
+  betPayout,
   getRoundKey,
   settleBet,
   settleTicket,
   summarizeBets,
 } from '@/lib/wcw2026/metrics'
-import { PARLAY_TICKETS } from '@/lib/wcw2026/tickets'
-import type { Bet, Match, Outcome } from '@/lib/wcw2026/types'
-
-const PARTICIPANT_COUNT = 2
+import type { Bet, Match, Outcome, TicketRecord } from '@/lib/wcw2026/types'
 
 type DataResponse = {
   matches: Match[]
   bets: Bet[]
+  tickets: TicketRecord[]
   canEdit: boolean
   error?: string
 }
@@ -26,6 +25,7 @@ type DataResponse = {
 export default function WCW2026Page() {
   const [matches, setMatches] = useState<Match[]>([])
   const [bets, setBets] = useState<Bet[]>([])
+  const [tickets, setTickets] = useState<TicketRecord[]>([])
   const [me, setMe] = useState('')
   const [canEdit, setCanEdit] = useState(false)
   const [activeRound, setActiveRound] = useState('')
@@ -43,6 +43,7 @@ export default function WCW2026Page() {
       if (!response.ok) throw new Error(body.error || '数据读取失败')
       setMatches(body.matches)
       setBets(body.bets)
+      setTickets(body.tickets)
       setCanEdit(body.canEdit)
     } catch (loadError) {
       setError(loadError instanceof Error ? loadError.message : '数据读取失败')
@@ -53,7 +54,7 @@ export default function WCW2026Page() {
 
   useEffect(() => {
     const savedName = localStorage.getItem('twodogs_name')
-    if (savedName !== '木四' && savedName !== '听课') {
+    if (!savedName || !['木四', '听课', '饼干'].includes(savedName)) {
       router.replace('/')
       return
     }
@@ -88,11 +89,11 @@ export default function WCW2026Page() {
     return map
   }, [settledBets])
   const settledTickets = useMemo(
-    () => PARLAY_TICKETS.map((ticket) => settleTicket(ticket, matches)),
-    [matches],
+    () => tickets.map((ticket) => settleTicket(ticket, matches)),
+    [matches, tickets],
   )
   const summary = useMemo(
-    () => summarizeBets(settledBets, settledTickets, PARTICIPANT_COUNT),
+    () => summarizeBets(settledBets, settledTickets),
     [settledBets, settledTickets],
   )
   const rounds = useMemo(() => {
@@ -117,9 +118,13 @@ export default function WCW2026Page() {
     }
   }, [activeRound, matches, rounds])
 
-  const visibleMatches = matches.filter(
-    (match) => getRoundKey(match).id === activeRound,
-  )
+  const visibleMatches = matches
+    .filter((match) => getRoundKey(match).id === activeRound)
+    .sort((a, b) =>
+      (a.kickoff_at || a.match_date).localeCompare(
+        b.kickoff_at || b.match_date,
+      ),
+    )
 
   const logout = async () => {
     localStorage.removeItem('twodogs_name')
@@ -168,11 +173,21 @@ export default function WCW2026Page() {
           </h1>
         </section>
 
-        <section className="metric-grid">
-          <Metric label="累计投入" value={money(summary.totalStake)} unit="元" />
-          <Metric label="完赛投入" value={money(summary.settledStake)} unit="元" />
+        <section className="metric-grid metric-grid-wide">
           <Metric
-            label="完赛收益"
+            label="状态"
+            value={<MoodFace value={summary.settledProfit} size="large" />}
+          />
+          <Metric label="累计投入" value={money(summary.totalStake)} unit="元" />
+          <Metric label="完赛成本" value={money(summary.settledStake)} unit="元" />
+          <Metric
+            label="完赛奖金"
+            value={money(summary.settledPayout)}
+            tone={summary.settledPayout - summary.settledStake}
+            unit="元"
+          />
+          <Metric
+            label="净收益"
             value={signedMoney(summary.settledProfit)}
             tone={summary.settledProfit}
             unit="元"
@@ -191,48 +206,53 @@ export default function WCW2026Page() {
 
         <CapitalLines summary={summary} />
 
-        <section className="mt-10">
+        <section className="mt-7">
           <div className="mb-4 flex items-end justify-between gap-5">
             <h2 className="font-display text-2xl text-[var(--text)]">串关</h2>
             <span className="text-xs text-[var(--muted)]">
-              两人合计 {money(PARLAY_TICKETS.reduce((sum, ticket) => sum + ticket.stake, 0) * PARTICIPANT_COUNT)} 元
+              共 {settledTickets.length} 单 · {money(settledTickets.reduce((sum, ticket) => sum + ticket.stake, 0))} 元
             </span>
           </div>
           <div className="ticket-grid">
-            {settledTickets.map((ticket) => (
-              <article key={ticket.id} className="ticket-card">
+            {settledTickets.map((ticket, index) => (
+              <article key={ticket.id} className="ticket-card group">
+                <MoodFace value={ticket.result === 'pending' ? 0 : ticket.profit} />
                 <div>
-                  <p className="font-medium text-[var(--text)]">{ticket.label}</p>
+                  <p className="font-medium text-[var(--text)]">
+                    #{ticket.ticketNumber || index + 1} · {ticket.label}
+                  </p>
                   <p className="mt-2 text-xs text-[var(--muted)]">
-                    {ticket.legs.length} 场
+                    {ticket.legs.length} 场 · 成本 {money(ticket.stake)} 元
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="font-display text-2xl">
-                    {money(ticket.stake * PARTICIPANT_COUNT)} 元
-                  </p>
-                  <p
-                    className={`mt-2 text-xs ${
-                      ticket.result === 'lost'
-                        ? 'text-[var(--red)]'
-                        : ticket.result === 'won'
-                          ? 'text-[var(--green)]'
-                          : 'text-[var(--muted)]'
-                    }`}
-                  >
-                    {ticket.result === 'pending'
-                      ? '待结算'
-                      : signedMoney(ticket.profit * PARTICIPANT_COUNT)}
-                  </p>
+                  {ticket.result === 'pending' ? (
+                    <>
+                      <p className="text-xs text-[var(--muted)]">理论净收益</p>
+                      <p className="font-display text-xl">
+                        {signedMoney(ticket.minProfit || 0)} ～ {signedMoney(ticket.maxProfit || 0)}
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-xs text-[var(--muted)]">
+                        奖金 {money(ticket.payout || 0)}
+                      </p>
+                      <p className={`font-display text-xl ${ticket.profit >= 0 ? 'text-[var(--green)]' : 'text-[var(--red)]'}`}>
+                        净收益 {signedMoney(ticket.profit)}
+                      </p>
+                    </>
+                  )}
                 </div>
+                <TicketDetails ticket={ticket} matches={matches} />
               </article>
             ))}
           </div>
         </section>
 
-        <section className="mt-16">
-          <div className="mb-7 flex flex-wrap items-end justify-between gap-5">
-            <h2 className="font-display text-3xl text-[var(--text)]">赛程</h2>
+        <section className="mt-10">
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-5">
+            <h2 className="font-display text-3xl text-[var(--text)]">赛程 / 单关</h2>
             <p className="text-xs text-[var(--muted)]">
               {matches.length} 场比赛 · {settledBets.length} 场已投注
             </p>
@@ -260,12 +280,14 @@ export default function WCW2026Page() {
 
           <div className="match-list">
             <div className="match-head hidden md:grid">
-              <span>日期 / 对阵</span>
-              <span>模型推荐</span>
+              <span />
+              <span>时间 / 对阵</span>
+              <span>单关 / 让球赔率</span>
               <span>实际投注</span>
-              <span>金额</span>
+              <span>投注金额</span>
               <span>赛果</span>
-              <span>收益</span>
+              <span>奖金</span>
+              <span>净收益</span>
               <span />
             </div>
             {visibleMatches.map((match) => (
@@ -308,7 +330,7 @@ function Metric({
   tone = 0,
 }: {
   label: string
-  value: string
+  value: React.ReactNode
   unit?: string
   note?: string
   tone?: number
@@ -339,15 +361,17 @@ function MatchRow({
   onEdit: () => void
 }) {
   const totalStake =
-    bets.reduce((sum, bet) => sum + bet.stake, 0) * PARTICIPANT_COUNT
+    bets.reduce((sum, bet) => sum + bet.stake, 0)
   const totalProfit =
-    bets.reduce((sum, bet) => sum + bet.profit, 0) * PARTICIPANT_COUNT
+    bets.reduce((sum, bet) => sum + bet.profit, 0)
+  const totalPayout = bets.reduce((sum, bet) => sum + betPayout(bet), 0)
   const allSettled = bets.length > 0 && bets.every((bet) => bet.result !== 'pending')
   return (
     <article className="match-row">
+      <MoodFace value={allSettled ? totalProfit : 0} />
       <div className="min-w-0">
         <p className="mb-1 text-[11px] tracking-[0.08em] text-[var(--muted)]">
-          {match.match_date.slice(5).replace('-', '/')}
+          {formatKickoff(match)}
           {match.group_name ? ` · ${match.group_name} 组` : ''}
           {match.source_match_number
             ? ` · M${match.source_match_number}`
@@ -359,23 +383,23 @@ function MatchRow({
           {match.away_team}
         </p>
       </div>
-      <DataCell label="模型推荐">
-        {match.prediction ? (
-          <OutcomeTag outcome={match.prediction} />
-        ) : (
-          <Muted>待计算</Muted>
-        )}
-        {match.edge_pct != null && (
-          <small className="ml-2 text-[var(--green)]">
-            +{match.edge_pct}%
-          </small>
-        )}
+      <DataCell label="单关 / 让球赔率">
+        <OddsLine label="单" h={match.odds_h} d={match.odds_d} a={match.odds_a} />
+        <OddsLine
+          label={`让${formatHandicap(match.handicap_value)}`}
+          h={match.odds_handicap_h}
+          d={match.odds_handicap_d}
+          a={match.odds_handicap_a}
+        />
       </DataCell>
       <DataCell label="实际投注">
         {bets.length ? (
           <span className="flex flex-wrap gap-1.5">
             {bets.map((bet) => (
               <span key={bet.id}>
+                <small className="mr-1 text-[var(--muted)]">
+                  {bet.market === 'handicap' ? `让${formatHandicap(bet.handicap)}` : '单'}
+                </small>
                 <OutcomeTag outcome={bet.direction} />
                 <small className="ml-1 text-[var(--muted)]">@{bet.odds}</small>
               </span>
@@ -385,7 +409,7 @@ function MatchRow({
           <Muted>未投注</Muted>
         )}
       </DataCell>
-      <DataCell label="金额">
+      <DataCell label="投注金额">
         {bets.length ? `${money(totalStake)} 元` : <Muted>—</Muted>}
       </DataCell>
       <DataCell label="赛果">
@@ -397,7 +421,10 @@ function MatchRow({
           <Muted>待赛</Muted>
         )}
       </DataCell>
-      <DataCell label="收益">
+      <DataCell label="奖金">
+        {!allSettled ? <Muted>—</Muted> : `${money(totalPayout)} 元`}
+      </DataCell>
+      <DataCell label="净收益">
         {!allSettled ? (
           <Muted>—</Muted>
         ) : (
@@ -410,7 +437,7 @@ function MatchRow({
                   : ''
             }
           >
-            {signedMoney(totalProfit)}
+            {signedMoney(totalProfit)} 元
           </span>
         )}
       </DataCell>
@@ -440,6 +467,79 @@ function MatchRow({
         )}
       </div>
     </article>
+  )
+}
+
+function OddsLine({
+  label,
+  h,
+  d,
+  a,
+}: {
+  label: string
+  h?: number | null
+  d?: number | null
+  a?: number | null
+}) {
+  if (h == null && d == null && a == null) return <Muted>—</Muted>
+  return (
+    <div className="odds-line">
+      <small>{label}</small>
+      <span>主 {h ?? '—'}</span>
+      <span>平 {d ?? '—'}</span>
+      <span>客 {a ?? '—'}</span>
+    </div>
+  )
+}
+
+function MoodFace({ value, size = 'normal' }: { value: number; size?: 'normal' | 'large' }) {
+  const mouth = value > 0 ? 'M6 9c2 3 6 3 8 0' : value < 0 ? 'M6 12c2-3 6-3 8 0' : 'M6 10.5h8'
+  return (
+    <span
+      className={`mood-face ${value > 0 ? 'is-happy' : value < 0 ? 'is-sad' : ''} ${size === 'large' ? 'is-large' : ''}`}
+      aria-label={value > 0 ? '盈利' : value < 0 ? '亏损' : '持平或待定'}
+      title={value > 0 ? '盈利' : value < 0 ? '亏损' : '持平或待定'}
+    >
+      <svg viewBox="0 0 20 20" aria-hidden="true">
+        <circle cx="10" cy="10" r="8" />
+        <circle cx="7" cy="8" r=".7" fill="currentColor" stroke="none" />
+        <circle cx="13" cy="8" r=".7" fill="currentColor" stroke="none" />
+        <path d={mouth} />
+      </svg>
+    </span>
+  )
+}
+
+function TicketDetails({
+  ticket,
+  matches,
+}: {
+  ticket: TicketRecord
+  matches: Match[]
+}) {
+  const byNumber = new Map(
+    matches.map((match) => [match.source_match_number, match]),
+  )
+  return (
+    <div className="ticket-details" role="tooltip">
+      {ticket.legs.map((leg) => {
+        const match = byNumber.get(leg.sourceMatchNumber)
+        return (
+          <div key={leg.sourceMatchNumber} className="ticket-detail-row">
+            <span>
+              {match ? `${match.home_team} vs ${match.away_team}` : `M${leg.sourceMatchNumber}`}
+            </span>
+            <span>
+              {leg.market === 'handicap' ? `让${formatHandicap(leg.handicap)} ` : ''}
+              {outcomeLabel(leg.direction)} @{leg.odds}
+            </span>
+          </div>
+        )
+      })}
+      <div className="ticket-detail-total">
+        金额 {money(ticket.stake)} 元
+      </div>
+    </div>
   )
 }
 
@@ -494,9 +594,15 @@ function EditDrawer({
     match.away_score == null ? '' : String(match.away_score),
   )
   const [direction, setDirection] = useState<Outcome>(selectedBet?.direction || 'H')
+  const [market, setMarket] = useState<'win_draw_loss' | 'handicap'>(
+    selectedBet?.market || 'win_draw_loss',
+  )
+  const [handicap, setHandicap] = useState(
+    String(selectedBet?.handicap || 0),
+  )
   const [odds, setOdds] = useState(selectedBet ? String(selectedBet.odds) : '')
   const [stake, setStake] = useState(
-    selectedBet ? String(selectedBet.stake * PARTICIPANT_COUNT) : '200',
+    selectedBet ? String(selectedBet.stake) : '100',
   )
   const [message, setMessage] = useState('')
   const [saving, setSaving] = useState(false)
@@ -542,8 +648,10 @@ function EditDrawer({
           id: selectedBet?.id,
           matchId: match.id,
           direction,
+          market,
+          handicap: Number(handicap),
           odds: Number(odds),
-          stake: Number(stake) / PARTICIPANT_COUNT,
+          stake: Number(stake),
         }),
       })
       setMessage('投注已保存')
@@ -624,8 +732,10 @@ function EditDrawer({
                   onClick={() => {
                     setSelectedBetId(bet.id)
                     setDirection(bet.direction)
+                    setMarket(bet.market || 'win_draw_loss')
+                    setHandicap(String(bet.handicap || 0))
                     setOdds(String(bet.odds))
-                    setStake(String(bet.stake * PARTICIPANT_COUNT))
+                    setStake(String(bet.stake))
                   }}
                 >
                   第 {index + 1} 注 · @{bet.odds}
@@ -636,15 +746,41 @@ function EditDrawer({
                 onClick={() => {
                   setSelectedBetId(null)
                   setDirection('H')
+                  setMarket('win_draw_loss')
+                  setHandicap('0')
                   setOdds('')
-                  setStake('200')
+                  setStake('100')
                 }}
               >
                 + 新增一注
               </button>
             </div>
           )}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 gap-3">
+            <label className="field">
+              <span>玩法</span>
+              <select
+                className="input"
+                value={market}
+                onChange={(event) =>
+                  setMarket(event.target.value as 'win_draw_loss' | 'handicap')
+                }
+              >
+                <option value="win_draw_loss">单关</option>
+                <option value="handicap">让球</option>
+              </select>
+            </label>
+            <label className="field">
+              <span>让球数</span>
+              <input
+                className="input"
+                type="number"
+                step="1"
+                value={handicap}
+                disabled={market !== 'handicap'}
+                onChange={(event) => setHandicap(event.target.value)}
+              />
+            </label>
             <label className="field">
               <span>方向</span>
               <select
@@ -669,7 +805,7 @@ function EditDrawer({
               />
             </label>
             <label className="field">
-              <span>金额（两人合计）</span>
+              <span>投注金额</span>
               <input
                 className="input"
                 type="number"
@@ -713,4 +849,29 @@ function money(value: number) {
 
 function signedMoney(value: number) {
   return `${value > 0 ? '+' : ''}${money(value)}`
+}
+
+function outcomeLabel(outcome: Outcome) {
+  return outcome === 'H' ? '主胜' : outcome === 'A' ? '客胜' : '平'
+}
+
+function formatHandicap(value?: number | null) {
+  if (value == null || value === 0) return '0'
+  return value > 0 ? `+${value}` : String(value)
+}
+
+function formatKickoff(match: Match) {
+  if (!match.kickoff_at) {
+    return match.match_date.slice(5).replace('-', '/')
+  }
+  return new Intl.DateTimeFormat('zh-CN', {
+    timeZone: 'Asia/Shanghai',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  })
+    .format(new Date(match.kickoff_at))
+    .replace(/\//g, '/')
 }

@@ -53,6 +53,7 @@ for (const fixture of WORLD_CUP_FIXTURES) {
     existingByTeams.get(`${fixture.homeTeam}__${fixture.awayTeam}`)
   const payload = {
     match_date: fixture.matchDate,
+    kickoff_at: fixture.kickoffAt,
     group_name: fixture.groupName,
     home_team: fixture.homeTeam,
     away_team: fixture.awayTeam,

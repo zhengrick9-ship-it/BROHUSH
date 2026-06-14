@@ -1,27 +1,42 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { getEditorSession } from '@/lib/auth/session'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { WORLD_CUP_FIXTURES } from '@/lib/wcw2026/fixtures'
 import { settleBet } from '@/lib/wcw2026/metrics'
-import type { Bet, Match } from '@/lib/wcw2026/types'
+import type { Bet, Match, TicketRecord } from '@/lib/wcw2026/types'
 
 export async function GET() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  if (!url || !anonKey) {
-    return NextResponse.json({ error: '数据库读取配置缺失' }, { status: 500 })
+  const session = await getEditorSession()
+  if (!session) {
+    return NextResponse.json({ error: '请重新登录' }, { status: 401 })
   }
 
-  const supabase = createClient(url, anonKey)
-  const [{ data: rawMatches, error: matchesError }, { data: rawBets, error: betsError }, session] =
+  const supabase = createAdminClient()
+  const [
+    { data: rawMatches, error: matchesError },
+    { data: rawBets, error: betsError },
+    { data: rawTickets, error: ticketsError },
+  ] =
     await Promise.all([
       supabase.from('matches').select('*').order('match_date').order('id'),
-      supabase.from('bets').select('*').order('created_at'),
-      getEditorSession(),
+      supabase
+        .from('bets')
+        .select('*')
+        .eq('owner_name', session.name)
+        .order('created_at'),
+      supabase
+        .from('bet_tickets')
+        .select('*, bet_legs(*)')
+        .eq('owner_name', session.name)
+        .order('ticket_number'),
     ])
 
-  if (matchesError || betsError) {
-    console.error('Failed to load WCW2026 data', { matchesError, betsError })
+  if (matchesError || betsError || ticketsError) {
+    console.error('Failed to load WCW2026 data', {
+      matchesError,
+      betsError,
+      ticketsError,
+    })
     return NextResponse.json({ error: '世界杯数据读取失败' }, { status: 502 })
   }
 
@@ -34,9 +49,38 @@ export async function GET() {
   return NextResponse.json({
     matches,
     bets,
-    canEdit: Boolean(session),
-    editorName: session?.name || null,
+    tickets: (rawTickets || []).map(mapTicket),
+    canEdit: true,
+    editorName: session.name,
   })
+}
+
+function mapTicket(row: Record<string, unknown>): TicketRecord {
+  const legs = (row.bet_legs || []) as Array<Record<string, unknown>>
+  return {
+    id: String(row.id),
+    ownerName: String(row.owner_name),
+    ticketNumber: Number(row.ticket_number),
+    label: String(row.label),
+    stake: Number(row.stake),
+    baseStake: Number(row.base_stake),
+    multiplier: Number(row.multiplier),
+    passTypes: (row.pass_types || []) as number[],
+    purchasedAt: String(row.purchased_at),
+    result: String(row.result) as TicketRecord['result'],
+    profit: Number(row.profit),
+    sourceImage: String(row.source_image || ''),
+    needsReview: Boolean(row.needs_review),
+    potentialPayout:
+      row.potential_payout == null ? undefined : Number(row.potential_payout),
+    legs: legs.map((leg) => ({
+      sourceMatchNumber: Number(leg.source_match_number),
+      market: String(leg.market) as 'win_draw_loss' | 'handicap',
+      handicap: Number(leg.handicap),
+      direction: String(leg.direction) as 'H' | 'D' | 'A',
+      odds: Number(leg.odds),
+    })),
+  }
 }
 
 function mergeSchedule(databaseMatches: Match[]): Match[] {
@@ -61,6 +105,7 @@ function mergeSchedule(databaseMatches: Match[]): Match[] {
       return {
         ...stored,
         source_match_number: fixture.sourceMatchNumber,
+        kickoff_at: stored.kickoff_at || fixture.kickoffAt,
         stage: stored.stage || fixture.stage,
         round_number: stored.round_number || fixture.roundNumber,
         group_name: stored.group_name || fixture.groupName,
@@ -71,7 +116,7 @@ function mergeSchedule(databaseMatches: Match[]): Match[] {
       id: `schedule-${fixture.sourceMatchNumber}`,
       source_match_number: fixture.sourceMatchNumber,
       match_date: fixture.matchDate,
-      kickoff_at: null,
+      kickoff_at: fixture.kickoffAt,
       group_name: fixture.groupName,
       stage: fixture.stage,
       round_number: fixture.roundNumber,

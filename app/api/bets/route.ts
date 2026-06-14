@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { requireEditorSession } from '@/lib/auth/session'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { settleBet } from '@/lib/wcw2026/metrics'
@@ -7,20 +6,20 @@ import { parseBetInput } from '@/lib/wcw2026/validation'
 import type { Bet, Match } from '@/lib/wcw2026/types'
 
 export async function GET() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  if (!url || !anonKey) {
-    return NextResponse.json({ error: '数据库读取配置缺失' }, { status: 500 })
-  }
-  const supabase = createClient(url, anonKey)
-  const { data, error } = await supabase.from('bets').select('*').order('created_at')
+  const session = await requireEditorSession()
+  const supabase = createAdminClient()
+  const { data, error } = await supabase
+    .from('bets')
+    .select('*')
+    .eq('owner_name', session.name)
+    .order('created_at')
   if (error) return NextResponse.json({ error: '投注读取失败' }, { status: 502 })
   return NextResponse.json(data || [])
 }
 
 export async function POST(request: Request) {
   try {
-    await requireEditorSession()
+    const session = await requireEditorSession()
     const input = parseBetInput(await request.json())
     if (input.matchId.startsWith('schedule-')) {
       return NextResponse.json(
@@ -42,6 +41,9 @@ export async function POST(request: Request) {
     const baseBet: Bet = {
       id: input.id || '',
       match_id: input.matchId,
+      owner_name: session.name,
+      market: input.market,
+      handicap: input.handicap,
       direction: input.direction,
       odds: input.odds,
       stake: input.stake,
@@ -52,6 +54,9 @@ export async function POST(request: Request) {
     const settled = settleBet(baseBet, match as Match)
     const payload = {
       match_id: settled.match_id,
+      owner_name: session.name,
+      market: settled.market || 'win_draw_loss',
+      handicap: settled.handicap || 0,
       direction: settled.direction,
       odds: settled.odds,
       stake: settled.stake,
@@ -64,6 +69,7 @@ export async function POST(request: Request) {
         .from('bets')
         .update(payload)
         .eq('id', input.id)
+        .eq('owner_name', session.name)
         .select()
         .single()
       if (error) throw error
@@ -87,10 +93,14 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    await requireEditorSession()
+    const session = await requireEditorSession()
     const id = new URL(request.url).searchParams.get('id')
     if (!id) return NextResponse.json({ error: '缺少投注 ID' }, { status: 400 })
-    const { error } = await createAdminClient().from('bets').delete().eq('id', id)
+    const { error } = await createAdminClient()
+      .from('bets')
+      .delete()
+      .eq('id', id)
+      .eq('owner_name', session.name)
     if (error) throw error
     return NextResponse.json({ ok: true })
   } catch (error) {

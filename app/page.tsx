@@ -14,7 +14,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const saved = localStorage.getItem('twodogs_name')
-    if (saved === '木四' || saved === '听课') {
+    if (saved === '木四' || saved === '听课' || saved === '饼干') {
       fetch('/api/session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -34,7 +34,7 @@ export default function HomePage() {
 
   const handleEnter = async () => {
     const normalizedName = name.trim()
-    if (normalizedName !== '木四' && normalizedName !== '听课') {
+    if (!['木四', '听课', '饼干'].includes(normalizedName)) {
       setError('名字不对')
       return
     }
@@ -66,15 +66,17 @@ export default function HomePage() {
     <main className="min-h-screen px-6 py-10 md:py-16">
       <div className="mx-auto grid min-h-[calc(100vh-8rem)] max-w-6xl items-center gap-14 lg:grid-cols-[1.2fr_0.8fr]">
         <section className="max-w-2xl">
-          <div className="mb-14 flex items-center gap-4 text-[var(--accent)]">
-            <DogMark />
-            <span className="text-sm font-semibold tracking-[0.18em] text-[var(--text)]">
+          <div className="mb-10 flex items-center gap-5 text-[var(--accent)]">
+            <DogMark className="login-dog-mark" />
+            <span className="text-lg font-semibold tracking-[0.2em] text-[var(--text)] md:text-xl">
               2DOGS
             </span>
           </div>
-          <p className="section-label mb-5">WCW2026 · 共同投注档案</p>
-          <h1 className="font-display text-5xl leading-[0.98] tracking-[-0.04em] text-[var(--text)] md:text-7xl">
-            YO BRO
+          <p className="section-label mb-5">WCW2026</p>
+          <h1 className="font-display max-w-xl text-4xl leading-[1.12] tracking-[-0.035em] text-[var(--text)] md:text-6xl">
+            失败是成功之母，
+            <br />
+            投注是成功支付
           </h1>
         </section>
 

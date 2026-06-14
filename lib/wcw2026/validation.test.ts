@@ -39,7 +39,14 @@ test('parseBetInput rejects invalid odds and stake', () => {
 test('parseBetInput normalizes valid shared bet input', () => {
   assert.deepEqual(
     parseBetInput({ id: 'b1', matchId: 'm1', direction: 'A', odds: 3.92, stake: 100 }),
-    { id: 'b1', matchId: 'm1', direction: 'A', odds: 3.92, stake: 100 },
+    {
+      id: 'b1',
+      matchId: 'm1',
+      market: 'win_draw_loss',
+      handicap: 0,
+      direction: 'A',
+      odds: 3.92,
+      stake: 100,
+    },
   )
 })
-

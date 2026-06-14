@@ -10,11 +10,24 @@ const roundLabels: Record<string, { label: string; order: number }> = {
 }
 
 export function settleBet(bet: Bet, match?: Match): Bet {
-  if (!match || match.match_status !== 'finished' || !match.actual_result) {
+  if (
+    !match ||
+    match.match_status !== 'finished' ||
+    match.home_score == null ||
+    match.away_score == null
+  ) {
     return { ...bet, result: 'pending', profit: 0 }
   }
 
-  const won = match.actual_result === bet.direction
+  const adjustedHome =
+    match.home_score + (bet.market === 'handicap' ? bet.handicap || 0 : 0)
+  const actual =
+    adjustedHome > match.away_score
+      ? 'H'
+      : adjustedHome < match.away_score
+        ? 'A'
+        : 'D'
+  const won = actual === bet.direction
   return {
     ...bet,
     result: won ? 'won' : 'lost',
@@ -22,10 +35,31 @@ export function settleBet(bet: Bet, match?: Match): Bet {
   }
 }
 
+export function betPayout(bet: Bet) {
+  return bet.result === 'won' ? roundMoney(bet.stake + bet.profit) : 0
+}
+
 export function settleTicket(
   ticket: TicketRecord,
   matches: Match[],
 ): TicketRecord {
+  if (ticket.legs.length === 0) {
+    return {
+      ...ticket,
+      settledStake: ticket.result === 'pending' ? 0 : ticket.stake,
+      payout: ticket.result === 'won' ? ticket.potentialPayout || 0 : 0,
+      minPayout: ticket.result === 'won' ? ticket.potentialPayout || 0 : 0,
+      maxPayout:
+        ticket.result === 'pending'
+          ? ticket.potentialPayout || 0
+          : ticket.payout || 0,
+      minProfit: ticket.result === 'pending' ? -ticket.stake : ticket.profit,
+      maxProfit:
+        ticket.result === 'pending'
+          ? roundMoney((ticket.potentialPayout || 0) - ticket.stake)
+          : ticket.profit,
+    }
+  }
   const matchMap = new Map(
     matches
       .filter((match) => match.source_match_number)
@@ -52,8 +86,6 @@ export function settleTicket(
     }
   })
 
-  const minimumPass = Math.min(...ticket.passTypes)
-  const possibleLegs = legs.filter((leg) => leg.status !== 'lost').length
   const settledAt = ticket.legs
     .map((leg) => matchMap.get(leg.sourceMatchNumber))
     .filter(
@@ -64,32 +96,52 @@ export function settleTicket(
     .sort()
     .at(-1)
     ?.slice(0, 10)
-  if (possibleLegs < minimumPass) {
-    return { ...ticket, result: 'lost', profit: -ticket.stake, settledAt }
-  }
-  if (legs.some((leg) => leg.status === 'pending')) {
-    return { ...ticket, result: 'pending', profit: 0 }
-  }
-
-  const winningLegs = legs.filter((leg) => leg.status === 'won')
-  const payout = ticket.passTypes.reduce((total, passSize) => {
-    if (winningLegs.length < passSize) return total
-    return (
-      total +
-      combinations(winningLegs, passSize).reduce(
-        (passTotal, combination) =>
-          passTotal +
-          ticket.baseStake *
-            ticket.multiplier *
-            combination.reduce((product, leg) => product * leg.odds, 1),
-        0,
-      )
+  const legGroups = [
+    ...Map.groupBy(legs, (leg) => leg.sourceMatchNumber).values(),
+  ]
+  const allCombinations = ticket.passTypes.flatMap((passSize) =>
+    combinations(legGroups, passSize).flatMap(cartesianProduct),
+  )
+  const unitStake = ticket.baseStake * ticket.multiplier
+  const settledCombinations = allCombinations.filter(
+    (combination) =>
+      combination.some((leg) => leg.status === 'lost') ||
+      combination.every((leg) => leg.status === 'won'),
+  )
+  const winningCombinations = settledCombinations.filter((combination) =>
+    combination.every((leg) => leg.status === 'won'),
+  )
+  const settledStake = roundMoney(settledCombinations.length * unitStake)
+  const payout = combinationPayout(winningCombinations, unitStake)
+  const finalPayouts = cartesianProduct(
+    legGroups.map(possibleWinningSets),
+  ).map((scenarioGroups) => {
+    const winners = new Set(scenarioGroups.flat())
+    return combinationPayout(
+      allCombinations.filter((combination) =>
+        combination.every((leg) => winners.has(leg)),
+      ),
+      unitStake,
     )
-  }, 0)
+  })
+  const minPayout = Math.min(...finalPayouts)
+  const maxPayout = Math.max(...finalPayouts)
+  const hasPending = settledCombinations.length < allCombinations.length
+  const result: TicketRecord['result'] = hasPending
+    ? 'pending'
+    : payout > 0
+      ? 'won'
+      : 'lost'
 
   return {
     ...ticket,
-    result: payout > 0 ? 'won' : 'lost',
+    result,
+    payout,
+    settledStake,
+    minPayout,
+    maxPayout,
+    minProfit: roundMoney(minPayout - ticket.stake),
+    maxProfit: roundMoney(maxPayout - ticket.stake),
     profit: roundMoney(payout - ticket.stake),
     settledAt,
   }
@@ -101,16 +153,16 @@ export function summarizeBets(
   participantCount = 1,
 ): Summary {
   const settled = bets.filter((bet) => bet.result !== 'pending')
-  const settledTickets = tickets.filter((ticket) => ticket.result !== 'pending')
   const settledStake = participantCount * (
     sum(settled.map((bet) => bet.stake)) +
-    sum(settledTickets.map((ticket) => ticket.stake))
+    sum(tickets.map((ticket) => ticket.settledStake || 0))
   )
-  const settledProfit = roundMoney(
+  const settledPayout = roundMoney(
     participantCount *
-      (sum(settled.map((bet) => bet.profit)) +
-        sum(settledTickets.map((ticket) => ticket.profit))),
+      (sum(settled.map(betPayout)) +
+        sum(tickets.map((ticket) => ticket.payout || 0))),
   )
+  const settledProfit = roundMoney(settledPayout - settledStake)
 
   return {
     totalStake: roundMoney(
@@ -119,6 +171,7 @@ export function summarizeBets(
           sum(tickets.map((ticket) => ticket.stake))),
     ),
     settledStake: roundMoney(settledStake),
+    settledPayout,
     settledProfit,
     roi: settledStake > 0 ? roundMoney((settledProfit / settledStake) * 100) : 0,
     won: settled.filter((bet) => bet.result === 'won').length,
@@ -233,4 +286,59 @@ function combinations<T>(items: T[], size: number): T[][] {
     ...combinations(rest, size - 1).map((combination) => [first, ...combination]),
     ...combinations(rest, size),
   ]
+}
+
+function combinationPayout(
+  combinationsToPay: Array<Array<{ odds: number }>>,
+  unitStake: number,
+) {
+  return roundMoney(
+    combinationsToPay.reduce(
+      (total, combination) =>
+        total +
+        roundMoney(
+          unitStake *
+            combination.reduce((product, leg) => product * leg.odds, 1),
+        ),
+      0,
+    ),
+  )
+}
+
+function cartesianProduct<T>(groups: T[][]): T[][] {
+  return groups.reduce<T[][]>(
+    (products, group) =>
+      products.flatMap((product) => group.map((item) => [...product, item])),
+    [[]],
+  )
+}
+
+function possibleWinningSets<T extends {
+  status: 'won' | 'lost' | 'pending'
+  market: 'win_draw_loss' | 'handicap'
+  handicap: number
+  direction: 'H' | 'D' | 'A'
+}>(legs: T[]): T[][] {
+  if (legs.every((leg) => leg.status !== 'pending')) {
+    return [legs.filter((leg) => leg.status === 'won')]
+  }
+
+  const sets = new Map<string, T[]>()
+  for (let margin = -20; margin <= 20; margin++) {
+    const winners = legs.filter((leg) => {
+      if (leg.status === 'lost') return false
+      if (leg.status === 'won') return true
+      const adjustedMargin =
+        margin + (leg.market === 'handicap' ? leg.handicap : 0)
+      const outcome =
+        adjustedMargin > 0 ? 'H' : adjustedMargin < 0 ? 'A' : 'D'
+      return outcome === leg.direction
+    })
+    const key = winners
+      .map((leg) => legs.indexOf(leg))
+      .sort((a, b) => a - b)
+      .join(',')
+    sets.set(key, winners)
+  }
+  return [...sets.values()]
 }

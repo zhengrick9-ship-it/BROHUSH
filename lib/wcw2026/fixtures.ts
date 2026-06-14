@@ -1,6 +1,7 @@
 export type FixtureDefinition = {
   sourceMatchNumber: number
   matchDate: string
+  kickoffAt?: string | null
   groupName: string | null
   stage: string
   roundNumber: number | null
@@ -9,14 +10,14 @@ export type FixtureDefinition = {
 }
 
 const groupFixtures: FixtureDefinition[] = [
-  f(1, '2026-06-12', 'A', 1, '墨西哥', '南非'),
-  f(2, '2026-06-12', 'A', 1, '韩国', '捷克'),
-  f(3, '2026-06-13', 'B', 1, '加拿大', '波黑'),
-  f(4, '2026-06-13', 'D', 1, '美国', '巴拉圭'),
-  f(5, '2026-06-14', 'C', 1, '海地', '苏格兰'),
-  f(6, '2026-06-14', 'C', 1, '巴西', '摩洛哥'),
-  f(7, '2026-06-14', 'D', 1, '澳大利亚', '土耳其'),
-  f(8, '2026-06-14', 'B', 1, '卡塔尔', '瑞士'),
+  f(1, '2026-06-12', 'A', 1, '墨西哥', '南非', '2026-06-11T19:00:00Z'),
+  f(2, '2026-06-12', 'A', 1, '韩国', '捷克', '2026-06-12T02:00:00Z'),
+  f(3, '2026-06-13', 'B', 1, '加拿大', '波黑', '2026-06-12T19:00:00Z'),
+  f(4, '2026-06-13', 'D', 1, '美国', '巴拉圭', '2026-06-13T01:00:00Z'),
+  f(5, '2026-06-14', 'C', 1, '海地', '苏格兰', '2026-06-14T01:00:00Z'),
+  f(6, '2026-06-14', 'C', 1, '巴西', '摩洛哥', '2026-06-13T22:00:00Z'),
+  f(7, '2026-06-14', 'D', 1, '澳大利亚', '土耳其', '2026-06-14T04:00:00Z'),
+  f(8, '2026-06-14', 'B', 1, '卡塔尔', '瑞士', '2026-06-13T19:00:00Z'),
   f(9, '2026-06-15', 'E', 1, '科特迪瓦', '厄瓜多尔'),
   f(10, '2026-06-15', 'E', 1, '德国', '库拉索'),
   f(11, '2026-06-15', 'F', 1, '荷兰', '日本'),
@@ -120,10 +121,12 @@ function f(
   roundNumber: number,
   homeTeam: string,
   awayTeam: string,
+  kickoffAt: string | null = null,
 ): FixtureDefinition {
   return {
     sourceMatchNumber,
     matchDate,
+    kickoffAt,
     groupName,
     stage: 'group',
     roundNumber,
@@ -149,6 +152,7 @@ function knockoutRange(
     return {
       sourceMatchNumber: matchNumber,
       matchDate: dates[dateIndex],
+      kickoffAt: null,
       groupName: null,
       stage,
       roundNumber: null,
@@ -157,4 +161,3 @@ function knockoutRange(
     }
   })
 }
-

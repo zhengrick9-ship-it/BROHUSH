@@ -15,6 +15,10 @@ export type Match = {
   odds_h: number | null
   odds_d: number | null
   odds_a: number | null
+  handicap_value?: number | null
+  odds_handicap_h?: number | null
+  odds_handicap_d?: number | null
+  odds_handicap_a?: number | null
   prediction: Outcome | null
   model_prob_h: number | null
   model_prob_d: number | null
@@ -31,6 +35,9 @@ export type Match = {
 export type Bet = {
   id: string
   match_id: string
+  owner_name?: string | null
+  market?: 'win_draw_loss' | 'handicap'
+  handicap?: number
   direction: Outcome
   odds: number
   stake: number
@@ -43,6 +50,7 @@ export type Bet = {
 export type Summary = {
   totalStake: number
   settledStake: number
+  settledPayout: number
   settledProfit: number
   roi: number
   won: number
@@ -58,6 +66,8 @@ export type TimelinePoint = {
 
 export type TicketRecord = {
   id: string
+  ownerName?: string | null
+  ticketNumber?: number
   label: string
   stake: number
   baseStake: number
@@ -66,6 +76,13 @@ export type TicketRecord = {
   purchasedAt: string
   settledAt?: string | null
   result: BetResult
+  payout?: number
+  settledStake?: number
+  minPayout?: number
+  maxPayout?: number
+  minProfit?: number
+  maxProfit?: number
+  potentialPayout?: number
   profit: number
   sourceImage: string
   needsReview?: boolean

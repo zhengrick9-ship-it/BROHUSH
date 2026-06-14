@@ -1,12 +1,16 @@
 import type { Summary } from '@/lib/wcw2026/types'
 
 export function CapitalLines({ summary }: { summary: Summary }) {
-  const settledReturn = Math.max(0, summary.settledStake + summary.settledProfit)
-  const max = Math.max(summary.totalStake, summary.settledStake, settledReturn, 1)
+  const max = Math.max(
+    summary.totalStake,
+    summary.settledStake,
+    summary.settledPayout,
+    1,
+  )
   const lines = [
     { label: '累计投入', value: summary.totalStake, color: 'var(--accent)' },
-    { label: '完赛投入', value: summary.settledStake, color: 'var(--text)' },
-    { label: '累计收益', value: settledReturn, color: 'var(--green)' },
+    { label: '完赛成本', value: summary.settledStake, color: 'var(--text)' },
+    { label: '完赛奖金', value: summary.settledPayout, color: 'var(--green)' },
   ]
 
   return (
@@ -34,4 +38,3 @@ function money(value: number) {
     maximumFractionDigits: 2,
   }).format(value)
 }
-
