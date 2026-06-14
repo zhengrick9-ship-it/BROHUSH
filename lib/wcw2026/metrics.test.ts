@@ -314,3 +314,29 @@ test('system ticket treats multiple selections in one match as alternatives', ()
   assert.equal(settled.settledStake, 0)
   assert.equal(settled.maxPayout, 906.79)
 })
+
+test('system ticket rounds each base combination before applying multiplier', () => {
+  const ticket: TicketRecord = {
+    id: 'multi-option-multiplied',
+    label: '4 场 2/3/4 关 · 10 倍',
+    stake: 360,
+    baseStake: 2,
+    multiplier: 10,
+    passTypes: [2, 3, 4],
+    purchasedAt: '2026-06-14T12:00:00+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: 'ticket.jpg',
+    legs: [
+      { sourceMatchNumber: 1, market: 'handicap', handicap: -3, direction: 'D', odds: 4.8 },
+      { sourceMatchNumber: 2, market: 'win_draw_loss', handicap: 0, direction: 'D', odds: 3.43 },
+      { sourceMatchNumber: 3, market: 'win_draw_loss', handicap: 0, direction: 'H', odds: 3.15 },
+      { sourceMatchNumber: 3, market: 'win_draw_loss', handicap: 0, direction: 'D', odds: 2.65 },
+      { sourceMatchNumber: 4, market: 'handicap', handicap: -1, direction: 'H', odds: 3.4 },
+    ],
+  }
+
+  const settled = settleTicket(ticket, [])
+  assert.equal(settled.maxPayout, 9067.9)
+  assert.equal(settled.maxProfit, 8707.9)
+})

@@ -112,7 +112,11 @@ export function settleTicket(
     combination.every((leg) => leg.status === 'won'),
   )
   const settledStake = roundMoney(settledCombinations.length * unitStake)
-  const payout = combinationPayout(winningCombinations, unitStake)
+  const payout = combinationPayout(
+    winningCombinations,
+    ticket.baseStake,
+    ticket.multiplier,
+  )
   const finalPayouts = cartesianProduct(
     legGroups.map(possibleWinningSets),
   ).map((scenarioGroups) => {
@@ -121,7 +125,8 @@ export function settleTicket(
       allCombinations.filter((combination) =>
         combination.every((leg) => winners.has(leg)),
       ),
-      unitStake,
+      ticket.baseStake,
+      ticket.multiplier,
     )
   })
   const minPayout = Math.min(...finalPayouts)
@@ -290,18 +295,20 @@ function combinations<T>(items: T[], size: number): T[][] {
 
 function combinationPayout(
   combinationsToPay: Array<Array<{ odds: number }>>,
-  unitStake: number,
+  baseStake: number,
+  multiplier: number,
 ) {
   return roundMoney(
-    combinationsToPay.reduce(
-      (total, combination) =>
-        total +
-        roundMoney(
-          unitStake *
-            combination.reduce((product, leg) => product * leg.odds, 1),
-        ),
-      0,
-    ),
+    multiplier *
+      combinationsToPay.reduce(
+        (total, combination) =>
+          total +
+          roundMoney(
+            baseStake *
+              combination.reduce((product, leg) => product * leg.odds, 1),
+          ),
+        0,
+      ),
   )
 }
 

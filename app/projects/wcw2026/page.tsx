@@ -222,7 +222,7 @@ export default function WCW2026Page() {
                     #{ticket.ticketNumber || index + 1} · {ticket.label}
                   </p>
                   <p className="mt-2 text-xs text-[var(--muted)]">
-                    {ticket.legs.length} 场 · 成本 {money(ticket.stake)} 元
+                    {new Set(ticket.legs.map((leg) => leg.sourceMatchNumber)).size} 场 · 成本 {money(ticket.stake)} 元
                   </p>
                 </div>
                 <div className="text-right">
