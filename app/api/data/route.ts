@@ -5,8 +5,8 @@ import { WORLD_CUP_FIXTURES } from '@/lib/wcw2026/fixtures'
 import { settleBet } from '@/lib/wcw2026/metrics'
 import type { Bet, Match, TicketRecord } from '@/lib/wcw2026/types'
 
-export async function GET() {
-  const session = await getEditorSession()
+export async function GET(request: Request) {
+  const session = await getEditorSession(request)
   if (!session) {
     return NextResponse.json({ error: '请重新登录' }, { status: 401 })
   }

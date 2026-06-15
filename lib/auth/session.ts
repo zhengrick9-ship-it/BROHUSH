@@ -1,16 +1,18 @@
 import 'server-only'
 
-import { createHmac, timingSafeEqual } from 'node:crypto'
+import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto'
 import { cookies } from 'next/headers'
 
-const COOKIE_NAME = 'twodogs_editor'
-const MAX_AGE = 60 * 60 * 24 * 30
+const COOKIE_NAME = 'twodogs_session_v2'
+const SESSION_AGE = 60 * 60 * 12
 
 export async function createEditorSession(name: string) {
+  const token = randomBytes(32).toString('base64url')
   const payload = Buffer.from(
     JSON.stringify({
       name,
-      expiresAt: Date.now() + MAX_AGE * 1000,
+      token,
+      expiresAt: Date.now() + SESSION_AGE * 1000,
     }),
   ).toString('base64url')
   const value = `${payload}.${sign(payload)}`
@@ -21,16 +23,19 @@ export async function createEditorSession(name: string) {
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
     path: '/',
-    maxAge: MAX_AGE,
   })
+  return token
 }
 
 export async function clearEditorSession() {
   const store = await cookies()
   store.delete(COOKIE_NAME)
+  store.delete('twodogs_editor')
 }
 
-export async function getEditorSession(): Promise<{ name: string } | null> {
+export async function getEditorSession(
+  request: Request,
+): Promise<{ name: string } | null> {
   const store = await cookies()
   const value = store.get(COOKIE_NAME)?.value
   if (!value) return null
@@ -42,8 +47,10 @@ export async function getEditorSession(): Promise<{ name: string } | null> {
     const parsed = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'))
     if (
       typeof parsed.name !== 'string' ||
+      typeof parsed.token !== 'string' ||
       typeof parsed.expiresAt !== 'number' ||
-      parsed.expiresAt <= Date.now()
+      parsed.expiresAt <= Date.now() ||
+      !safeEqual(request.headers.get('x-session-token') || '', parsed.token)
     ) {
       return null
     }
@@ -53,8 +60,8 @@ export async function getEditorSession(): Promise<{ name: string } | null> {
   }
 }
 
-export async function requireEditorSession() {
-  const session = await getEditorSession()
+export async function requireEditorSession(request: Request) {
+  const session = await getEditorSession(request)
   if (!session) throw new Error('UNAUTHORIZED')
   return session
 }

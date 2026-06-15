@@ -5,8 +5,8 @@ import { settleBet } from '@/lib/wcw2026/metrics'
 import { parseBetInput } from '@/lib/wcw2026/validation'
 import type { Bet, Match } from '@/lib/wcw2026/types'
 
-export async function GET() {
-  const session = await requireEditorSession()
+export async function GET(request: Request) {
+  const session = await requireEditorSession(request)
   const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('bets')
@@ -19,7 +19,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const session = await requireEditorSession()
+    const session = await requireEditorSession(request)
     const input = parseBetInput(await request.json())
     if (input.matchId.startsWith('schedule-')) {
       return NextResponse.json(
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    const session = await requireEditorSession()
+    const session = await requireEditorSession(request)
     const id = new URL(request.url).searchParams.get('id')
     if (!id) return NextResponse.json({ error: '缺少投注 ID' }, { status: 400 })
     const { error } = await createAdminClient()

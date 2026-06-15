@@ -11,7 +11,7 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    await requireEditorSession()
+    await requireEditorSession(request)
     const { id } = await context.params
     if (id.startsWith('schedule-')) {
       return NextResponse.json(
@@ -62,4 +62,3 @@ export async function PATCH(
     return NextResponse.json({ error: '赛果保存失败' }, { status: 500 })
   }
 }
-

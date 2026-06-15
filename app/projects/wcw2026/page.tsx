@@ -19,6 +19,7 @@ type DataResponse = {
   bets: Bet[]
   tickets: TicketRecord[]
   canEdit: boolean
+  editorName: string
   error?: string
 }
 
@@ -35,17 +36,33 @@ export default function WCW2026Page() {
   const router = useRouter()
 
   const loadData = async () => {
+    const token = sessionStorage.getItem('twodogs_session_token')
+    if (!token) {
+      router.replace('/')
+      return
+    }
     setLoading(true)
     setError('')
     try {
-      const response = await fetch('/api/data', { cache: 'no-store' })
+      const response = await fetch('/api/data', {
+        cache: 'no-store',
+        headers: { 'x-session-token': token },
+      })
       const body = (await response.json()) as DataResponse
       if (!response.ok) throw new Error(body.error || '数据读取失败')
       setMatches(body.matches)
       setBets(body.bets)
       setTickets(body.tickets)
       setCanEdit(body.canEdit)
+      setMe(body.editorName)
     } catch (loadError) {
+      if (
+        loadError instanceof Error &&
+        loadError.message === '请重新登录'
+      ) {
+        router.replace('/')
+        return
+      }
       setError(loadError instanceof Error ? loadError.message : '数据读取失败')
     } finally {
       setLoading(false)
@@ -53,25 +70,8 @@ export default function WCW2026Page() {
   }
 
   useEffect(() => {
-    const savedName = localStorage.getItem('twodogs_name')
-    if (!savedName || !['木四', '听课', '饼干'].includes(savedName)) {
-      router.replace('/')
-      return
-    }
-    setMe(savedName)
-    fetch('/api/session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: savedName }),
-    }).then((response) => {
-      if (response.ok) {
-        loadData()
-      } else {
-        localStorage.removeItem('twodogs_name')
-        router.replace('/')
-      }
-    })
-  }, [router])
+    loadData()
+  }, [])
 
   const matchMap = useMemo(
     () => new Map(matches.map((match) => [match.id, match])),
@@ -127,7 +127,7 @@ export default function WCW2026Page() {
     )
 
   const logout = async () => {
-    localStorage.removeItem('twodogs_name')
+    sessionStorage.removeItem('twodogs_session_token')
     await fetch('/api/session', { method: 'DELETE' })
     router.replace('/')
   }
@@ -608,9 +608,15 @@ function EditDrawer({
   const [saving, setSaving] = useState(false)
 
   const request = async (url: string, options: RequestInit) => {
+    const token = sessionStorage.getItem('twodogs_session_token')
+    if (!token) throw new Error('请重新登录')
     const response = await fetch(url, {
       ...options,
-      headers: { 'Content-Type': 'application/json', ...options.headers },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-session-token': token,
+        ...options.headers,
+      },
     })
     const body = await response.json()
     if (!response.ok) throw new Error(body.error || '保存失败')

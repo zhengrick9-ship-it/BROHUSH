@@ -16,8 +16,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: '名字不对' }, { status: 400 })
     }
 
-    await createEditorSession(name)
-    return NextResponse.json({ ok: true, name })
+    const token = await createEditorSession(name)
+    return NextResponse.json({ ok: true, name, token })
   } catch {
     return NextResponse.json({ error: '无法建立会话' }, { status: 400 })
   }

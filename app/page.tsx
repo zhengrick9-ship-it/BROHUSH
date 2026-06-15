@@ -8,29 +8,13 @@ import { DogMark } from '@/app/components/DogMark'
 export default function HomePage() {
   const [name, setName] = useState('')
   const [error, setError] = useState('')
-  const [checking, setChecking] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    const saved = localStorage.getItem('twodogs_name')
-    if (saved === '木四' || saved === '听课' || saved === '饼干') {
-      fetch('/api/session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: saved }),
-      }).then((response) => {
-        if (response.ok) {
-          router.replace('/projects/wcw2026')
-        } else {
-          localStorage.removeItem('twodogs_name')
-          setChecking(false)
-        }
-      })
-    } else {
-      setChecking(false)
-    }
-  }, [router])
+    sessionStorage.removeItem('twodogs_session_token')
+    localStorage.removeItem('twodogs_name')
+  }, [])
 
   const handleEnter = async () => {
     const normalizedName = name.trim()
@@ -54,12 +38,9 @@ export default function HomePage() {
       return
     }
 
-    localStorage.setItem('twodogs_name', normalizedName)
+    const body = await response.json()
+    sessionStorage.setItem('twodogs_session_token', body.token)
     router.replace('/projects/wcw2026')
-  }
-
-  if (checking) {
-    return <LoadingScreen />
   }
 
   return (
@@ -110,12 +91,5 @@ export default function HomePage() {
         </section>
       </div>
     </main>
-  )
-}
-function LoadingScreen() {
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-sm text-[var(--muted)]">载入中…</div>
-    </div>
   )
 }
