@@ -55,7 +55,7 @@ export default function HomePage() {
           </div>
           <p className="section-label mb-5">WCW2026</p>
           <h1 className="font-display max-w-xl text-4xl leading-[1.12] tracking-[-0.035em] text-[var(--text)] md:text-6xl">
-            失败是成功之母，
+            失败是成功之母
             <br />
             投注是成功支付
           </h1>

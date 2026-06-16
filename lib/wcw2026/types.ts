@@ -36,6 +36,7 @@ export type Bet = {
   id: string
   match_id: string
   owner_name?: string | null
+  bet_source?: '体彩' | '外围' | string | null
   market?: 'win_draw_loss' | 'handicap'
   handicap?: number
   direction: Outcome

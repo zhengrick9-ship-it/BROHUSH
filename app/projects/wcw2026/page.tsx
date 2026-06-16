@@ -398,7 +398,7 @@ function MatchRow({
             {bets.map((bet) => (
               <span key={bet.id}>
                 <small className="mr-1 text-[var(--muted)]">
-                  {bet.market === 'handicap' ? `让${formatHandicap(bet.handicap)}` : '单'}
+                  {betSourceLabel(bet)}
                 </small>
                 <OutcomeTag outcome={bet.direction} />
                 <small className="ml-1 text-[var(--muted)]">@{bet.odds}</small>
@@ -859,6 +859,12 @@ function signedMoney(value: number) {
 
 function outcomeLabel(outcome: Outcome) {
   return outcome === 'H' ? '主胜' : outcome === 'A' ? '客胜' : '平'
+}
+
+function betSourceLabel(bet: Bet) {
+  const market =
+    bet.market === 'handicap' ? `让${formatHandicap(bet.handicap)}` : '单'
+  return bet.bet_source === '外围' ? `外围·${market}` : market
 }
 
 function formatHandicap(value?: number | null) {
