@@ -5,7 +5,7 @@ import {
   createEditorSession,
 } from '@/lib/auth/session'
 
-const allowedNames = new Set(['木四', '听课', '饼干'])
+const allowedNames = new Set(['木四', '听课', '饼干', 'yang没吐气'])
 
 export async function POST(request: Request) {
   try {

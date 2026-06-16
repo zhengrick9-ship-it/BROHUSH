@@ -18,7 +18,7 @@ export default function HomePage() {
 
   const handleEnter = async () => {
     const normalizedName = name.trim()
-    if (!['木四', '听课', '饼干'].includes(normalizedName)) {
+    if (!['木四', '听课', '饼干', 'yang没吐气'].includes(normalizedName)) {
       setError('名字不对')
       return
     }
@@ -50,7 +50,7 @@ export default function HomePage() {
           <div className="mb-10 flex items-center gap-5 text-[var(--accent)]">
             <DogMark className="login-dog-mark" />
             <span className="text-lg font-semibold tracking-[0.2em] text-[var(--text)] md:text-xl">
-              2DOGS
+              3DOGS
             </span>
           </div>
           <p className="section-label mb-5">WCW2026</p>
@@ -85,7 +85,7 @@ export default function HomePage() {
               disabled={submitting}
               className="primary-button w-full"
             >
-              {submitting ? '进入中…' : '进入 2DOGS'}
+              {submitting ? '进入中…' : '进入 3DOGS'}
             </button>
           </form>
         </section>

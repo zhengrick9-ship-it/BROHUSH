@@ -154,7 +154,7 @@ export default function WCW2026Page() {
           >
             <DogMark compact />
             <span className="text-xs font-semibold tracking-[0.2em] text-[var(--text)]">
-              2DOGS
+              3DOGS
             </span>
           </button>
           <div className="flex items-center gap-4 text-sm">
@@ -303,7 +303,7 @@ export default function WCW2026Page() {
         </section>
 
         <footer className="mt-16 border-t border-[var(--line)] py-7 text-xs text-[var(--muted)]">
-          <span>2DOGS · WCW2026</span>
+          <span>3DOGS · WCW2026</span>
         </footer>
       </div>
 
