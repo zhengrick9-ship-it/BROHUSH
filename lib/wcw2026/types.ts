@@ -1,6 +1,7 @@
 export type Outcome = 'H' | 'D' | 'A'
 export type MatchStatus = 'scheduled' | 'finished'
 export type BetResult = 'won' | 'lost' | 'pending'
+export type TicketMarket = 'win_draw_loss' | 'handicap' | 'score'
 
 export type Match = {
   id: string
@@ -89,9 +90,11 @@ export type TicketRecord = {
   needsReview?: boolean
   legs: {
     sourceMatchNumber: number
-    market: 'win_draw_loss' | 'handicap'
+    market: TicketMarket
     handicap: number
-    direction: Outcome
+    direction?: Outcome | null
     odds: number
+    scoreHome?: number | null
+    scoreAway?: number | null
   }[]
 }

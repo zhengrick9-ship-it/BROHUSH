@@ -12,7 +12,8 @@
     "seed:schedule": "node --experimental-strip-types scripts/seed-schedule.ts",
     "sync:sporttery": "node --experimental-strip-types scripts/sync-sporttery-odds.ts",
     "import:bets": "node --experimental-strip-types scripts/import-user-bets.ts",
-    "import:musi-offshore": "node --experimental-strip-types scripts/import-musi-offshore-draws.ts"
+    "import:musi-offshore": "node --experimental-strip-types scripts/import-musi-offshore-draws.ts",
+    "report:portfolios": "node --experimental-strip-types scripts/report-portfolios.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.0",

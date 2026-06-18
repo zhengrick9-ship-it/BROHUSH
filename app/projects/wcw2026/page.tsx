@@ -530,8 +530,14 @@ function TicketDetails({
               {match ? `${match.home_team} vs ${match.away_team}` : `M${leg.sourceMatchNumber}`}
             </span>
             <span>
-              {leg.market === 'handicap' ? `让${formatHandicap(leg.handicap)} ` : ''}
-              {outcomeLabel(leg.direction)} @{leg.odds}
+              {leg.market === 'score' ? (
+                <>比分 {leg.scoreHome}:{leg.scoreAway} @{leg.odds}</>
+              ) : (
+                <>
+                  {leg.market === 'handicap' ? `让${formatHandicap(leg.handicap)} ` : ''}
+                  {outcomeLabel(leg.direction!)} @{leg.odds}
+                </>
+              )}
             </span>
           </div>
         )

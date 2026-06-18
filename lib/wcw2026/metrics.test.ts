@@ -340,3 +340,36 @@ test('system ticket rounds each base combination before applying multiplier', ()
   assert.equal(settled.maxPayout, 9067.9)
   assert.equal(settled.maxProfit, 8707.9)
 })
+
+test('score ticket settles only on the exact final score', () => {
+  const ticket: TicketRecord = {
+    id: 'exact-score',
+    label: '比分单关',
+    stake: 2,
+    baseStake: 2,
+    multiplier: 1,
+    passTypes: [1],
+    purchasedAt: '2026-06-11T13:00:00+08:00',
+    result: 'pending',
+    profit: 0,
+    sourceImage: 'score.jpg',
+    legs: [
+      {
+        sourceMatchNumber: 1,
+        market: 'score',
+        handicap: 0,
+        direction: null,
+        scoreHome: 2,
+        scoreAway: 1,
+        odds: 6.1,
+      },
+    ],
+  }
+
+  const settled = settleTicket(ticket, [
+    { ...finishedMatch, source_match_number: 1 },
+  ])
+  assert.equal(settled.result, 'won')
+  assert.equal(settled.payout, 12.2)
+  assert.equal(settled.profit, 10.2)
+})

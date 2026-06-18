@@ -36,7 +36,16 @@ const finishedResults = [
   result(12, 5, 1),
   result(13, 1, 1),
   result(14, 0, 0),
+  result(15, 2, 2),
   result(16, 1, 1),
+  result(17, 3, 1),
+  result(18, 1, 4),
+  result(19, 3, 0),
+  result(20, 3, 1),
+  result(21, 1, 0),
+  result(22, 4, 2),
+  result(23, 1, 1),
+  result(24, 1, 3),
 ]
 
 const offshoreDrawOdds = [

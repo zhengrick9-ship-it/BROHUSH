@@ -1,7 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
+import { existsSync, readFileSync } from 'node:fs'
 
 import { WORLD_CUP_FIXTURES } from '../lib/wcw2026/fixtures.ts'
 import type { Outcome, TicketRecord } from '../lib/wcw2026/types.ts'
+
+loadLocalEnv()
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -14,7 +17,7 @@ const db = createClient(url, key, {
   auth: { autoRefreshToken: false, persistSession: false },
 })
 
-type Owner = '木四' | '听课' | '饼干'
+type Owner = '木四' | '听课' | '饼干' | 'yang没吐气'
 type SingleInput = {
   sourceMatchNumber: number
   market?: 'win_draw_loss' | 'handicap'
@@ -133,6 +136,87 @@ const commonTickets: Omit<TicketRecord, 'ownerName' | 'ticketNumber'>[] = [
       leg(12, 'handicap', -1, 'H', 3.35),
     ],
   ),
+  ticket(
+    'system-220-spain-iran',
+    '4 场 · 2/3/4 关 · 10 倍',
+    220,
+    10,
+    [2, 3, 4],
+    '2026-06-15T12:51:35+08:00',
+    'aa7ae7dd1ec6c67ad8354fad6dbed16b.jpg',
+    4468.1,
+    [
+      leg(14, 'handicap', -2, 'H', 1.54),
+      leg(16, 'win_draw_loss', 0, 'D', 3.92),
+      leg(13, 'handicap', 1, 'A', 2.11),
+      leg(15, 'win_draw_loss', 0, 'A', 5.1),
+    ],
+  ),
+  ticket(
+    'france-system-110',
+    '4 场 · 2/3/4 关 · 5 倍',
+    110,
+    5,
+    [2, 3, 4],
+    '2026-06-16T18:00:00+08:00',
+    '法国1.png',
+    2793.3,
+    [
+      leg(17, 'win_draw_loss', 0, 'D', 3.45),
+      leg(18, 'handicap', 2, 'A', 2.23),
+      leg(19, 'win_draw_loss', 0, 'D', 3.17),
+      leg(20, 'win_draw_loss', 0, 'D', 3.8),
+    ],
+  ),
+  ticket(
+    'france-triple-100',
+    '3×1 · 50 倍',
+    100,
+    50,
+    [3],
+    '2026-06-16T18:00:01+08:00',
+    '法国1.png',
+    3079,
+    [
+      leg(17, 'win_draw_loss', 0, 'D', 3.45),
+      leg(18, 'handicap', 2, 'A', 2.3),
+      leg(20, 'handicap', -1, 'D', 3.88),
+    ],
+  ),
+  ticket(
+    'france-score-160',
+    '3×1 比分 · 10 倍',
+    160,
+    10,
+    [3],
+    '2026-06-16T18:00:02+08:00',
+    '法国2.png',
+    51450,
+    [
+      scoreLeg(17, 2, 1, 6.1),
+      scoreLeg(17, 3, 1, 6.75),
+      scoreLeg(18, 0, 0, 2.1),
+      scoreLeg(18, 0, 1, 7.1),
+      scoreLeg(20, 1, 1, 6.25),
+      scoreLeg(20, 0, 0, 14),
+    ],
+  ),
+  ticket(
+    'argentina-system-110',
+    '4 场 · 2/3/4 关 · 5 倍',
+    110,
+    5,
+    [2, 3, 4],
+    '2026-06-17T12:00:00+08:00',
+    '阿根廷.png',
+    4483,
+    [
+      leg(23, 'handicap', -2, 'H', 2.45),
+      leg(22, 'win_draw_loss', 0, 'D', 3.5),
+      leg(21, 'handicap', -1, 'D', 4.2),
+      leg(24, 'win_draw_loss', 0, 'D', 4.75),
+    ],
+  ),
 ]
 
 const biscuitSingles: SingleInput[] = [
@@ -145,6 +229,43 @@ const biscuitSingles: SingleInput[] = [
 
 const biscuitTickets: Omit<TicketRecord, 'ownerName' | 'ticketNumber'>[] = [
   ...commonTickets,
+  ticket(
+    'spain-fourfold-100',
+    '4×1 · 50 倍',
+    100,
+    50,
+    [4],
+    '2026-06-15T20:40:22+08:00',
+    '西班牙.jpg',
+    928.5,
+    [
+      leg(14, 'handicap', -2, 'H', 1.5),
+      leg(16, 'win_draw_loss', 0, 'H', 1.43),
+      leg(13, 'win_draw_loss', 0, 'A', 1.32),
+      leg(15, 'win_draw_loss', 0, 'D', 3.28),
+    ],
+  ),
+  ticket(
+    'portugal-score-196',
+    '4 场 · 2/3/4 关比分',
+    196,
+    1,
+    [2, 3, 4],
+    '2026-06-17T12:00:00+08:00',
+    '葡萄牙.png',
+    275769,
+    [
+      scoreLeg(23, 3, 0, 5.25),
+      scoreLeg(23, 4, 0, 11),
+      scoreLeg(22, 2, 1, 5.6),
+      scoreLeg(22, 3, 0, 13.5),
+      scoreLeg(21, 2, 0, 8.75),
+      scoreLeg(21, 4, 0, 60),
+      scoreLeg(24, 0, 0, 12),
+      scoreLeg(24, 0, 1, 6.25),
+      scoreLeg(24, 0, 2, 4.6),
+    ],
+  ),
   ticket(
     'haiti-australia-1',
     '海地 / 澳大利亚 · 2×1',
@@ -206,6 +327,51 @@ const biscuitTickets: Omit<TicketRecord, 'ownerName' | 'ticketNumber'>[] = [
   },
 ]
 
+const yangTickets: Omit<TicketRecord, 'ownerName' | 'ticketNumber'>[] = [
+  ticket(
+    'england-ghana-100',
+    '英格兰 / 加纳 · 2×1',
+    100,
+    50,
+    [2],
+    '2026-06-17T13:37:34+08:00',
+    '39e2013ad753be5ee64a8d81e871b148.jpg',
+    819,
+    [
+      leg(22, 'handicap', -1, 'H', 2.73),
+      leg(21, 'win_draw_loss', 0, 'D', 3),
+    ],
+  ),
+  ticket(
+    'portugal-england-1',
+    '葡萄牙 / 英格兰 · 2×1',
+    100,
+    50,
+    [2],
+    '2026-06-17T13:37:34+08:00',
+    '5d191cbdebd8e83d42ea157dfc16929c.jpg',
+    172,
+    [
+      leg(23, 'win_draw_loss', 0, 'H', 1.13),
+      leg(22, 'win_draw_loss', 0, 'H', 1.52),
+    ],
+  ),
+  ticket(
+    'portugal-england-2',
+    '葡萄牙 / 英格兰 · 2×1',
+    100,
+    50,
+    [2],
+    '2026-06-17T13:37:35+08:00',
+    '5d191cbdebd8e83d42ea157dfc16929c.jpg',
+    172,
+    [
+      leg(23, 'win_draw_loss', 0, 'H', 1.13),
+      leg(22, 'win_draw_loss', 0, 'H', 1.52),
+    ],
+  ),
+]
+
 const users: Array<{
   owner: Owner
   key: string
@@ -218,21 +384,28 @@ const users: Array<{
     key: 'musi',
     singles: commonSingles,
     tickets: commonTickets,
-    expectedTotal: 2286,
+    expectedTotal: 2986,
   },
   {
     owner: '听课',
     key: 'tingke',
     singles: commonSingles,
     tickets: commonTickets,
-    expectedTotal: 2286,
+    expectedTotal: 2986,
   },
   {
     owner: '饼干',
     key: 'biscuit',
     singles: biscuitSingles,
     tickets: biscuitTickets,
-    expectedTotal: 3246,
+    expectedTotal: 4242,
+  },
+  {
+    owner: 'yang没吐气',
+    key: 'yang',
+    singles: [],
+    tickets: yangTickets,
+    expectedTotal: 300,
   },
 ]
 
@@ -284,6 +457,7 @@ for (const user of users) {
     stake: item.stake,
     result: 'pending',
     profit: 0,
+    bet_source: '体彩',
     created_at: item.purchasedAt,
   }))
   const { error: betError } = await db.from('bets').insert(betRows)
@@ -317,6 +491,8 @@ for (const user of users) {
           handicap: itemLeg.handicap,
           direction: itemLeg.direction,
           odds: itemLeg.odds,
+          score_home: itemLeg.scoreHome ?? null,
+          score_away: itemLeg.scoreAway ?? null,
         })),
       )
       if (legError) throw legError
@@ -346,6 +522,23 @@ function leg(
   return { sourceMatchNumber, market, handicap, direction, odds }
 }
 
+function scoreLeg(
+  sourceMatchNumber: number,
+  scoreHome: number,
+  scoreAway: number,
+  odds: number,
+): TicketRecord['legs'][number] {
+  return {
+    sourceMatchNumber,
+    market: 'score',
+    handicap: 0,
+    direction: null,
+    odds,
+    scoreHome,
+    scoreAway,
+  }
+}
+
 function ticket(
   id: string,
   label: string,
@@ -371,5 +564,18 @@ function ticket(
     sourceImage,
     needsReview: false,
     legs,
+  }
+}
+
+function loadLocalEnv() {
+  if (!existsSync('.env.local')) return
+  for (const line of readFileSync('.env.local', 'utf8').split(/\r?\n/)) {
+    const trimmed = line.trim()
+    if (!trimmed || trimmed.startsWith('#')) continue
+    const equalsIndex = trimmed.indexOf('=')
+    if (equalsIndex < 1) continue
+    const key = trimmed.slice(0, equalsIndex)
+    const value = trimmed.slice(equalsIndex + 1).replace(/^['"]|['"]$/g, '')
+    process.env[key] ||= value
   }
 }

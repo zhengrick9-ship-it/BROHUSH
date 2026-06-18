@@ -76,13 +76,10 @@ export function settleTicket(
       return { ...leg, status: 'pending' as const }
     }
 
-    const homeScore =
-      match.home_score + (leg.market === 'handicap' ? leg.handicap : 0)
-    const outcome: 'H' | 'D' | 'A' =
-      homeScore > match.away_score ? 'H' : homeScore < match.away_score ? 'A' : 'D'
+    const won = legWins(leg, match.home_score, match.away_score)
     return {
       ...leg,
-      status: outcome === leg.direction ? ('won' as const) : ('lost' as const),
+      status: won ? ('won' as const) : ('lost' as const),
     }
   })
 
@@ -179,9 +176,15 @@ export function summarizeBets(
     settledPayout,
     settledProfit,
     roi: settledStake > 0 ? roundMoney((settledProfit / settledStake) * 100) : 0,
-    won: settled.filter((bet) => bet.result === 'won').length,
-    lost: settled.filter((bet) => bet.result === 'lost').length,
-    pending: bets.filter((bet) => bet.result === 'pending').length,
+    won:
+      settled.filter((bet) => bet.result === 'won').length +
+      tickets.filter((ticket) => ticket.result === 'won').length,
+    lost:
+      settled.filter((bet) => bet.result === 'lost').length +
+      tickets.filter((ticket) => ticket.result === 'lost').length,
+    pending:
+      bets.filter((bet) => bet.result === 'pending').length +
+      tickets.filter((ticket) => ticket.result === 'pending').length,
   }
 }
 
@@ -322,30 +325,51 @@ function cartesianProduct<T>(groups: T[][]): T[][] {
 
 function possibleWinningSets<T extends {
   status: 'won' | 'lost' | 'pending'
-  market: 'win_draw_loss' | 'handicap'
+  market: 'win_draw_loss' | 'handicap' | 'score'
   handicap: number
-  direction: 'H' | 'D' | 'A'
+  direction?: 'H' | 'D' | 'A' | null
+  scoreHome?: number | null
+  scoreAway?: number | null
 }>(legs: T[]): T[][] {
   if (legs.every((leg) => leg.status !== 'pending')) {
     return [legs.filter((leg) => leg.status === 'won')]
   }
 
   const sets = new Map<string, T[]>()
-  for (let margin = -20; margin <= 20; margin++) {
-    const winners = legs.filter((leg) => {
-      if (leg.status === 'lost') return false
-      if (leg.status === 'won') return true
-      const adjustedMargin =
-        margin + (leg.market === 'handicap' ? leg.handicap : 0)
-      const outcome =
-        adjustedMargin > 0 ? 'H' : adjustedMargin < 0 ? 'A' : 'D'
-      return outcome === leg.direction
-    })
-    const key = winners
-      .map((leg) => legs.indexOf(leg))
-      .sort((a, b) => a - b)
-      .join(',')
-    sets.set(key, winners)
+  for (let homeScore = 0; homeScore <= 20; homeScore++) {
+    for (let awayScore = 0; awayScore <= 20; awayScore++) {
+      const winners = legs.filter((leg) => {
+        if (leg.status === 'lost') return false
+        if (leg.status === 'won') return true
+        return legWins(leg, homeScore, awayScore)
+      })
+      const key = winners
+        .map((leg) => legs.indexOf(leg))
+        .sort((a, b) => a - b)
+        .join(',')
+      sets.set(key, winners)
+    }
   }
   return [...sets.values()]
+}
+
+function legWins(
+  leg: {
+    market: 'win_draw_loss' | 'handicap' | 'score'
+    handicap: number
+    direction?: 'H' | 'D' | 'A' | null
+    scoreHome?: number | null
+    scoreAway?: number | null
+  },
+  homeScore: number,
+  awayScore: number,
+) {
+  if (leg.market === 'score') {
+    return leg.scoreHome === homeScore && leg.scoreAway === awayScore
+  }
+  const adjustedHome =
+    homeScore + (leg.market === 'handicap' ? leg.handicap : 0)
+  const outcome =
+    adjustedHome > awayScore ? 'H' : adjustedHome < awayScore ? 'A' : 'D'
+  return outcome === leg.direction
 }

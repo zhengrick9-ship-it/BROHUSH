@@ -75,10 +75,13 @@ function mapTicket(row: Record<string, unknown>): TicketRecord {
       row.potential_payout == null ? undefined : Number(row.potential_payout),
     legs: legs.map((leg) => ({
       sourceMatchNumber: Number(leg.source_match_number),
-      market: String(leg.market) as 'win_draw_loss' | 'handicap',
+      market: String(leg.market) as TicketRecord['legs'][number]['market'],
       handicap: Number(leg.handicap),
-      direction: String(leg.direction) as 'H' | 'D' | 'A',
+      direction:
+        leg.direction == null ? null : (String(leg.direction) as 'H' | 'D' | 'A'),
       odds: Number(leg.odds),
+      scoreHome: leg.score_home == null ? null : Number(leg.score_home),
+      scoreAway: leg.score_away == null ? null : Number(leg.score_away),
     })),
   }
 }
