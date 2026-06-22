@@ -44,6 +44,7 @@ type AdviceItem = {
   stake: number
   passType: string
   legs: AdviceLeg[]
+  legStakes?: number[]
   maxPayout: number | null
 }
 
@@ -287,7 +288,13 @@ function AdvicePlan({
                 <li key={`${item.title}-${leg.match.match.id}-${leg.market}-${leg.pick}`}>
                   <span>{leg.match.match.home_team} vs {leg.match.match.away_team}</span>
                   <em>{leg.market} · {leg.pick}</em>
-                  {leg.odds ? <small>@{leg.odds}</small> : <small>临场赔率</small>}
+                  {leg.odds ? (
+                    <small>
+                      {item.legStakes ? `${item.legStakes[item.legs.indexOf(leg)]}元 ` : ''}@{leg.odds}
+                    </small>
+                  ) : (
+                    <small>临场赔率</small>
+                  )}
                 </li>
               ))}
             </ul>
@@ -721,13 +728,15 @@ function buildAdviceSlate(
   const secondary = winRanked[1] || ranked[1] || primary
   const third = winRanked[2] || ranked[2] || secondary
   const dominant = ranked[0] || primary
+  const nonDominant = ranked.find((match) => match.match.id !== dominant.match.id) || third
   const aggressiveLegs = uniqueMatchLegs([
     playableDirectionLeg(dominant),
     winLeg(primary),
     winLeg(secondary),
     winLeg(third),
-    handicapLeg(ranked.find((match) => match.match.id !== dominant.match.id) || third),
+    handicapLeg(nonDominant),
   ]).slice(0, 4)
+  const aggressivePassType = `${aggressiveLegs.length}串1`
 
   return {
     date: selectedDate,
@@ -736,21 +745,18 @@ function buildAdviceSlate(
     status: slateStatus(selectedDate, today, matches),
     matches: dayMatches,
     conservative: [
-      item('稳胆单关', 50, '单关', [winLeg(primary)]),
-      item('次稳单关', 30, '单关', [winLeg(secondary)]),
+      item('单关组合票', 80, '单关合并', [winLeg(primary), winLeg(secondary)], [50, 30]),
       item('小额 2 串 1', 20, '2串1', [winLeg(primary), winLeg(secondary)]),
     ],
     balanced: [
-      item('主思路单关', 30, '单关', [winLeg(primary)]),
-      item('核心 2 串 1', 30, '2串1', [winLeg(primary), winLeg(secondary)]),
-      item('让球方向', 20, '单关', [handicapLeg(dominant)]),
+      item('单关组合票', 42, '单关合并', [winLeg(primary), handicapLeg(dominant)], [24, 18]),
+      item('核心 2 串 1', 38, '2串1', [winLeg(primary), winLeg(secondary)]),
       item('节奏补充', 20, '单关', [goalsLeg(third)]),
     ],
     aggressive: [
-      item('三场方向串', 35, '3串1', [winLeg(primary), winLeg(secondary), winLeg(third)]),
-      item('四场搏高赔', 25, '4串1', aggressiveLegs),
-      item('精准比分', 20, '单关', [scoreLeg(dominant)]),
-      item('半全场搏点', 20, '单关', [halfFullLeg(secondary)]),
+      item('三场方向串', 40, '3串1', [winLeg(primary), winLeg(secondary), winLeg(third)]),
+      item('四场搏高赔', 30, aggressivePassType, aggressiveLegs),
+      item('高赔单关组合票', 30, '单关合并', [scoreLeg(dominant), halfFullLeg(secondary)], [16, 14]),
     ],
   }
 }
@@ -772,14 +778,23 @@ function oddsStatus(matches: AnalyzedMatch[]) {
   return latest ? `体彩赔率 ${latest}` : '体彩赔率待临场确认'
 }
 
-function item(title: string, stake: number, passType: string, legs: AdviceLeg[]): AdviceItem {
+function item(
+  title: string,
+  stake: number,
+  passType: string,
+  legs: AdviceLeg[],
+  legStakes?: number[],
+): AdviceItem {
   const cleanLegs = legs.filter(Boolean)
+  const cleanLegStakes =
+    legStakes && legStakes.length === cleanLegs.length ? legStakes : undefined
   return {
     title,
     stake,
     passType,
     legs: cleanLegs,
-    maxPayout: estimatePayout(stake, cleanLegs),
+    legStakes: cleanLegStakes,
+    maxPayout: estimatePayout(stake, cleanLegs, cleanLegStakes),
   }
 }
 
@@ -981,8 +996,16 @@ function hafuLabel(outcome: Outcome) {
   return outcome === 'H' ? '胜' : outcome === 'A' ? '负' : '平'
 }
 
-function estimatePayout(stake: number, legs: AdviceLeg[]) {
+function estimatePayout(stake: number, legs: AdviceLeg[], legStakes?: number[]) {
   if (!legs.length || legs.some((leg) => !leg.odds)) return null
+  if (legStakes) {
+    return roundMoney(
+      legs.reduce(
+        (sum, leg, index) => sum + (legStakes[index] || 0) * Number(leg.odds),
+        0,
+      ),
+    )
+  }
   return roundMoney(
     stake * legs.reduce((product, leg) => product * Number(leg.odds), 1),
   )
