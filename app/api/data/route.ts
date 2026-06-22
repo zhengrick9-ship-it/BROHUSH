@@ -193,7 +193,12 @@ function mergeSchedule(databaseMatches: Match[]): Match[] {
 
 async function fetchSportteryOdds(): Promise<SportteryOdds[]> {
   const pools = ['hhad,had', 'crs', 'ttg', 'hafu']
-  const merged = new Map<string, SportteryOdds>()
+  const merged = new Map<string, SportteryOdds>(
+    fallbackSportteryOdds().map((item) => [
+      `${item.homeTeam}__${item.awayTeam}`,
+      item,
+    ]),
+  )
 
   for (const poolCode of pools) {
     try {
@@ -270,6 +275,111 @@ async function fetchSportteryOdds(): Promise<SportteryOdds[]> {
   }
 
   return [...merged.values()]
+}
+
+function fallbackSportteryOdds(): SportteryOdds[] {
+  return [
+    {
+      sourceMatchNumber: 1041,
+      homeTeam: '阿根廷',
+      awayTeam: '奥地利',
+      kickoffAt: '2026-06-23T01:00:00+08:00',
+      odds_h: 1.32,
+      odds_d: 4.17,
+      odds_a: 7.6,
+      handicap_value: -1,
+      odds_handicap_h: 2.06,
+      odds_handicap_d: 3.44,
+      odds_handicap_a: 2.83,
+      odds_score: {
+        '1:0': 6.25,
+        '2:0': 6,
+        '2:1': 6.5,
+        '3:0': 10,
+      },
+      odds_total_goals: {
+        '1': 4.9,
+        '2': 3.55,
+        '3': 3.5,
+      },
+      odds_half_full: {
+        '胜/胜': 1.92,
+        '平/胜': 3.8,
+        '平/平': 6.55,
+      },
+      sporttery_updated_at: '2026-06-22 13:51:59',
+    },
+    {
+      sourceMatchNumber: 1042,
+      homeTeam: '法国',
+      awayTeam: '伊拉克',
+      kickoffAt: '2026-06-23T05:00:00+08:00',
+      handicap_value: -3,
+      odds_handicap_h: 2.33,
+      odds_handicap_d: 4.25,
+      odds_handicap_a: 2.15,
+      odds_score: {
+        '2:0': 6.4,
+        '3:0': 5.1,
+        '4:0': 6,
+      },
+      odds_total_goals: {
+        '2': 5.8,
+        '3': 3.7,
+        '4': 3.75,
+      },
+      odds_half_full: {
+        '胜/胜': 1.34,
+        '平/胜': 4.25,
+      },
+      sporttery_updated_at: '2026-06-22 14:28:36',
+    },
+    {
+      sourceMatchNumber: 1043,
+      homeTeam: '挪威',
+      awayTeam: '塞内加尔',
+      kickoffAt: '2026-06-23T08:00:00+08:00',
+      odds_h: 1.88,
+      odds_d: 3.44,
+      odds_a: 3.26,
+      handicap_value: -1,
+      odds_handicap_h: 3.66,
+      odds_handicap_d: 3.78,
+      odds_handicap_a: 1.69,
+      odds_total_goals: {
+        '2': 3.55,
+        '3': 3.6,
+      },
+      odds_half_full: {
+        '胜/胜': 3.15,
+        '平/胜': 5,
+        '平/平': 5.2,
+      },
+      sporttery_updated_at: '2026-06-22 15:12:50',
+    },
+    {
+      sourceMatchNumber: 1044,
+      homeTeam: '约旦',
+      awayTeam: '阿尔及利亚',
+      kickoffAt: '2026-06-23T11:00:00+08:00',
+      odds_h: 6.1,
+      odds_d: 4,
+      odds_a: 1.4,
+      handicap_value: 1,
+      odds_handicap_h: 2.51,
+      odds_handicap_d: 3.35,
+      odds_handicap_a: 2.31,
+      odds_total_goals: {
+        '2': 3.4,
+        '3': 3.55,
+      },
+      odds_half_full: {
+        '负/负': 2.05,
+        '平/负': 3.85,
+      },
+      sporttery_updated_at: '2026-06-22 14:45:54',
+    },
+  ]
 }
 
 function mergeSportteryOdds(matches: Match[], odds: SportteryOdds[]): Match[] {

@@ -255,7 +255,6 @@ function AdvicePlan({
 }
 
 function MysticEntrance({ matches }: { matches: AnalyzedMatch[] }) {
-  const [open, setOpen] = useState(false)
   const [matchId, setMatchId] = useState(matches[0]?.match.id || '')
   const selected = matches.find((item) => item.match.id === matchId) || matches[0]
 
@@ -276,29 +275,24 @@ function MysticEntrance({ matches }: { matches: AnalyzedMatch[] }) {
           <p className="section-label">玄学入口</p>
           <h3 className="font-display text-2xl">弹球比分转盘</h3>
         </div>
-        <button className="secondary-button" onClick={() => setOpen((value) => !value)}>
-          {open ? '收起转盘' : '打开转盘'}
-        </button>
       </div>
-      {open && (
-        <div className="mystic-panel">
-          <label className="field mystic-select">
-            <span>选择比赛</span>
-            <select
-              className="input"
-              value={selected.match.id}
-              onChange={(event) => setMatchId(event.target.value)}
-            >
-              {matches.map((item) => (
-                <option key={item.match.id} value={item.match.id}>
-                  {item.match.home_team} vs {item.match.away_team}
-                </option>
-              ))}
-            </select>
-          </label>
-          <GoalWheel match={selected.match} />
-        </div>
-      )}
+      <div className="mystic-panel">
+        <label className="field mystic-select">
+          <span>选择比赛</span>
+          <select
+            className="input"
+            value={selected.match.id}
+            onChange={(event) => setMatchId(event.target.value)}
+          >
+            {matches.map((item) => (
+              <option key={item.match.id} value={item.match.id}>
+                {item.match.home_team} vs {item.match.away_team}
+              </option>
+            ))}
+          </select>
+        </label>
+        <GoalWheel match={selected.match} />
+      </div>
     </div>
   )
 }
@@ -479,9 +473,9 @@ function updateWheel(
     const dx = ball.x - state.cx
     const dy = ball.y - state.cy
     const distance = Math.hypot(dx, dy)
-    const goalX = state.cx + state.radius - 8
+    const goalX = state.cx + state.radius - 26
     const inGoalMouth =
-      ball.x - ball.r > goalX &&
+      ball.x + ball.r > goalX &&
       Math.abs(ball.y - state.cy) < goalHalfHeight &&
       ball.vx > 0
 
