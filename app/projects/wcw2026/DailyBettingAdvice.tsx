@@ -113,6 +113,7 @@ function p(
 export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
   const adviceBook = useMemo(() => buildAdviceBook(matches), [matches])
   const [selectedDate, setSelectedDate] = useState('')
+  const [riskMode, setRiskMode] = useState<'balanced' | 'conservative' | 'aggressive'>('balanced')
   const advice =
     adviceBook.slates.find((slate) => slate.date === selectedDate) ||
     adviceBook.slates.find((slate) => slate.date === adviceBook.defaultDate) ||
@@ -172,6 +173,11 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
         ))}
       </div>
 
+      <div className="advice-section-head">
+        <p className="section-label">单场分析</p>
+        <h3 className="font-display text-2xl text-[var(--text)]">方向、比分与节奏参考</h3>
+      </div>
+
       <div className="match-brief-grid">
         {advice.matches.map((match) => (
           <article key={match.match.id} className="match-brief">
@@ -198,10 +204,48 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
         ))}
       </div>
 
+      <div className="advice-section-head advice-plan-title">
+        <p className="section-label">100 元投注方案</p>
+        <h3 className="font-display text-2xl text-[var(--text)]">按风险偏好执行</h3>
+      </div>
+
+      <div className="risk-tabs" role="tablist" aria-label="风险偏好">
+        <button
+          role="tab"
+          aria-selected={riskMode === 'balanced'}
+          className={`risk-tab ${riskMode === 'balanced' ? 'is-active' : ''}`}
+          onClick={() => setRiskMode('balanced')}
+        >
+          适中
+        </button>
+        <button
+          role="tab"
+          aria-selected={riskMode === 'conservative'}
+          className={`risk-tab ${riskMode === 'conservative' ? 'is-active' : ''}`}
+          onClick={() => setRiskMode('conservative')}
+        >
+          保守
+        </button>
+        <button
+          role="tab"
+          aria-selected={riskMode === 'aggressive'}
+          className={`risk-tab ${riskMode === 'aggressive' ? 'is-active' : ''}`}
+          onClick={() => setRiskMode('aggressive')}
+        >
+          激进
+        </button>
+      </div>
+
       <div className="advice-grid">
-        <AdvicePlan title="保守" items={advice.conservative} tone="safe" />
-        <AdvicePlan title="适中" items={advice.balanced} tone="balanced" />
-        <AdvicePlan title="激进" items={advice.aggressive} tone="wild" />
+        {riskMode === 'conservative' && (
+          <AdvicePlan title="保守" items={advice.conservative} tone="safe" />
+        )}
+        {riskMode === 'balanced' && (
+          <AdvicePlan title="适中" items={advice.balanced} tone="balanced" />
+        )}
+        {riskMode === 'aggressive' && (
+          <AdvicePlan title="激进" items={advice.aggressive} tone="wild" />
+        )}
       </div>
 
       <MysticEntrance matches={advice.matches} />
@@ -676,8 +720,14 @@ function buildAdviceSlate(
   const primary = winRanked[0] || ranked[0] || dayMatches[0]
   const secondary = winRanked[1] || ranked[1] || primary
   const third = winRanked[2] || ranked[2] || secondary
-  const fourth = winRanked[3] || ranked[3] || third
   const dominant = ranked[0] || primary
+  const aggressiveLegs = uniqueMatchLegs([
+    playableDirectionLeg(dominant),
+    winLeg(primary),
+    winLeg(secondary),
+    winLeg(third),
+    handicapLeg(ranked.find((match) => match.match.id !== dominant.match.id) || third),
+  ]).slice(0, 4)
 
   return {
     date: selectedDate,
@@ -698,12 +748,7 @@ function buildAdviceSlate(
     ],
     aggressive: [
       item('三场方向串', 35, '3串1', [winLeg(primary), winLeg(secondary), winLeg(third)]),
-      item('四场搏高赔', 25, '4串1', [
-        playableDirectionLeg(dominant),
-        winLeg(primary),
-        winLeg(secondary),
-        winLeg(third),
-      ]),
+      item('四场搏高赔', 25, '4串1', aggressiveLegs),
       item('精准比分', 20, '单关', [scoreLeg(dominant)]),
       item('半全场搏点', 20, '单关', [halfFullLeg(secondary)]),
     ],
@@ -841,16 +886,13 @@ function playableDirectionLeg(match: AnalyzedMatch) {
   return hasWinOdds(match) ? winLeg(match) : handicapLeg(match)
 }
 
-function doubleChanceLeg(match: AnalyzedMatch): AdviceLeg {
-  const sorted = (Object.entries(match.probabilities) as Array<[Outcome, number]>)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 2)
-    .map(([outcome]) => outcomeLabel(outcome))
-  return {
-    match,
-    market: '容错方向',
-    pick: sorted.join('/'),
-  }
+function uniqueMatchLegs(legs: AdviceLeg[]) {
+  const seen = new Set<string>()
+  return legs.filter((leg) => {
+    if (!leg.odds || seen.has(leg.match.match.id)) return false
+    seen.add(leg.match.match.id)
+    return true
+  })
 }
 
 function handicapLeg(match: AnalyzedMatch): AdviceLeg {

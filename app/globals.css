@@ -180,6 +180,42 @@ button {
   color: var(--text);
 }
 
+.advice-section-head {
+  margin-top: 20px;
+}
+
+.advice-section-head h3 {
+  margin-top: 4px;
+}
+
+.advice-plan-title {
+  margin-top: 24px;
+}
+
+.risk-tabs {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  background: rgba(250, 248, 243, 0.58);
+  padding: 4px;
+}
+
+.risk-tab {
+  min-width: 64px;
+  padding: 8px 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 650;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.risk-tab:hover,
+.risk-tab.is-active {
+  background: var(--paper-strong);
+  color: var(--text);
+}
+
 .match-brief-grid {
   display: grid;
   gap: 10px;
@@ -232,6 +268,7 @@ button {
   display: grid;
   gap: 12px;
   margin-top: 18px;
+  max-width: 860px;
 }
 
 .advice-plan {
@@ -811,10 +848,6 @@ button {
 
   .match-brief-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .advice-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .metric-grid-wide {
