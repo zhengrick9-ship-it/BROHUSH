@@ -729,14 +729,19 @@ function buildAdviceSlate(
   const third = winRanked[2] || ranked[2] || secondary
   const dominant = ranked[0] || primary
   const nonDominant = ranked.find((match) => match.match.id !== dominant.match.id) || third
-  const aggressiveLegs = uniqueMatchLegs([
+  const aggressiveDirectionLegs = buildHighOddsLegs([
     playableDirectionLeg(dominant),
     winLeg(primary),
     winLeg(secondary),
     winLeg(third),
     handicapLeg(nonDominant),
-  ]).slice(0, 4)
-  const aggressivePassType = `${aggressiveLegs.length}串1`
+  ], 10)
+  const aggressiveSpecialLegs = buildHighOddsLegs([
+    scoreLeg(dominant),
+    halfFullLeg(secondary),
+    goalsLeg(third),
+    handicapLeg(nonDominant),
+  ], 10)
 
   return {
     date: selectedDate,
@@ -749,14 +754,12 @@ function buildAdviceSlate(
       item('小额 2 串 1', 20, '2串1', [winLeg(primary), winLeg(secondary)]),
     ],
     balanced: [
-      item('单关组合票', 42, '单关合并', [winLeg(primary), handicapLeg(dominant)], [24, 18]),
-      item('核心 2 串 1', 38, '2串1', [winLeg(primary), winLeg(secondary)]),
-      item('节奏补充', 20, '单关', [goalsLeg(third)]),
+      item('单关组合票', 50, '单关合并', [winLeg(primary), handicapLeg(dominant), goalsLeg(third)], [20, 18, 12]),
+      item('核心 2 串 1', 50, '2串1', [winLeg(primary), winLeg(secondary)]),
     ],
     aggressive: [
-      item('三场方向串', 40, '3串1', [winLeg(primary), winLeg(secondary), winLeg(third)]),
-      item('四场搏高赔', 30, aggressivePassType, aggressiveLegs),
-      item('高赔单关组合票', 30, '单关合并', [scoreLeg(dominant), halfFullLeg(secondary)], [16, 14]),
+      item('高倍方向串', 60, `${aggressiveDirectionLegs.length}串1`, aggressiveDirectionLegs),
+      item('高赔玩法串', 40, `${aggressiveSpecialLegs.length}串1`, aggressiveSpecialLegs),
     ],
   }
 }
@@ -908,6 +911,17 @@ function uniqueMatchLegs(legs: AdviceLeg[]) {
     seen.add(leg.match.match.id)
     return true
   })
+}
+
+function buildHighOddsLegs(legs: AdviceLeg[], minOdds: number) {
+  const selected: AdviceLeg[] = []
+  let multiple = 1
+  for (const leg of uniqueMatchLegs(legs)) {
+    selected.push(leg)
+    multiple *= Number(leg.odds)
+    if (multiple >= minOdds) break
+  }
+  return selected
 }
 
 function handicapLeg(match: AnalyzedMatch): AdviceLeg {
