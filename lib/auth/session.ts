@@ -5,6 +5,7 @@ import { cookies } from 'next/headers'
 
 const COOKIE_NAME = 'twodogs_session_v2'
 const SESSION_AGE = 60 * 60 * 12
+const PRIVILEGED_NAMES = new Set(['木四', '听课', '饼干', 'yang没吐气'])
 
 export async function createEditorSession(name: string) {
   const token = randomBytes(32).toString('base64url')
@@ -64,6 +65,24 @@ export async function requireEditorSession(request: Request) {
   const session = await getEditorSession(request)
   if (!session) throw new Error('UNAUTHORIZED')
   return session
+}
+
+export async function requirePrivilegedSession(request: Request) {
+  const session = await requireEditorSession(request)
+  if (!isPrivilegedName(session.name)) throw new Error('UNAUTHORIZED')
+  return session
+}
+
+export function isPrivilegedName(name: string) {
+  return PRIVILEGED_NAMES.has(name)
+}
+
+export function ownerNamesForSession(name: string) {
+  return [name]
+}
+
+export function ownerNameForWrite(name: string) {
+  return name
 }
 
 function sign(payload: string) {

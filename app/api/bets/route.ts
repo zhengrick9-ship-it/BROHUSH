@@ -1,17 +1,21 @@
 import { NextResponse } from 'next/server'
-import { requireEditorSession } from '@/lib/auth/session'
+import {
+  ownerNameForWrite,
+  ownerNamesForSession,
+  requirePrivilegedSession,
+} from '@/lib/auth/session'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { settleBet } from '@/lib/wcw2026/metrics'
 import { parseBetInput } from '@/lib/wcw2026/validation'
 import type { Bet, Match } from '@/lib/wcw2026/types'
 
 export async function GET(request: Request) {
-  const session = await requireEditorSession(request)
+  const session = await requirePrivilegedSession(request)
   const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('bets')
     .select('*')
-    .eq('owner_name', session.name)
+    .in('owner_name', ownerNamesForSession(session.name))
     .order('created_at')
   if (error) return NextResponse.json({ error: '投注读取失败' }, { status: 502 })
   return NextResponse.json(data || [])
@@ -19,7 +23,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const session = await requireEditorSession(request)
+    const session = await requirePrivilegedSession(request)
     const input = parseBetInput(await request.json())
     if (input.matchId.startsWith('schedule-')) {
       return NextResponse.json(
@@ -41,7 +45,7 @@ export async function POST(request: Request) {
     const baseBet: Bet = {
       id: input.id || '',
       match_id: input.matchId,
-      owner_name: session.name,
+      owner_name: ownerNameForWrite(session.name),
       market: input.market,
       handicap: input.handicap,
       direction: input.direction,
@@ -54,7 +58,7 @@ export async function POST(request: Request) {
     const settled = settleBet(baseBet, match as Match)
     const payload = {
       match_id: settled.match_id,
-      owner_name: session.name,
+      owner_name: ownerNameForWrite(session.name),
       market: settled.market || 'win_draw_loss',
       handicap: settled.handicap || 0,
       direction: settled.direction,
@@ -69,7 +73,7 @@ export async function POST(request: Request) {
         .from('bets')
         .update(payload)
         .eq('id', input.id)
-        .eq('owner_name', session.name)
+        .in('owner_name', ownerNamesForSession(session.name))
         .select()
         .single()
       if (error) throw error
@@ -93,14 +97,14 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    const session = await requireEditorSession(request)
+    const session = await requirePrivilegedSession(request)
     const id = new URL(request.url).searchParams.get('id')
     if (!id) return NextResponse.json({ error: '缺少投注 ID' }, { status: 400 })
     const { error } = await createAdminClient()
       .from('bets')
       .delete()
       .eq('id', id)
-      .eq('owner_name', session.name)
+      .in('owner_name', ownerNamesForSession(session.name))
     if (error) throw error
     return NextResponse.json({ ok: true })
   } catch (error) {

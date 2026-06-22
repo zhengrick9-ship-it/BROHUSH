@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-import { requireEditorSession } from '@/lib/auth/session'
+import { requirePrivilegedSession } from '@/lib/auth/session'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { settleBet } from '@/lib/wcw2026/metrics'
 import { parseMatchResultInput } from '@/lib/wcw2026/validation'
@@ -11,7 +11,7 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
-    await requireEditorSession(request)
+    await requirePrivilegedSession(request)
     const { id } = await context.params
     if (id.startsWith('schedule-')) {
       return NextResponse.json(

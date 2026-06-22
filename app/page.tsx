@@ -18,8 +18,12 @@ export default function HomePage() {
 
   const handleEnter = async () => {
     const normalizedName = name.trim()
-    if (!['木四', '听课', '饼干', 'yang没吐气'].includes(normalizedName)) {
-      setError('名字不对')
+    if (!normalizedName) {
+      setError('先写个名字')
+      return
+    }
+    if (normalizedName.length > 24) {
+      setError('名字太长')
       return
     }
 

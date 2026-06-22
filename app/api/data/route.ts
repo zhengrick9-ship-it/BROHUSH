@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server'
-import { getEditorSession } from '@/lib/auth/session'
+import {
+  getEditorSession,
+  isPrivilegedName,
+  ownerNamesForSession,
+} from '@/lib/auth/session'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { WORLD_CUP_FIXTURES } from '@/lib/wcw2026/fixtures'
 import { settleBet } from '@/lib/wcw2026/metrics'
@@ -12,35 +16,57 @@ export async function GET(request: Request) {
   }
 
   const supabase = createAdminClient()
-  const [
-    { data: rawMatches, error: matchesError },
-    { data: rawBets, error: betsError },
-    { data: rawTickets, error: ticketsError },
-  ] =
-    await Promise.all([
-      supabase.from('matches').select('*').order('match_date').order('id'),
-      supabase
-        .from('bets')
-        .select('*')
-        .eq('owner_name', session.name)
-        .order('created_at'),
-      supabase
-        .from('bet_tickets')
-        .select('*, bet_legs(*)')
-        .eq('owner_name', session.name)
-        .order('ticket_number'),
-    ])
+  const canViewRecords = isPrivilegedName(session.name)
+  const { data: rawMatches, error: matchesError } = await supabase
+    .from('matches')
+    .select('*')
+    .order('match_date')
+    .order('id')
 
-  if (matchesError || betsError || ticketsError) {
+  if (matchesError) {
     console.error('Failed to load WCW2026 data', {
       matchesError,
+    })
+    return NextResponse.json({ error: '世界杯数据读取失败' }, { status: 502 })
+  }
+
+  const matches = mergeSchedule((rawMatches || []) as Match[])
+  if (!canViewRecords) {
+    return NextResponse.json({
+      matches,
+      bets: [],
+      tickets: [],
+      canEdit: false,
+      canViewRecords: false,
+      editorName: session.name,
+    })
+  }
+
+  const ownerNames = ownerNamesForSession(session.name)
+  const [
+    { data: rawBets, error: betsError },
+    { data: rawTickets, error: ticketsError },
+  ] = await Promise.all([
+    supabase
+      .from('bets')
+      .select('*')
+      .in('owner_name', ownerNames)
+      .order('created_at'),
+    supabase
+      .from('bet_tickets')
+      .select('*, bet_legs(*)')
+      .in('owner_name', ownerNames)
+      .order('ticket_number'),
+  ])
+
+  if (betsError || ticketsError) {
+    console.error('Failed to load WCW2026 private data', {
       betsError,
       ticketsError,
     })
     return NextResponse.json({ error: '世界杯数据读取失败' }, { status: 502 })
   }
 
-  const matches = mergeSchedule((rawMatches || []) as Match[])
   const matchMap = new Map(matches.map((match) => [match.id, match]))
   const bets = ((rawBets || []) as Bet[]).map((bet) =>
     settleBet(bet, matchMap.get(bet.match_id)),
@@ -51,6 +77,7 @@ export async function GET(request: Request) {
     bets,
     tickets: (rawTickets || []).map(mapTicket),
     canEdit: true,
+    canViewRecords: true,
     editorName: session.name,
   })
 }

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import { CapitalLines } from '@/app/components/CapitalLines'
 import { DogMark } from '@/app/components/DogMark'
+import { DailyBettingAdvice } from './DailyBettingAdvice'
 import {
   betPayout,
   getRoundKey,
@@ -19,6 +20,7 @@ type DataResponse = {
   bets: Bet[]
   tickets: TicketRecord[]
   canEdit: boolean
+  canViewRecords: boolean
   editorName: string
   error?: string
 }
@@ -29,6 +31,7 @@ export default function WCW2026Page() {
   const [tickets, setTickets] = useState<TicketRecord[]>([])
   const [me, setMe] = useState('')
   const [canEdit, setCanEdit] = useState(false)
+  const [canViewRecords, setCanViewRecords] = useState(false)
   const [activeRound, setActiveRound] = useState('')
   const [editingMatch, setEditingMatch] = useState<Match | null>(null)
   const [loading, setLoading] = useState(true)
@@ -54,6 +57,7 @@ export default function WCW2026Page() {
       setBets(body.bets)
       setTickets(body.tickets)
       setCanEdit(body.canEdit)
+      setCanViewRecords(body.canViewRecords)
       setMe(body.editorName)
     } catch (loadError) {
       if (
@@ -173,134 +177,140 @@ export default function WCW2026Page() {
           </h1>
         </section>
 
-        <section className="metric-grid metric-grid-wide">
-          <Metric
-            label="状态"
-            value={<MoodFace value={summary.settledProfit} size="large" />}
-          />
-          <Metric label="累计投入" value={money(summary.totalStake)} unit="元" />
-          <Metric label="完赛成本" value={money(summary.settledStake)} unit="元" />
-          <Metric
-            label="完赛奖金"
-            value={money(summary.settledPayout)}
-            tone={summary.settledPayout - summary.settledStake}
-            unit="元"
-          />
-          <Metric
-            label="净收益"
-            value={signedMoney(summary.settledProfit)}
-            tone={summary.settledProfit}
-            unit="元"
-          />
-          <Metric
-            label="ROI"
-            value={`${summary.roi > 0 ? '+' : ''}${summary.roi.toFixed(1)}%`}
-            tone={summary.roi}
-          />
-          <Metric
-            label="战绩"
-            value={`${summary.won}W ${summary.lost}L`}
-            note={`${summary.pending} 场待定`}
-          />
-        </section>
+        <DailyBettingAdvice matches={matches} />
 
-        <CapitalLines summary={summary} />
-
-        <section className="mt-7">
-          <div className="mb-4 flex items-end justify-between gap-5">
-            <h2 className="font-display text-2xl text-[var(--text)]">串关</h2>
-            <span className="text-xs text-[var(--muted)]">
-              共 {settledTickets.length} 单 · {money(settledTickets.reduce((sum, ticket) => sum + ticket.stake, 0))} 元
-            </span>
-          </div>
-          <div className="ticket-grid">
-            {settledTickets.map((ticket, index) => (
-              <article key={ticket.id} className="ticket-card group">
-                <MoodFace value={ticket.result === 'pending' ? 0 : ticket.profit} />
-                <div>
-                  <p className="font-medium text-[var(--text)]">
-                    #{ticket.ticketNumber || index + 1} · {ticket.label}
-                  </p>
-                  <p className="mt-2 text-xs text-[var(--muted)]">
-                    {new Set(ticket.legs.map((leg) => leg.sourceMatchNumber)).size} 场 · 成本 {money(ticket.stake)} 元
-                  </p>
-                </div>
-                <div className="text-right">
-                  {ticket.result === 'pending' ? (
-                    <>
-                      <p className="text-xs text-[var(--muted)]">理论净收益</p>
-                      <p className="font-display text-xl">
-                        {signedMoney(ticket.minProfit || 0)} ～ {signedMoney(ticket.maxProfit || 0)}
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-xs text-[var(--muted)]">
-                        奖金 {money(ticket.payout || 0)}
-                      </p>
-                      <p className={`font-display text-xl ${ticket.profit >= 0 ? 'text-[var(--green)]' : 'text-[var(--red)]'}`}>
-                        净收益 {signedMoney(ticket.profit)}
-                      </p>
-                    </>
-                  )}
-                </div>
-                <TicketDetails ticket={ticket} matches={matches} />
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-10">
-          <div className="mb-4 flex flex-wrap items-end justify-between gap-5">
-            <h2 className="font-display text-3xl text-[var(--text)]">赛程 / 单关</h2>
-            <p className="text-xs text-[var(--muted)]">
-              {matches.length} 场比赛 · {settledBets.length} 场已投注
-            </p>
-          </div>
-
-          <div className="round-tabs" role="tablist" aria-label="比赛轮次">
-            {rounds.map((round) => {
-              const count = matches.filter(
-                (match) => getRoundKey(match).id === round.id,
-              ).length
-              return (
-                <button
-                  key={round.id}
-                  role="tab"
-                  aria-selected={activeRound === round.id}
-                  className={`round-tab ${activeRound === round.id ? 'is-active' : ''}`}
-                  onClick={() => setActiveRound(round.id)}
-                >
-                  <span>{round.label}</span>
-                  <small>{count}</small>
-                </button>
-              )
-            })}
-          </div>
-
-          <div className="match-list">
-            <div className="match-head hidden md:grid">
-              <span />
-              <span>时间 / 对阵</span>
-              <span>单关 / 让球赔率</span>
-              <span>实际投注</span>
-              <span>投注金额</span>
-              <span>赛果</span>
-              <span>奖金</span>
-              <span>净收益</span>
-              <span />
-            </div>
-            {visibleMatches.map((match) => (
-              <MatchRow
-                key={match.id}
-                match={match}
-                bets={betMap.get(match.id) || []}
-                canEdit={canEdit}
-                onEdit={() => setEditingMatch(match)}
+        {canViewRecords && (
+          <>
+            <section className="metric-grid metric-grid-wide">
+              <Metric
+                label="状态"
+                value={<MoodFace value={summary.settledProfit} size="large" />}
               />
-            ))}
-          </div>
-        </section>
+              <Metric label="累计投入" value={money(summary.totalStake)} unit="元" />
+              <Metric label="完赛成本" value={money(summary.settledStake)} unit="元" />
+              <Metric
+                label="完赛奖金"
+                value={money(summary.settledPayout)}
+                tone={summary.settledPayout - summary.settledStake}
+                unit="元"
+              />
+              <Metric
+                label="净收益"
+                value={signedMoney(summary.settledProfit)}
+                tone={summary.settledProfit}
+                unit="元"
+              />
+              <Metric
+                label="ROI"
+                value={`${summary.roi > 0 ? '+' : ''}${summary.roi.toFixed(1)}%`}
+                tone={summary.roi}
+              />
+              <Metric
+                label="战绩"
+                value={`${summary.won}W ${summary.lost}L`}
+                note={`${summary.pending} 场待定`}
+              />
+            </section>
+
+            <CapitalLines summary={summary} />
+
+            <section className="mt-7">
+              <div className="mb-4 flex items-end justify-between gap-5">
+                <h2 className="font-display text-2xl text-[var(--text)]">串关</h2>
+                <span className="text-xs text-[var(--muted)]">
+                  共 {settledTickets.length} 单 · {money(settledTickets.reduce((sum, ticket) => sum + ticket.stake, 0))} 元
+                </span>
+              </div>
+              <div className="ticket-grid">
+                {settledTickets.map((ticket, index) => (
+                  <article key={ticket.id} className="ticket-card group">
+                    <MoodFace value={ticket.result === 'pending' ? 0 : ticket.profit} />
+                    <div>
+                      <p className="font-medium text-[var(--text)]">
+                        #{ticket.ticketNumber || index + 1} · {ticket.label}
+                      </p>
+                      <p className="mt-2 text-xs text-[var(--muted)]">
+                        {new Set(ticket.legs.map((leg) => leg.sourceMatchNumber)).size} 场 · 成本 {money(ticket.stake)} 元
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      {ticket.result === 'pending' ? (
+                        <>
+                          <p className="text-xs text-[var(--muted)]">理论净收益</p>
+                          <p className="font-display text-xl">
+                            {signedMoney(ticket.minProfit || 0)} ～ {signedMoney(ticket.maxProfit || 0)}
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-xs text-[var(--muted)]">
+                            奖金 {money(ticket.payout || 0)}
+                          </p>
+                          <p className={`font-display text-xl ${ticket.profit >= 0 ? 'text-[var(--green)]' : 'text-[var(--red)]'}`}>
+                            净收益 {signedMoney(ticket.profit)}
+                          </p>
+                        </>
+                      )}
+                    </div>
+                    <TicketDetails ticket={ticket} matches={matches} />
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section className="mt-10">
+              <div className="mb-4 flex flex-wrap items-end justify-between gap-5">
+                <h2 className="font-display text-3xl text-[var(--text)]">赛程 / 单关</h2>
+                <p className="text-xs text-[var(--muted)]">
+                  {matches.length} 场比赛 · {settledBets.length} 场已投注
+                </p>
+              </div>
+
+              <div className="round-tabs" role="tablist" aria-label="比赛轮次">
+                {rounds.map((round) => {
+                  const count = matches.filter(
+                    (match) => getRoundKey(match).id === round.id,
+                  ).length
+                  return (
+                    <button
+                      key={round.id}
+                      role="tab"
+                      aria-selected={activeRound === round.id}
+                      className={`round-tab ${activeRound === round.id ? 'is-active' : ''}`}
+                      onClick={() => setActiveRound(round.id)}
+                    >
+                      <span>{round.label}</span>
+                      <small>{count}</small>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="match-list">
+                <div className="match-head hidden md:grid">
+                  <span />
+                  <span>时间 / 对阵</span>
+                  <span>单关 / 让球赔率</span>
+                  <span>实际投注</span>
+                  <span>投注金额</span>
+                  <span>赛果</span>
+                  <span>奖金</span>
+                  <span>净收益</span>
+                  <span />
+                </div>
+                {visibleMatches.map((match) => (
+                  <MatchRow
+                    key={match.id}
+                    match={match}
+                    bets={betMap.get(match.id) || []}
+                    canEdit={canEdit}
+                    onEdit={() => setEditingMatch(match)}
+                  />
+                ))}
+              </div>
+            </section>
+          </>
+        )}
 
         <footer className="mt-16 border-t border-[var(--line)] py-7 text-xs text-[var(--muted)]">
           <span>3DOGS · WCW2026</span>
