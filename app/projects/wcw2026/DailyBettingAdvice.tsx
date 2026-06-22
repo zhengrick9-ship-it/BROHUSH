@@ -44,6 +44,7 @@ type AdviceItem = {
   stake: number
   passType: string
   legs: AdviceLeg[]
+  maxPayout: number | null
 }
 
 type AdviceSlate = {
@@ -142,7 +143,9 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
           <h2 className="font-display text-3xl text-[var(--text)]">
             {advice.title}
           </h2>
-          <p className="advice-status">{advice.status}</p>
+          <p className="advice-status">
+            {advice.status} · {oddsStatus(advice.matches)}
+          </p>
         </div>
         <div className="advice-budget">
           <span>预算</span>
@@ -184,6 +187,11 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
               <span>{match.pickLabel}</span>
               <span>比分 {match.scorePick}</span>
               <span>{match.totalGoalsPick}</span>
+              {match.match.odds_h && (
+                <span>
+                  胜平负 {match.match.odds_h}/{match.match.odds_d}/{match.match.odds_a}
+                </span>
+              )}
             </div>
             <p>{match.logic}</p>
           </article>
@@ -210,11 +218,15 @@ function AdvicePlan({
   items: AdviceItem[]
   tone: 'safe' | 'balanced' | 'wild'
 }) {
+  const totalMaxPayout = sumPayout(items)
   return (
     <article className={`advice-plan advice-plan-${tone}`}>
       <div className="advice-plan-head">
         <h3 className="font-display text-2xl">{title}</h3>
-        <span>{items.reduce((sum, item) => sum + item.stake, 0)} 元</span>
+        <span>
+          {items.reduce((sum, item) => sum + item.stake, 0)} 元 · 最高{' '}
+          {totalMaxPayout == null ? '--' : money(totalMaxPayout)} 元
+        </span>
       </div>
       <div className="advice-items">
         {items.map((item) => (
@@ -222,7 +234,9 @@ function AdvicePlan({
             <div className="advice-item-main">
               <strong>{item.title}</strong>
               <span>{item.passType}</span>
-              <b>{item.stake} 元</b>
+              <b>
+                {item.stake} 元 / {item.maxPayout == null ? '--' : money(item.maxPayout)}
+              </b>
             </div>
             <ul>
               {item.legs.map((leg) => (
@@ -397,6 +411,7 @@ type WheelState = {
   cy: number
   radius: number
   balls: WheelBall[]
+  goalCooldown: number
 }
 
 function createWheelState(canvas: HTMLCanvasElement | null): WheelState {
@@ -411,9 +426,10 @@ function createWheelState(canvas: HTMLCanvasElement | null): WheelState {
     cy,
     radius,
     balls: [
-      makeBall(cx - 58, cy - 24, 'home', true),
-      makeBall(cx + 34, cy + 24, 'away', true),
+      makeBall(cx - 58, cy - 24, 'home'),
+      makeBall(cx + 34, cy + 24, 'away'),
     ],
+    goalCooldown: 0,
   }
 }
 
@@ -424,9 +440,9 @@ function makeBall(
   aimGoal = false,
 ): WheelBall {
   const angle = aimGoal
-    ? (Math.random() - 0.5) * 1.35
+    ? (Math.random() - 0.5) * 1.15
     : Math.random() * Math.PI * 2
-  const speed = 6.4 + Math.random() * 3.3
+  const speed = 3.25 + Math.random() * 1.65
   return {
     x,
     y,
@@ -442,19 +458,20 @@ function updateWheel(
   state: WheelState,
   onGoal: (team: 'home' | 'away') => void,
 ) {
-  const goalHalfHeight = 48
+  const goalHalfHeight = 25
+  state.goalCooldown = Math.max(0, state.goalCooldown - 1)
   for (const ball of state.balls) {
     ball.trail = [...ball.trail.slice(-9), { x: ball.x, y: ball.y }]
-    ball.vx += (Math.random() - 0.43) * 0.18
-    ball.vy += (Math.random() - 0.5) * 0.16
+    ball.vx += (Math.random() - 0.5) * 0.1
+    ball.vy += (Math.random() - 0.5) * 0.1
     const speed = Math.hypot(ball.vx, ball.vy)
-    if (speed < 5.4) {
-      ball.vx *= 1.12
-      ball.vy *= 1.12
+    if (speed < 2.7) {
+      ball.vx *= 1.08
+      ball.vy *= 1.08
     }
-    if (speed > 10.5) {
-      ball.vx *= 0.96
-      ball.vy *= 0.96
+    if (speed > 5.8) {
+      ball.vx *= 0.94
+      ball.vy *= 0.94
     }
     ball.x += ball.vx
     ball.y += ball.vy
@@ -462,17 +479,21 @@ function updateWheel(
     const dx = ball.x - state.cx
     const dy = ball.y - state.cy
     const distance = Math.hypot(dx, dy)
-    const goalX = state.cx + state.radius - 30
+    const goalX = state.cx + state.radius - 8
     const inGoalMouth =
-      ball.x > goalX &&
+      ball.x - ball.r > goalX &&
       Math.abs(ball.y - state.cy) < goalHalfHeight &&
       ball.vx > 0
 
-    if (inGoalMouth) {
+    if (inGoalMouth && state.goalCooldown === 0) {
+      state.goalCooldown = 36
       onGoal(ball.team)
-      const fresh = makeBall(state.cx - 22, state.cy + (Math.random() - 0.5) * 50, ball.team, true)
+      const fresh = makeBall(state.cx + (Math.random() - 0.5) * 36, state.cy + (Math.random() - 0.5) * 46, ball.team)
       Object.assign(ball, fresh)
       continue
+    } else if (inGoalMouth) {
+      ball.vx = -Math.abs(ball.vx) * 0.88
+      ball.vy += (Math.random() - 0.5) * 1.1
     }
 
     if (distance + ball.r > state.radius) {
@@ -561,22 +582,22 @@ function drawWheel(
   context.stroke()
 
   context.fillStyle = '#f7f2e7'
-  context.fillRect(cx + radius - 18, cy - 52, 42, 104)
+  context.fillRect(cx + radius - 13, cy - 30, 31, 60)
   context.strokeStyle = '#1e1d19'
   context.lineWidth = 2
-  context.strokeRect(cx + radius - 18, cy - 52, 42, 104)
+  context.strokeRect(cx + radius - 13, cy - 30, 31, 60)
   context.strokeStyle = 'rgba(30, 29, 25, 0.24)'
   context.lineWidth = 1
-  for (let y = cy - 42; y <= cy + 42; y += 14) {
+  for (let y = cy - 24; y <= cy + 24; y += 12) {
     context.beginPath()
-    context.moveTo(cx + radius - 18, y)
-    context.lineTo(cx + radius + 24, y)
+    context.moveTo(cx + radius - 13, y)
+    context.lineTo(cx + radius + 18, y)
     context.stroke()
   }
-  for (let x = cx + radius - 8; x <= cx + radius + 20; x += 10) {
+  for (let x = cx + radius - 5; x <= cx + radius + 14; x += 8) {
     context.beginPath()
-    context.moveTo(x, cy - 52)
-    context.lineTo(x, cy + 52)
+    context.moveTo(x, cy - 30)
+    context.lineTo(x, cy + 30)
     context.stroke()
   }
 
@@ -657,10 +678,12 @@ function buildAdviceSlate(
 ): AdviceSlate {
   const dayMatches = matches.map(analyzeMatch)
   const ranked = [...dayMatches].sort((a, b) => b.confidence - a.confidence)
-  const primary = ranked[0] || dayMatches[0]
-  const secondary = ranked[1] || primary
-  const third = ranked[2] || secondary
-  const fourth = ranked[3] || third
+  const winRanked = ranked.filter(hasWinOdds)
+  const primary = winRanked[0] || ranked[0] || dayMatches[0]
+  const secondary = winRanked[1] || ranked[1] || primary
+  const third = winRanked[2] || ranked[2] || secondary
+  const fourth = winRanked[3] || ranked[3] || third
+  const dominant = ranked[0] || primary
 
   return {
     date: selectedDate,
@@ -671,18 +694,23 @@ function buildAdviceSlate(
     conservative: [
       item('稳胆单关', 50, '单关', [winLeg(primary)]),
       item('次稳单关', 30, '单关', [winLeg(secondary)]),
-      item('小额 2 串 1', 20, '2串1', [winLeg(primary), doubleChanceLeg(secondary)]),
+      item('小额 2 串 1', 20, '2串1', [winLeg(primary), winLeg(secondary)]),
     ],
     balanced: [
       item('主思路单关', 30, '单关', [winLeg(primary)]),
       item('核心 2 串 1', 30, '2串1', [winLeg(primary), winLeg(secondary)]),
-      item('让球方向', 20, '单关', [handicapLeg(primary)]),
+      item('让球方向', 20, '单关', [handicapLeg(dominant)]),
       item('节奏补充', 20, '单关', [goalsLeg(third)]),
     ],
     aggressive: [
       item('三场方向串', 35, '3串1', [winLeg(primary), winLeg(secondary), winLeg(third)]),
-      item('四场搏高赔', 25, '4串1', [winLeg(primary), winLeg(secondary), winLeg(third), winLeg(fourth)]),
-      item('精准比分', 20, '单关', [scoreLeg(primary)]),
+      item('四场搏高赔', 25, '4串1', [
+        playableDirectionLeg(dominant),
+        winLeg(primary),
+        winLeg(secondary),
+        winLeg(third),
+      ]),
+      item('精准比分', 20, '单关', [scoreLeg(dominant)]),
       item('半全场搏点', 20, '单关', [halfFullLeg(secondary)]),
     ],
   }
@@ -696,8 +724,24 @@ function slateStatus(date: string, today: string, matches: Match[]) {
   return '下一期 · 默认展示'
 }
 
+function oddsStatus(matches: AnalyzedMatch[]) {
+  const latest = matches
+    .map((item) => item.match.sporttery_updated_at)
+    .filter((value): value is string => Boolean(value))
+    .sort()
+    .at(-1)
+  return latest ? `体彩赔率 ${latest}` : '体彩赔率待临场确认'
+}
+
 function item(title: string, stake: number, passType: string, legs: AdviceLeg[]): AdviceItem {
-  return { title, stake, passType, legs: legs.filter(Boolean) }
+  const cleanLegs = legs.filter(Boolean)
+  return {
+    title,
+    stake,
+    passType,
+    legs: cleanLegs,
+    maxPayout: estimatePayout(stake, cleanLegs),
+  }
 }
 
 function analyzeMatch(match: Match): AnalyzedMatch {
@@ -719,7 +763,7 @@ function analyzeMatch(match: Match): AnalyzedMatch {
     3.2,
   )
   const scorePick = scoreFromGoals(expectedHomeGoals, expectedAwayGoals, pick)
-  const totalGoals = Math.max(1, Math.min(6, Math.round(expectedHomeGoals + expectedAwayGoals)))
+  const totalGoals = Math.max(0, Math.min(7, Math.round(expectedHomeGoals + expectedAwayGoals)))
 
   return {
     match,
@@ -732,7 +776,7 @@ function analyzeMatch(match: Match): AnalyzedMatch {
     expectedHomeGoals,
     expectedAwayGoals,
     scorePick,
-    totalGoalsPick: `总进球 ${Math.max(1, totalGoals - 1)}/${totalGoals}球`,
+    totalGoalsPick: `总进球 ${totalGoals}球`,
     halfFullPick: halfFullFromPick(pick, probabilities[pick]),
     handicapPick: handicapFromMatch(match, scorePick),
     logic: `${match.home_team}偏${home.edge}，${match.away_team}偏${away.edge}；${home.star} 对 ${away.star}。${home.form}，${away.form}。`,
@@ -789,6 +833,20 @@ function winLeg(match: AnalyzedMatch): AdviceLeg {
   }
 }
 
+function hasWinOdds(match: AnalyzedMatch) {
+  return Boolean(
+    match.pick === 'H'
+      ? match.match.odds_h
+      : match.pick === 'D'
+        ? match.match.odds_d
+        : match.match.odds_a,
+  )
+}
+
+function playableDirectionLeg(match: AnalyzedMatch) {
+  return hasWinOdds(match) ? winLeg(match) : handicapLeg(match)
+}
+
 function doubleChanceLeg(match: AnalyzedMatch): AdviceLeg {
   const sorted = (Object.entries(match.probabilities) as Array<[Outcome, number]>)
     .sort((a, b) => b[1] - a[1])
@@ -811,10 +869,12 @@ function handicapLeg(match: AnalyzedMatch): AdviceLeg {
 }
 
 function goalsLeg(match: AnalyzedMatch): AdviceLeg {
+  const goals = match.totalGoalsPick.replace('总进球 ', '').replace('球', '')
   return {
     match,
     market: '总进球',
-    pick: match.totalGoalsPick.replace('总进球 ', ''),
+    pick: `${goals}球`,
+    odds: match.match.odds_total_goals?.[goals],
   }
 }
 
@@ -823,6 +883,7 @@ function scoreLeg(match: AnalyzedMatch): AdviceLeg {
     match,
     market: '比分',
     pick: match.scorePick,
+    odds: match.match.odds_score?.[match.scorePick],
   }
 }
 
@@ -831,6 +892,7 @@ function halfFullLeg(match: AnalyzedMatch): AdviceLeg {
     match,
     market: '半全场',
     pick: match.halfFullPick,
+    odds: match.match.odds_half_full?.[match.halfFullPick],
   }
 }
 
@@ -870,13 +932,39 @@ function scoreFromGoals(homeGoals: number, awayGoals: number, pick: Outcome) {
 }
 
 function halfFullFromPick(pick: Outcome, confidence: number) {
-  const final = outcomeLabel(pick)
+  const final = hafuLabel(pick)
   if (pick === 'D') return '平/平'
   return confidence > 0.5 ? `${final}/${final}` : `平/${final}`
 }
 
 function outcomeLabel(outcome: Outcome) {
   return outcome === 'H' ? '主胜' : outcome === 'A' ? '客胜' : '平'
+}
+
+function hafuLabel(outcome: Outcome) {
+  return outcome === 'H' ? '胜' : outcome === 'A' ? '负' : '平'
+}
+
+function estimatePayout(stake: number, legs: AdviceLeg[]) {
+  if (!legs.length || legs.some((leg) => !leg.odds)) return null
+  return roundMoney(
+    stake * legs.reduce((product, leg) => product * Number(leg.odds), 1),
+  )
+}
+
+function sumPayout(items: AdviceItem[]) {
+  if (items.some((item) => item.maxPayout == null)) return null
+  return roundMoney(items.reduce((sum, item) => sum + Number(item.maxPayout), 0))
+}
+
+function money(value: number) {
+  return new Intl.NumberFormat('zh-CN', {
+    maximumFractionDigits: 2,
+  }).format(value)
+}
+
+function roundMoney(value: number) {
+  return Math.round(value * 100) / 100
 }
 
 function formatHandicap(value: number) {

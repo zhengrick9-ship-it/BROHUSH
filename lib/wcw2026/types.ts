@@ -20,6 +20,11 @@ export type Match = {
   odds_handicap_h?: number | null
   odds_handicap_d?: number | null
   odds_handicap_a?: number | null
+  sporttery_match_num?: number | null
+  sporttery_updated_at?: string | null
+  odds_score?: Record<string, number> | null
+  odds_total_goals?: Record<string, number> | null
+  odds_half_full?: Record<string, number> | null
   prediction: Outcome | null
   model_prob_h: number | null
   model_prob_d: number | null
