@@ -140,6 +140,46 @@ button {
   line-height: 1.8;
 }
 
+.advice-status {
+  margin-top: 6px;
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.slate-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.slate-tab {
+  display: inline-flex;
+  min-width: max-content;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 248, 0.55);
+  color: var(--muted);
+  font-size: 12px;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.slate-tab small {
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.slate-tab:hover,
+.slate-tab.is-active {
+  border-color: var(--accent);
+  background: rgba(255, 253, 248, 0.9);
+  color: var(--text);
+}
+
 .match-brief-grid {
   display: grid;
   gap: 10px;
@@ -301,6 +341,9 @@ button {
 
 .mystic-panel {
   margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 248, 0.48);
 }
 
 .mystic-select {
@@ -343,6 +386,24 @@ button {
   color: #d8c6a8;
   font-variant-numeric: tabular-nums;
   text-align: right;
+}
+
+.goal-flash {
+  min-height: 30px;
+  margin-bottom: 10px;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  background: rgba(250, 248, 243, 0.78);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+  text-align: center;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.goal-flash.is-active {
+  background: rgba(47, 128, 85, 0.12);
+  color: var(--green);
 }
 
 .goal-wheel {

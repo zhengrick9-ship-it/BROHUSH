@@ -46,6 +46,22 @@ type AdviceItem = {
   legs: AdviceLeg[]
 }
 
+type AdviceSlate = {
+  date: string
+  title: string
+  label: string
+  status: string
+  matches: AnalyzedMatch[]
+  conservative: AdviceItem[]
+  balanced: AdviceItem[]
+  aggressive: AdviceItem[]
+}
+
+type AdviceBook = {
+  defaultDate: string
+  slates: AdviceSlate[]
+}
+
 const TEAM_PROFILES: Record<string, TeamProfile> = {
   巴西: p(94, 95, 86, 78, '强队稳定，前场个人能力足', '进攻', '维尼修斯 / 罗德里戈'),
   西班牙: p(93, 90, 90, 74, '控球压制强，虐菜能力较稳', '攻守平衡', '罗德里 / 亚马尔'),
@@ -62,6 +78,7 @@ const TEAM_PROFILES: Record<string, TeamProfile> = {
   摩洛哥: p(83, 79, 86, 64, '防线组织强，反击质量高', '防守反击', '阿什拉夫'),
   日本: p(82, 80, 79, 76, '节奏快，压迫和脚下衔接好', '速度', '三笘薰 / 久保建英'),
   美国: p(80, 79, 77, 78, '运动能力好，主场氛围加成', '冲击', '普利西奇'),
+  挪威: p(83, 86, 75, 70, '锋线终结点强，但防守保护一般', '进攻', '哈兰德 / 厄德高'),
   墨西哥: p(79, 76, 79, 70, '主场韧性强，杯赛经验足', '主场', '希门尼斯'),
   哥伦比亚: p(82, 82, 79, 72, '前场创造力强，容易出进球', '进攻', '迪亚斯'),
   塞内加尔: p(81, 78, 82, 70, '身体强度高，防守反击直接', '身体', '马内'),
@@ -70,6 +87,9 @@ const TEAM_PROFILES: Record<string, TeamProfile> = {
   厄瓜多尔: p(78, 76, 79, 74, '对抗和跑动强，节奏不慢', '对抗', '凯塞多'),
   伊朗: p(76, 73, 78, 62, '防守站位稳，进攻偏直接', '防守', '塔雷米'),
   埃及: p(77, 76, 75, 66, '单点爆破强，整体稳定性一般', '边路', '萨拉赫'),
+  阿尔及利亚: p(76, 75, 74, 70, '边路推进和定位球有威胁', '边路', '马赫雷斯'),
+  伊拉克: p(70, 68, 70, 64, '杯赛韧性不错，硬仗进攻上限有限', '防守', '团队对抗'),
+  约旦: p(68, 66, 69, 66, '阵型收缩明确，反击依赖效率', '反击', '团队速度'),
   沙特: p(71, 69, 70, 68, '能守能跑，但面对顶级强队抗压难', '反击', '多萨里'),
   佛得角: p(70, 68, 72, 62, '纪律性尚可，阵地进攻火力有限', '防守', '团队防守'),
   新西兰: p(66, 63, 68, 60, '身体对抗够，创造力偏弱', '高空球', '伍德'),
@@ -90,7 +110,29 @@ function p(
 }
 
 export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
-  const advice = useMemo(() => buildDailyAdvice(matches), [matches])
+  const adviceBook = useMemo(() => buildAdviceBook(matches), [matches])
+  const [selectedDate, setSelectedDate] = useState('')
+  const advice =
+    adviceBook.slates.find((slate) => slate.date === selectedDate) ||
+    adviceBook.slates.find((slate) => slate.date === adviceBook.defaultDate) ||
+    adviceBook.slates[0]
+
+  useEffect(() => {
+    setSelectedDate((current) =>
+      adviceBook.slates.some((slate) => slate.date === current)
+        ? current
+        : adviceBook.defaultDate,
+    )
+  }, [adviceBook])
+
+  if (!advice) {
+    return (
+      <section className="daily-advice" id="daily-advice">
+        <p className="section-label">中国体彩 · 每日建议</p>
+        <h2 className="font-display text-3xl text-[var(--text)]">暂无可推荐赛程</h2>
+      </section>
+    )
+  }
 
   return (
     <section className="daily-advice" id="daily-advice">
@@ -100,6 +142,7 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
           <h2 className="font-display text-3xl text-[var(--text)]">
             {advice.title}
           </h2>
+          <p className="advice-status">{advice.status}</p>
         </div>
         <div className="advice-budget">
           <span>预算</span>
@@ -108,8 +151,23 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
       </div>
 
       <p className="advice-note">
-        只做轻量决策辅助：优先看纸面强弱、风格克制、近期状态、球星强点和小组形势。比分、总进球、半全场赔率以体彩临场为准。
+        每个比赛日作为独立期次保留，可切换近期回顾；默认展示下一期 4 场。只做轻量决策辅助：纸面强弱、风格克制、近期状态、球星强点和小组形势；赔率以体彩临场为准。
       </p>
+
+      <div className="slate-tabs" role="tablist" aria-label="推荐期次">
+        {adviceBook.slates.map((slate) => (
+          <button
+            key={slate.date}
+            role="tab"
+            aria-selected={slate.date === advice.date}
+            className={`slate-tab ${slate.date === advice.date ? 'is-active' : ''}`}
+            onClick={() => setSelectedDate(slate.date)}
+          >
+            <span>{slate.label}</span>
+            <small>{slate.matches.length} 场</small>
+          </button>
+        ))}
+      </div>
 
       <div className="match-brief-grid">
         {advice.matches.map((match) => (
@@ -238,8 +296,13 @@ function GoalWheel({ match }: { match: Match }) {
   const [running, setRunning] = useState(false)
   const [minute, setMinute] = useState(0)
   const [score, setScore] = useState({ home: 0, away: 0 })
+  const [lastGoal, setLastGoal] = useState('')
 
   useEffect(() => {
+    setScore({ home: 0, away: 0 })
+    setMinute(0)
+    setLastGoal('')
+    stateRef.current = null
     drawWheel(canvasRef.current, match, stateRef.current)
   }, [match])
 
@@ -255,6 +318,7 @@ function GoalWheel({ match }: { match: Match }) {
     stateRef.current = initial
     setScore({ home: 0, away: 0 })
     setMinute(0)
+    setLastGoal('')
     setRunning(true)
 
     const tick = (now: number) => {
@@ -264,7 +328,8 @@ function GoalWheel({ match }: { match: Match }) {
       const elapsed = now - state.startedAt
       const progress = Math.min(1, elapsed / 20000)
       const nextMinute = Math.min(90, Math.floor(progress * 90))
-      updateWheel(state, match, (team) => {
+      updateWheel(state, (team) => {
+        setLastGoal(team === 'home' ? `${match.home_team} 进球` : `${match.away_team} 进球`)
         setScore((current) =>
           team === 'home'
             ? { ...current, home: current.home + 1 }
@@ -290,6 +355,7 @@ function GoalWheel({ match }: { match: Match }) {
     setRunning(false)
     setMinute(0)
     setScore({ home: 0, away: 0 })
+    setLastGoal('')
     drawWheel(canvasRef.current, match, null)
   }
 
@@ -300,6 +366,9 @@ function GoalWheel({ match }: { match: Match }) {
         <strong>{score.home} : {score.away}</strong>
         <span>{match.away_team}</span>
         <b>{minute}'</b>
+      </div>
+      <div className={`goal-flash ${lastGoal ? 'is-active' : ''}`}>
+        {lastGoal || '等待进球'}
       </div>
       <canvas ref={canvasRef} className="goal-wheel" width={720} height={360} />
       <div className="goal-wheel-actions">
@@ -319,6 +388,7 @@ type WheelBall = {
   vy: number
   r: number
   team: 'home' | 'away'
+  trail: Array<{ x: number; y: number }>
 }
 
 type WheelState = {
@@ -341,15 +411,22 @@ function createWheelState(canvas: HTMLCanvasElement | null): WheelState {
     cy,
     radius,
     balls: [
-      makeBall(cx - 44, cy - 18, 'home'),
-      makeBall(cx + 38, cy + 18, 'away'),
+      makeBall(cx - 58, cy - 24, 'home', true),
+      makeBall(cx + 34, cy + 24, 'away', true),
     ],
   }
 }
 
-function makeBall(x: number, y: number, team: 'home' | 'away'): WheelBall {
-  const angle = Math.random() * Math.PI * 2
-  const speed = 3.2 + Math.random() * 2.4
+function makeBall(
+  x: number,
+  y: number,
+  team: 'home' | 'away',
+  aimGoal = false,
+): WheelBall {
+  const angle = aimGoal
+    ? (Math.random() - 0.5) * 1.35
+    : Math.random() * Math.PI * 2
+  const speed = 6.4 + Math.random() * 3.3
   return {
     x,
     y,
@@ -357,23 +434,35 @@ function makeBall(x: number, y: number, team: 'home' | 'away'): WheelBall {
     vy: Math.sin(angle) * speed,
     r: 12,
     team,
+    trail: [],
   }
 }
 
 function updateWheel(
   state: WheelState,
-  match: Match,
   onGoal: (team: 'home' | 'away') => void,
 ) {
-  const goalHalfHeight = 34
+  const goalHalfHeight = 48
   for (const ball of state.balls) {
+    ball.trail = [...ball.trail.slice(-9), { x: ball.x, y: ball.y }]
+    ball.vx += (Math.random() - 0.43) * 0.18
+    ball.vy += (Math.random() - 0.5) * 0.16
+    const speed = Math.hypot(ball.vx, ball.vy)
+    if (speed < 5.4) {
+      ball.vx *= 1.12
+      ball.vy *= 1.12
+    }
+    if (speed > 10.5) {
+      ball.vx *= 0.96
+      ball.vy *= 0.96
+    }
     ball.x += ball.vx
     ball.y += ball.vy
 
     const dx = ball.x - state.cx
     const dy = ball.y - state.cy
     const distance = Math.hypot(dx, dy)
-    const goalX = state.cx + state.radius - 18
+    const goalX = state.cx + state.radius - 30
     const inGoalMouth =
       ball.x > goalX &&
       Math.abs(ball.y - state.cy) < goalHalfHeight &&
@@ -381,7 +470,7 @@ function updateWheel(
 
     if (inGoalMouth) {
       onGoal(ball.team)
-      const fresh = makeBall(state.cx, state.cy, ball.team)
+      const fresh = makeBall(state.cx - 22, state.cy + (Math.random() - 0.5) * 50, ball.team, true)
       Object.assign(ball, fresh)
       continue
     }
@@ -397,7 +486,26 @@ function updateWheel(
     }
   }
 
-  void match
+  const [first, second] = state.balls
+  const dx = second.x - first.x
+  const dy = second.y - first.y
+  const distance = Math.hypot(dx, dy)
+  const minDistance = first.r + second.r
+  if (distance > 0 && distance < minDistance) {
+    const nx = dx / distance
+    const ny = dy / distance
+    const overlap = minDistance - distance
+    first.x -= nx * overlap * 0.5
+    first.y -= ny * overlap * 0.5
+    second.x += nx * overlap * 0.5
+    second.y += ny * overlap * 0.5
+    const firstAlong = first.vx * nx + first.vy * ny
+    const secondAlong = second.vx * nx + second.vy * ny
+    first.vx += (secondAlong - firstAlong) * nx
+    first.vy += (secondAlong - firstAlong) * ny
+    second.vx += (firstAlong - secondAlong) * nx
+    second.vy += (firstAlong - secondAlong) * ny
+  }
 }
 
 function drawWheel(
@@ -414,58 +522,140 @@ function drawWheel(
   const cy = height / 2
   const radius = Math.min(width, height) * 0.42
   const balls = state?.balls || [
-    { x: cx - 44, y: cy - 18, r: 12, team: 'home' as const },
-    { x: cx + 38, y: cy + 18, r: 12, team: 'away' as const },
+    { x: cx - 58, y: cy - 24, r: 12, team: 'home' as const, trail: [] },
+    { x: cx + 34, y: cy + 24, r: 12, team: 'away' as const, trail: [] },
   ]
 
   context.clearRect(0, 0, width, height)
-  context.fillStyle = '#faf8f3'
+  const background = context.createLinearGradient(0, 0, width, height)
+  background.addColorStop(0, '#fbf7ed')
+  background.addColorStop(1, '#e7ddca')
+  context.fillStyle = background
   context.fillRect(0, 0, width, height)
+
+  context.save()
   context.beginPath()
   context.arc(cx, cy, radius, 0, Math.PI * 2)
-  context.fillStyle = '#ece4d5'
-  context.fill()
+  context.clip()
+  context.fillStyle = '#d8ead6'
+  context.fillRect(cx - radius, cy - radius, radius * 2, radius * 2)
+  for (let x = cx - radius; x < cx + radius; x += 34) {
+    context.fillStyle = x / 34 % 2 > 1 ? 'rgba(47, 128, 85, 0.08)' : 'rgba(255, 253, 248, 0.18)'
+    context.fillRect(x, cy - radius, 34, radius * 2)
+  }
+  context.strokeStyle = 'rgba(255, 253, 248, 0.74)'
+  context.lineWidth = 2
+  context.beginPath()
+  context.arc(cx, cy, 46, 0, Math.PI * 2)
+  context.stroke()
+  context.beginPath()
+  context.moveTo(cx, cy - radius)
+  context.lineTo(cx, cy + radius)
+  context.stroke()
+  context.restore()
+
+  context.beginPath()
+  context.arc(cx, cy, radius, 0, Math.PI * 2)
   context.lineWidth = 3
   context.strokeStyle = '#c9c0b0'
   context.stroke()
 
-  context.fillStyle = '#2f8055'
-  context.fillRect(cx + radius - 12, cy - 34, 30, 68)
+  context.fillStyle = '#f7f2e7'
+  context.fillRect(cx + radius - 18, cy - 52, 42, 104)
   context.strokeStyle = '#1e1d19'
-  context.strokeRect(cx + radius - 12, cy - 34, 30, 68)
+  context.lineWidth = 2
+  context.strokeRect(cx + radius - 18, cy - 52, 42, 104)
+  context.strokeStyle = 'rgba(30, 29, 25, 0.24)'
+  context.lineWidth = 1
+  for (let y = cy - 42; y <= cy + 42; y += 14) {
+    context.beginPath()
+    context.moveTo(cx + radius - 18, y)
+    context.lineTo(cx + radius + 24, y)
+    context.stroke()
+  }
+  for (let x = cx + radius - 8; x <= cx + radius + 20; x += 10) {
+    context.beginPath()
+    context.moveTo(x, cy - 52)
+    context.lineTo(x, cy + 52)
+    context.stroke()
+  }
 
   for (const ball of balls) {
+    ball.trail.forEach((point, index) => {
+      context.beginPath()
+      context.arc(point.x, point.y, ball.r * (0.28 + index * 0.045), 0, Math.PI * 2)
+      context.fillStyle =
+        ball.team === 'home'
+          ? `rgba(197, 111, 82, ${0.05 + index * 0.018})`
+          : `rgba(69, 101, 141, ${0.05 + index * 0.018})`
+      context.fill()
+    })
+    const ballGradient = context.createRadialGradient(
+      ball.x - 4,
+      ball.y - 5,
+      2,
+      ball.x,
+      ball.y,
+      ball.r,
+    )
+    ballGradient.addColorStop(0, '#fffdf8')
+    ballGradient.addColorStop(0.35, ball.team === 'home' ? '#e09a7f' : '#7b98bf')
+    ballGradient.addColorStop(1, ball.team === 'home' ? '#a9573e' : '#34557c')
     context.beginPath()
     context.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2)
-    context.fillStyle = ball.team === 'home' ? '#c56f52' : '#45658d'
+    context.fillStyle = ballGradient
     context.fill()
     context.lineWidth = 2
     context.strokeStyle = '#fffdf8'
     context.stroke()
   }
 
-  context.fillStyle = '#5e5a51'
-  context.font = '18px Avenir Next, sans-serif'
+  context.fillStyle = '#1e1d19'
+  context.font = '600 18px Avenir Next, sans-serif'
   context.textAlign = 'center'
-  context.fillText(match.home_team, cx - 96, 38)
-  context.fillText(match.away_team, cx + 96, 38)
+  context.fillText(match.home_team, cx - 110, 38)
+  context.fillText(match.away_team, cx + 110, 38)
 }
 
-function buildDailyAdvice(matches: Match[]) {
+function buildAdviceBook(matches: Match[]): AdviceBook {
   const sorted = [...matches].sort((a, b) =>
     (a.kickoff_at || a.match_date).localeCompare(b.kickoff_at || b.match_date),
   )
   const today = shanghaiDateKey()
-  const selectedDate =
-    sorted.find((match) => match.match_status !== 'finished' && match.match_date >= today)
-      ?.match_date ||
-    sorted.find((match) => match.match_date === today)?.match_date ||
-    sorted[0]?.match_date ||
+  const grouped = new Map<string, Match[]>()
+  sorted
+    .filter((match) => !match.home_team.includes('席位') && !match.away_team.includes('席位'))
+    .forEach((match) => {
+      grouped.set(match.match_date, [...(grouped.get(match.match_date) || []), match])
+    })
+  const allDates = [...grouped.keys()].sort()
+  const focusDate =
+    allDates.find((date) => date > today) ||
+    allDates.find((date) => date >= today) ||
+    allDates.at(-1) ||
     today
-  const dayMatches = sorted
-    .filter((match) => match.match_date === selectedDate)
-    .slice(0, 4)
-    .map(analyzeMatch)
+  const focusIndex = Math.max(0, allDates.indexOf(focusDate))
+  const visibleDates = allDates.slice(
+    Math.max(0, focusIndex - 5),
+    Math.min(allDates.length, focusIndex + 8),
+  )
+  const slates = visibleDates.map((date) =>
+    buildAdviceSlate(date, (grouped.get(date) || []).slice(0, 4), today, date === focusDate),
+  )
+
+  return {
+    defaultDate: focusDate,
+    slates,
+  }
+}
+
+function buildAdviceSlate(
+  selectedDate: string,
+  matches: Match[],
+  today: string,
+  isDefault: boolean,
+): AdviceSlate {
+  const dayMatches = matches.map(analyzeMatch)
   const ranked = [...dayMatches].sort((a, b) => b.confidence - a.confidence)
   const primary = ranked[0] || dayMatches[0]
   const secondary = ranked[1] || primary
@@ -473,7 +663,10 @@ function buildDailyAdvice(matches: Match[]) {
   const fourth = ranked[3] || third
 
   return {
+    date: selectedDate,
     title: `${selectedDate.slice(5).replace('-', '/')} ${dayMatches.length} 场投注建议`,
+    label: `${selectedDate.slice(5).replace('-', '/')}${isDefault ? ' 下一期' : ''}`,
+    status: slateStatus(selectedDate, today, matches),
     matches: dayMatches,
     conservative: [
       item('稳胆单关', 50, '单关', [winLeg(primary)]),
@@ -493,6 +686,14 @@ function buildDailyAdvice(matches: Match[]) {
       item('半全场搏点', 20, '单关', [halfFullLeg(secondary)]),
     ],
   }
+}
+
+function slateStatus(date: string, today: string, matches: Match[]) {
+  if (matches.length === 0) return '暂无该期赛程'
+  if (matches.every((match) => match.match_status === 'finished')) return '回顾期 · 已完赛'
+  if (date < today) return '回顾期 · 赛果可能未录完'
+  if (date === today) return '当日期 · 可临场调整'
+  return '下一期 · 默认展示'
 }
 
 function item(title: string, stake: number, passType: string, legs: AdviceLeg[]): AdviceItem {
