@@ -77,11 +77,19 @@ const TEAM_PROFILES: Record<string, TeamProfile> = {
   乌拉圭: p(86, 83, 85, 80, '身体和压迫强，比赛侵略性足', '防守反击', '努涅斯 / 巴尔韦德'),
   克罗地亚: p(84, 80, 85, 58, '控节奏能力强，大开大合概率低', '控制', '莫德里奇传承'),
   瑞士: p(82, 78, 83, 60, '纪律性好，容易把比赛拖进小比分', '防守', '扎卡'),
+  加拿大: p(77, 75, 74, 72, '冲击力和主场氛围不错，防线抗压仍要打问号', '冲击', '戴维 / 戴维斯'),
+  波黑: p(78, 77, 75, 64, '中前场支点和定位球有威胁，节奏偏慢', '支点', '哲科传承 / 皮亚尼奇体系'),
+  卡塔尔: p(69, 68, 68, 64, '亚洲杯经验有，但面对欧洲强度抗压不足', '控球', '阿菲夫'),
   摩洛哥: p(83, 79, 86, 64, '防线组织强，反击质量高', '防守反击', '阿什拉夫'),
+  苏格兰: p(76, 73, 78, 62, '防守韧性强，进攻依赖边路和定位球', '防守', '麦克托米奈 / 罗伯逊'),
+  海地: p(64, 62, 64, 66, '身体条件尚可，整体攻防稳定性偏弱', '反击', '团队冲击'),
   日本: p(82, 80, 79, 76, '节奏快，压迫和脚下衔接好', '速度', '三笘薰 / 久保建英'),
   美国: p(80, 79, 77, 78, '运动能力好，主场氛围加成', '冲击', '普利西奇'),
   挪威: p(83, 86, 75, 70, '锋线终结点强，但防守保护一般', '进攻', '哈兰德 / 厄德高'),
   墨西哥: p(79, 76, 79, 70, '主场韧性强，杯赛经验足', '主场', '希门尼斯'),
+  南非: p(70, 69, 70, 68, '跑动和反击积极，但强强对抗细节不足', '反击', '团队速度'),
+  韩国: p(80, 79, 78, 76, '压迫和转换速度强，边前场个人能力突出', '速度', '孙兴慜 / 李刚仁'),
+  捷克: p(78, 75, 80, 62, '防线和空中对抗不错，进攻节奏偏稳', '防守', '绍切克 / 希克'),
   哥伦比亚: p(82, 82, 79, 72, '前场创造力强，容易出进球', '进攻', '迪亚斯'),
   塞内加尔: p(81, 78, 82, 70, '身体强度高，防守反击直接', '身体', '马内'),
   奥地利: p(80, 78, 80, 76, '整体压迫强，执行力稳定', '压迫', '萨比策'),
@@ -160,7 +168,7 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
       </div>
 
       <p className="advice-note">
-        每个比赛日作为独立期次保留，可切换近期回顾；默认展示下一期 4 场。只做轻量决策辅助：纸面强弱、风格克制、近期状态、球星强点和小组形势；赔率以体彩临场为准。
+        每个比赛日作为独立期次保留，可切换近期回顾；默认展示下一期全部可售场次。只做轻量决策辅助：纸面强弱、风格克制、近期状态、球星强点、小组形势和出线规则；赔率以体彩临场为准。
       </p>
 
       <div className="slate-tabs" role="tablist" aria-label="推荐期次">
@@ -187,7 +195,7 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
         {advice.matches.map((match) => (
           <article key={match.match.id} className="match-brief">
             <p className="section-label">
-              M{match.match.source_match_number || '--'} · {formatKickoff(match.match)}
+              M{match.match.sporttery_match_num || match.match.source_match_number || '--'} · {formatKickoff(match.match)}
             </p>
             <h3>
               {match.match.home_team}
@@ -710,7 +718,7 @@ function buildAdviceBook(matches: Match[]): AdviceBook {
     Math.min(allDates.length, focusIndex + 8),
   )
   const slates = visibleDates.map((date) =>
-    buildAdviceSlate(date, (grouped.get(date) || []).slice(0, 4), today, date === focusDate),
+    buildAdviceSlate(date, grouped.get(date) || [], today, date === focusDate),
   )
 
   return {
@@ -825,6 +833,7 @@ function analyzeMatch(match: Match): AnalyzedMatch {
   )
   const scorePick = scoreFromGoals(expectedHomeGoals, expectedAwayGoals, pick)
   const totalGoals = Math.max(0, Math.min(7, Math.round(expectedHomeGoals + expectedAwayGoals)))
+  const qualification = qualificationNote(match)
 
   return {
     match,
@@ -840,8 +849,19 @@ function analyzeMatch(match: Match): AnalyzedMatch {
     totalGoalsPick: `总进球 ${totalGoals}球`,
     halfFullPick: halfFullFromPick(pick, probabilities[pick]),
     handicapPick: handicapFromMatch(match, scorePick),
-    logic: `${match.home_team}偏${home.edge}，${match.away_team}偏${away.edge}；${home.star} 对 ${away.star}。${home.form}，${away.form}。`,
+    logic: `${match.home_team}偏${home.edge}，${match.away_team}偏${away.edge}；${home.star} 对 ${away.star}。${home.form}，${away.form}。${qualification}`,
   }
+}
+
+function qualificationNote(match: Match) {
+  if (match.stage === 'group' && match.round_number === 3) {
+    const group = match.group_name ? `${match.group_name}组` : '本组'
+    return `末轮形势：${group}两场同时开球，前二直接晋级，成绩最好的 8 个小组第三也进 32 强；投注上更重视不败、净胜球和控风险，深盘穿盘不能简单当稳胆。`
+  }
+  if (match.stage === 'group' && match.round_number === 2) {
+    return '第二轮形势：抢分会明显影响末轮压力，领先方未必持续追大比分，落后方需要考虑搏分。'
+  }
+  return ''
 }
 
 function modelProbabilities(delta: number): Record<Outcome, number> {
