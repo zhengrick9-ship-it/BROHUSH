@@ -83,8 +83,14 @@ const TEAM_PROFILES: Record<string, TeamProfile> = {
   摩洛哥: p(83, 79, 86, 64, '防线组织强，反击质量高', '防守反击', '阿什拉夫'),
   苏格兰: p(76, 73, 78, 62, '防守韧性强，进攻依赖边路和定位球', '防守', '麦克托米奈 / 罗伯逊'),
   海地: p(64, 62, 64, 66, '身体条件尚可，整体攻防稳定性偏弱', '反击', '团队冲击'),
+  库拉索: p(64, 62, 65, 66, '整体抗压和阵地推进都偏弱，主要看收缩后的反击效率', '防守反击', '团队速度'),
+  科特迪瓦: p(79, 78, 77, 72, '身体强度和边路推进不错，但大胜穿深盘不宜当作稳胆', '冲击', '凯西 / 哈勒体系'),
   日本: p(82, 80, 79, 76, '节奏快，压迫和脚下衔接好', '速度', '三笘薰 / 久保建英'),
+  瑞典: p(77, 75, 78, 62, '防守和高空球有底盘，比赛节奏通常不会太乱', '防守', '伊萨克 / 库卢塞夫斯基'),
+  突尼斯: p(70, 68, 72, 64, '防守韧性可以，进攻上限和持续压迫不足', '防守', '团队防守'),
   美国: p(80, 79, 77, 78, '运动能力好，主场氛围加成', '冲击', '普利西奇'),
+  巴拉圭: p(74, 72, 76, 62, '对抗和防守纪律不错，进攻端更依赖定位球和转换', '防守', '阿尔米隆'),
+  澳大利亚: p(73, 71, 74, 66, '身体对抗稳定，杯赛常能把比赛拖进低比分', '对抗', '团队高空球'),
   挪威: p(83, 86, 75, 70, '锋线终结点强，但防守保护一般', '进攻', '哈兰德 / 厄德高'),
   墨西哥: p(79, 76, 79, 70, '主场韧性强，杯赛经验足', '主场', '希门尼斯'),
   南非: p(70, 69, 70, 68, '跑动和反击积极，但强强对抗细节不足', '反击', '团队速度'),
@@ -169,6 +175,7 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
 
       <p className="advice-note">
         每个比赛日作为独立期次保留，可切换近期回顾；默认展示下一期全部可售场次。只做轻量决策辅助：纸面强弱、风格克制、近期状态、球星强点、小组形势和出线规则；赔率以体彩临场为准。
+        复盘修正：前两期主要风险不是“不敢买热门”，而是把低赔热门和深盘强行串关，容错太低；今天保守方案改为单关分散，适中只保留一张小串，比分和半全场只放激进。
       </p>
 
       <div className="slate-tabs" role="tablist" aria-label="推荐期次">
@@ -739,13 +746,14 @@ function buildAdviceSlate(
   const primary = winRanked[0] || ranked[0] || dayMatches[0]
   const secondary = winRanked[1] || ranked[1] || primary
   const third = winRanked[2] || ranked[2] || secondary
+  const conservativeLegs = winRanked.slice(0, 3).map(winLeg)
+  const balancedSingleLegs = [winLeg(primary), lowVariancePropLeg(third)]
   const dominant = ranked[0] || primary
   const nonDominant = ranked.find((match) => match.match.id !== dominant.match.id) || third
   const aggressiveDirectionLegs = buildHighOddsLegs([
-    playableDirectionLeg(dominant),
-    winLeg(primary),
-    winLeg(secondary),
-    winLeg(third),
+    handicapLeg(primary),
+    handicapLeg(secondary),
+    handicapLeg(third),
     handicapLeg(nonDominant),
   ], 10)
   const aggressiveSpecialLegs = buildHighOddsLegs([
@@ -762,12 +770,11 @@ function buildAdviceSlate(
     status: slateStatus(selectedDate, today, matches),
     matches: dayMatches,
     conservative: [
-      item('单关组合票', 80, '单关合并', [winLeg(primary), winLeg(secondary)], [50, 30]),
-      item('小额 2 串 1', 20, '2串1', [winLeg(primary), winLeg(secondary)]),
+      item('单关分散票', 100, '单关合并', conservativeLegs, splitStake(100, conservativeLegs.length)),
     ],
     balanced: [
-      item('单关组合票', 50, '单关合并', [winLeg(primary), handicapLeg(dominant), goalsLeg(third)], [20, 18, 12]),
-      item('核心 2 串 1', 50, '2串1', [winLeg(primary), winLeg(secondary)]),
+      item('单关缓冲票', 40, '单关合并', balancedSingleLegs, splitStake(40, balancedSingleLegs.length)),
+      item('核心 2 串 1', 60, '2串1', [winLeg(primary), winLeg(secondary)]),
     ],
     aggressive: [
       item('高倍方向串', 60, `${aggressiveDirectionLegs.length}串1`, aggressiveDirectionLegs),
@@ -811,6 +818,19 @@ function item(
     legStakes: cleanLegStakes,
     maxPayout: estimatePayout(stake, cleanLegs, cleanLegStakes),
   }
+}
+
+function splitStake(total: number, count: number) {
+  if (count <= 0) return undefined
+  const stakes = Array.from({ length: count }, () => 2)
+  let remaining = total - stakes.reduce((sum, stake) => sum + stake, 0)
+  let index = 0
+  while (remaining > 0) {
+    stakes[index % count] += 2
+    remaining -= 2
+    index += 1
+  }
+  return stakes
 }
 
 function analyzeMatch(match: Match): AnalyzedMatch {
@@ -926,6 +946,11 @@ function hasWinOdds(match: AnalyzedMatch) {
 
 function playableDirectionLeg(match: AnalyzedMatch) {
   return hasWinOdds(match) ? winLeg(match) : handicapLeg(match)
+}
+
+function lowVariancePropLeg(match: AnalyzedMatch) {
+  const goals = goalsLeg(match)
+  return goals.odds ? goals : playableDirectionLeg(match)
 }
 
 function uniqueMatchLegs(legs: AdviceLeg[]) {
