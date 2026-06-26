@@ -64,6 +64,29 @@ type AdviceBook = {
   slates: AdviceSlate[]
 }
 
+type Trigram = {
+  name: string
+  nature: string
+  omen: string
+}
+
+type HexLine = {
+  yang: boolean
+  changing: boolean
+  value: number
+}
+
+type IChingReading = {
+  lines: HexLine[]
+  upper: Trigram
+  lower: Trigram
+  name: string
+  changingCount: number
+  advice: AdviceLeg
+  text: string
+  tactic: string
+}
+
 const TEAM_PROFILES: Record<string, TeamProfile> = {
   巴西: p(94, 95, 86, 78, '强队稳定，前场个人能力足', '进攻', '维尼修斯 / 罗德里戈'),
   西班牙: p(93, 90, 90, 74, '控球压制强，虐菜能力较稳', '攻守平衡', '罗德里 / 亚马尔'),
@@ -268,6 +291,7 @@ export function DailyBettingAdvice({ matches }: { matches: Match[] }) {
         )}
       </div>
 
+      <IChingDivination matches={advice.matches} />
       <MysticEntrance matches={advice.matches} />
     </section>
   )
@@ -322,6 +346,248 @@ function AdvicePlan({
       </div>
     </article>
   )
+}
+
+function IChingDivination({ matches }: { matches: AnalyzedMatch[] }) {
+  const [matchId, setMatchId] = useState(matches[0]?.match.id || '')
+  const selected = matches.find((item) => item.match.id === matchId) || matches[0]
+  const [reading, setReading] = useState<IChingReading | null>(null)
+
+  useEffect(() => {
+    setMatchId((current) =>
+      matches.some((item) => item.match.id === current)
+        ? current
+        : matches[0]?.match.id || '',
+    )
+    setReading(null)
+  }, [matches])
+
+  if (!selected) return null
+
+  const cast = () => {
+    setReading(castIChing(selected))
+  }
+
+  return (
+    <div className="iching-entry">
+      <div className="mystic-entry-head">
+        <div>
+          <p className="section-label">易经占卜</p>
+          <h3 className="font-display text-2xl">六爻起卦看今日投注</h3>
+        </div>
+        <button className="iching-cast-button" onClick={cast}>
+          起卦
+        </button>
+      </div>
+
+      <div className="iching-panel">
+        <div className="iching-controls">
+          <label className="field mystic-select">
+            <span>占问比赛</span>
+            <select
+              className="input"
+              value={selected.match.id}
+              onChange={(event) => {
+                setMatchId(event.target.value)
+                setReading(null)
+              }}
+            >
+              {matches.map((item) => (
+                <option key={item.match.id} value={item.match.id}>
+                  {item.match.home_team} vs {item.match.away_team}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="iching-target">
+            <span>{selected.match.home_team}</span>
+            <b>问势</b>
+            <span>{selected.match.away_team}</span>
+          </div>
+        </div>
+
+        <div className="iching-board">
+          <div className="iching-lines" aria-label="六爻卦象">
+            {(reading?.lines || EMPTY_HEXAGRAM).slice().reverse().map((line, index) => (
+              <div
+                key={`${index}-${line.value}-${line.yang}`}
+                className={`iching-line ${line.yang ? 'is-yang' : 'is-yin'} ${line.changing ? 'is-changing' : ''}`}
+              >
+                <i />
+                {!line.yang && <i />}
+              </div>
+            ))}
+          </div>
+
+          <div className="iching-reading">
+            {reading ? (
+              <>
+                <p className="section-label">
+                  {reading.upper.name}上{reading.lower.name}下 · {reading.changingCount} 爻动
+                </p>
+                <h4>{reading.name}</h4>
+                <p>{reading.text}</p>
+                <div className="iching-pick">
+                  <span>卦象推荐</span>
+                  <strong>
+                    {reading.advice.match.match.home_team} vs {reading.advice.match.match.away_team}
+                  </strong>
+                  <em>
+                    {reading.advice.market} · {reading.advice.pick}
+                    {reading.advice.odds ? ` @${reading.advice.odds}` : ' · 临场赔率'}
+                  </em>
+                  <small>{reading.tactic}</small>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="section-label">蓍草未动</p>
+                <h4>先问其势，再看其盘</h4>
+                <p>
+                  起卦后会按六爻阴阳、动爻多寡和上卦下卦取象，并与当前比赛强弱、盘口和赔率结合，给出一条玄学向投注参考。
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const TRIGRAMS: Record<string, Trigram> = {
+  '111': { name: '乾', nature: '天', omen: '刚健进取，利于顺势而为' },
+  '000': { name: '坤', nature: '地', omen: '厚重守成，利于保守取稳' },
+  '100': { name: '震', nature: '雷', omen: '动而有变，利于抢开局和让球' },
+  '011': { name: '巽', nature: '风', omen: '入而不争，利于小比分和缓进' },
+  '010': { name: '坎', nature: '水', omen: '险中求慎，忌重仓串关' },
+  '101': { name: '离', nature: '火', omen: '明而有象，利于看节奏和半全场' },
+  '001': { name: '艮', nature: '山', omen: '止而后定，利于平局或低进球' },
+  '110': { name: '兑', nature: '泽', omen: '悦而有缺，宜小注求回报' },
+}
+
+const EMPTY_HEXAGRAM: HexLine[] = Array.from({ length: 6 }, (_, index) => ({
+  yang: index % 2 === 0,
+  changing: false,
+  value: index % 2 === 0 ? 7 : 8,
+}))
+
+const HEXAGRAM_NAMES: Record<string, string> = {
+  '乾-乾': '乾为天',
+  '坤-坤': '坤为地',
+  '坎-坎': '坎为水',
+  '离-离': '离为火',
+  '震-震': '震为雷',
+  '艮-艮': '艮为山',
+  '巽-巽': '巽为风',
+  '兑-兑': '兑为泽',
+  '坎-乾': '水天需',
+  '乾-坎': '天水讼',
+  '坤-坎': '地水师',
+  '坎-坤': '水地比',
+  '乾-坤': '天地否',
+  '坤-乾': '地天泰',
+  '离-乾': '火天大有',
+  '乾-离': '天火同人',
+  '兑-震': '泽雷随',
+  '艮-巽': '山风蛊',
+  '震-坎': '雷水解',
+  '坎-震': '水雷屯',
+  '离-坎': '火水未济',
+  '坎-离': '水火既济',
+}
+
+function castIChing(match: AnalyzedMatch): IChingReading {
+  const lines = Array.from({ length: 6 }, castLine)
+  const lower = trigramFromLines(lines.slice(0, 3))
+  const upper = trigramFromLines(lines.slice(3, 6))
+  const changingCount = lines.filter((line) => line.changing).length
+  const name = HEXAGRAM_NAMES[`${upper.name}-${lower.name}`] || `${upper.nature}${lower.nature}相交`
+  const advice = iChingAdviceLeg(match, upper, lower, changingCount)
+  return {
+    lines,
+    upper,
+    lower,
+    name,
+    changingCount,
+    advice,
+    text: iChingText(match, upper, lower, changingCount),
+    tactic: iChingTactic(advice, changingCount, upper, lower),
+  }
+}
+
+function castLine(): HexLine {
+  const value = [0, 1, 2].reduce(
+    (sum) => sum + (Math.random() < 0.5 ? 2 : 3),
+    0,
+  )
+  return {
+    value,
+    yang: value === 7 || value === 9,
+    changing: value === 6 || value === 9,
+  }
+}
+
+function trigramFromLines(lines: HexLine[]) {
+  const key = lines.map((line) => (line.yang ? '1' : '0')).join('')
+  return TRIGRAMS[key] || TRIGRAMS['000']
+}
+
+function iChingAdviceLeg(
+  match: AnalyzedMatch,
+  upper: Trigram,
+  lower: Trigram,
+  changingCount: number,
+) {
+  const names = `${upper.name}${lower.name}`
+  if (changingCount >= 3 || names.includes('坎')) {
+    return lowVariancePropLeg(match)
+  }
+  if (names.includes('艮') || names.includes('坤')) {
+    return match.match.odds_d && match.probabilities.D > 0.28
+      ? drawLeg(match)
+      : lowVariancePropLeg(match)
+  }
+  if (names.includes('离')) {
+    const leg = halfFullLeg(match)
+    return leg.odds ? leg : playableDirectionLeg(match)
+  }
+  if (names.includes('乾') || names.includes('震')) {
+    const leg = handicapLeg(match)
+    return leg.odds ? leg : playableDirectionLeg(match)
+  }
+  if (names.includes('兑')) {
+    const leg = scoreLeg(match)
+    return leg.odds ? leg : goalsLeg(match)
+  }
+  return playableDirectionLeg(match)
+}
+
+function iChingText(
+  match: AnalyzedMatch,
+  upper: Trigram,
+  lower: Trigram,
+  changingCount: number,
+) {
+  const motion =
+    changingCount === 0
+      ? '六爻不动，象主守成，忌临场追热。'
+      : changingCount >= 3
+        ? '动爻偏多，象主反复，宜降仓位、避长串。'
+        : '有动爻而不乱，适合取一个明确方向，小注验证。'
+  return `${upper.name}为${upper.nature}，${lower.name}为${lower.nature}；${upper.omen}，${lower.omen}。${motion}${match.match.home_team}与${match.match.away_team}这一场，卦象只取势不替代赔率，落点应放在“${match.pickLabel} / ${match.handicapPick} / ${match.totalGoalsPick}”之间取其一。`
+}
+
+function iChingTactic(
+  advice: AdviceLeg,
+  changingCount: number,
+  upper: Trigram,
+  lower: Trigram,
+) {
+  const size = changingCount >= 3 || upper.name === '坎' || lower.name === '坎'
+    ? '建议小注，不并入核心串关。'
+    : '可作为当日方案外的玄学加注，不建议替代主方案。'
+  return `${upper.name}${lower.name}取象对应 ${advice.market}，${size}`
 }
 
 function MysticEntrance({ matches }: { matches: AnalyzedMatch[] }) {
@@ -931,6 +1197,15 @@ function winLeg(match: AnalyzedMatch): AdviceLeg {
     market: '胜平负',
     pick: outcomeLabel(match.pick),
     odds,
+  }
+}
+
+function drawLeg(match: AnalyzedMatch): AdviceLeg {
+  return {
+    match,
+    market: '胜平负',
+    pick: '平',
+    odds: match.match.odds_d,
   }
 }
 
