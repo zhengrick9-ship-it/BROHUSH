@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "3DOGS · WCW2026",
-  description: "世界杯共同投注、赛果与收益记录",
+  title: "YOLO · 研究站",
+  description: "板块、模块、专题与个股的个人研究工作台",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
