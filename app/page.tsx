@@ -22,7 +22,7 @@ export default function HomePage() {
   const marketValue = positions.reduce((sum, item) => sum + item.marketValue, 0);
   const pnl = positions.reduce((sum, item) => sum + item.pnl, 0);
   const top = [...positions].sort((a, b) => b.marketValue - a.marketValue).slice(0, 4);
-  return <ResearchShell eyebrow="YOLO / 总览" title="今天先看组合，再看研究。" description="">
+  return <ResearchShell eyebrow="YOLO / 总览" title="今日工作台" description="">
     <section className="dashboard-banner"><div><p className="section-label">当前状态</p><h2>周频决策，盘中只查触发。</h2><p>快照：{portfolio.asOf.slice(0, 16).replace("T", " ")} · 参考价</p></div><Link href="/plans/2026-08-21" className="primary-button">今日计划</Link></section>
     <section className="metric-grid metric-grid-wide">
       <div className="metric"><p className="section-label">已列示市值</p><p className="mt-3 text-2xl font-semibold">¥{money(marketValue)}</p><p className="mt-2 text-xs text-[var(--muted)]">两组账户快照合计</p></div>
