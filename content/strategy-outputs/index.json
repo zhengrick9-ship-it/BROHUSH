@@ -5,16 +5,14 @@
       "id": "20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj",
       "route": "/strategies/outputs/20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj",
       "date": "20260820",
-      "runAt": "2026-08-21 14:14:14 +0800",
+      "runAt": "2026-08-21 14:43:42 +0800",
       "version": "dual_low_unified_v1.5_timeaware_status_macd_coherence_ex_st_bj",
-      "versionLabel": "2026-08-21 14:14 · v1.5-点时状态+严格MACD+共振交集",
+      "versionLabel": "v1.5 · 时间状态 + MACD方向 + ST/BJ边界 + 行业主题发现层",
       "asOf": "20260820",
       "releaseId": "qdh-bj-20260821T062610",
       "status": "ACTIVE_WEEKLY_CANDIDATE_SOURCE / MANUAL_REVIEW_REQUIRED / NO_AUTO_TRADE",
-      "summary": "可执行底表5,009只，机械候选1只；低位启动1只，严格交集行业0个，严格交集主题0个。",
-      "topStocks": [
-        "交大昂立"
-      ],
+      "summary": "可执行底表5,008只，严格候选0只；低位观察池30只，行业发现30组，主题发现40组。",
+      "topStocks": [],
       "topResonance": []
     },
     {

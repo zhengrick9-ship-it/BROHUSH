@@ -1,0 +1,15 @@
+import { ResearchShell } from "@/app/components/ResearchShell";
+
+type StrategyOutput = any;
+const pct = (value: number | null | undefined) => value === null || value === undefined || Number.isNaN(value) ? "—" : `${Number(value).toFixed(2)}%`;
+const reviewLabel: Record<string, string> = { NONE: "无标记", HIGH_PE_REVIEW: "高PE复核", VALUATION_DATA_MISSING: "估值缺失", LOSS_OR_NONMEANINGFUL_PE: "亏损/PE无意义" };
+
+export function StockDetail({ output, item, isStrict }: { output: StrategyOutput; item: any; isStrict: boolean }) {
+  const action = isStrict ? "严格技术候选，仍需人工基本面复核" : "低位观察对象，不是买入指令";
+  return <ResearchShell eyebrow="STRATEGY LIBRARY / STOCK DETAIL" title={`${item.name} · ${item.code}`} description="单只股票的策略字段、筛选状态和人工复核边界。">
+    <section className="strategy-callout"><div><p className="section-label">{isStrict ? "严格候选" : "观察池"} · {output.versionLabel}</p><h2>{item.name} <span className="font-normal text-[var(--muted)]">{item.code}</span></h2><p>{action}</p><p className="mt-3 text-xs text-[var(--muted)]">数据截至：{output.asOf} · QDH：{output.releaseId}</p></div><div className="strategy-badges"><span>{item.state}</span><span>{item.macdQuality}</span><span>人工复核</span><span>不自动交易</span></div></section>
+    <section className="metric-grid metric-grid-wide mt-4"><div className="metric"><p className="section-label">低位评分</p><p className="mt-3 text-xl font-semibold">{Number(item.score ?? 0).toFixed(2)}</p></div><div className="metric"><p className="section-label">60日位置</p><p className="mt-3 text-xl font-semibold">{pct(item.pos60)}</p></div><div className="metric"><p className="section-label">20日涨跌</p><p className="mt-3 text-xl font-semibold">{pct(item.r20)}</p></div><div className="metric"><p className="section-label">MACD</p><p className="mt-3 text-base font-semibold">{item.macd}</p></div><div className="metric"><p className="section-label">资金占比</p><p className="mt-3 text-xl font-semibold">{pct(item.flow)}</p></div></section>
+    <section className="mt-4 dashboard-panel"><div className="panel-heading"><div><p className="section-label">技术与流动性</p><h2>策略字段</h2></div><p>不替代公司研究</p></div><div className="mt-4 grid gap-3 md:grid-cols-2 text-sm"><p>所属行业：<b>{item.industry}</b></p><p>研究状态：<b>{item.state}</b></p><p>MACD质量：<b>{item.macdQuality}</b></p><p>十字星：<b>{item.doji ?? "—"}</b></p><p>20日均额：<b>{Math.round(Number(item.amount20 ?? 0)).toLocaleString()} 千元</b></p><p>20日自由换手相对值：<b>{pct(item.turnoverRatio)}</b></p><p>财务复核：<b>{reviewLabel[item.review] ?? item.review ?? "—"}</b></p><p>策略结论：<b>{isStrict ? "进入严格技术候选层" : "留在观察层"}</b></p></div></section>
+    <section className="mt-4 grid gap-4 lg:grid-cols-2"><div className="workspace-note"><p className="section-label">如何使用</p><p className="mt-2 text-sm leading-7 text-[var(--secondary)]">低位只是位置筛选，不等于价值被低估，也不等于下跌结束。下一步必须核对公司主营、竞争壁垒、最新业绩/预告、估值、公告和所属行业趋势。</p></div><div className="workspace-note"><p className="section-label">风险边界</p><p className="mt-2 text-sm leading-7 text-[var(--secondary)]">MACD即将金叉可能是假修复；资金流单日反转也不能证明趋势成立。没有实时行情和独立业务研究时，不生成买卖指令。</p></div></section>
+  </ResearchShell>;
+}
