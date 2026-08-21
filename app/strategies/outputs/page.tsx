@@ -1,5 +1,5 @@
 import strategyManifest from "@/content/strategy-outputs/index.json";
-import latestOutput from "@/content/strategy-outputs/20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj.json";
+import latestOutput from "@/content/strategy-outputs/20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed.json";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 export default function StrategyOutputsPage() {
@@ -8,7 +8,7 @@ export default function StrategyOutputsPage() {
     <section className="strategy-callout"><div><p className="section-label">最新版本 · {latestOutput.versionLabel}</p><h2>统一低位双维策略</h2><p>{latestOutput.analysis?.conclusion ?? "最新策略结果已发布。"}</p><p className="mt-3 text-xs text-[var(--muted)]">运行：{latestOutput.runAt} · 数据截至：{latestOutput.asOf} · QDH：{latestOutput.releaseId}</p></div><div className="strategy-badges"><span>最新</span><span>QDH {latestOutput.gate}</span><span>人工复核</span><span>不自动交易</span></div></section>
 
     <section className="mt-4 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-      <div className="dashboard-panel"><p className="section-label">最新版关键摘要</p><div className="mt-4 grid grid-cols-2 gap-3 text-sm"><div><p className="text-xs text-[var(--muted)]">可执行底表</p><p className="mt-1 text-xl font-semibold">{Number(latestOutput.universe).toLocaleString()}</p></div><div><p className="text-xs text-[var(--muted)]">机械候选</p><p className="mt-1 text-xl font-semibold">{latestOutput.mechanicalHits}</p></div><div><p className="text-xs text-[var(--muted)]">低位启动</p><p className="mt-1 text-xl font-semibold">{latestOutput.stageCounts.LOW_ACTIVATING}</p></div><div><p className="text-xs text-[var(--muted)]">MACD规则</p><p className="mt-1 text-sm font-semibold">方向性硬门</p></div></div></div>
+      <div className="dashboard-panel"><p className="section-label">最新版关键摘要</p><div className="mt-4 grid grid-cols-2 gap-3 text-sm"><div><p className="text-xs text-[var(--muted)]">可执行底表</p><p className="mt-1 text-xl font-semibold">{Number(latestOutput.universe).toLocaleString()}</p></div><div><p className="text-xs text-[var(--muted)]">机械候选</p><p className="mt-1 text-xl font-semibold">{latestOutput.mechanicalHits}</p></div><div><p className="text-xs text-[var(--muted)]">低位启动</p><p className="mt-1 text-xl font-semibold">{(latestOutput.stageCounts as any).LOW_ACTIVATING ?? 0}</p></div><div><p className="text-xs text-[var(--muted)]">MACD规则</p><p className="mt-1 text-sm font-semibold">方向性硬门</p></div></div></div>
       <div className="dashboard-panel"><p className="section-label">使用边界</p><p className="mt-3 text-sm leading-7 text-[var(--secondary)]">{latestOutput.analysis?.howToUse}</p><p className="mt-2 text-sm leading-7 text-[var(--secondary)]">{latestOutput.analysis?.risk}</p></div>
     </section>
 
