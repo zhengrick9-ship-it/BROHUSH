@@ -22,8 +22,8 @@ export default function HomePage() {
   const marketValue = positions.reduce((sum, item) => sum + item.marketValue, 0);
   const pnl = positions.reduce((sum, item) => sum + item.pnl, 0);
   const top = [...positions].sort((a, b) => b.marketValue - a.marketValue).slice(0, 4);
-  return <ResearchShell eyebrow="YOLO / WORKSPACE OVERVIEW" title="今天先看组合，再看研究。" description="YOLO 将研究库、交易库和策略库放在同一张工作台上。研究负责形成判断，交易负责记录执行，策略负责约束重复犯错。">
-    <section className="dashboard-banner"><div><p className="section-label">当前工作状态</p><h2>周频决策，盘中只查触发。</h2><p>最新持仓快照：{portfolio.asOf.slice(0, 16).replace("T", " ")} · 价格为参考快照，不是实时行情。</p></div><Link href="/plans/2026-08-21" className="primary-button">打开今日计划</Link></section>
+  return <ResearchShell eyebrow="YOLO / 总览" title="今天先看组合，再看研究。" description="">
+    <section className="dashboard-banner"><div><p className="section-label">当前状态</p><h2>周频决策，盘中只查触发。</h2><p>快照：{portfolio.asOf.slice(0, 16).replace("T", " ")} · 参考价</p></div><Link href="/plans/2026-08-21" className="primary-button">今日计划</Link></section>
     <section className="metric-grid metric-grid-wide">
       <div className="metric"><p className="section-label">已列示市值</p><p className="mt-3 text-2xl font-semibold">¥{money(marketValue)}</p><p className="mt-2 text-xs text-[var(--muted)]">两组账户快照合计</p></div>
       <div className="metric"><p className="section-label">参考浮盈亏</p><p className={`mt-3 text-2xl font-semibold ${pnl >= 0 ? "text-[var(--green)]" : "text-[var(--red)]"}`}>{pnl >= 0 ? "+" : "-"}¥{money(Math.abs(pnl))}</p><p className="mt-2 text-xs text-[var(--muted)]">按截图参考价</p></div>
@@ -36,6 +36,5 @@ export default function HomePage() {
       <div className="dashboard-panel"><div className="panel-heading"><div><p className="section-label">交易库 / TODAY</p><h2>{plan.title}</h2></div><Link href="/plans/2026-08-21">打开 →</Link></div><p className="stance-chip">{plan.stance}</p><ul className="compact-list">{plan.actionCards.slice(0, 3).map((card) => <li key={card.title}><b>{card.title}</b><span>{card.reason}</span></li>)}</ul></div>
     </section>
     <section className="library-section"><div className="panel-heading"><div><p className="section-label">三库导航</p><h2>把研究、执行和规则分开。</h2></div><p>每个库独立沉淀，但用板块、模块、专题、个股和交易关联。</p></div><div className="library-grid">{entryCards.map(([label, href, title, text]) => <Link key={href} href={href} className="library-card"><span>{label}</span><h3>{title}</h3><p>{text}</p><i>进入 →</i></Link>)}</div></section>
-    <section className="workspace-note"><p className="section-label">数据原则</p><p>本地内容是展示层，QDH/QMT 原始数据与研究证据不直接暴露到公网；快照、交易事实和研究判断分开记录，避免用旧价冒充实时。</p></section>
   </ResearchShell>;
 }

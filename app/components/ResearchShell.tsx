@@ -13,7 +13,7 @@ export function ResearchShell({ eyebrow, title, description, children }: { eyebr
       <Link href="/" className="brand-lockup text-[var(--text)]"><span className="brand-mark">Y</span><span><b>YOLO</b><small>个人投资工作台</small></span></Link>
       <nav className="workspace-nav" aria-label="主导航"><Link href="/" className="workspace-home">总览</Link>{libraryGroups.map((group) => <div className="nav-group" key={group.label}><span className="nav-group-label">{group.label}</span><div className="nav-group-links">{group.links.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}</div></div>)}</nav>
     </div></header>
-    <main className="mx-auto w-full max-w-6xl px-6 pb-16"><section className="workspace-heading"><p className="section-label">{eyebrow}</p><div className="mt-4 max-w-4xl"><h1 className="text-3xl font-semibold leading-[1.18] tracking-[-0.035em] text-[var(--text)] md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--secondary)]">{description}</p></div></section>{children}</main>
+    <main className="mx-auto w-full max-w-6xl px-6 pb-16"><section className="workspace-heading"><p className="section-label">{eyebrow}</p><div className="mt-3 max-w-4xl"><h1 className="text-2xl font-semibold leading-[1.2] tracking-[-0.03em] text-[var(--text)] md:text-3xl">{title}</h1></div></section>{children}</main>
   </div>;
 }
 

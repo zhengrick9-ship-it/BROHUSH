@@ -1163,7 +1163,7 @@ button {
 .nav-group { display: flex; align-items: center; gap: 8px; min-width: max-content; }
 .nav-group-label { color: var(--text); font-size: 11px; font-weight: 750; }
 .nav-group-links { display: flex; gap: 9px; }
-.workspace-heading { padding: 38px 0 22px; }
+.workspace-heading { padding: 26px 0 16px; }
 .dashboard-banner, .strategy-callout { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 10px 0 22px; padding: 22px 24px; border: 1px solid var(--line-strong); border-radius: 12px; background: linear-gradient(135deg, rgba(255,253,248,.96), rgba(241,235,224,.82)); }
 .dashboard-banner h2, .strategy-callout h2 { margin-top: 7px; font-size: 22px; font-weight: 750; letter-spacing: -.025em; }
 .dashboard-banner p:last-child, .strategy-callout p:last-child { margin-top: 7px; color: var(--secondary); font-size: 12px; line-height: 1.7; }
