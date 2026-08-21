@@ -1,4 +1,5 @@
 import output from "@/content/strategy-outputs/2026-08-21-low-position.json";
+import strategyManifest from "@/content/strategy-outputs/index.json";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 const pct = (value: number | null) => value === null ? "—" : `${value.toFixed(2)}%`;
@@ -10,8 +11,15 @@ function ScoreBar({ value }: { value: number }) {
 }
 
 export default function StrategyOutputsPage() {
+  const latestRun = strategyManifest.runs.find((run) => run.id === strategyManifest.latest) ?? strategyManifest.runs[0];
+  const latestSummary = `低位启动 ${output.stageCounts.LOW_ACTIVATING} 只，低位反转准备 ${output.stageCounts.LOW_REVERSAL_PREP} 只；纯个股前三：${output.stocks.slice(0, 3).map((item) => item.name).join("、")}；共振前三：${output.resonance.slice(0, 3).map((item) => item.name).join("、")}。`;
   return <ResearchShell eyebrow="STRATEGY LIBRARY / OUTPUTS" title="低位策略输出" description="按运行批次发布策略结果，保留个股低位、行业共振、主题共振和人工复核边界。">
-    <section className="strategy-callout"><div><p className="section-label">LATEST RUN / {output.asOf}</p><h2>统一低位双维策略 v1.2-live</h2><p>这次是按 QDH 最新接受版重新运行的结果，不是历史名单复制。榜单用于周频研究和候选比较，不直接代替买入判断。</p></div><div className="strategy-badges"><span>QDH PASS</span><span>人工复核</span><span>不自动交易</span></div></section>
+    <section className="strategy-callout"><div><p className="section-label">最新版本 · {output.versionLabel}</p><h2>统一低位双维策略 v1.2-live</h2><p>这次是按 QDH 最新接受版重新运行的结果，不是历史名单复制。榜单用于周频研究和候选比较，不直接代替买入判断。</p><p className="mt-3 text-xs text-[var(--muted)]">版本号：{output.versionId} · 数据截至：{output.asOf}</p></div><div className="strategy-badges"><span>最新</span><span>QDH PASS</span><span>人工复核</span><span>不自动交易</span></div></section>
+
+    <section className="mt-4 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="dashboard-panel"><p className="section-label">最新版本关键摘要</p><p className="mt-3 text-sm leading-7 text-[var(--secondary)]">{latestSummary}</p><p className="mt-3 text-xs text-[var(--muted)]">运行：{output.runAt} · QDH：{output.releaseId} · 状态：{output.status}</p></div>
+      <div className="dashboard-panel"><div className="panel-heading"><div><p className="section-label">版本归档</p><h2>策略输出时间线</h2></div><p>新 → 旧</p></div><div className="mt-4 grid gap-3">{[...strategyManifest.runs].sort((a, b) => b.runAt.localeCompare(a.runAt)).map((run) => <a href={run.route} key={run.id} className="block border-t border-[var(--line)] pt-3"><div className="flex items-start justify-between gap-3"><div><p className="text-sm font-semibold">{run.versionLabel}</p><p className="mt-1 text-xs text-[var(--muted)]">数据截至 {run.asOf} · {run.releaseId}</p></div>{run.id === strategyManifest.latest && <span className="text-xs font-semibold text-[var(--accent-dark)]">最新</span>}</div><p className="mt-2 text-xs leading-6 text-[var(--secondary)]">{run.summary}</p></a>)}</div></div>
+    </section>
 
     <section className="metric-grid metric-grid-wide">
       <div className="metric"><p className="section-label">数据截至</p><p className="mt-3 text-xl font-semibold">{output.asOf}</p><p className="mt-2 text-xs text-[var(--muted)]">QDH accepted release</p></div>

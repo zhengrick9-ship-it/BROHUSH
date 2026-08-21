@@ -1,6 +1,8 @@
 {
   "strategy": "统一低位双维策略",
   "version": "dual_low_unified_v1.2-live",
+  "versionId": "20260821T113741-dual-low-v1.2-live",
+  "versionLabel": "2026-08-21 11:37 · v1.2-live",
   "runAt": "2026-08-21 11:37:41 +08:00",
   "asOf": "2026-08-20",
   "releaseId": "qdh-bj-20260821T062610",

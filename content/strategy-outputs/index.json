@@ -1,0 +1,19 @@
+{
+  "latest": "20260821T113741-dual-low-v1.2-live",
+  "runs": [
+    {
+      "id": "20260821T113741-dual-low-v1.2-live",
+      "route": "/strategies/outputs",
+      "date": "2026-08-21",
+      "runAt": "2026-08-21 11:37:41 +08:00",
+      "version": "dual_low_unified_v1.2-live",
+      "versionLabel": "2026-08-21 11:37 · v1.2-live",
+      "asOf": "2026-08-20",
+      "releaseId": "qdh-bj-20260821T062610",
+      "status": "ACTIVE_WEEKLY_CANDIDATE_SOURCE / MANUAL_REVIEW_REQUIRED / NO_AUTO_TRADE",
+      "summary": "全A 5,586只，机械候选118只；低位启动13只，行业共振42个，主题共振171个。",
+      "topStocks": ["乔路铭", "瑞贝卡", "中国卫通"],
+      "topResonance": ["中国卫通", "云南能投", "新天绿能"]
+    }
+  ]
+}

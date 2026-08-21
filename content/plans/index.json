@@ -1,0 +1,16 @@
+{
+  "latest": "20260821T090500-premarket-v1",
+  "plans": [
+    {
+      "id": "20260821T090500-premarket-v1",
+      "route": "/plans/2026-08-21",
+      "date": "2026-08-21",
+      "updatedAt": "2026-08-21T09:05:00+08:00",
+      "version": "20260821T090500-premarket-v1",
+      "versionLabel": "2026-08-21 09:05 · premarket-v1",
+      "title": "8/21 盘前作战计划",
+      "status": "PARTIAL_NO_TODAY_QMT_SNAPSHOT",
+      "stance": "防守优先，观察为主；不因盘前热点追高，不在没有实时数据时给出价格型指令。"
+    }
+  ]
+}
