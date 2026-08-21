@@ -1,9 +1,31 @@
 {
-  "latest": "20260821T123020-dual-low-v1.3-ex-st-bj",
+  "latest": "20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj",
   "runs": [
     {
+      "id": "20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj",
+      "route": "/strategies/outputs/20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj",
+      "date": "20260820",
+      "runAt": "2026-08-21 12:57:43 +0800",
+      "version": "dual_low_unified_v1.4_macd_gate_ex_st_bj",
+      "versionLabel": "2026-08-21 12:57 · v1.4-MACD门槛-ST-BJ排除",
+      "asOf": "20260820",
+      "releaseId": "qdh-bj-20260821T062610",
+      "status": "ACTIVE_WEEKLY_CANDIDATE_SOURCE / MANUAL_REVIEW_REQUIRED / NO_AUTO_TRADE",
+      "summary": "可执行底表5,010只，机械候选3只；低位启动3只，行业共振38个，主题共振163个。",
+      "topStocks": [
+        "瑞贝卡",
+        "新天绿能",
+        "交大昂立"
+      ],
+      "topResonance": [
+        "新天绿能",
+        "瑞贝卡",
+        "交大昂立"
+      ]
+    },
+    {
       "id": "20260821T123020-dual-low-v1.3-ex-st-bj",
-      "route": "/strategies/outputs",
+      "route": "/strategies/outputs/20260821T123020-dual-low-v1.3-ex-st-bj",
       "date": "20260820",
       "runAt": "2026-08-21 12:30:20 +0800",
       "version": "dual_low_unified_v1.3_ex_st_bj",
@@ -25,7 +47,7 @@
     },
     {
       "id": "20260821T113741-dual-low-v1.2-live",
-      "route": "/strategies/outputs",
+      "route": "/strategies/outputs/20260821T113741-dual-low-v1.2-live",
       "date": "2026-08-21",
       "runAt": "2026-08-21 11:37:41 +08:00",
       "version": "dual_low_unified_v1.2-live",
