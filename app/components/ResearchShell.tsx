@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 const libraryGroups = [
   { label: "研究库", links: [{ href: "/themes", label: "板块" }, { href: "/modules", label: "模块" }, { href: "/topics", label: "专题" }, { href: "/stocks", label: "个股" }, { href: "/reports", label: "报告" }] },
   { label: "交易库", links: [{ href: "/portfolio", label: "持仓" }, { href: "/trades", label: "交易明细" }, { href: "/plans", label: "作战计划" }, { href: "/market", label: "市场复盘" }] },
-  { label: "策略库", links: [{ href: "/strategies", label: "交易机制" }] },
+  { label: "策略库", links: [{ href: "/strategies", label: "交易机制" }, { href: "/strategies/outputs", label: "策略输出" }] },
 ];
 
 export function ResearchShell({ eyebrow, title, description, children }: { eyebrow: string; title: string; description: string; children: ReactNode }) {
