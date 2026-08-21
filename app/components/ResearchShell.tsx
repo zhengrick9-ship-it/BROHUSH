@@ -7,6 +7,7 @@ const navigation = [
   { href: "/topics", label: "专题" },
   { href: "/stocks", label: "个股" },
   { href: "/reports", label: "报告" },
+  { href: "/plans", label: "作战计划" },
   { href: "/market", label: "市场" },
   { href: "/portfolio", label: "组合" },
   { href: "/trades", label: "交易" },
