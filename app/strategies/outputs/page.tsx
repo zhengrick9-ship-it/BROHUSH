@@ -1,4 +1,4 @@
-import output from "@/content/strategy-outputs/2026-08-21-low-position.json";
+import output from "@/content/strategy-outputs/20260821T123020-dual-low-v1.3-ex-st-bj.json";
 import strategyManifest from "@/content/strategy-outputs/index.json";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
@@ -20,6 +20,8 @@ export default function StrategyOutputsPage() {
       <div className="dashboard-panel"><p className="section-label">最新版本关键摘要</p><p className="mt-3 text-sm leading-7 text-[var(--secondary)]">{latestSummary}</p><p className="mt-3 text-xs text-[var(--muted)]">运行：{output.runAt} · QDH：{output.releaseId} · 状态：{output.status}</p></div>
       <div className="dashboard-panel"><div className="panel-heading"><div><p className="section-label">版本归档</p><h2>策略输出时间线</h2></div><p>新 → 旧</p></div><div className="mt-4 grid gap-3">{[...strategyManifest.runs].sort((a, b) => b.runAt.localeCompare(a.runAt)).map((run) => <a href={run.route} key={run.id} className="block border-t border-[var(--line)] pt-3"><div className="flex items-start justify-between gap-3"><div><p className="text-sm font-semibold">{run.versionLabel}</p><p className="mt-1 text-xs text-[var(--muted)]">数据截至 {run.asOf} · {run.releaseId}</p></div>{run.id === strategyManifest.latest && <span className="text-xs font-semibold text-[var(--accent-dark)]">最新</span>}</div><p className="mt-2 text-xs leading-6 text-[var(--secondary)]">{run.summary}</p></a>)}</div></div>
     </section>
+
+    <section className="mt-4 workspace-note"><p className="section-label">本轮科技 / 医药缺席归因</p><p className="mt-2 text-sm leading-7 text-[var(--secondary)]">{output.sectorDiagnostics.technologyReason}</p><p className="mt-2 text-sm leading-7 text-[var(--secondary)]">{output.sectorDiagnostics.medicalReason}</p><p className="mt-3 text-xs text-[var(--muted)]">科技候选 {output.sectorDiagnostics.technologyCandidates} 只，医药候选 {output.sectorDiagnostics.medicalCandidates} 只；最高科技候选：{output.sectorDiagnostics.topTechnology}；最高医药候选：{output.sectorDiagnostics.topMedical}。</p></section>
 
     <section className="metric-grid metric-grid-wide">
       <div className="metric"><p className="section-label">数据截至</p><p className="mt-3 text-xl font-semibold">{output.asOf}</p><p className="mt-2 text-xs text-[var(--muted)]">QDH accepted release</p></div>

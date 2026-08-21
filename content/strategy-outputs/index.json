@@ -1,6 +1,28 @@
 {
-  "latest": "20260821T113741-dual-low-v1.2-live",
+  "latest": "20260821T123020-dual-low-v1.3-ex-st-bj",
   "runs": [
+    {
+      "id": "20260821T123020-dual-low-v1.3-ex-st-bj",
+      "route": "/strategies/outputs",
+      "date": "20260820",
+      "runAt": "2026-08-21 12:30:20 +0800",
+      "version": "dual_low_unified_v1.3_ex_st_bj",
+      "versionLabel": "2026-08-21 12:30 · v1.3-ex-ST-BJ",
+      "asOf": "20260820",
+      "releaseId": "qdh-bj-20260821T062610",
+      "status": "ACTIVE_WEEKLY_CANDIDATE_SOURCE / MANUAL_REVIEW_REQUIRED / NO_AUTO_TRADE",
+      "summary": "可执行底表5,010只，机械候选111只；低位启动11只，行业共振38个，主题共振163个。",
+      "topStocks": [
+        "瑞贝卡",
+        "中国卫通",
+        "新天绿能"
+      ],
+      "topResonance": [
+        "中国卫通",
+        "云南能投",
+        "新天绿能"
+      ]
+    },
     {
       "id": "20260821T113741-dual-low-v1.2-live",
       "route": "/strategies/outputs",
@@ -12,8 +34,16 @@
       "releaseId": "qdh-bj-20260821T062610",
       "status": "ACTIVE_WEEKLY_CANDIDATE_SOURCE / MANUAL_REVIEW_REQUIRED / NO_AUTO_TRADE",
       "summary": "全A 5,586只，机械候选118只；低位启动13只，行业共振42个，主题共振171个。",
-      "topStocks": ["乔路铭", "瑞贝卡", "中国卫通"],
-      "topResonance": ["中国卫通", "云南能投", "新天绿能"]
+      "topStocks": [
+        "乔路铭",
+        "瑞贝卡",
+        "中国卫通"
+      ],
+      "topResonance": [
+        "中国卫通",
+        "云南能投",
+        "新天绿能"
+      ]
     }
   ]
 }
