@@ -1,0 +1,72 @@
+{
+  "strategy": "统一低位双维策略",
+  "version": "dual_low_unified_v1.5_timeaware_status_macd_coherence_ex_st_bj",
+  "versionId": "20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj",
+  "versionLabel": "2026-08-21 14:14 · v1.5-点时状态+严格MACD+共振交集",
+  "runAt": "2026-08-21 14:14:14 +0800",
+  "asOf": "20260820",
+  "releaseId": "qdh-bj-20260821T062610",
+  "gate": "PASS",
+  "status": "ACTIVE_WEEKLY_CANDIDATE_SOURCE / MANUAL_REVIEW_REQUIRED / NO_AUTO_TRADE",
+  "universe": 5009,
+  "rawUniverse": 5586,
+  "excludedByReason": {
+    "ST": 238,
+    "BJ": 335,
+    "BJ+ST": 4
+  },
+  "mechanicalHits": 1,
+  "industryGates": 38,
+  "themeGates": 163,
+  "industryCoherentGates": 0,
+  "themeCoherentGates": 0,
+  "stageCounts": {
+    "NOT_LOW_OR_ILLIQUID": 2658,
+    "LOW_LATENT": 1897,
+    "HOT_OR_EXTENDED": 432,
+    "DATA_PENDING": 20,
+    "LOW_REVERSAL_PREP": 1,
+    "LOW_ACTIVATING": 1
+  },
+  "sectorDiagnostics": {
+    "technologyCandidates": 0,
+    "medicalCandidates": 0,
+    "topTechnology": "无",
+    "topMedical": "无",
+    "technologyReason": "科技未被排除；若主要处于低位背离而非刚金叉，分数会低于早期启动行业。",
+    "medicalReason": "医药候选数量由低位比例、MACD同步性和流动性共同决定，行业位置偏高时不会因行业名称获得加分。"
+  },
+  "mappingAsOf": "20260729",
+  "dataNote": "QDH接受版完整数据截至 20260820；本轮排除ST/*ST、退市类与北交所；MACD平滑重叠/无方向不进入机械候选；主题结果使用Serenity研究映射，不等同于QDH正式主题资产。",
+  "useBoundary": "这是周频候选源，不是自动买入清单。发布榜单后仍需复核主营、财务质量、公告/催化、估值和反证；缺少当前行情时不触发交易。",
+  "analysis": {
+    "conclusion": "本轮不是简单按MACD金叉排序，而是先找低位，再要求MACD有明确方向；平滑重叠的候选已剔除。板块/主题榜只展示与严格个股候选真正相交的共振门，避免把没有对应个股的板块误当成买入方向。公开榜单再次过滤了0条不应展示的证券记录。",
+    "macd": "MACD有效门槛：DIF斜率达到方向性阈值，且柱体改善或DIF/DEA间距继续扩大；线体重叠、斜率接近零的标的只保留在观察/数据层。",
+    "howToUse": "先看低位启动，再看行业/主题是否同步；只有个股严格门通过且所属行业或主题也有严格候选成员时，才进入共振榜。随后核对主营真实性、业绩与现金流、催化兑现、估值和反证。",
+    "risk": "低位可能只是长期下跌或基本面恶化；MACD刚金叉也可能是假突破。无实时行情、公告或财务证据时，不得把榜单当买入指令。"
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "code": "600530.SH",
+      "name": "交大昂立",
+      "industry": "食品加工",
+      "score": 75.0,
+      "pos60": 0.2717391304347888,
+      "r20": -22.75574112734864,
+      "macd": "即将金叉",
+      "macdQuality": "方向有效",
+      "macdGate": true,
+      "macdFlatOverlap": false,
+      "doji": "十字星待确认",
+      "amount20": 51562.97585,
+      "turnoverRatio": 0.5093914350112696,
+      "flow": -0.9159306418378322,
+      "review": "HIGH_PE_REVIEW",
+      "state": "LOW_REVERSAL_PREP"
+    }
+  ],
+  "resonance": [],
+  "industries": [],
+  "themes": []
+}

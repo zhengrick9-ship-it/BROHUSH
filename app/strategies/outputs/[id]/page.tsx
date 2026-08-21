@@ -1,11 +1,13 @@
-import latestOutput from "@/content/strategy-outputs/20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj.json";
+import latestOutput from "@/content/strategy-outputs/20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj.json";
+import v14Output from "@/content/strategy-outputs/20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj.json";
 import v13Output from "@/content/strategy-outputs/20260821T123020-dual-low-v1.3-ex-st-bj.json";
 import previousOutput from "@/content/strategy-outputs/2026-08-21-low-position.json";
 import strategyManifest from "@/content/strategy-outputs/index.json";
 import { StrategyOutputDetail } from "../StrategyOutputDetail";
 
 const outputs: Record<string, any> = {
-  "20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj": latestOutput,
+  "20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj": latestOutput,
+  "20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj": v14Output,
   "20260821T123020-dual-low-v1.3-ex-st-bj": v13Output,
   "20260821T113741-dual-low-v1.2-live": previousOutput,
 };

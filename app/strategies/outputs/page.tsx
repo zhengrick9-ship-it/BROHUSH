@@ -1,5 +1,5 @@
 import strategyManifest from "@/content/strategy-outputs/index.json";
-import latestOutput from "@/content/strategy-outputs/20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj.json";
+import latestOutput from "@/content/strategy-outputs/20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj.json";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 export default function StrategyOutputsPage() {
