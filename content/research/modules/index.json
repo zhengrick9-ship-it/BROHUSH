@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "themeId": "ai-technology",
+  "updatedAt": "2026-08-22T12:20:00+08:00",
+  "items": [
+    {"id":"compute-and-packaging","name":"计算芯片与先进封装","short":"决定单位时间能完成多少计算，以及加速芯片能否真正量产交付。","demandPath":"模型规模、训练时长和推理并发上升，客户需要更高算力和更低单位Token成本。","manufacturingPath":"架构设计→EDA/IP→晶圆制造→先进封装→HBM→加速卡→服务器。","bottleneck":"芯片性能、HBM带宽、先进封装产能和软件生态共同决定有效算力。","topics":["ai-chip-architecture","advanced-packaging","hbm-and-high-bandwidth-memory"]},
+    {"id":"storage-and-memory","name":"存储与数据基础设施","short":"承载模型参数、训练数据、检查点和企业知识库。","demandPath":"模型和知识库规模扩大，容量、带宽、延迟和并发成为算力效率约束。","manufacturingPath":"DRAM/NAND→存储芯片→主控与固件→企业级SSD→存储阵列→分布式存储。","bottleneck":"高带宽存储、企业级SSD性能和数据吞吐能力。","topics":["hbm-and-high-bandwidth-memory","enterprise-ssd","distributed-ai-storage"]},
+    {"id":"optical-interconnect","name":"光互联与光器件","short":"解决大规模AI集群中服务器之间的数据搬运瓶颈。","demandPath":"集群规模扩大，电互联在带宽、距离和功耗上逐步受限。","manufacturingPath":"光学材料→光芯片→激光器/探测器→光器件→光引擎→光模块→光纤网络。","bottleneck":"高速光芯片、光引擎良率和800G/1.6T产品迭代。","topics":["800g-and-1-6t-optics","thin-film-lithium-niobate","silicon-photonics-and-cpo"]},
+    {"id":"switching-and-high-speed-connection","name":"交换机与高速连接","short":"把分散的服务器连接成高效率的计算集群。","demandPath":"AI竞争从单机性能转向集群协同效率和网络拓扑。","manufacturingPath":"交换芯片→网卡/交换机→DAC/AOC/光模块→光纤/铜缆→集群网络。","bottleneck":"交换带宽、SerDes、网络协议、端口密度和国产软件适配。","topics":["ai-networking","ethernet-and-infiniband","high-speed-copper-and-connectors"]},
+    {"id":"pcb-ccl-mlcc-and-glass-substrate","name":"PCB、CCL、MLCC与玻璃基板","short":"承载高速信号、高功率和高密度布线。","demandPath":"AI服务器和交换设备升级，推动材料等级、层数、可靠性和单位价值量提升。","manufacturingPath":"化工/金属材料→CCL/基板→高多层PCB→服务器、交换机和封装系统。","bottleneck":"低损耗材料、超高层数、高频高速信号完整性和先进基板工艺。","topics":["high-speed-pcb-and-ccl","mlcc-for-ai-power","glass-substrate"]},
+    {"id":"power-and-ups","name":"供电、UPS与电源管理","short":"决定高功率AI机柜能否稳定扩容。","demandPath":"单机柜功率密度提升，数据中心需要更高供电密度、效率和可靠性。","manufacturingPath":"电网→变电站/变压器→配电/UPS→PDU/服务器电源→机柜供电→能源管理。","bottleneck":"变配电能力、服务器电源效率、备用电源和能源管理。","topics":["ai-data-center-power","ups-and-power-electronics","energy-storage-for-data-centers"]},
+    {"id":"cooling-and-thermal-management","name":"液冷与热管理","short":"解决AI芯片和整机柜持续运行时的热密度问题。","demandPath":"芯片功耗和机柜功率密度上升，传统风冷的效率和密度受到约束。","manufacturingPath":"芯片/封装散热→服务器冷板→CDU/管路→机柜液冷→数据中心冷源。","bottleneck":"冷板、CDU、管路可靠性、机房改造和液冷运维。","topics":["direct-liquid-cooling","immersion-cooling","data-center-thermal-management"]},
+    {"id":"data-center-infrastructure","name":"数据中心与算力服务","short":"把服务器、电力、散热和网络组织成可运营的算力基础设施。","demandPath":"客户不一定自建全部设施，需要可用机柜、电力、网络和算力运营服务。","manufacturingPath":"机房建设→机柜上架→电力/散热→网络接入→集群调度→算力服务。","bottleneck":"电力指标、机柜功率、上架率、客户合同和运维能力。","topics":["private-ai-deployment","gpu-cloud-and-idc","data-center-energy-efficiency"]},
+    {"id":"models-inference-and-applications","name":"模型、推理、数据安全与行业应用","short":"把底层算力转化为客户可使用、可付费的业务能力。","demandPath":"客户购买效率提升、业务自动化和数据能力，而不是单纯购买GPU。","manufacturingPath":"数据清洗→模型训练→推理框架→数据库/RAG→智能体→行业应用。","bottleneck":"模型效果、推理成本、数据治理、软件适配和客户付费。","topics":["private-model-deployment","rag-and-enterprise-knowledge","ai-security-and-governance"]}
+  ]
+}
