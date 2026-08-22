@@ -2,12 +2,42 @@
   "id": "ai-technology",
   "entityType": "theme",
   "name": "AI科技",
+  "panoramaVersion": "v3-bidirectional-full-map",
   "status": "tracking",
   "researchStage": "panorama-published",
   "thesis": "从客户需求和部署模式向上追踪需求传导，再从服务器、网络、存储、电力与散热向下追溯制造工艺；两条路径在可交付的AI基础设施节点汇合。",
   "coreRisks": ["云厂商和数据中心资本开支放缓", "技术路线替代", "供给释放快于需求", "高估值与拥挤交易"],
-  "modules": ["compute-and-packaging", "storage-and-memory", "optical-interconnect", "switching-and-high-speed-connection", "pcb-ccl-mlcc-and-glass-substrate", "power-and-ups", "cooling-and-thermal-management", "data-center-infrastructure", "models-inference-and-applications"],
+  "modules": ["materials-and-equipment", "compute-and-packaging", "storage-and-memory", "optical-interconnect", "switching-and-high-speed-connection", "pcb-ccl-mlcc-and-glass-substrate", "power-and-ups", "cooling-and-thermal-management", "data-center-infrastructure", "data-and-models", "models-inference-and-applications", "ops-and-security"],
   "researchQuestions": ["哪些环节已经被市场充分定价，哪些仍存在价值迁移和预期差？", "各模块的真实客户、订单、产能和业绩兑现路径是什么？", "技术先进性是否能转化为产品单价、份额或利润率？", "当前位置属于主升、震荡修复、低位启动还是趋势破坏？", "哪些个股具备龙头确定性，哪些具备弹性但风险更高？"],
   "architecture": {"demandDimension": "终端应用→工作负载→部署模式→系统采购→功能模块→部件需求", "manufacturingDimension": "原材料与设备→制造工艺→部件→功能模块→AI基础设施系统→可用算力", "meetingNodes": ["AI服务器", "高速网络", "存储系统", "电力系统", "散热系统", "数据中心", "软件与安全"]},
+  "demandLayers": [
+    {"level":"D9","name":"客户结果与行业应用","logic":"客户为收入、效率、质量、风险和安全结果付费。","nodes":["企业知识助手","AI编程","智能客服","科研医药","自动驾驶/机器人","政府金融能源"]},
+    {"level":"D8","name":"应用与工作流层","logic":"模型嵌入工作流并持续调用工具，才会形成重复性需求。","nodes":["AI应用","智能体","多模态交互","行业软件","边缘应用"]},
+    {"level":"D7","name":"Agent Runtime与AI操作系统","logic":"记忆、规划、工具调用和权限协同提升任务完成率与调用次数。","nodes":["记忆系统","任务规划","工具调用","电脑使用","工作流编排"]},
+    {"level":"D6","name":"模型、训练与推理层","logic":"预训练决定基础能力，后训练决定可用性，推理效率决定单位Token成本。","nodes":["预训练","后训练","推理服务","量化压缩","批处理路由","模型评测"]},
+    {"level":"D5","name":"数据基础设施层","logic":"数据、知识库和反馈闭环决定模型效果，拉动存储、数据库和治理。","nodes":["采集","清洗标注","合成数据","向量数据库","RAG知识库","数据治理"]},
+    {"level":"D4","name":"部署与交付模式","logic":"公有云追求规模，私有部署追求安全与可控，两者共同决定采购。","nodes":["公有云API","GPU云","专属云","私有化","边缘部署","混合云"]},
+    {"level":"D3","name":"系统采购层","logic":"客户需要可运行系统：计算、网络、存储、电力、散热、机房和安全缺一不可。","nodes":["服务器/整机柜","高速网络","存储阵列","供配电/UPS","液冷","机房安全"]},
+    {"level":"D2","name":"工作负载约束层","logic":"瓶颈表现为算力、显存带宽、网络延迟、存储吞吐、功率密度和Token成本。","nodes":["FLOPS","HBM带宽","网络带宽","IOPS","机柜功率","Token成本"]},
+    {"level":"D1","name":"需求信号与资本开支","logic":"CAPEX、订单、上架率、电力指标、调用量和合同是可观测需求信号。","nodes":["CAPEX","服务器订单","机柜上架率","电力能耗","调用量","续费合同"]}
+  ],
+  "manufacturingLayers": [
+    {"level":"M1","name":"基础材料与资源","logic":"材料决定性能上限、可靠性、损耗和成本。","nodes":["硅片","电子化学品","铜/铜箔","树脂/玻纤布","光学晶体/薄膜","陶瓷/MLCC","磁材","冷却介质"]},
+    {"level":"M2","name":"制造设备与工艺","logic":"设备和工艺把材料转成可量产晶圆、器件、基板和部件，瓶颈在良率与交期。","nodes":["光刻/刻蚀/沉积","清洗/检测","晶圆/封装设备","光器件测试","光纤拉丝","PCB/CCL设备","SMT测试","电力/热管理设备"]},
+    {"level":"M3","name":"计算、网络与存储芯片","logic":"GPU、CPU、ASIC、DPU/NIC、DRAM、NAND和HBM把制造能力转成有效算力与数据搬运能力。","nodes":["GPU/加速器","CPU","ASIC","DPU/NIC","DRAM/NAND","HBM","主控固件"]},
+    {"level":"M4","name":"先进封装与高密度基板","logic":"封装和基板决定带宽、功耗、散热与集成密度，是后摩尔时代增量。","nodes":["2.5D/3D","Chiplet","硅中介层","ABF载板","玻璃基板","封装测试","热界面材料"]},
+    {"level":"M5","name":"高速、存储、电源与热管理部件","logic":"部件层把芯片能力组合成可安装、互连、供电和散热的功能单元。","nodes":["激光器/探测器","光引擎/光模块","交换芯片/网卡","PCB/CCL/MLCC","SSD","服务器电源","冷板/CDU","连接器/铜缆"]},
+    {"level":"M6","name":"子系统与整机","logic":"加速卡、服务器、交换机、存储阵列、UPS和液冷设备组成可交付基础设施单元。","nodes":["加速卡","AI服务器","整机柜","交换机","存储阵列","UPS/PDU","液冷机柜"]},
+    {"level":"M7","name":"集群与数据中心集成","logic":"系统集成把单点设备变成连续运行的集群，核心是拓扑、供电、散热、调度和运维。","nodes":["机柜上架","集群网络","分布式存储","供配电","液冷冷源","消防安防","监控运维"]},
+    {"level":"M8","name":"算力控制面与部署软件","logic":"驱动、编排、调度、推理框架和数据治理决定硬件利用率。","nodes":["驱动编译器","集群调度","容器编排","推理框架","模型服务","数据权限"]},
+    {"level":"M9","name":"算力运营与行业交付","logic":"运营商把设备、机房和软件转成可计费的算力、模型服务和行业方案。","nodes":["GPU云","IDC/算力中心","私有化交付","行业模型","安全合规","运维服务"]}
+  ],
+  "crossLinks": [
+    {"meeting":"AI服务器","demand":["D3","D2"],"manufacturing":["M3","M4","M5","M6"]},
+    {"meeting":"高速网络","demand":["D3","D2"],"manufacturing":["M3","M5","M6","M7"]},
+    {"meeting":"存储系统","demand":["D5","D3","D2"],"manufacturing":["M1","M3","M5","M6","M7"]},
+    {"meeting":"供电与散热","demand":["D3","D2","D1"],"manufacturing":["M1","M2","M5","M6","M7"]},
+    {"meeting":"软件与安全","demand":["D8","D7","D6","D5","D4"],"manufacturing":["M8","M9"]}
+  ],
   "evidence": {"asOf": "2026-08-21", "retrievedAt": "2026-08-22T12:20:00+08:00", "qualityStatus": "research_seed_not_trade_signal", "releaseId": "qdh-bj-20260822T062246"}
 }
