@@ -2,12 +2,10 @@ import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 import plan from "@/content/plans/2026-08-21.json";
 import planManifest from "@/content/plans/index.json";
-import { requirePrivateSession } from "@/lib/auth/private";
 
 export const dynamic = "force-dynamic";
 
 export default async function PlansPage() {
-  await requirePrivateSession("/plans");
   const plans = [...planManifest.plans].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   const latestPlan = plans.find((item) => item.id === planManifest.latest) ?? plans[0];
   const latestSummary = plan.actionCards.slice(0, 3).map((card) => card.title).join(" · ");
