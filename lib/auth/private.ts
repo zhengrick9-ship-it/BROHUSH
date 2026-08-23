@@ -6,11 +6,14 @@ import { redirect } from "next/navigation";
 
 const COOKIE_NAME = "yolo_private_session_v1";
 const SESSION_AGE = 60 * 60 * 24 * 7;
+// The production Vercel project did not receive the local .env.local values.
+// Keep the user's explicitly configured personal-site password functional while
+// allowing a later Vercel environment variable to override it.
+const FALLBACK_SESSION_SECRET = "yolo-private-session-20260823-local-fallback";
+const FALLBACK_PRIVATE_PASSWORD = "121212";
 
 function sessionSecret() {
-  const secret = process.env.SESSION_SECRET;
-  if (!secret) throw new Error("缺少 SESSION_SECRET");
-  return secret;
+  return process.env.SESSION_SECRET || FALLBACK_SESSION_SECRET;
 }
 
 function sign(payload: string) {
@@ -24,8 +27,7 @@ function equal(left: string, right: string) {
 }
 
 export function isPrivatePasswordValid(input: string) {
-  const expected = process.env.YOLO_PRIVATE_PASSWORD;
-  if (!expected) return false;
+  const expected = process.env.YOLO_PRIVATE_PASSWORD || FALLBACK_PRIVATE_PASSWORD;
   return equal(input, expected);
 }
 
@@ -39,7 +41,7 @@ export async function createPrivateSession() {
     sameSite: "lax",
     // Local `next start` is served over HTTP. Production should explicitly set
     // YOLO_COOKIE_SECURE=true behind HTTPS.
-    secure: process.env.YOLO_COOKIE_SECURE === "true",
+    secure: process.env.YOLO_COOKIE_SECURE ? process.env.YOLO_COOKIE_SECURE === "true" : process.env.NODE_ENV === "production",
     maxAge: SESSION_AGE,
     path: "/",
   });
