@@ -6,7 +6,7 @@ const updates = [
   { date: "2026-08-22 18:40", kind: "板块研究", title: "AI产业链全景：算力、存储、互联、供电、应用、承载", href: "/themes/ai-technology" },
   { date: "2026-08-22 16:20", kind: "专题研究", title: "AI硬件价值链：从芯片、封装到服务器与数据中心", href: "/reports/ai-hardware-value-chain-20260822" },
   { date: "2026-08-21 15:29", kind: "策略输出", title: "低位双维策略：个股、主题与共振排序", href: "/strategies/outputs" },
-  { date: "2026-08-21 09:30", kind: "交易计划", title: "周频作战计划：持仓条件与盘中检查项", href: "/private/login?next=%2Fplans" },
+  { date: "2026-08-21 09:30", kind: "交易计划", title: "周频作战计划：持仓条件与盘中检查项", href: "/plans" },
 ];
 
 const libraries = [
