@@ -1,0 +1,18 @@
+import { notFound } from "next/navigation";
+import { ArticleDocument, ArticleSection } from "@/app/components/ArticleDocument";
+import { ResearchShell } from "@/app/components/ResearchShell";
+
+const articles: Record<string, { kind: string; title: string; dek: string; publishedAt: string; updatedAt: string; status: string; sections: Array<[string, string]> }> = {
+  "ai-interconnect-20260823": { kind: "专题研究 / 互联线", title: "AI互联线：从材料、光芯片到集群网络", dek: "互联不是单一的光模块行情，而是连接芯片、服务器、交换机和数据中心的系统工程。", publishedAt: "2026-08-23", updatedAt: "2026-08-23", status: "已发布 · 继续维护", sections: [["先看需求", "AI集群规模扩大后，算力芯片之间、服务器之间和机柜之间的数据交换成为瓶颈。互联带宽、时延、功耗和可靠性决定集群的有效利用率。"], ["产业链结构", "上游是磷化铟、硅光材料和封装材料；中游是激光器、探测器、光引擎、光器件和光模块；下游是交换机、光纤连接和集群网络。铜互联、硅光、薄膜铌酸锂等路线需要分别判断成熟度和商业化位置。"], ["投资研究边界", "光模块龙头的高景气并不等于所有互联标的都具备同样弹性。后续专题重点核对客户验证、产品代际、量产节奏、毛利率和资本开支，而不是只按概念映射。"]] },
+  "20260822-ai-industry-value-chain-panorama-v3.html": { kind: "板块研究 / AI科技", title: "AI全产业链分层详解", dek: "以六条主线组织AI产业：算力线、存储线、互联线、供电线、应用线、承载线。", publishedAt: "2026-08-22", updatedAt: "2026-08-23", status: "已发布 · 版本维护", sections: [["六条主线", "算力线解决计算，存储线解决数据保存与搬运，互联线解决节点连接，供电线解决电能转换与热管理，应用线把模型能力转成用户价值，承载线提供机房、网络和运维环境。"], ["从原材料到应用", "研究顺序沿制造端向上拆解，也沿需求端向下验证：材料和设备必须最终映射到可交付的服务器、集群、模型服务或行业应用，不能停在概念名称。"], ["盈利观察", "高议价环节通常具有生态、认证、工艺或客户粘性；标准化组装和单纯扩产环节竞争更激烈。利润判断需要结合产品结构、客户集中度、资本开支和现金流。"]] },
+  "ai-hardware-value-chain-20260822": { kind: "专题研究 / 硬件价值链", title: "AI硬件价值链：服务器、互联与供电散热", dek: "从终端要用上AI算力的需求出发，反推服务器、存储、网络、供电、散热和机房的采购关系。", publishedAt: "2026-08-22", updatedAt: "2026-08-23", status: "已发布 · 继续维护", sections: [["终端采购逻辑", "终端通常采购整机服务器、整柜系统或云算力服务，而不是从单一材料端开始。服务器之外还需要网络、存储、供配电、散热、机房和运维。"], ["关键价值点", "加速芯片、先进封装、高带宽存储、高速互联、液冷和高可靠供电共同决定系统性能；但不同客户的架构会改变BOM和利润分配，不能简单把所有上游都等同于英伟达路线。"], ["后续研究", "下一步按板块、专题和个股建立研究卡片：需求、技术路线、客户验证、竞争格局、财务兑现、估值位置和风险事件。"]] },
+};
+
+export function generateStaticParams() { return Object.keys(articles).map((slug) => ({ slug })); }
+
+export default async function ReportDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = articles[slug];
+  if (!article) notFound();
+  return <ResearchShell eyebrow="RESEARCH LIBRARY / ARTICLE" title="文章阅读" description="研究成果页面；正文是可读发布层，数据与证据仍以本地研究产物为准。"><ArticleDocument kind={article.kind} title={article.title} dek={article.dek} publishedAt={article.publishedAt} updatedAt={article.updatedAt} status={article.status}>{article.sections.map(([title, body]) => <ArticleSection title={title} key={title}><p>{body}</p></ArticleSection>)}</ArticleDocument></ResearchShell>;
+}

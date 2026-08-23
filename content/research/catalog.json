@@ -1,0 +1,35 @@
+{
+  "themes": [
+    {
+      "id": "ai-technology",
+      "name": "AI科技",
+      "status": "active",
+      "summary": "围绕算力、存储、互联、供电、应用和承载，追踪AI基础设施从需求到制造的价值传导。",
+      "description": "已建立需求线与制造线双向产业全景，专题和个股按研究进展逐步挂接。"
+    },
+    {
+      "id": "biopharma",
+      "name": "生物医药",
+      "status": "planned",
+      "summary": "后续按创新药、CXO、医疗器械和商业化链条建立板块研究。",
+      "description": "板块入口已建立，专题与个股研究尚在整理。"
+    }
+  ],
+  "stocks": [
+    {"slug":"中际旭创","name":"中际旭创","code":"300308.SZ","theme":"ai-technology","line":"互联线","topic":"800g-and-1-6t-optics","stage":"专题已建立","role":"高速光模块龙头","summary":"AI集群高速互联的核心光模块厂商，重点跟踪800G/1.6T放量、客户结构和估值兑现。"},
+    {"slug":"天孚通信","name":"天孚通信","code":"300394.SZ","theme":"ai-technology","line":"互联线","topic":"800g-and-1-6t-optics","stage":"专题已建立","role":"光器件平台型公司","summary":"处于光模块上游器件和光引擎环节，重点跟踪平台化能力、客户认证和高端产品占比。"},
+    {"slug":"光库科技","name":"光库科技","code":"300620.SZ","theme":"ai-technology","line":"互联线","topic":"thin-film-lithium-niobate","stage":"研究观察","role":"光器件与薄膜铌酸锂方向","summary":"关注薄膜铌酸锂等下一代光互联技术的产业化进度，需区分技术储备与收入兑现。"},
+    {"slug":"源杰科技","name":"源杰科技","code":"688498.SH","theme":"ai-technology","line":"互联线","topic":"optical-materials-and-devices","stage":"研究观察","role":"激光芯片方向","summary":"位于光芯片环节，重点跟踪高速率产品、客户认证、良率和订单兑现。"},
+    {"slug":"江波龙","name":"江波龙","code":"301308.SZ","theme":"ai-technology","line":"存储线","topic":"enterprise-ssd","stage":"专题已建立","role":"存储产品与模组","summary":"存储景气和产品结构是核心变量，重点区分库存周期收益与企业级、AI存储业务的持续性。"},
+    {"slug":"兆易创新","name":"兆易创新","code":"603986.SH","theme":"ai-technology","line":"存储线","topic":"enterprise-ssd","stage":"研究观察","role":"存储芯片与控制器","summary":"关注利基存储、NOR Flash和MCU的产品周期与国产替代，不把单一景气反弹等同于长期壁垒。"},
+    {"slug":"澜起科技","name":"澜起科技","code":"688008.SH","theme":"ai-technology","line":"存储线","topic":"hbm-and-high-bandwidth-memory","stage":"研究观察","role":"内存接口芯片","summary":"受服务器内存带宽升级驱动，重点跟踪DDR5、PCIe/CXL和高带宽互联产品的份额与估值。"},
+    {"slug":"长电科技","name":"长电科技","code":"600584.SH","theme":"ai-technology","line":"算力线","topic":"advanced-packaging","stage":"专题已建立","role":"先进封装龙头","summary":"先进封装是算力芯片从设计走向交付的关键环节，重点看封装技术、客户结构和资本开支回报。"},
+    {"slug":"华大九天","name":"华大九天","code":"301269.SZ","theme":"ai-technology","line":"算力线","topic":"ai-chip-architecture","stage":"研究观察","role":"国产EDA平台","summary":"属于芯片设计工具而非算力芯片，重点跟踪高端工具覆盖、客户导入和研发投入转化。"},
+    {"slug":"沪电股份","name":"沪电股份","code":"002463.SZ","theme":"ai-technology","line":"承载线","topic":"high-speed-pcb-and-ccl","stage":"研究观察","role":"高速PCB龙头","summary":"AI服务器和交换机升级提升高端PCB价值量，重点看高速材料、海外产能和订单持续性。"},
+    {"slug":"生益科技","name":"生益科技","code":"600183.SH","theme":"ai-technology","line":"承载线","topic":"high-speed-pcb-and-ccl","stage":"研究观察","role":"高速CCL材料","summary":"位于高速覆铜板材料环节，重点看低损耗材料认证、产品结构和铜价传导。"},
+    {"slug":"科士达","name":"科士达","code":"002518.SZ","theme":"ai-technology","line":"供电线","topic":"ai-data-center-power","stage":"专题已建立","role":"UPS与数据中心电源","summary":"数据中心扩容带动供电和备用电源需求，重点跟踪订单、毛利率、海外业务和资本开支周期。"},
+    {"slug":"中恒电气","name":"中恒电气","code":"002364.SZ","theme":"ai-technology","line":"供电线","topic":"ai-data-center-power","stage":"研究观察","role":"数据中心配电与电源","summary":"关注高功率数据中心配电、模块化电源和客户验证，需防止概念映射快于收入兑现。"},
+    {"slug":"英维克","name":"英维克","code":"002837.SZ","theme":"ai-technology","line":"供电线","topic":"data-center-thermal-management","stage":"研究观察","role":"数据中心热管理","summary":"液冷渗透率与机柜功率密度是主要驱动，重点跟踪冷板/CDU订单和液冷收入占比。"},
+    {"slug":"科大讯飞","name":"科大讯飞","code":"002230.SZ","theme":"ai-technology","line":"应用线","topic":"private-model-deployment","stage":"研究观察","role":"模型与行业应用","summary":"模型能力向教育、政企和办公场景转化，重点看订阅/项目收入、推理成本和现金流。"}
+  ]
+}

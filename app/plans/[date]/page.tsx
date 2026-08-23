@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 import plan from "@/content/plans/2026-08-21.json";
+import { requirePrivateSession } from "@/lib/auth/private";
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() { return [{ date: "2026-08-21" }]; }
 
 export default async function PlanDetailPage({ params }: { params: Promise<{ date: string }> }) {
+  await requirePrivateSession("/plans");
   const { date } = await params;
   if (date !== plan.date) return null;
   return (

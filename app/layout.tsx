@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "YOLO · 研究站",
-  description: "板块、模块、专题与个股的个人研究工作台",
+  description: "板块、专题与个股的个人研究工作台",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
