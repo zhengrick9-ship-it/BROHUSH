@@ -1,0 +1,17 @@
+{
+  "updatedAt": "2026-08-23",
+  "items": [
+    {
+      "type": "strategy-output",
+      "id": "20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj",
+      "reason": "历史版本曾出现不应进入公开候选的边界问题，停止作为当前研究输入，保留备份供审计。",
+      "archivedAt": "2026-08-23"
+    },
+    {
+      "type": "strategy-output",
+      "id": "20260821T123020-dual-low-v1.3-ex-st-bj",
+      "reason": "历史版本存在候选边界质量问题，停止作为当前研究输入，保留备份供审计。",
+      "archivedAt": "2026-08-23"
+    }
+  ]
+}

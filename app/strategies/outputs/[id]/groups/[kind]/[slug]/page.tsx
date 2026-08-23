@@ -1,19 +1,24 @@
-import latestOutput from "@/content/strategy-outputs/20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj.json";
+import latestOutput from "@/content/strategy-outputs/20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed.json";
+import previousV15Output from "@/content/strategy-outputs/20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj.json";
 import v14Output from "@/content/strategy-outputs/20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj.json";
 import v13Output from "@/content/strategy-outputs/20260821T123020-dual-low-v1.3-ex-st-bj.json";
 import previousOutput from "@/content/strategy-outputs/2026-08-21-low-position.json";
 import strategyManifest from "@/content/strategy-outputs/index.json";
+import trashManifest from "@/content/trash/index.json";
+import { notFound } from "next/navigation";
 import { GroupDetail } from "../../../../GroupDetail";
 
 const outputs: Record<string, any> = {
-  "20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj": latestOutput,
+  "20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed": latestOutput,
+  "20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj": previousV15Output,
   "20260821T125743-dual-low-v1.4-macd-gate-ex-st-bj": v14Output,
   "20260821T123020-dual-low-v1.3-ex-st-bj": v13Output,
   "20260821T113741-dual-low-v1.2-live": previousOutput,
 };
 
 export function generateStaticParams() {
-  return strategyManifest.runs.flatMap((run) => {
+  const trashed = new Set(trashManifest.items.filter((item) => item.type === "strategy-output").map((item) => item.id));
+  return strategyManifest.runs.filter((run) => !trashed.has(run.id)).flatMap((run) => {
     const output = outputs[run.id];
     if (!output) return [];
     return [...(output.industries ?? []).filter((group: any) => group.slug).map((group: any) => ({ id: run.id, kind: "industry", slug: group.slug })), ...(output.themes ?? []).filter((group: any) => group.slug).map((group: any) => ({ id: run.id, kind: "theme", slug: group.slug }))];
@@ -22,6 +27,7 @@ export function generateStaticParams() {
 
 export default async function StrategyOutputGroupPage({ params }: { params: Promise<{ id: string; kind: string; slug: string }> }) {
   const { id, kind, slug } = await params;
+  if (trashManifest.items.some((item) => item.type === "strategy-output" && item.id === id)) notFound();
   const output = outputs[id] ?? latestOutput;
   const groups = kind === "theme" ? (output.themeDetails ?? output.themes ?? []) : (output.industryDetails ?? output.industries ?? []);
   const group = groups.find((row: any) => row.slug === decodeURIComponent(slug));

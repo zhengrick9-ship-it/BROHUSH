@@ -1,0 +1,3123 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-22T19:10:02+08:00",
+  "as_of_date": "20260822",
+  "latest_trade_date": "20260821",
+  "release_id": "qdh-bj-20260822T165656",
+  "status": "actual_qdh_snapshot_plus_qualitative_module_analysis",
+  "sourcePolicy": {
+    "financial": "QDataHub accepted release, company financial statements and announcements",
+    "market": "QDataHub market.daily_basic as of 20260821",
+    "industry": "primary customer/vendor disclosures and standards; article is lead only"
+  },
+  "modules": [
+    {
+      "id": "materials-and-equipment",
+      "name": "基础材料、设备与制造工艺",
+      "initial": {
+        "revenueModel": "设备销售、耗材、材料与工艺服务",
+        "majorCosts": "研发、制造、认证、客户服务、产线与存货",
+        "capexIntensity": "中高",
+        "cashFlowRisk": "设备验收和大客户回款可能拉长现金周期",
+        "pricingPower": "核心工艺、认证和替代难度决定议价权",
+        "profitProfile": "高价值候选，但验证周期长",
+        "valuePoint": "真正的价值在于把高纯度、低缺陷材料和工艺稳定性转化为良率，而不是单纯卖设备。"
+      },
+      "companies": [
+        {
+          "symbol": "002371.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260430",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 10322863908.82,
+            "net_income_attr": 1634739048.68,
+            "operating_profit": 1794909277.15,
+            "rd_expense": 1402436311.27
+          },
+          "quality": {
+            "gross_margin_pct": 40.77,
+            "net_margin_pct": 15.19,
+            "roe_pct": 4.25,
+            "roic_pct": 2.72,
+            "revenue_yoy_pct": 25.8,
+            "net_income_yoy_pct": 3.42,
+            "ocf_yoy_pct": 143.27
+          },
+          "cashflow": {
+            "operating_cashflow": 748055666.52,
+            "free_cashflow": 310895958.5529
+          },
+          "balance": {
+            "cash": 18007416442.38,
+            "accounts_receivable": 8780279745.35,
+            "inventory": 28602898183.2,
+            "total_assets": 91056789222.02,
+            "total_liabilities": 45537075214.11,
+            "interest_debt": 15526450714.04,
+            "net_debt": -2480965728.34
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 714.43,
+            "pe_ttm": 92.9792,
+            "pb": 13.1941,
+            "ps_ttm": 12.5019,
+            "turnover_rate_pct": 0.7997,
+            "total_mv_10k": 51845413.5156
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "北方华创",
+          "mapping": "北方华创（002371.SZ）—半导体设备"
+        },
+        {
+          "symbol": "688012.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260820",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 6691287327.67,
+            "net_income_attr": 2825194624.91,
+            "operating_profit": 2871804636.37,
+            "rd_expense": 1309617481.4
+          },
+          "quality": {
+            "gross_margin_pct": 39.74,
+            "net_margin_pct": 41.8,
+            "roe_pct": 10.72,
+            "roic_pct": 10.12,
+            "revenue_yoy_pct": 34.89,
+            "net_income_yoy_pct": 300.22,
+            "ocf_yoy_pct": 237.39
+          },
+          "cashflow": {
+            "operating_cashflow": 684553490.6,
+            "free_cashflow": 826142600.4408
+          },
+          "balance": {
+            "cash": 9768212270.46,
+            "accounts_receivable": 3057837701.56,
+            "inventory": 7665975529.63,
+            "total_assets": 37736913182.75,
+            "total_liabilities": 7446753872.34,
+            "interest_debt": 904477393.97,
+            "net_debt": -8863734876.49
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 362.5,
+            "pe_ttm": 82.07,
+            "pb": 11.5594,
+            "ps_ttm": 24.5986,
+            "turnover_rate_pct": 1.5525,
+            "total_mv_10k": 34721783.375
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "中微公司",
+          "mapping": "中微公司（688012.SH）—刻蚀设备"
+        },
+        {
+          "symbol": "688126.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260820",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 2317244795.55,
+            "net_income_attr": -965151893.58,
+            "operating_profit": -1007914201.46,
+            "rd_expense": 258922644.01
+          },
+          "quality": {
+            "gross_margin_pct": -8.34,
+            "net_margin_pct": -44.43,
+            "roe_pct": -5.32,
+            "roic_pct": -2.9,
+            "revenue_yoy_pct": 36.51,
+            "net_income_yoy_pct": -163.32,
+            "ocf_yoy_pct": 138.75
+          },
+          "cashflow": {
+            "operating_cashflow": 178987474.54,
+            "free_cashflow": -5088542379.75
+          },
+          "balance": {
+            "cash": 6486083240.1,
+            "accounts_receivable": 1082286235.28,
+            "inventory": 2058801518.32,
+            "total_assets": 38211632347.69,
+            "total_liabilities": 14357122470.65,
+            "interest_debt": 10141873899.88,
+            "net_debt": 3655790659.78
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 24.63,
+            "pe_ttm": null,
+            "pb": 4.1982,
+            "ps_ttm": 18.7744,
+            "turnover_rate_pct": 2.2521,
+            "total_mv_10k": 8140272.6342
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "沪硅产业",
+          "mapping": "沪硅产业（688126.SH）—硅片"
+        },
+        {
+          "symbol": "300346.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260424",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 661579878.18,
+            "net_income_attr": 124201774.05,
+            "operating_profit": 172816222.57,
+            "rd_expense": 42034676.06
+          },
+          "quality": {
+            "gross_margin_pct": 41.86,
+            "net_margin_pct": 22.97,
+            "roe_pct": 3.51,
+            "roic_pct": 3.73,
+            "revenue_yoy_pct": 5.45,
+            "net_income_yoy_pct": 29.97,
+            "ocf_yoy_pct": -39.24
+          },
+          "cashflow": {
+            "operating_cashflow": 100220816.06,
+            "free_cashflow": -14314762.668
+          },
+          "balance": {
+            "cash": 522320482.32,
+            "accounts_receivable": 768095280.59,
+            "inventory": 811233641.49,
+            "total_assets": 6126658563.13,
+            "total_liabilities": 2075083676.7,
+            "interest_debt": 107925217.91,
+            "net_debt": -414395264.41
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 56.85,
+            "pe_ttm": 112.7805,
+            "pb": 10.9142,
+            "ps_ttm": 14.9989,
+            "turnover_rate_pct": 3.9854,
+            "total_mv_10k": 3929226.9765
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "南大光电",
+          "mapping": "南大光电（300346.SZ）—电子材料"
+        },
+        {
+          "symbol": "300054.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260428",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1020104503.18,
+            "net_income_attr": 250955125.19,
+            "operating_profit": 297804361.1,
+            "rd_expense": 145735521.48
+          },
+          "quality": {
+            "gross_margin_pct": 54.95,
+            "net_margin_pct": 25.57,
+            "roe_pct": 4.7,
+            "roic_pct": 3.31,
+            "revenue_yoy_pct": 23.82,
+            "net_income_yoy_pct": 77.99,
+            "ocf_yoy_pct": 18.46
+          },
+          "cashflow": {
+            "operating_cashflow": 286020959.76,
+            "free_cashflow": -82012780.5447
+          },
+          "balance": {
+            "cash": 1332004755.93,
+            "accounts_receivable": 1264326465.08,
+            "inventory": 755722345.36,
+            "total_assets": 9883506243.95,
+            "total_liabilities": 3970250016.52,
+            "interest_debt": 2569432317.34,
+            "net_debt": 1237427561.41
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 73.84,
+            "pe_ttm": 84.8984,
+            "pb": 12.9044,
+            "ps_ttm": 18.2773,
+            "turnover_rate_pct": 2.5286,
+            "total_mv_10k": 7047982.2192
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "鼎龙股份",
+          "mapping": "鼎龙股份（300054.SZ）—CMP/材料"
+        },
+        {
+          "symbol": "300666.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260429",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1305505300.03,
+            "net_income_attr": 209746920.31,
+            "operating_profit": 225095191.05,
+            "rd_expense": 76774430.21
+          },
+          "quality": {
+            "gross_margin_pct": 32.86,
+            "net_margin_pct": 14.14,
+            "roe_pct": 4.13,
+            "roic_pct": 2.28,
+            "revenue_yoy_pct": 30.49,
+            "net_income_yoy_pct": 33.42,
+            "ocf_yoy_pct": 206.8
+          },
+          "cashflow": {
+            "operating_cashflow": 185520495.72,
+            "free_cashflow": -524351526.6824
+          },
+          "balance": {
+            "cash": 1516474403.57,
+            "accounts_receivable": 1399155867.31,
+            "inventory": 1828513163.27,
+            "total_assets": 11853197191.68,
+            "total_liabilities": 6837656714.74,
+            "interest_debt": 4178606429.22,
+            "net_debt": 2662132025.65
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 246.7,
+            "pe_ttm": 123.3287,
+            "pb": 13.1352,
+            "ps_ttm": 13.8684,
+            "turnover_rate_pct": 4.6795,
+            "total_mv_10k": 6808207.037
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "江丰电子",
+          "mapping": "江丰电子（300666.SZ）—靶材"
+        }
+      ]
+    },
+    {
+      "id": "compute-and-packaging",
+      "name": "计算芯片与先进封装",
+      "initial": {
+        "revenueModel": "芯片、加速卡、封装测试和配套服务",
+        "majorCosts": "研发、晶圆/封装代工、设备折旧、IP和库存",
+        "capexIntensity": "高",
+        "cashFlowRisk": "产能预付款、库存和资本开支压力大",
+        "pricingPower": "架构、软件生态、良率和封装能力决定议价权",
+        "profitProfile": "芯片设计与先进封装高价值，代工/通用封装分化",
+        "valuePoint": "有效算力不是芯片峰值参数，而是芯片、HBM、封装和软件生态共同兑现的可用吞吐。"
+      },
+      "companies": [
+        {
+          "symbol": "688256.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260808",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 5995573619.61,
+            "net_income_attr": 2310912080.33,
+            "operating_profit": 2301201400.18,
+            "rd_expense": 702466071.26
+          },
+          "quality": {
+            "gross_margin_pct": 55.25,
+            "net_margin_pct": 38.54,
+            "roe_pct": 18.2,
+            "roic_pct": 18.17,
+            "revenue_yoy_pct": 108.13,
+            "net_income_yoy_pct": 122.61,
+            "ocf_yoy_pct": -65.83
+          },
+          "cashflow": {
+            "operating_cashflow": 311314642.46,
+            "free_cashflow": 467626089.55
+          },
+          "balance": {
+            "cash": 1126450064.94,
+            "accounts_receivable": 222016836.34,
+            "inventory": 8247509484.0,
+            "total_assets": 18199270965.06,
+            "total_liabilities": 4636935071.78,
+            "interest_debt": 18590524.41,
+            "net_debt": -1107859540.53
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 1035.0,
+            "pe_ttm": 195.3339,
+            "pb": 48.015,
+            "ps_ttm": 67.7128,
+            "turnover_rate_pct": 1.9135,
+            "total_mv_10k": 65086389.0
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "寒武纪",
+          "mapping": "寒武纪（688256.SH）—AI加速芯片"
+        },
+        {
+          "symbol": "688041.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260814",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 9099020774.81,
+            "net_income_attr": 1798467918.03,
+            "operating_profit": 2162046437.36,
+            "rd_expense": 2537004497.47
+          },
+          "quality": {
+            "gross_margin_pct": 55.21,
+            "net_margin_pct": 22.69,
+            "roe_pct": 7.51,
+            "roic_pct": 6.25,
+            "revenue_yoy_pct": 66.52,
+            "net_income_yoy_pct": 49.69,
+            "ocf_yoy_pct": -119.64
+          },
+          "cashflow": {
+            "operating_cashflow": -427541001.36,
+            "free_cashflow": -4536976870.2892
+          },
+          "balance": {
+            "cash": 7328975633.97,
+            "accounts_receivable": 3596877783.1,
+            "inventory": 7518222148.23,
+            "total_assets": 36034343872.26,
+            "total_liabilities": 6920211762.78,
+            "interest_debt": 4410468677.51,
+            "net_debt": -2918506956.46
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 246.21,
+            "pe_ttm": 182.1427,
+            "pb": 22.5542,
+            "ps_ttm": 31.7725,
+            "turnover_rate_pct": 0.9224,
+            "total_mv_10k": 57227528.3601
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "海光信息",
+          "mapping": "海光信息（688041.SH）—CPU/加速计算"
+        },
+        {
+          "symbol": "600584.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260821",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 19527223323.13,
+            "net_income_attr": 844644275.04,
+            "operating_profit": 883417015.13,
+            "rd_expense": 1034336923.55
+          },
+          "quality": {
+            "gross_margin_pct": 15.15,
+            "net_margin_pct": 4.21,
+            "roe_pct": 2.93,
+            "roic_pct": 2.14,
+            "revenue_yoy_pct": 4.96,
+            "net_income_yoy_pct": 79.41,
+            "ocf_yoy_pct": 26.75
+          },
+          "cashflow": {
+            "operating_cashflow": 2964426853.22,
+            "free_cashflow": -1167569945.7479
+          },
+          "balance": {
+            "cash": 4585432394.52,
+            "accounts_receivable": 5880032380.05,
+            "inventory": 4995546230.41,
+            "total_assets": 58642830358.19,
+            "total_liabilities": 27104170662.31,
+            "interest_debt": 13141929785.69,
+            "net_debt": 8556497391.17
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 78.57,
+            "pe_ttm": 72.505,
+            "pb": 4.8574,
+            "ps_ttm": 3.5331,
+            "turnover_rate_pct": 5.4217,
+            "total_mv_10k": 14059430.5122
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "长电科技",
+          "mapping": "长电科技（600584.SH）—先进封装"
+        },
+        {
+          "symbol": "002156.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260430",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 7481674677.05,
+            "net_income_attr": 329057400.55,
+            "operating_profit": 469590940.61,
+            "rd_expense": 389273872.28
+          },
+          "quality": {
+            "gross_margin_pct": 13.32,
+            "net_margin_pct": 4.68,
+            "roe_pct": 2.11,
+            "roic_pct": 1.17,
+            "revenue_yoy_pct": 22.8,
+            "net_income_yoy_pct": 224.55,
+            "ocf_yoy_pct": -35.43
+          },
+          "cashflow": {
+            "operating_cashflow": 941604157.66,
+            "free_cashflow": -2445372297.7283
+          },
+          "balance": {
+            "cash": 4827895223.9,
+            "accounts_receivable": 5364359704.4,
+            "inventory": 4811278459.8,
+            "total_assets": 49226227129.25,
+            "total_liabilities": 31958634843.98,
+            "interest_debt": 20029276815.06,
+            "net_debt": 15201381591.16
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 63.88,
+            "pe_ttm": 67.0255,
+            "pb": 6.1912,
+            "ps_ttm": 3.3075,
+            "turnover_rate_pct": 6.386,
+            "total_mv_10k": 9694408.9972
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "通富微电",
+          "mapping": "通富微电（002156.SZ）—封装测试"
+        },
+        {
+          "symbol": "002185.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260822",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 10510627614.2,
+            "net_income_attr": 813402689.67,
+            "operating_profit": 978382066.8,
+            "rd_expense": 643794661.86
+          },
+          "quality": {
+            "gross_margin_pct": 14.34,
+            "net_margin_pct": 8.07,
+            "roe_pct": 4.42,
+            "roic_pct": 2.52,
+            "revenue_yoy_pct": 35.09,
+            "net_income_yoy_pct": 259.15,
+            "ocf_yoy_pct": -36.07
+          },
+          "cashflow": {
+            "operating_cashflow": 1012177765.97,
+            "free_cashflow": -2390842561.8638
+          },
+          "balance": {
+            "cash": 5244697955.95,
+            "accounts_receivable": 3403786259.86,
+            "inventory": 3695326211.93,
+            "total_assets": 46990950881.42,
+            "total_liabilities": 24203637489.22,
+            "interest_debt": 16715359221.23,
+            "net_debt": 11470661265.28
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 17.42,
+            "pe_ttm": 70.9639,
+            "pb": 3.2312,
+            "ps_ttm": 3.1388,
+            "turnover_rate_pct": 4.6519,
+            "total_mv_10k": 5789403.9391
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "华天科技",
+          "mapping": "华天科技（002185.SZ）—封装测试"
+        }
+      ]
+    },
+    {
+      "id": "storage-and-memory",
+      "name": "存储与数据基础设施",
+      "initial": {
+        "revenueModel": "存储芯片、SSD、模组、主控和企业级方案",
+        "majorCosts": "芯片采购/晶圆、库存跌价、研发、渠道和物流",
+        "capexIntensity": "中到高",
+        "cashFlowRisk": "库存价格波动和预付款会放大现金流风险",
+        "pricingPower": "原厂供给、控制器、固件、企业客户认证决定议价权",
+        "profitProfile": "强周期、强分化；控制器和企业级产品优于纯价差",
+        "valuePoint": "存储利润的核心不是囤货本身，而是供给管理、控制器/固件能力和企业级可靠性。"
+      },
+      "companies": [
+        {
+          "symbol": "603986.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260819",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 11565760432.15,
+            "net_income_attr": 6856786413.68,
+            "operating_profit": 7714523622.98,
+            "rd_expense": 764816831.78
+          },
+          "quality": {
+            "gross_margin_pct": 63.13,
+            "net_margin_pct": 59.53,
+            "roe_pct": 24.36,
+            "roic_pct": 23.48,
+            "revenue_yoy_pct": 178.67,
+            "net_income_yoy_pct": 1091.5,
+            "ocf_yoy_pct": 531.47
+          },
+          "cashflow": {
+            "operating_cashflow": 6048341057.06,
+            "free_cashflow": 6255283696.5958
+          },
+          "balance": {
+            "cash": 16964598373.16,
+            "accounts_receivable": 435689503.57,
+            "inventory": 4184224748.31,
+            "total_assets": 42405173401.79,
+            "total_liabilities": 4861841803.29,
+            "interest_debt": 84040874.85,
+            "net_debt": -16880557498.31
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 409.06,
+            "pe_ttm": 36.2018,
+            "pb": 7.6993,
+            "ps_ttm": 17.2728,
+            "turnover_rate_pct": 5.0975,
+            "total_mv_10k": 28705582.3608
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "兆易创新",
+          "mapping": "兆易创新（603986.SH）—存储芯片/MCU"
+        },
+        {
+          "symbol": "301308.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260811",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 24088363284.95,
+            "net_income_attr": 10576875808.95,
+            "operating_profit": 12731068041.65,
+            "rd_expense": 851431666.36
+          },
+          "quality": {
+            "gross_margin_pct": 58.9,
+            "net_margin_pct": 44.49,
+            "roe_pct": 80.02,
+            "roic_pct": 39.89,
+            "revenue_yoy_pct": 136.26,
+            "net_income_yoy_pct": 71528.66,
+            "ocf_yoy_pct": -554.82
+          },
+          "cashflow": {
+            "operating_cashflow": -3151429914.77,
+            "free_cashflow": -3510657065.5503
+          },
+          "balance": {
+            "cash": 3108677072.26,
+            "accounts_receivable": 4358078554.35,
+            "inventory": 25777334419.36,
+            "total_assets": 42877195434.37,
+            "total_liabilities": 24065446338.25,
+            "interest_debt": 16703481318.32,
+            "net_debt": 13594804246.06
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 380.66,
+            "pe_ttm": 13.6464,
+            "pb": 8.8016,
+            "ps_ttm": 4.4616,
+            "turnover_rate_pct": 3.7135,
+            "total_mv_10k": 16355749.7012
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "江波龙",
+          "mapping": "江波龙（301308.SZ）—存储产品与主控"
+        },
+        {
+          "symbol": "300223.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260429",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1559766866.05,
+            "net_income_attr": 318979317.55,
+            "operating_profit": 363081692.1,
+            "rd_expense": 171903273.83
+          },
+          "quality": {
+            "gross_margin_pct": 43.49,
+            "net_margin_pct": 20.54,
+            "roe_pct": 2.54,
+            "roic_pct": 2.38,
+            "revenue_yoy_pct": 47.12,
+            "net_income_yoy_pct": 331.61,
+            "ocf_yoy_pct": 23.72
+          },
+          "cashflow": {
+            "operating_cashflow": 216688772.89,
+            "free_cashflow": 99143414.8372
+          },
+          "balance": {
+            "cash": 3416136875.73,
+            "accounts_receivable": 638025131.86,
+            "inventory": 2938030567.05,
+            "total_assets": 13826734613.11,
+            "total_liabilities": 1070331519.94,
+            "interest_debt": 14773797.97,
+            "net_debt": -3401363077.76
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 138.48,
+            "pe_ttm": 107.8027,
+            "pb": 5.2674,
+            "ps_ttm": 12.7807,
+            "turnover_rate_pct": 5.8122,
+            "total_mv_10k": 6697784.1542
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "北京君正",
+          "mapping": "北京君正（300223.SZ）—存储与计算"
+        },
+        {
+          "symbol": "688008.SH",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260428",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1460718316.43,
+            "net_income_attr": 847375292.29,
+            "operating_profit": 877137699.93,
+            "rd_expense": 188139279.67
+          },
+          "quality": {
+            "gross_margin_pct": 69.79,
+            "net_margin_pct": 56.8,
+            "roe_pct": 5.02,
+            "roic_pct": 4.59,
+            "revenue_yoy_pct": 19.51,
+            "net_income_yoy_pct": 61.3,
+            "ocf_yoy_pct": 232.88
+          },
+          "cashflow": {
+            "operating_cashflow": 626635472.56,
+            "free_cashflow": 419064758.4328
+          },
+          "balance": {
+            "cash": 14623848228.96,
+            "accounts_receivable": 619903037.52,
+            "inventory": 982272862.03,
+            "total_assets": 21680536261.01,
+            "total_liabilities": 905058362.65,
+            "interest_debt": 83023349.23,
+            "net_debt": -14540824879.73
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 200.55,
+            "pe_ttm": 95.7058,
+            "pb": 11.7424,
+            "ps_ttm": 42.9827,
+            "turnover_rate_pct": 1.8483,
+            "total_mv_10k": 24477889.59
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "澜起科技",
+          "mapping": "澜起科技（688008.SH）—接口芯片"
+        },
+        {
+          "symbol": "001309.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260430",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 7538357736.63,
+            "net_income_attr": 3346185437.62,
+            "operating_profit": 3913581870.1,
+            "rd_expense": 167897947.51
+          },
+          "quality": {
+            "gross_margin_pct": 57.42,
+            "net_margin_pct": 44.39,
+            "roe_pct": 67.65,
+            "roic_pct": 29.54,
+            "revenue_yoy_pct": 502.08,
+            "net_income_yoy_pct": 4943.39,
+            "ocf_yoy_pct": 51.57
+          },
+          "cashflow": {
+            "operating_cashflow": -240787273.84,
+            "free_cashflow": -338449697.8924
+          },
+          "balance": {
+            "cash": 1850644373.14,
+            "accounts_receivable": 963290188.49,
+            "inventory": 12191711008.35,
+            "total_assets": 18384270336.99,
+            "total_liabilities": 11760899075.73,
+            "interest_debt": 7323463004.64,
+            "net_debt": 5472818631.5
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 415.12,
+            "pe_ttm": 22.9474,
+            "pb": 14.2174,
+            "ps_ttm": 5.5148,
+            "turnover_rate_pct": 9.2216,
+            "total_mv_10k": 9416702.4648
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "德明利",
+          "mapping": "德明利（001309.SZ）—存储主控/产品"
+        }
+      ]
+    },
+    {
+      "id": "optical-interconnect",
+      "name": "光互联与光器件",
+      "initial": {
+        "revenueModel": "光芯片、激光器、器件、光引擎、光模块和连接方案",
+        "majorCosts": "芯片/器件采购、研发、封装测试、产能和客户认证",
+        "capexIntensity": "中高",
+        "cashFlowRisk": "客户集中、库存和产能扩张可能先压现金流",
+        "pricingPower": "速率迭代、良率、客户认证和技术路线决定议价权",
+        "profitProfile": "核心光芯片/器件较高价值，模块组装随价格和客户集中度分化",
+        "valuePoint": "价值从低速标准模块向高速光芯片、光引擎和新型封装迁移，单看模块收入会掩盖利润差异。"
+      },
+      "companies": [
+        {
+          "symbol": "300308.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260822",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 41777861795.03,
+            "net_income_attr": 13651149693.27,
+            "operating_profit": 17231320005.52,
+            "rd_expense": 1153028870.98
+          },
+          "quality": {
+            "gross_margin_pct": 46.25,
+            "net_margin_pct": 35.27,
+            "roe_pct": 39.21,
+            "roic_pct": 36.92,
+            "revenue_yoy_pct": 182.49,
+            "net_income_yoy_pct": 241.7,
+            "ocf_yoy_pct": -44.08
+          },
+          "cashflow": {
+            "operating_cashflow": 1799674832.02,
+            "free_cashflow": -3250310842.6084
+          },
+          "balance": {
+            "cash": 6397133233.34,
+            "accounts_receivable": 15000893993.58,
+            "inventory": 19825909263.51,
+            "total_assets": 68942203736.77,
+            "total_liabilities": 24875450361.61,
+            "interest_debt": 1877766505.4,
+            "net_debt": -4519366727.94
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 943.0,
+            "pe_ttm": 73.7888,
+            "pb": 30.9961,
+            "ps_ttm": 21.6023,
+            "turnover_rate_pct": 2.5861,
+            "total_mv_10k": 110305982.21
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "中际旭创",
+          "mapping": "中际旭创（300308.SZ）—高速光模块"
+        },
+        {
+          "symbol": "300502.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260424",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 8337902040.74,
+            "net_income_attr": 2780222960.23,
+            "operating_profit": 3243167573.25,
+            "rd_expense": 119909085.67
+          },
+          "quality": {
+            "gross_margin_pct": 49.16,
+            "net_margin_pct": 33.27,
+            "roe_pct": 14.52,
+            "roic_pct": 14.3,
+            "revenue_yoy_pct": 105.76,
+            "net_income_yoy_pct": 76.8,
+            "ocf_yoy_pct": 243.71
+          },
+          "cashflow": {
+            "operating_cashflow": 684071355.88,
+            "free_cashflow": 296294758.7282
+          },
+          "balance": {
+            "cash": 7916953085.79,
+            "accounts_receivable": 5566729063.71,
+            "inventory": 9026237850.72,
+            "total_assets": 29736124932.02,
+            "total_liabilities": 9228600383.02,
+            "interest_debt": 13715448.96,
+            "net_debt": -7903237636.83
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 442.0,
+            "pe_ttm": 57.3821,
+            "pb": 30.2405,
+            "ps_ttm": 21.1574,
+            "turnover_rate_pct": 3.8095,
+            "total_mv_10k": 61626146.14
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "新易盛",
+          "mapping": "新易盛（300502.SZ）—高速光模块"
+        },
+        {
+          "symbol": "300394.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260819",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 2827938748.37,
+            "net_income_attr": 1204285104.14,
+            "operating_profit": 1380532835.09,
+            "rd_expense": 194927204.07
+          },
+          "quality": {
+            "gross_margin_pct": 60.87,
+            "net_margin_pct": 42.59,
+            "roe_pct": 20.49,
+            "roic_pct": 19.71,
+            "revenue_yoy_pct": 15.15,
+            "net_income_yoy_pct": 33.92,
+            "ocf_yoy_pct": 64.57
+          },
+          "cashflow": {
+            "operating_cashflow": 1000881668.42,
+            "free_cashflow": 402920039.0555
+          },
+          "balance": {
+            "cash": 2905778868.53,
+            "accounts_receivable": 1451772964.98,
+            "inventory": 928830690.11,
+            "total_assets": 7587829694.94,
+            "total_liabilities": 1332641849.19,
+            "interest_debt": 3648172.96,
+            "net_debt": -2902130695.57
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 273.08,
+            "pe_ttm": 128.2699,
+            "pb": 47.6721,
+            "ps_ttm": 53.8133,
+            "turnover_rate_pct": 4.6348,
+            "total_mv_10k": 29788249.1
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "天孚通信",
+          "mapping": "天孚通信（300394.SZ）—光器件平台"
+        },
+        {
+          "symbol": "002281.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260820",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 6609670765.36,
+            "net_income_attr": 582178717.03,
+            "operating_profit": 658104860.12,
+            "rd_expense": 586408269.63
+          },
+          "quality": {
+            "gross_margin_pct": 25.53,
+            "net_margin_pct": 8.67,
+            "roe_pct": 4.75,
+            "roic_pct": 4.35,
+            "revenue_yoy_pct": 26.07,
+            "net_income_yoy_pct": 56.34,
+            "ocf_yoy_pct": -1051.78
+          },
+          "cashflow": {
+            "operating_cashflow": -1236139694.41,
+            "free_cashflow": -2104621135.4691
+          },
+          "balance": {
+            "cash": 5926047134.69,
+            "accounts_receivable": 1346369617.35,
+            "inventory": 9069575952.18,
+            "total_assets": 23022868319.0,
+            "total_liabilities": 8523933685.02,
+            "interest_debt": 293415458.36,
+            "net_debt": -5632631676.33
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 178.58,
+            "pe_ttm": 127.8724,
+            "pb": 10.2307,
+            "ps_ttm": 11.1194,
+            "turnover_rate_pct": 4.3066,
+            "total_mv_10k": 14783724.549
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "光迅科技",
+          "mapping": "光迅科技（002281.SZ）—光器件/模块"
+        },
+        {
+          "symbol": "688498.SH",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260428",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 355278486.49,
+            "net_income_attr": 179441968.61,
+            "operating_profit": 211354108.33,
+            "rd_expense": 20650110.32
+          },
+          "quality": {
+            "gross_margin_pct": 77.81,
+            "net_margin_pct": 50.51,
+            "roe_pct": 7.39,
+            "roic_pct": 7.13,
+            "revenue_yoy_pct": 320.94,
+            "net_income_yoy_pct": 1153.07,
+            "ocf_yoy_pct": 825.94
+          },
+          "cashflow": {
+            "operating_cashflow": 39650807.07,
+            "free_cashflow": -279334266.2103
+          },
+          "balance": {
+            "cash": 567019174.3,
+            "accounts_receivable": 410021630.26,
+            "inventory": 162234271.31,
+            "total_assets": 2827759783.78,
+            "total_liabilities": 303029506.43,
+            "interest_debt": 84979557.03,
+            "net_debt": -482039617.27
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 1587.0,
+            "pe_ttm": 554.9341,
+            "pb": 78.2586,
+            "ps_ttm": 226.5039,
+            "turnover_rate_pct": 2.8225,
+            "total_mv_10k": 19758197.61
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "源杰科技",
+          "mapping": "源杰科技（688498.SH）—激光芯片"
+        },
+        {
+          "symbol": "300620.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260818",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1031662205.86,
+            "net_income_attr": 148395975.24,
+            "operating_profit": 170485549.87,
+            "rd_expense": 99868828.32
+          },
+          "quality": {
+            "gross_margin_pct": 38.77,
+            "net_margin_pct": 13.9,
+            "roe_pct": 6.7,
+            "roic_pct": 4.27,
+            "revenue_yoy_pct": 72.91,
+            "net_income_yoy_pct": 186.09,
+            "ocf_yoy_pct": -1640.52
+          },
+          "cashflow": {
+            "operating_cashflow": -161416595.35,
+            "free_cashflow": -172983979.9171
+          },
+          "balance": {
+            "cash": 1181435497.06,
+            "accounts_receivable": 717665936.37,
+            "inventory": 547321686.11,
+            "total_assets": 4267685625.9,
+            "total_liabilities": 1975122332.31,
+            "interest_debt": 1309978299.58,
+            "net_debt": 128542802.52
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 305.03,
+            "pe_ttm": 278.2129,
+            "pb": 33.67,
+            "ps_ttm": 39.8158,
+            "turnover_rate_pct": 4.056,
+            "total_mv_10k": 7600752.7915
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "光库科技",
+          "mapping": "光库科技（300620.SZ）—光器件/薄膜铌酸锂方向"
+        }
+      ]
+    },
+    {
+      "id": "switching-and-high-speed-connection",
+      "name": "交换机与高速连接",
+      "initial": {
+        "revenueModel": "交换芯片、网卡、交换机、DAC/AOC、铜缆和系统集成",
+        "majorCosts": "芯片采购或研发、制造、认证、渠道和售后",
+        "capexIntensity": "中",
+        "cashFlowRisk": "大客户项目交付和渠道库存影响现金",
+        "pricingPower": "芯片、SerDes、协议栈和集群适配决定议价权",
+        "profitProfile": "交换芯片/协议软件高价值，设备集成和铜缆组装分化",
+        "valuePoint": "AI网络的价值由集群有效吞吐决定，交换芯片和高速互联协议比普通设备装配更接近利润核心。"
+      },
+      "companies": [
+        {
+          "symbol": "688702.SH",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260423",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 248423210.24,
+            "net_income_attr": -17029645.22,
+            "operating_profit": -17076006.91,
+            "rd_expense": 122940166.97
+          },
+          "quality": {
+            "gross_margin_pct": 49.45,
+            "net_margin_pct": -6.86,
+            "roe_pct": -0.76,
+            "roic_pct": -0.79,
+            "revenue_yoy_pct": 11.4,
+            "net_income_yoy_pct": -12.05,
+            "ocf_yoy_pct": -232.87
+          },
+          "cashflow": {
+            "operating_cashflow": -122376875.95,
+            "free_cashflow": -249530310.24
+          },
+          "balance": {
+            "cash": 598391766.08,
+            "accounts_receivable": 131614044.88,
+            "inventory": 333251294.69,
+            "total_assets": 2457509779.13,
+            "total_liabilities": 225666890.11,
+            "interest_debt": 1790847.04,
+            "net_debt": -596600919.04
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 375.8,
+            "pe_ttm": null,
+            "pb": 69.0362,
+            "ps_ttm": 131.024,
+            "turnover_rate_pct": 2.6389,
+            "total_mv_10k": 15407800.0
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "盛科通信",
+          "mapping": "盛科通信（688702.SH）—交换芯片"
+        },
+        {
+          "symbol": "000938.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260429",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 27984855967.39,
+            "net_income_attr": 787908617.19,
+            "operating_profit": 1054357334.38,
+            "rd_expense": 1195922049.98
+          },
+          "quality": {
+            "gross_margin_pct": 12.88,
+            "net_margin_pct": 3.43,
+            "roe_pct": 5.21,
+            "roic_pct": 2.17,
+            "revenue_yoy_pct": 34.61,
+            "net_income_yoy_pct": 126.06,
+            "ocf_yoy_pct": -267.96
+          },
+          "cashflow": {
+            "operating_cashflow": -3092736550.99,
+            "free_cashflow": -3408598099.2677
+          },
+          "balance": {
+            "cash": 9111055244.46,
+            "accounts_receivable": 14622165362.36,
+            "inventory": 45305672437.57,
+            "total_assets": 103127179094.77,
+            "total_liabilities": 84947455416.29,
+            "interest_debt": 35452104674.86,
+            "net_debt": 26341049430.4
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 36.44,
+            "pe_ttm": 49.048,
+            "pb": 6.7122,
+            "ps_ttm": 1.0027,
+            "turnover_rate_pct": 5.3313,
+            "total_mv_10k": 10422131.1556
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "紫光股份",
+          "mapping": "紫光股份（000938.SZ）—网络设备/交换机"
+        },
+        {
+          "symbol": "000063.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260822",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 78025359000.0,
+            "net_income_attr": 2752825000.0,
+            "operating_profit": 3139442000.0,
+            "rd_expense": 10929855000.0
+          },
+          "quality": {
+            "gross_margin_pct": 25.48,
+            "net_margin_pct": 3.57,
+            "roe_pct": 3.61,
+            "roic_pct": 1.82,
+            "revenue_yoy_pct": 9.05,
+            "net_income_yoy_pct": -45.57,
+            "ocf_yoy_pct": -109.74
+          },
+          "cashflow": {
+            "operating_cashflow": -126600000.0,
+            "free_cashflow": -22130909951.6907
+          },
+          "balance": {
+            "cash": 24647410000.0,
+            "accounts_receivable": 30619910000.0,
+            "inventory": 54645606000.0,
+            "total_assets": 240547535000.0,
+            "total_liabilities": 163424121000.0,
+            "interest_debt": 70948718000.0,
+            "net_debt": 46301308000.0
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 33.78,
+            "pe_ttm": 36.1089,
+            "pb": 2.1071,
+            "ps_ttm": 1.1889,
+            "turnover_rate_pct": 1.2109,
+            "total_mv_10k": 16158780.8922
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "中兴通讯",
+          "mapping": "中兴通讯（000063.SZ）—通信与网络"
+        },
+        {
+          "symbol": "300913.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260428",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 508488452.66,
+            "net_income_attr": 48548763.99,
+            "operating_profit": 55182880.23,
+            "rd_expense": 16929405.61
+          },
+          "quality": {
+            "gross_margin_pct": 21.07,
+            "net_margin_pct": 9.55,
+            "roe_pct": 1.85,
+            "roic_pct": 1.72,
+            "revenue_yoy_pct": 13.47,
+            "net_income_yoy_pct": 48.96,
+            "ocf_yoy_pct": 8.01
+          },
+          "cashflow": {
+            "operating_cashflow": 52432523.9,
+            "free_cashflow": -18294584.4474
+          },
+          "balance": {
+            "cash": 1090919839.7,
+            "accounts_receivable": 374244797.87,
+            "inventory": 397180173.91,
+            "total_assets": 3023421412.64,
+            "total_liabilities": 374557133.48,
+            "interest_debt": 7003666.76,
+            "net_debt": -1083916172.94
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 35.91,
+            "pe_ttm": 49.7707,
+            "pb": 4.647,
+            "ps_ttm": 5.6354,
+            "turnover_rate_pct": 2.6834,
+            "total_mv_10k": 1230926.9301
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "兆龙互连",
+          "mapping": "兆龙互连（300913.SZ）—高速连接"
+        },
+        {
+          "symbol": "000977.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260430",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 35470325836.04,
+            "net_income_attr": 604873166.81,
+            "operating_profit": 667520754.47,
+            "rd_expense": 841199593.45
+          },
+          "quality": {
+            "gross_margin_pct": 6.64,
+            "net_margin_pct": 1.71,
+            "roe_pct": 2.75,
+            "roic_pct": 1.82,
+            "revenue_yoy_pct": -24.3,
+            "net_income_yoy_pct": 30.74,
+            "ocf_yoy_pct": -233.92
+          },
+          "cashflow": {
+            "operating_cashflow": -7771612162.74,
+            "free_cashflow": -7770904958.33
+          },
+          "balance": {
+            "cash": 10743857216.69,
+            "accounts_receivable": 17298413677.34,
+            "inventory": 44207128840.13,
+            "total_assets": 84489154875.14,
+            "total_liabilities": 61855101748.41,
+            "interest_debt": 19128236940.7,
+            "net_debt": 8384379724.01
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 76.35,
+            "pe_ttm": 43.8806,
+            "pb": 5.0271,
+            "ps_ttm": 0.7309,
+            "turnover_rate_pct": 3.5571,
+            "total_mv_10k": 11211819.6045
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "浪潮信息",
+          "mapping": "浪潮信息（000977.SZ）—服务器与网络系统"
+        }
+      ]
+    },
+    {
+      "id": "pcb-ccl-mlcc-and-glass-substrate",
+      "name": "PCB、CCL、MLCC与玻璃基板",
+      "initial": {
+        "revenueModel": "CCL、PCB、MLCC、电子陶瓷、玻璃基板和封装基板",
+        "majorCosts": "铜箔/树脂/陶瓷粉体、设备折旧、能源、良率和环保",
+        "capexIntensity": "中高",
+        "cashFlowRisk": "扩产和原材料价格会造成周期波动",
+        "pricingPower": "低损耗、高频高速、可靠性和认证决定溢价",
+        "profitProfile": "高端材料、MLCC和高速PCB较强，普通板材和加工环节更像制造业",
+        "valuePoint": "AI升级不是简单增加板子数量，而是把信号完整性、层数、材料等级和可靠性变成更高单位价值。"
+      },
+      "companies": [
+        {
+          "symbol": "002463.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260423",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 6214156406.0,
+            "net_income_attr": 1242081367.0,
+            "operating_profit": 1393457004.0,
+            "rd_expense": 417024662.0
+          },
+          "quality": {
+            "gross_margin_pct": 35.63,
+            "net_margin_pct": 19.98,
+            "roe_pct": 7.79,
+            "roic_pct": 5.76,
+            "revenue_yoy_pct": 53.91,
+            "net_income_yoy_pct": 62.9,
+            "ocf_yoy_pct": -64.04
+          },
+          "cashflow": {
+            "operating_cashflow": 511016585.0,
+            "free_cashflow": -238443629.3552
+          },
+          "balance": {
+            "cash": 4391640589.0,
+            "accounts_receivable": 6476447190.0,
+            "inventory": 4913409150.0,
+            "total_assets": 32720019199.0,
+            "total_liabilities": 15916037828.0,
+            "interest_debt": 6353599885.0,
+            "net_debt": 1961959296.0
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 121.21,
+            "pe_ttm": 54.2204,
+            "pb": 13.8924,
+            "ps_ttm": 11.0432,
+            "turnover_rate_pct": 2.5966,
+            "total_mv_10k": 23325211.1956
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "沪电股份",
+          "mapping": "沪电股份（002463.SZ）—高速PCB"
+        },
+        {
+          "symbol": "002916.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260424",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 6595587902.38,
+            "net_income_attr": 850230796.58,
+            "operating_profit": 943007147.52,
+            "rd_expense": 399367106.94
+          },
+          "quality": {
+            "gross_margin_pct": 29.17,
+            "net_margin_pct": 12.91,
+            "roe_pct": 4.83,
+            "roic_pct": 4.06,
+            "revenue_yoy_pct": 37.9,
+            "net_income_yoy_pct": 73.01,
+            "ocf_yoy_pct": -59.62
+          },
+          "cashflow": {
+            "operating_cashflow": 247409844.58,
+            "free_cashflow": -235051925.9917
+          },
+          "balance": {
+            "cash": 1149484666.15,
+            "accounts_receivable": 5849083215.17,
+            "inventory": 6501333507.81,
+            "total_assets": 34350605896.4,
+            "total_liabilities": 16228074972.91,
+            "interest_debt": 3860405146.76,
+            "net_debt": 2710920480.61
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 358.25,
+            "pe_ttm": 67.1417,
+            "pb": 13.4893,
+            "ps_ttm": 9.5849,
+            "turnover_rate_pct": 1.2064,
+            "total_mv_10k": 24402793.445
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "深南电路",
+          "mapping": "深南电路（002916.SZ）—PCB/封装基板"
+        },
+        {
+          "symbol": "600183.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260815",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 19025611766.13,
+            "net_income_attr": 3286977278.33,
+            "operating_profit": 4220323240.55,
+            "rd_expense": 915089247.3
+          },
+          "quality": {
+            "gross_margin_pct": 30.69,
+            "net_margin_pct": 19.54,
+            "roe_pct": 18.66,
+            "roic_pct": 15.08,
+            "revenue_yoy_pct": 50.05,
+            "net_income_yoy_pct": 130.42,
+            "ocf_yoy_pct": 53.44
+          },
+          "cashflow": {
+            "operating_cashflow": 2983205422.39,
+            "free_cashflow": 12009036.1308
+          },
+          "balance": {
+            "cash": 1997257605.84,
+            "accounts_receivable": 13224161689.87,
+            "inventory": 7521866985.72,
+            "total_assets": 42398289384.02,
+            "total_liabilities": 21338433915.16,
+            "interest_debt": 6342037290.66,
+            "net_debt": 4344779684.82
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 132.8,
+            "pe_ttm": 62.0994,
+            "pb": 17.4347,
+            "ps_ttm": 9.2755,
+            "turnover_rate_pct": 2.7563,
+            "total_mv_10k": 32257169.136
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "生益科技",
+          "mapping": "生益科技（600183.SH）—CCL"
+        },
+        {
+          "symbol": "300476.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260429",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 5519485066.85,
+            "net_income_attr": 1288427592.46,
+            "operating_profit": 1502532268.11,
+            "rd_expense": 154803497.38
+          },
+          "quality": {
+            "gross_margin_pct": 34.46,
+            "net_margin_pct": 23.34,
+            "roe_pct": 7.57,
+            "roic_pct": 5.34,
+            "revenue_yoy_pct": 27.99,
+            "net_income_yoy_pct": 39.95,
+            "ocf_yoy_pct": 399.38
+          },
+          "cashflow": {
+            "operating_cashflow": 2116658463.16,
+            "free_cashflow": -2220855461.1796
+          },
+          "balance": {
+            "cash": 3793967103.6,
+            "accounts_receivable": 5555179586.77,
+            "inventory": 3905227018.22,
+            "total_assets": 38878055535.58,
+            "total_liabilities": 21473881238.69,
+            "interest_debt": 9007813128.99,
+            "net_debt": 5213846025.39
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 253.74,
+            "pe_ttm": 53.2872,
+            "pb": 14.3283,
+            "ps_ttm": 12.1648,
+            "turnover_rate_pct": 2.6418,
+            "total_mv_10k": 24937181.5152
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "胜宏科技",
+          "mapping": "胜宏科技（300476.SZ）—高端PCB"
+        },
+        {
+          "symbol": "002138.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260731",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 3858502642.34,
+            "net_income_attr": 447107886.72,
+            "operating_profit": 568773807.8,
+            "rd_expense": 363438211.16
+          },
+          "quality": {
+            "gross_margin_pct": 33.59,
+            "net_margin_pct": 12.85,
+            "roe_pct": 6.7,
+            "roic_pct": 4.92,
+            "revenue_yoy_pct": 19.67,
+            "net_income_yoy_pct": -7.98,
+            "ocf_yoy_pct": -21.43
+          },
+          "cashflow": {
+            "operating_cashflow": 626396173.18,
+            "free_cashflow": 78731456.2142
+          },
+          "balance": {
+            "cash": 436164266.17,
+            "accounts_receivable": 2991925203.33,
+            "inventory": 1476303546.0,
+            "total_assets": 14068833882.35,
+            "total_liabilities": 6901627663.47,
+            "interest_debt": 4048353901.14,
+            "net_debt": 3612189634.97
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 49.94,
+            "pe_ttm": 40.9954,
+            "pb": 6.1338,
+            "ps_ttm": 5.4566,
+            "turnover_rate_pct": 3.3568,
+            "total_mv_10k": 4026754.0896
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "顺络电子",
+          "mapping": "顺络电子（002138.SZ）—片式元件"
+        },
+        {
+          "symbol": "300285.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260806",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 2512750568.08,
+            "net_income_attr": 362756609.66,
+            "operating_profit": 440068682.34,
+            "rd_expense": 164975659.15
+          },
+          "quality": {
+            "gross_margin_pct": 37.66,
+            "net_margin_pct": 15.37,
+            "roe_pct": 5.01,
+            "roic_pct": 4.45,
+            "revenue_yoy_pct": 16.64,
+            "net_income_yoy_pct": 9.36,
+            "ocf_yoy_pct": 36.78
+          },
+          "cashflow": {
+            "operating_cashflow": 455673130.71,
+            "free_cashflow": -25289623.2349
+          },
+          "balance": {
+            "cash": 1340595200.9,
+            "accounts_receivable": 1926215067.36,
+            "inventory": 1010362726.2,
+            "total_assets": 10842702457.44,
+            "total_liabilities": 2885069972.91,
+            "interest_debt": 1233441795.56,
+            "net_debt": -107153405.34
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 67.86,
+            "pe_ttm": 105.4924,
+            "pb": 9.2307,
+            "ps_ttm": 13.6936,
+            "turnover_rate_pct": 16.0416,
+            "total_mv_10k": 6765969.7638
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "国瓷材料",
+          "mapping": "国瓷材料（300285.SZ）—电子陶瓷/材料"
+        }
+      ]
+    },
+    {
+      "id": "power-and-ups",
+      "name": "供电、UPS与电源管理",
+      "initial": {
+        "revenueModel": "UPS、变压器、电源模块、PDU、配电和能源管理",
+        "majorCosts": "铜铁磁材、功率器件、制造、工程交付和售后",
+        "capexIntensity": "中",
+        "cashFlowRisk": "项目制、应收和预收款变化重要",
+        "pricingPower": "可靠性、认证、交付和系统方案决定议价权",
+        "profitProfile": "高可靠电源、磁性器件和配电方案较优，工程集成现金流分化",
+        "valuePoint": "AI机柜功率密度上升，使稳定供电和电能质量从配套成本变成扩容瓶颈。"
+      },
+      "companies": [
+        {
+          "symbol": "002518.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260427",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1240294080.12,
+            "net_income_attr": 138642938.29,
+            "operating_profit": 160050529.78,
+            "rd_expense": 69998380.57
+          },
+          "quality": {
+            "gross_margin_pct": 29.71,
+            "net_margin_pct": 11.4,
+            "roe_pct": 2.83,
+            "roic_pct": 2.59,
+            "revenue_yoy_pct": 31.47,
+            "net_income_yoy_pct": 24.84,
+            "ocf_yoy_pct": 186.0
+          },
+          "cashflow": {
+            "operating_cashflow": 112998868.76,
+            "free_cashflow": 295193522.621
+          },
+          "balance": {
+            "cash": 293101058.4,
+            "accounts_receivable": 1564181852.21,
+            "inventory": 1110501350.94,
+            "total_assets": 8099622762.89,
+            "total_liabilities": 3033509144.68,
+            "interest_debt": 177612645.57,
+            "net_debt": -115488412.83
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 33.38,
+            "pe_ttm": 30.4391,
+            "pb": 3.9059,
+            "ps_ttm": 3.491,
+            "turnover_rate_pct": 1.8004,
+            "total_mv_10k": 1943467.3838
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "科士达",
+          "mapping": "科士达（002518.SZ）—UPS/数据中心电源"
+        },
+        {
+          "symbol": "002364.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260428",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 418396025.6,
+            "net_income_attr": 24935658.45,
+            "operating_profit": 21097998.23,
+            "rd_expense": 42933311.49
+          },
+          "quality": {
+            "gross_margin_pct": 25.67,
+            "net_margin_pct": 5.59,
+            "roe_pct": 1.0,
+            "roic_pct": 0.7,
+            "revenue_yoy_pct": 7.79,
+            "net_income_yoy_pct": 22.89,
+            "ocf_yoy_pct": -1480.29
+          },
+          "cashflow": {
+            "operating_cashflow": -141210211.83,
+            "free_cashflow": -372639770.68
+          },
+          "balance": {
+            "cash": 595618481.1,
+            "accounts_receivable": 963410063.43,
+            "inventory": 1210181650.22,
+            "total_assets": 4508017198.14,
+            "total_liabilities": 1977471106.44,
+            "interest_debt": 229416050.3,
+            "net_debt": -366202430.8
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 39.19,
+            "pe_ttm": 168.5718,
+            "pb": 8.8315,
+            "ps_ttm": 10.1898,
+            "turnover_rate_pct": 6.0982,
+            "total_mv_10k": 2208611.235
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "中恒电气",
+          "mapping": "中恒电气（002364.SZ）—电源与数据中心配电"
+        },
+        {
+          "symbol": "002922.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260821",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 2683797265.14,
+            "net_income_attr": 111787202.78,
+            "operating_profit": 125825487.72,
+            "rd_expense": 102257843.42
+          },
+          "quality": {
+            "gross_margin_pct": 19.75,
+            "net_margin_pct": 4.31,
+            "roe_pct": 2.96,
+            "roic_pct": 1.97,
+            "revenue_yoy_pct": 8.79,
+            "net_income_yoy_pct": 6.91,
+            "ocf_yoy_pct": -125.2
+          },
+          "cashflow": {
+            "operating_cashflow": -22775185.26,
+            "free_cashflow": -537122963.7169
+          },
+          "balance": {
+            "cash": 1759615716.6,
+            "accounts_receivable": 1499142693.87,
+            "inventory": 998872194.32,
+            "total_assets": 10212545125.18,
+            "total_liabilities": 6410385413.74,
+            "interest_debt": 3816962963.57,
+            "net_debt": 2057347246.97
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 25.41,
+            "pe_ttm": 51.7561,
+            "pb": 2.8574,
+            "ps_ttm": 1.9592,
+            "turnover_rate_pct": 6.5948,
+            "total_mv_10k": 1073783.1489
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "伊戈尔",
+          "mapping": "伊戈尔（002922.SZ）—变压器/电源磁性器件"
+        },
+        {
+          "symbol": "002335.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260427",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1430062407.61,
+            "net_income_attr": 78008800.49,
+            "operating_profit": 71298431.04,
+            "rd_expense": 108967348.23
+          },
+          "quality": {
+            "gross_margin_pct": 27.85,
+            "net_margin_pct": 5.69,
+            "roe_pct": 1.21,
+            "roic_pct": 0.89,
+            "revenue_yoy_pct": 17.57,
+            "net_income_yoy_pct": 13.15,
+            "ocf_yoy_pct": 160.8
+          },
+          "cashflow": {
+            "operating_cashflow": 120768361.93,
+            "free_cashflow": 36349288.06
+          },
+          "balance": {
+            "cash": 669306133.98,
+            "accounts_receivable": 3108631789.22,
+            "inventory": 699924130.51,
+            "total_assets": 13732684820.92,
+            "total_liabilities": 7101298696.78,
+            "interest_debt": 1357385632.53,
+            "net_debt": 688079498.55
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 30.3,
+            "pe_ttm": 53.5265,
+            "pb": 3.5229,
+            "ps_ttm": 2.7297,
+            "turnover_rate_pct": 1.8387,
+            "total_mv_10k": 2285863.512
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "科华数据",
+          "mapping": "科华数据（002335.SZ）—UPS/数据中心"
+        },
+        {
+          "symbol": "000400.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260820",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 6525206200.08,
+            "net_income_attr": 415877522.54,
+            "operating_profit": 519454748.0,
+            "rd_expense": 277641799.64
+          },
+          "quality": {
+            "gross_margin_pct": 19.9,
+            "net_margin_pct": 7.36,
+            "roe_pct": 3.39,
+            "roic_pct": 3.22,
+            "revenue_yoy_pct": 1.21,
+            "net_income_yoy_pct": -34.4,
+            "ocf_yoy_pct": -127.77
+          },
+          "cashflow": {
+            "operating_cashflow": -310853599.72,
+            "free_cashflow": -469878540.8044
+          },
+          "balance": {
+            "cash": 6848506188.07,
+            "accounts_receivable": 7301561628.15,
+            "inventory": 4329095356.69,
+            "total_assets": 26479765075.58,
+            "total_liabilities": 12820706416.17,
+            "interest_debt": 445409830.5,
+            "net_debt": -6403096357.57
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 21.67,
+            "pe_ttm": 23.2556,
+            "pb": 1.7855,
+            "ps_ttm": 1.4647,
+            "turnover_rate_pct": 1.2853,
+            "total_mv_10k": 2207354.3074
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "许继电气",
+          "mapping": "许继电气（000400.SZ）—电力设备"
+        }
+      ]
+    },
+    {
+      "id": "cooling-and-thermal-management",
+      "name": "液冷与热管理",
+      "initial": {
+        "revenueModel": "冷板、CDU、管路、温控设备、机柜液冷和运维",
+        "majorCosts": "换热器/泵阀、制造、现场改造、售后和验证",
+        "capexIntensity": "中",
+        "cashFlowRisk": "项目验收和现场服务可能造成应收压力",
+        "pricingPower": "可靠性、PUE、客户认证和改造难度决定议价权",
+        "profitProfile": "液冷核心部件和可靠性方案有价值，普通工程集成利润较薄",
+        "valuePoint": "液冷的价值不在“冷”本身，而在高功率机柜持续运行的可靠性、能效和可维护性。"
+      },
+      "companies": [
+        {
+          "symbol": "002837.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260421",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1175329313.61,
+            "net_income_attr": 8657602.27,
+            "operating_profit": 6334488.35,
+            "rd_expense": 103436336.53
+          },
+          "quality": {
+            "gross_margin_pct": 24.29,
+            "net_margin_pct": 1.2,
+            "roe_pct": 0.25,
+            "roic_pct": 0.19,
+            "revenue_yoy_pct": 26.03,
+            "net_income_yoy_pct": -81.97,
+            "ocf_yoy_pct": -126.25
+          },
+          "cashflow": {
+            "operating_cashflow": -386363968.71,
+            "free_cashflow": -520672950.67
+          },
+          "balance": {
+            "cash": 917139183.43,
+            "accounts_receivable": 3060887771.01,
+            "inventory": 1181981088.85,
+            "total_assets": 7761763222.65,
+            "total_liabilities": 4277389028.88,
+            "interest_debt": 1615274513.1,
+            "net_debt": 698135329.67
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 54.12,
+            "pe_ttm": 142.9201,
+            "pb": 19.9226,
+            "ps_ttm": 10.9291,
+            "turnover_rate_pct": 3.2598,
+            "total_mv_10k": 6896780.0352
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "英维克",
+          "mapping": "英维克（002837.SZ）—数据中心热管理"
+        },
+        {
+          "symbol": "300499.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260822",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 493606783.96,
+            "net_income_attr": 25732649.8,
+            "operating_profit": 30564002.97,
+            "rd_expense": 22626168.8
+          },
+          "quality": {
+            "gross_margin_pct": 26.12,
+            "net_margin_pct": 5.68,
+            "roe_pct": 1.86,
+            "roic_pct": 1.97,
+            "revenue_yoy_pct": 18.16,
+            "net_income_yoy_pct": 12.22,
+            "ocf_yoy_pct": -134.49
+          },
+          "cashflow": {
+            "operating_cashflow": -26364561.81,
+            "free_cashflow": 29640935.8256
+          },
+          "balance": {
+            "cash": 289157326.41,
+            "accounts_receivable": 500137112.97,
+            "inventory": 667414584.3,
+            "total_assets": 2387326421.58,
+            "total_liabilities": 985079948.8,
+            "interest_debt": 13119034.81,
+            "net_debt": -276038291.6
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 28.26,
+            "pe_ttm": 282.5249,
+            "pb": 6.1953,
+            "ps_ttm": 8.7748,
+            "turnover_rate_pct": 6.0724,
+            "total_mv_10k": 862632.5436
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "高澜股份",
+          "mapping": "高澜股份（300499.SZ）—液冷系统"
+        },
+        {
+          "symbol": "300990.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260424",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 698648608.86,
+            "net_income_attr": 59774437.93,
+            "operating_profit": 61825714.41,
+            "rd_expense": 30265535.36
+          },
+          "quality": {
+            "gross_margin_pct": 22.79,
+            "net_margin_pct": 8.56,
+            "roe_pct": 2.83,
+            "roic_pct": 2.71,
+            "revenue_yoy_pct": 21.8,
+            "net_income_yoy_pct": -3.44,
+            "ocf_yoy_pct": 307.08
+          },
+          "cashflow": {
+            "operating_cashflow": 143393446.04,
+            "free_cashflow": 90176937.4626
+          },
+          "balance": {
+            "cash": 572916773.29,
+            "accounts_receivable": 867161404.94,
+            "inventory": 318712139.96,
+            "total_assets": 2735855862.52,
+            "total_liabilities": 593542379.19,
+            "interest_debt": 10723581.45,
+            "net_debt": -562193191.84
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 73.13,
+            "pe_ttm": 49.9303,
+            "pb": 5.8446,
+            "ps_ttm": 4.1841,
+            "turnover_rate_pct": 9.8064,
+            "total_mv_10k": 1252106.9958
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "同飞股份",
+          "mapping": "同飞股份（300990.SZ）—温控设备"
+        },
+        {
+          "symbol": "301018.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260429",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 617158503.38,
+            "net_income_attr": 28305819.43,
+            "operating_profit": 30251486.7,
+            "rd_expense": 46562222.46
+          },
+          "quality": {
+            "gross_margin_pct": 20.6,
+            "net_margin_pct": 5.05,
+            "roe_pct": 1.03,
+            "roic_pct": 0.87,
+            "revenue_yoy_pct": -1.8,
+            "net_income_yoy_pct": -47.71,
+            "ocf_yoy_pct": -117.05
+          },
+          "cashflow": {
+            "operating_cashflow": -193352472.74,
+            "free_cashflow": -407125034.1942
+          },
+          "balance": {
+            "cash": 894190114.04,
+            "accounts_receivable": 2174574889.03,
+            "inventory": 1292142323.62,
+            "total_assets": 6991955525.36,
+            "total_liabilities": 4207627450.54,
+            "interest_debt": 1733750412.35,
+            "net_debt": 839560298.31
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 89.6,
+            "pe_ttm": 175.6271,
+            "pb": 12.1519,
+            "ps_ttm": 7.9887,
+            "turnover_rate_pct": 5.1442,
+            "total_mv_10k": 3353560.448
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "申菱环境",
+          "mapping": "申菱环境（301018.SZ）—精密温控"
+        },
+        {
+          "symbol": "603912.SH",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260430",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 143075831.36,
+            "net_income_attr": -20252831.42,
+            "operating_profit": -25609908.83,
+            "rd_expense": 13485318.7
+          },
+          "quality": {
+            "gross_margin_pct": 9.97,
+            "net_margin_pct": -14.18,
+            "roe_pct": -1.14,
+            "roic_pct": -0.72,
+            "revenue_yoy_pct": 5.35,
+            "net_income_yoy_pct": -57.83,
+            "ocf_yoy_pct": 68.0
+          },
+          "cashflow": {
+            "operating_cashflow": -40052269.15,
+            "free_cashflow": -110154758.57
+          },
+          "balance": {
+            "cash": 1263498873.87,
+            "accounts_receivable": 355029621.12,
+            "inventory": 434858648.97,
+            "total_assets": 3880621696.07,
+            "total_liabilities": 2112692758.15,
+            "interest_debt": 1398340810.54,
+            "net_debt": 134841936.67
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 8.48,
+            "pe_ttm": null,
+            "pb": 2.6727,
+            "ps_ttm": 6.1662,
+            "turnover_rate_pct": 4.5157,
+            "total_mv_10k": 459892.7024
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "佳力图",
+          "mapping": "佳力图（603912.SH）—机房温控"
+        }
+      ]
+    },
+    {
+      "id": "data-center-infrastructure",
+      "name": "数据中心与算力服务",
+      "initial": {
+        "revenueModel": "机柜租赁、托管、算力服务、网络和运维",
+        "majorCosts": "土地/机房、能源、折旧、设备、运维和融资",
+        "capexIntensity": "很高",
+        "cashFlowRisk": "资本开支、上架率、客户集中和电价是核心风险",
+        "pricingPower": "电力指标、机柜功率、网络和客户合同决定议价权",
+        "profitProfile": "收入大但重资产、折旧和能源成本高；高上架率与长期合同才可能改善回报",
+        "valuePoint": "数据中心的核心资产不是机柜数量，而是可持续获得电力、稳定上架并按合同回款。"
+      },
+      "companies": [
+        {
+          "symbol": "300442.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260410",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1839577854.19,
+            "net_income_attr": 582229780.78,
+            "operating_profit": 617767345.14,
+            "rd_expense": 48273830.83
+          },
+          "quality": {
+            "gross_margin_pct": 46.8,
+            "net_margin_pct": 31.84,
+            "roe_pct": 4.17,
+            "roic_pct": 1.96,
+            "revenue_yoy_pct": 53.55,
+            "net_income_yoy_pct": 35.35,
+            "ocf_yoy_pct": 51.45
+          },
+          "cashflow": {
+            "operating_cashflow": 1315853368.89,
+            "free_cashflow": -1185835645.164
+          },
+          "balance": {
+            "cash": 5968322233.48,
+            "accounts_receivable": 1762832839.19,
+            "inventory": 38724608.19,
+            "total_assets": 47095513637.37,
+            "total_liabilities": 30598261249.77,
+            "interest_debt": 18232225863.11,
+            "net_debt": 12263903629.63
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 64.38,
+            "pe_ttm": 20.3096,
+            "pb": 7.3951,
+            "ps_ttm": 16.7294,
+            "turnover_rate_pct": 0.9657,
+            "total_mv_10k": 10565028.396
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "润泽科技",
+          "mapping": "润泽科技（300442.SZ）—算力基础设施"
+        },
+        {
+          "symbol": "300383.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260429",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1633283833.53,
+            "net_income_attr": 22465210.56,
+            "operating_profit": 35712776.31,
+            "rd_expense": 66366648.6
+          },
+          "quality": {
+            "gross_margin_pct": 14.09,
+            "net_margin_pct": 1.21,
+            "roe_pct": 0.19,
+            "roic_pct": 0.23,
+            "revenue_yoy_pct": -10.83,
+            "net_income_yoy_pct": -67.52,
+            "ocf_yoy_pct": -35.94
+          },
+          "cashflow": {
+            "operating_cashflow": 292945919.21,
+            "free_cashflow": -454816690.5901
+          },
+          "balance": {
+            "cash": 1795093120.84,
+            "accounts_receivable": 1981409518.11,
+            "inventory": 14835379.37,
+            "total_assets": 20501723927.64,
+            "total_liabilities": 8097546997.57,
+            "interest_debt": 6034240210.53,
+            "net_debt": 4239147089.69
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 12.35,
+            "pe_ttm": null,
+            "pb": 1.8708,
+            "ps_ttm": 3.1808,
+            "turnover_rate_pct": 1.877,
+            "total_mv_10k": 2220027.2315
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "光环新网",
+          "mapping": "光环新网（300383.SZ）—IDC"
+        },
+        {
+          "symbol": "603881.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260822",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 781608094.59,
+            "net_income_attr": 85883134.69,
+            "operating_profit": 121696768.41,
+            "rd_expense": 49433344.7
+          },
+          "quality": {
+            "gross_margin_pct": 29.29,
+            "net_margin_pct": 10.98,
+            "roe_pct": 2.56,
+            "roic_pct": 1.77,
+            "revenue_yoy_pct": -3.57,
+            "net_income_yoy_pct": 1.09,
+            "ocf_yoy_pct": 7.27
+          },
+          "cashflow": {
+            "operating_cashflow": 436346761.87,
+            "free_cashflow": -835019423.7596
+          },
+          "balance": {
+            "cash": 1118967494.27,
+            "accounts_receivable": 149898349.62,
+            "inventory": 231349375.19,
+            "total_assets": 7349546213.82,
+            "total_liabilities": 3964429918.72,
+            "interest_debt": 3392582914.11,
+            "net_debt": 2273615419.84
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 27.33,
+            "pe_ttm": 168.9369,
+            "pb": 7.0014,
+            "ps_ttm": 13.8103,
+            "turnover_rate_pct": 10.229,
+            "total_mv_10k": 2355989.2092
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "数据港",
+          "mapping": "数据港（603881.SH）—数据中心"
+        },
+        {
+          "symbol": "300738.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260801",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1468814395.33,
+            "net_income_attr": 196571835.59,
+            "operating_profit": 263047544.3,
+            "rd_expense": 38701236.04
+          },
+          "quality": {
+            "gross_margin_pct": 34.42,
+            "net_margin_pct": 14.75,
+            "roe_pct": 5.23,
+            "roic_pct": 2.98,
+            "revenue_yoy_pct": 27.95,
+            "net_income_yoy_pct": 123.64,
+            "ocf_yoy_pct": 88.9
+          },
+          "cashflow": {
+            "operating_cashflow": 851921138.54,
+            "free_cashflow": -2737836439.2452
+          },
+          "balance": {
+            "cash": 554969281.61,
+            "accounts_receivable": 567412430.55,
+            "inventory": 465498840.32,
+            "total_assets": 16418062276.77,
+            "total_liabilities": 12631238596.9,
+            "interest_debt": 9094524736.39,
+            "net_debt": 8539555454.78
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 20.83,
+            "pe_ttm": 85.1473,
+            "pb": 5.5952,
+            "ps_ttm": 7.2204,
+            "turnover_rate_pct": 3.5784,
+            "total_mv_10k": 2052180.0966
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "奥飞数据",
+          "mapping": "奥飞数据（300738.SZ）—IDC/算力服务"
+        }
+      ]
+    },
+    {
+      "id": "data-and-models",
+      "name": "数据工程与模型基础设施",
+      "initial": {
+        "revenueModel": "数据采集、标注、治理、数据库、模型训练与数据服务",
+        "majorCosts": "数据获取、标注、人力、算力、销售和合规",
+        "capexIntensity": "低到中",
+        "cashFlowRisk": "项目制收入、应收和持续数据成本需关注",
+        "pricingPower": "数据质量、合规、专有语料和客户嵌入程度决定议价权",
+        "profitProfile": "软件/数据服务毛利潜力较高，但数据成本、版权和客户付费决定兑现",
+        "valuePoint": "数据的价值不在数量，而在合规、专有、可训练和能持续改善模型效果。"
+      },
+      "companies": [
+        {
+          "symbol": "688787.SH",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260424",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 96779297.0,
+            "net_income_attr": 8403004.2,
+            "operating_profit": 10036723.27,
+            "rd_expense": 14693187.35
+          },
+          "quality": {
+            "gross_margin_pct": 56.43,
+            "net_margin_pct": 9.37,
+            "roe_pct": 1.13,
+            "roic_pct": 1.17,
+            "revenue_yoy_pct": 38.63,
+            "net_income_yoy_pct": 2161.14,
+            "ocf_yoy_pct": -44.64
+          },
+          "cashflow": {
+            "operating_cashflow": -23106568.83,
+            "free_cashflow": -53531726.3516
+          },
+          "balance": {
+            "cash": 81111297.92,
+            "accounts_receivable": 202959776.58,
+            "inventory": 25112978.19,
+            "total_assets": 874140567.35,
+            "total_liabilities": 121536908.96,
+            "interest_debt": 12972580.5,
+            "net_debt": -68138717.42
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 104.37,
+            "pe_ttm": 284.2522,
+            "pb": 8.3859,
+            "ps_ttm": 15.5868,
+            "turnover_rate_pct": 2.5717,
+            "total_mv_10k": 629614.1124
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "海天瑞声",
+          "mapping": "海天瑞声（688787.SH）—AI训练数据"
+        },
+        {
+          "symbol": "002230.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260821",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 11622772994.87,
+            "net_income_attr": -203840829.1,
+            "operating_profit": -406727000.59,
+            "rd_expense": 2534547429.46
+          },
+          "quality": {
+            "gross_margin_pct": 39.75,
+            "net_margin_pct": -1.66,
+            "roe_pct": -0.98,
+            "roic_pct": -1.03,
+            "revenue_yoy_pct": 6.52,
+            "net_income_yoy_pct": 14.69,
+            "ocf_yoy_pct": -22.42
+          },
+          "cashflow": {
+            "operating_cashflow": -945025869.53,
+            "free_cashflow": -4468233320.47
+          },
+          "balance": {
+            "cash": 3863789293.16,
+            "accounts_receivable": 17246219999.87,
+            "inventory": 3936717679.92,
+            "total_assets": 51202188574.17,
+            "total_liabilities": 27326152619.35,
+            "interest_debt": 9770357148.08,
+            "net_debt": 5906567854.92
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 39.19,
+            "pe_ttm": 107.65,
+            "pb": 4.1217,
+            "ps_ttm": 3.3841,
+            "turnover_rate_pct": 1.6561,
+            "total_mv_10k": 9413750.8969
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "科大讯飞",
+          "mapping": "科大讯飞（002230.SZ）—模型与行业应用"
+        },
+        {
+          "symbol": "300229.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260423",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 65414603.48,
+            "net_income_attr": -77406889.3,
+            "operating_profit": -79531050.88,
+            "rd_expense": 30188275.03
+          },
+          "quality": {
+            "gross_margin_pct": 61.01,
+            "net_margin_pct": -119.59,
+            "roe_pct": -2.03,
+            "roic_pct": -2.1,
+            "revenue_yoy_pct": -47.65,
+            "net_income_yoy_pct": -237.58,
+            "ocf_yoy_pct": -243.94
+          },
+          "cashflow": {
+            "operating_cashflow": -60683533.45,
+            "free_cashflow": -128743878.54
+          },
+          "balance": {
+            "cash": 762091227.24,
+            "accounts_receivable": 231026168.53,
+            "inventory": 35334514.18,
+            "total_assets": 4079236453.45,
+            "total_liabilities": 309476967.17,
+            "interest_debt": 11958649.3,
+            "net_debt": -750132577.94
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 13.47,
+            "pe_ttm": null,
+            "pb": 3.1225,
+            "ps_ttm": 26.0467,
+            "turnover_rate_pct": 1.6857,
+            "total_mv_10k": 1176767.487
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "拓尔思",
+          "mapping": "拓尔思（300229.SZ）—数据与知识服务"
+        },
+        {
+          "symbol": "301236.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260425",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 8117452606.11,
+            "net_income_attr": -349890694.42,
+            "operating_profit": -404936193.42,
+            "rd_expense": 217865225.77
+          },
+          "quality": {
+            "gross_margin_pct": 7.78,
+            "net_margin_pct": -4.57,
+            "roe_pct": -2.95,
+            "roic_pct": -1.79,
+            "revenue_yoy_pct": 15.79,
+            "net_income_yoy_pct": -76.99,
+            "ocf_yoy_pct": -87.37
+          },
+          "cashflow": {
+            "operating_cashflow": -3442133896.54,
+            "free_cashflow": -3750219309.06
+          },
+          "balance": {
+            "cash": 7084632588.34,
+            "accounts_receivable": 6187818810.09,
+            "inventory": 9806613859.21,
+            "total_assets": 32702827368.5,
+            "total_liabilities": 19097692051.39,
+            "interest_debt": 9037529683.2,
+            "net_debt": 1952897094.86
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 37.18,
+            "pe_ttm": 713.9244,
+            "pb": 2.8834,
+            "ps_ttm": 1.0633,
+            "turnover_rate_pct": 1.5934,
+            "total_mv_10k": 3848833.8174
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "软通动力",
+          "mapping": "软通动力（301236.SZ）—AI服务与交付"
+        }
+      ]
+    },
+    {
+      "id": "models-inference-and-applications",
+      "name": "模型、推理、数据安全与行业应用",
+      "initial": {
+        "revenueModel": "模型订阅、API、私有化部署、行业解决方案和应用软件",
+        "majorCosts": "研发、算力、销售、部署、合规和客户成功",
+        "capexIntensity": "低到中",
+        "cashFlowRisk": "前期研发和项目交付可能先消耗现金",
+        "pricingPower": "模型效果、数据壁垒、工作流嵌入和切换成本决定议价权",
+        "profitProfile": "软件毛利潜力高，但商业化和推理成本不确定",
+        "valuePoint": "真正的利润来自模型嵌入客户流程后形成的持续付费，而不是一次性演示或调用量。"
+      },
+      "companies": [
+        {
+          "symbol": "002230.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260821",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 11622772994.87,
+            "net_income_attr": -203840829.1,
+            "operating_profit": -406727000.59,
+            "rd_expense": 2534547429.46
+          },
+          "quality": {
+            "gross_margin_pct": 39.75,
+            "net_margin_pct": -1.66,
+            "roe_pct": -0.98,
+            "roic_pct": -1.03,
+            "revenue_yoy_pct": 6.52,
+            "net_income_yoy_pct": 14.69,
+            "ocf_yoy_pct": -22.42
+          },
+          "cashflow": {
+            "operating_cashflow": -945025869.53,
+            "free_cashflow": -4468233320.47
+          },
+          "balance": {
+            "cash": 3863789293.16,
+            "accounts_receivable": 17246219999.87,
+            "inventory": 3936717679.92,
+            "total_assets": 51202188574.17,
+            "total_liabilities": 27326152619.35,
+            "interest_debt": 9770357148.08,
+            "net_debt": 5906567854.92
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 39.19,
+            "pe_ttm": 107.65,
+            "pb": 4.1217,
+            "ps_ttm": 3.3841,
+            "turnover_rate_pct": 1.6561,
+            "total_mv_10k": 9413750.8969
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "科大讯飞",
+          "mapping": "科大讯飞（002230.SZ）—模型与行业应用"
+        },
+        {
+          "symbol": "300418.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260820",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 5359200218.63,
+            "net_income_attr": 1088006458.02,
+            "operating_profit": 783186480.86,
+            "rd_expense": 789276209.45
+          },
+          "quality": {
+            "gross_margin_pct": 65.58,
+            "net_margin_pct": 12.6,
+            "roe_pct": 7.78,
+            "roic_pct": 3.96,
+            "revenue_yoy_pct": 43.55,
+            "net_income_yoy_pct": 227.17,
+            "ocf_yoy_pct": 16.64
+          },
+          "cashflow": {
+            "operating_cashflow": -467192371.76,
+            "free_cashflow": 2130032437.5459
+          },
+          "balance": {
+            "cash": 2720244540.09,
+            "accounts_receivable": 1228170286.86,
+            "inventory": 25835797.4,
+            "total_assets": 21915605374.28,
+            "total_liabilities": 5178600686.54,
+            "interest_debt": 1393518588.36,
+            "net_debt": -1326725951.73
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 43.82,
+            "pe_ttm": 160.5085,
+            "pb": 3.8045,
+            "ps_ttm": 5.7319,
+            "turnover_rate_pct": 6.2018,
+            "total_mv_10k": 5631022.0554
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "昆仑万维",
+          "mapping": "昆仑万维（300418.SZ）—模型/应用生态"
+        },
+        {
+          "symbol": "688111.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260820",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 3313262599.2,
+            "net_income_attr": 2517594330.93,
+            "operating_profit": 2744613866.21,
+            "rd_expense": 1151832387.74
+          },
+          "quality": {
+            "gross_margin_pct": 84.9,
+            "net_margin_pct": 75.99,
+            "roe_pct": 18.03,
+            "roic_pct": 17.94,
+            "revenue_yoy_pct": 24.69,
+            "net_income_yoy_pct": 236.94,
+            "ocf_yoy_pct": -12.96
+          },
+          "cashflow": {
+            "operating_cashflow": 642693273.51,
+            "free_cashflow": 1015059589.1372
+          },
+          "balance": {
+            "cash": 1387776250.6,
+            "accounts_receivable": 755088306.53,
+            "inventory": 395980.18,
+            "total_assets": 20879674684.69,
+            "total_liabilities": 5802932070.17,
+            "interest_debt": 64391524.63,
+            "net_debt": -1323384725.97
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 240.5,
+            "pe_ttm": 30.9397,
+            "pb": 7.4018,
+            "ps_ttm": 16.9472,
+            "turnover_rate_pct": 1.098,
+            "total_mv_10k": 11159522.27
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "金山办公",
+          "mapping": "金山办公（688111.SH）—AI办公应用"
+        },
+        {
+          "symbol": "300229.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260423",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 65414603.48,
+            "net_income_attr": -77406889.3,
+            "operating_profit": -79531050.88,
+            "rd_expense": 30188275.03
+          },
+          "quality": {
+            "gross_margin_pct": 61.01,
+            "net_margin_pct": -119.59,
+            "roe_pct": -2.03,
+            "roic_pct": -2.1,
+            "revenue_yoy_pct": -47.65,
+            "net_income_yoy_pct": -237.58,
+            "ocf_yoy_pct": -243.94
+          },
+          "cashflow": {
+            "operating_cashflow": -60683533.45,
+            "free_cashflow": -128743878.54
+          },
+          "balance": {
+            "cash": 762091227.24,
+            "accounts_receivable": 231026168.53,
+            "inventory": 35334514.18,
+            "total_assets": 4079236453.45,
+            "total_liabilities": 309476967.17,
+            "interest_debt": 11958649.3,
+            "net_debt": -750132577.94
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 13.47,
+            "pe_ttm": null,
+            "pb": 3.1225,
+            "ps_ttm": 26.0467,
+            "turnover_rate_pct": 1.6857,
+            "total_mv_10k": 1176767.487
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "拓尔思",
+          "mapping": "拓尔思（300229.SZ）—行业知识与数据"
+        },
+        {
+          "symbol": "601360.SH",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260820",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 4172122000.0,
+            "net_income_attr": 215688000.0,
+            "operating_profit": 299738000.0,
+            "rd_expense": 1577590000.0
+          },
+          "quality": {
+            "gross_margin_pct": 69.66,
+            "net_margin_pct": 5.01,
+            "roe_pct": 0.75,
+            "roic_pct": 0.07,
+            "revenue_yoy_pct": 9.01,
+            "net_income_yoy_pct": 176.54,
+            "ocf_yoy_pct": 31.77
+          },
+          "cashflow": {
+            "operating_cashflow": -57110000.0,
+            "free_cashflow": -2188434757.2018
+          },
+          "balance": {
+            "cash": 18761557000.0,
+            "accounts_receivable": 1312380000.0,
+            "inventory": 467881000.0,
+            "total_assets": 36501054000.0,
+            "total_liabilities": 8326864000.0,
+            "interest_debt": 1535369000.0,
+            "net_debt": -17226188000.0
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 8.76,
+            "pe_ttm": 80.6279,
+            "pb": 2.1705,
+            "ps_ttm": 6.7846,
+            "turnover_rate_pct": 0.791,
+            "total_mv_10k": 6131612.7204
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "三六零",
+          "mapping": "三六零（601360.SH）—安全与AI应用"
+        }
+      ]
+    },
+    {
+      "id": "ops-and-security",
+      "name": "观测、运维与AI安全",
+      "initial": {
+        "revenueModel": "安全产品、观测平台、评测、审计、运维和服务订阅",
+        "majorCosts": "研发、销售、交付、云资源和合规认证",
+        "capexIntensity": "低",
+        "cashFlowRisk": "销售周期长，回款与续费率很关键",
+        "pricingPower": "合规刚需、平台粘性和替换成本决定议价权",
+        "profitProfile": "订阅化安全和观测软件价值较高，纯项目服务利润较薄",
+        "valuePoint": "AI从试验进入生产后，安全、权限、审计和成本可观测性会从可选功能变成运营必需。"
+      },
+      "companies": [
+        {
+          "symbol": "300454.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260822",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 3997867070.09,
+            "net_income_attr": 231229611.24,
+            "operating_profit": 216220013.68,
+            "rd_expense": 1027291234.23
+          },
+          "quality": {
+            "gross_margin_pct": 60.89,
+            "net_margin_pct": 5.78,
+            "roe_pct": 2.23,
+            "roic_pct": 0.97,
+            "revenue_yoy_pct": 32.85,
+            "net_income_yoy_pct": 201.58,
+            "ocf_yoy_pct": -102.36
+          },
+          "cashflow": {
+            "operating_cashflow": -475808448.04,
+            "free_cashflow": 1403269845.82
+          },
+          "balance": {
+            "cash": 621361857.85,
+            "accounts_receivable": 471043878.87,
+            "inventory": 886586689.27,
+            "total_assets": 15835688264.24,
+            "total_liabilities": 4761212925.22,
+            "interest_debt": 71704642.58,
+            "net_debt": -549657215.27
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 120.6,
+            "pe_ttm": 90.0584,
+            "pb": 4.7885,
+            "ps_ttm": 6.1902,
+            "turnover_rate_pct": 5.157,
+            "total_mv_10k": 5204601.54
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "深信服",
+          "mapping": "深信服（300454.SZ）—云与安全"
+        },
+        {
+          "symbol": "688561.SH",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260430",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 716556472.14,
+            "net_income_attr": -388107947.81,
+            "operating_profit": -401025168.12,
+            "rd_expense": 234440582.43
+          },
+          "quality": {
+            "gross_margin_pct": 53.99,
+            "net_margin_pct": -54.36,
+            "roe_pct": -5.35,
+            "roic_pct": -3.85,
+            "revenue_yoy_pct": 4.44,
+            "net_income_yoy_pct": 7.08,
+            "ocf_yoy_pct": 35.22
+          },
+          "cashflow": {
+            "operating_cashflow": -494756510.51,
+            "free_cashflow": -561668686.92
+          },
+          "balance": {
+            "cash": 1597109433.99,
+            "accounts_receivable": 4893813381.36,
+            "inventory": 860221094.83,
+            "total_assets": 13411749181.3,
+            "total_liabilities": 6326845993.6,
+            "interest_debt": 3008318374.48,
+            "net_debt": 1411208940.49
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 25.45,
+            "pe_ttm": null,
+            "pb": 2.4591,
+            "ps_ttm": 3.9265,
+            "turnover_rate_pct": 0.5039,
+            "total_mv_10k": 1736333.1215
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "奇安信",
+          "mapping": "奇安信（688561.SH）—网络安全"
+        },
+        {
+          "symbol": "688023.SH",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260428",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 324933826.2,
+            "net_income_attr": -114109417.2,
+            "operating_profit": -112485957.82,
+            "rd_expense": 102205995.81
+          },
+          "quality": {
+            "gross_margin_pct": 55.65,
+            "net_margin_pct": -36.11,
+            "roe_pct": -4.96,
+            "roic_pct": -3.58,
+            "revenue_yoy_pct": 4.44,
+            "net_income_yoy_pct": -2.4,
+            "ocf_yoy_pct": -22.21
+          },
+          "cashflow": {
+            "operating_cashflow": -337633078.27,
+            "free_cashflow": -414855131.92
+          },
+          "balance": {
+            "cash": 1197619467.23,
+            "accounts_receivable": 517024106.49,
+            "inventory": 320047687.24,
+            "total_assets": 4104995295.53,
+            "total_liabilities": 1858615681.72,
+            "interest_debt": 852576426.42,
+            "net_debt": -345043040.81
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 38.61,
+            "pe_ttm": null,
+            "pb": 1.7696,
+            "ps_ttm": 1.8219,
+            "turnover_rate_pct": 1.392,
+            "total_mv_10k": 394498.0611
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "安恒信息",
+          "mapping": "安恒信息（688023.SH）—数据安全"
+        },
+        {
+          "symbol": "002439.SZ",
+          "latest_filing": {
+            "end_date": "20260630",
+            "ann_date": "20260822",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 1234618155.18,
+            "net_income_attr": 30785887.58,
+            "operating_profit": 18721631.94,
+            "rd_expense": 271098508.8
+          },
+          "quality": {
+            "gross_margin_pct": 56.19,
+            "net_margin_pct": 2.49,
+            "roe_pct": 0.28,
+            "roic_pct": 0.15,
+            "revenue_yoy_pct": 9.01,
+            "net_income_yoy_pct": 132.98,
+            "ocf_yoy_pct": 142.95
+          },
+          "cashflow": {
+            "operating_cashflow": 69579037.95,
+            "free_cashflow": -893170554.85
+          },
+          "balance": {
+            "cash": 717092762.71,
+            "accounts_receivable": 4090540198.62,
+            "inventory": 380200191.71,
+            "total_assets": 12787742267.85,
+            "total_liabilities": 1916688908.97,
+            "interest_debt": 32159934.65,
+            "net_debt": -684932828.06
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 13.32,
+            "pe_ttm": null,
+            "pb": 1.4816,
+            "ps_ttm": 6.8252,
+            "turnover_rate_pct": 1.5999,
+            "total_mv_10k": 1613585.0664
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "启明星辰",
+          "mapping": "启明星辰（002439.SZ）—安全服务"
+        },
+        {
+          "symbol": "300369.SZ",
+          "latest_filing": {
+            "end_date": "20260331",
+            "ann_date": "20260429",
+            "report_type": "1"
+          },
+          "income": {
+            "revenue": 364454279.09,
+            "net_income_attr": -98183143.43,
+            "operating_profit": -91492298.83,
+            "rd_expense": 124669722.4
+          },
+          "quality": {
+            "gross_margin_pct": 44.6,
+            "net_margin_pct": -26.98,
+            "roe_pct": -3.79,
+            "roic_pct": -2.97,
+            "revenue_yoy_pct": 0.25,
+            "net_income_yoy_pct": 3.62,
+            "ocf_yoy_pct": -85.72
+          },
+          "cashflow": {
+            "operating_cashflow": 7390520.46,
+            "free_cashflow": -133868139.83
+          },
+          "balance": {
+            "cash": 328576310.32,
+            "accounts_receivable": 1198393875.38,
+            "inventory": 107125517.35,
+            "total_assets": 4544392005.61,
+            "total_liabilities": 1982727871.01,
+            "interest_debt": 533015579.03,
+            "net_debt": 204439268.71
+          },
+          "market": {
+            "trade_date": "20260821",
+            "close": 6.92,
+            "pe_ttm": null,
+            "pb": 2.1895,
+            "ps_ttm": 2.2064,
+            "turnover_rate_pct": 3.9502,
+            "total_mv_10k": 560950.3548
+          },
+          "data_status": "verified_from_qdh_accepted_release",
+          "name": "绿盟科技",
+          "mapping": "绿盟科技（300369.SZ）—安全产品"
+        }
+      ]
+    }
+  ]
+}

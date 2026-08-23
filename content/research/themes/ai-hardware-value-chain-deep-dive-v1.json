@@ -1,0 +1,135 @@
+{
+  "id": "ai-hardware-value-chain-deep-dive-v1",
+  "themeId": "ai-technology",
+  "title": "AI硬件价值链细化版",
+  "version": "v1",
+  "asOf": "2026-08-22",
+  "retrievedAt": "2026-08-22T20:30:00+08:00",
+  "qualityStatus": "technology_research_not_trade_signal",
+  "thesis": "AI硬件的利润和瓶颈沿着计算、内存、封装、网络、光互联、供电、散热和数据中心系统迁移；研究重点不是概念数量，而是客户付费、技术量产、供给约束和利润兑现。",
+  "nvidiaFlow": [
+    {"stage": "架构/软件", "fact": "NVIDIA负责GPU、Grace CPU、NVLink、ConnectX/BlueField及CUDA生态。", "representatives": ["NVIDIA", "Synopsys", "Cadence", "Siemens EDA", "华大九天"]},
+    {"stage": "逻辑晶圆", "fact": "Blackwell公开资料对应TSMC 4NP；NVIDIA不自建先进逻辑晶圆厂。", "representatives": ["TSMC", "Samsung", "Intel Foundry"]},
+    {"stage": "HBM", "fact": "HBM由SK hynix、Samsung、Micron等存储厂商制造，具体型号分配不完全公开。", "representatives": ["SK hynix", "Samsung", "Micron", "澜起科技", "深科技"]},
+    {"stage": "先进封装", "fact": "GPU与HBM通过CoWoS等2.5D/3D工艺集成，TSMC是公开资料中的核心平台。", "representatives": ["TSMC", "ASE", "Amkor", "长电科技", "通富微电", "华天科技"]},
+    {"stage": "载板/测试", "fact": "ABF载板、晶圆/封装测试、可靠性和老化决定大封装的良率与交付。", "representatives": ["Ibiden", "Unimicron", "AT&S", "Advantest", "Teradyne", "深南电路", "兴森科技", "长川科技"]},
+    {"stage": "系统交付", "fact": "加速卡、服务器、整机柜、网络、电力和液冷共同组成可交付AI基础设施。", "representatives": ["Dell", "HPE", "Supermicro", "Quanta", "浪潮信息", "工业富联", "中科曙光"]}
+  ],
+  "modules": [
+    {
+      "id": "compute-packaging",
+      "name": "计算芯片、HBM与先进封装",
+      "currentRoute": "先进逻辑制程 + HBM3E + 2.5D CoWoS-S/L/R + ABF载板 + 高复杂度测试。",
+      "nextRoute": "HBM4/HBM4E、Chiplet、SoIC混合键合、背面供电、更大封装和玻璃基板。",
+      "bottleneck": "HBM供给、CoWoS产能、大封装翘曲与良率、测试复杂度。",
+      "global": ["NVIDIA", "TSMC", "SK hynix", "Samsung", "Micron", "Applied Materials", "Lam Research", "Advantest"],
+      "china": ["寒武纪", "海光信息", "澜起科技", "长电科技", "通富微电", "华天科技", "深南电路", "兴森科技", "华大九天"],
+      "investment": "确定性来自每代AI芯片都必须提高带宽和封装密度；弹性来自先进封装、测试、载板和材料设备的产能与良率改善。",
+      "risk": "资本开支和AI需求反转、HBM供给释放、技术路线替代、封装良率和估值透支。"
+    },
+    {
+      "id": "optical-interconnect",
+      "name": "光互联与光器件",
+      "currentRoute": "800G/1.6T可插拔光模块、PAM4、EML/DFB、DR/FR/LR、DAC/AEC/AOC。",
+      "nextRoute": "LPO/LRO、硅光引擎、200G/lane到400G/lane、CPO、Optical I/O、TFLN高速调制。",
+      "bottleneck": "高速光芯片、光引擎良率、封装耦合、功耗和客户系统认证。",
+      "global": ["Coherent", "Lumentum", "Intel", "Broadcom", "Marvell", "Credo", "Ayar Labs"],
+      "china": ["中际旭创", "新易盛", "天孚通信", "光迅科技", "源杰科技", "长光华芯", "光库科技", "天通股份", "仕佳光子", "兆龙互连"],
+      "investment": "短期确定性在800G/1.6T量产；中期弹性在LPO、硅光和CPO；长期期权在TFLN与Optical I/O。",
+      "risk": "可插拔降价、客户集中、CPO维护和良率、TFLN商业化慢、技术路线迭代。"
+    },
+    {
+      "id": "networking",
+      "name": "交换机、网卡与高速连接",
+      "currentRoute": "InfiniBand、以太网、Spectrum-X、400G/800G交换与高速铜缆/光模块。",
+      "nextRoute": "1.6T/3.2T端口、200G/lane和400G/lane SerDes、CXL、光Scale-up。",
+      "bottleneck": "交换芯片、SerDes、协议软件、端口密度、网络拓扑和集群调度。",
+      "global": ["NVIDIA", "Broadcom", "Marvell", "Arista", "Cisco", "Intel"],
+      "china": ["盛科通信", "紫光股份", "中兴通讯", "浪潮信息", "兆龙互连", "沃尔核材", "神宇"] ,
+      "investment": "AI竞争从单卡性能转向集群协同效率，网络价值量和网络软件粘性提升。",
+      "risk": "大客户自研ASIC、协议和标准变化、设备毛利率、光/铜路线替代。"
+    },
+    {
+      "id": "storage-memory",
+      "name": "存储、HBM与数据搬运",
+      "currentRoute": "HBM3E、DDR5 RDIMM、PCIe5企业级SSD、NVMe-oF和分布式存储。",
+      "nextRoute": "HBM4/HBM4E、CXL内存池化、PCIe6 SSD、计算存储与近数据处理。",
+      "bottleneck": "容量/带宽/时延/IOPS的协同，存储价格与库存周期。",
+      "global": ["SK hynix", "Samsung", "Micron", "Solidigm", "Intel"],
+      "china": ["江波龙", "兆易创新", "澜起科技", "德明利", "佰维存储", "深科技"],
+      "investment": "需求真实但周期性强；只有企业级、AI存储、主控/固件或接口技术形成差异，才具有超越存储涨价的长期价值。",
+      "risk": "产能释放和存储价格回落、库存减值、现金流恶化、产品结构不够高端。"
+    },
+    {
+      "id": "cooling",
+      "name": "散热、液冷与CDU",
+      "currentRoute": "风冷、后门换热、单相直接液冷、冷板、CDU、快接与漏液检测。",
+      "nextRoute": "更高功率冷板、两相直接液冷、浸没式液冷、机柜级液冷、热回收和自适应控制。",
+      "bottleneck": "热流密度、冷板/流道、CDU冗余、管路可靠性、机房改造和运维。",
+      "global": ["Vertiv", "Schneider", "CoolIT", "Boyd", "Submer", "LiquidStack"],
+      "china": ["英维克", "高澜股份", "同飞股份", "申菱环境", "曙光数创", "佳力图", "飞荣达"],
+      "investment": "GB300等机柜级系统已把液冷从可选配件变成高密度算力的必要基础设施，CDU和冷板有价值迁移机会。",
+      "risk": "项目型收入、回款慢、标准未统一、海外供应商竞争、液冷占比和毛利不及预期。"
+    },
+    {
+      "id": "power",
+      "name": "供电、UPS与800VDC",
+      "currentRoute": "交流输入、变压器、模块化UPS、PDU、48V/54V母线、服务器PSU和BBU。",
+      "nextRoute": "800VDC/LVDC、固态变压器、SiC/GaN、高压直流配电、储能和电源平滑。",
+      "bottleneck": "变配电容量、效率、负载瞬态、冗余和机柜功率密度。",
+      "global": ["Vertiv", "Schneider", "Eaton", "Delta", "Google", "Microsoft", "NVIDIA/OCP"],
+      "china": ["科士达", "科华数据", "中恒电气", "伊戈尔", "麦格米特", "许继电气", "思源电气", "金盘科技"],
+      "investment": "供电是数据中心扩容的硬约束；短期看UPS/配电/电源效率，长期看800VDC和电力电子升级。",
+      "risk": "项目落地慢、产品同质化、认证和标准不确定、AI资本开支放缓。"
+    },
+    {
+      "id": "materials-equipment",
+      "name": "先进制程、材料、设备与工艺服务",
+      "currentRoute": "EUV/DUV、涂胶显影、刻蚀、沉积、清洗、CMP、检测、硅片、光刻胶、特气和靶材。",
+      "nextRoute": "High-NA EUV、GAA/纳米片、背面供电、多层3D集成、HBM专用工艺和更强量测。",
+      "bottleneck": "设备精度、材料纯度、客户认证、良率和制程迁移。",
+      "global": ["ASML", "Applied Materials", "Lam Research", "TEL", "KLA", "Entegris", "DuPont"],
+      "china": ["北方华创", "中微公司", "拓荆科技", "盛美上海", "芯源微", "华海清科", "沪硅产业", "安集科技", "鼎龙股份", "南大光电", "彤程新材", "江丰电子"],
+      "investment": "AI先进制程和先进封装推动设备、材料和检测的价值量提升，但传导通常慢于终端热点。",
+      "risk": "设备资本开支周期、出口管制、认证周期、国产替代估值透支和技术路线切换。"
+    },
+    {
+      "id": "server-datacenter",
+      "name": "服务器、整机柜与数据中心",
+      "currentRoute": "加速卡/CPU/HBM/SSD/网络/PSU/散热/机箱组装为节点，机柜再叠加NVSwitch、母线、CDU、软件和运维。",
+      "nextRoute": "机柜级系统、液冷、800VDC、软硬件协同、AI工厂和私有化集群。",
+      "bottleneck": "交付、系统验证、功率密度、机房资源、集群利用率和回款。",
+      "global": ["Dell", "HPE", "Supermicro", "Quanta", "Wiwynn", "CoreWeave"],
+      "china": ["浪潮信息", "工业富联", "中科曙光", "紫光股份", "润泽科技", "光环新网", "数据港"],
+      "investment": "服务器收入确定性高但毛利通常低；真正的价值增量来自平台、软件、液冷、电源、网络和高利用率运营。",
+      "risk": "OEM价格战、库存和回款、客户资本开支、折旧、电力成本和利用率。"
+    }
+  ],
+  "priority": [
+    {"rank": 1, "name": "HBM与先进封装", "reason": "已量产、是每代AI芯片的硬带宽瓶颈，技术和产能均有门槛。"},
+    {"rank": 2, "name": "800G/1.6T光互联", "reason": "需求已传导到网络，1.6T和低功耗光引擎带来下一轮规格升级。"},
+    {"rank": 3, "name": "液冷/CDU与高功率供电", "reason": "GB级机柜把散热和供电从配套变成上架前置条件。"},
+    {"rank": 4, "name": "交换芯片与高速连接", "reason": "集群效率决定有效算力，SerDes、协议和软件形成壁垒。"},
+    {"rank": 5, "name": "硅光/LPO/CPO", "reason": "技术方向强、功耗约束真实，但量产和维护仍需验证。"},
+    {"rank": 6, "name": "TFLN、Optical I/O、玻璃基板", "reason": "长期技术期权，商业化更早期，不能用样品替代收入。"}
+  ],
+  "sources": [
+    {"name": "NVIDIA DGX B200", "url": "https://www.nvidia.com/en-au/data-center/dgx-b200/"},
+    {"name": "NVIDIA GB300 NVL72", "url": "https://www.nvidia.com/en-gb/data-center/gb300-nvl72/"},
+    {"name": "NVIDIA NVL72 components", "url": "https://docs.nvidia.com/enterprise-reference-architectures/nvl72-ai-factory/latest/components.html"},
+    {"name": "TSMC CoWoS", "url": "https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm"},
+    {"name": "TSMC 2025 annual report", "url": "https://investor.tsmc.com/static/annualReports/2025/english/pdf/2025_tsmc_ar_e_ch5.pdf"},
+    {"name": "Micron HBM3E", "url": "https://www.micron.com/products/memory/hbm/hbm3e"},
+    {"name": "ASML High-NA EUV", "url": "https://www.asml.com/en/news/press-releases/2026/high-na-euv-reaches-new-readiness-milestone"},
+    {"name": "Applied Materials DRAM and packaging", "url": "https://investors.appliedmaterials.com/news-releases/news-release-details/applied-materials-introduces-new-systems-accelerate-dram-and"},
+    {"name": "Lam Research packaging solutions", "url": "https://www.lamresearch.com/products/our-solutions/packaging-solutions-2/"},
+    {"name": "Intel silicon photonics", "url": "https://www.intel.com/content/www/us/en/products/details/network-io/silicon-photonics.html"},
+    {"name": "Broadcom 200G/lane CPO", "url": "https://www.broadcom.com/company/news/product-releases/63126"},
+    {"name": "Marvell CPO for custom AI accelerators", "url": "https://www.marvell.com/company/newsroom/marvell-co-packaged-optics-architecture-custom-ai-accelerators.html"},
+    {"name": "Vertiv CoolChip CDU", "url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu-600/"},
+    {"name": "OCP and ASHRAE liquid cooling", "url": "https://www.opencompute.org/blog/open-compute-project-foundation-and-ashrae-form-new-alliance"},
+    {"name": "OCP 800VDC", "url": "https://www.opencompute.org/index.php/blog/powering-the-next-era-of-ai-how-google-microsoft-and-nvidia-are-standardizing-and-accelerating-the-industry-transition-to-lvdc"}
+  ]
+}
+
+

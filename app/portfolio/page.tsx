@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 import portfolio from "@/content/portfolio/2026-08-21.json";
+import { requirePrivateSession } from "@/lib/auth/private";
+
+export const dynamic = "force-dynamic";
 
 function money(value: number | null) { return value === null ? "—" : value.toLocaleString("zh-CN", { maximumFractionDigits: 2 }); }
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  await requirePrivateSession("/portfolio");
   const all = portfolio.accounts.flatMap((account) => account.positions);
   const marketValue = all.reduce((sum, item) => sum + item.marketValue, 0);
   const pnl = all.reduce((sum, item) => sum + item.pnl, 0);

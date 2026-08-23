@@ -1,6 +1,20 @@
 {
-  "latest": "20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj",
+  "latest": "20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed",
   "runs": [
+    {
+      "id": "20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed",
+      "route": "/strategies/outputs/20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed",
+      "date": "20260820",
+      "runAt": "2026-08-21 15:29:22 +0800",
+      "version": "dual_low_unified_v1.5_timeaware_status_macd_coherence_ex_st_bj",
+      "versionLabel": "v1.5修复 · 时间状态 + MACD方向 + ST/BJ/退市边界 + 行业主题发现层",
+      "asOf": "20260820",
+      "releaseId": "qdh-bj-20260821T062610",
+      "status": "ACTIVE_WEEKLY_CANDIDATE_SOURCE / MANUAL_REVIEW_REQUIRED / NO_AUTO_TRADE",
+      "summary": "可执行底表4,991只，严格候选0只；低位观察池30只，行业发现30组，主题发现40组。",
+      "topStocks": [],
+      "topResonance": []
+    },
     {
       "id": "20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj",
       "route": "/strategies/outputs/20260821T141414-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj",

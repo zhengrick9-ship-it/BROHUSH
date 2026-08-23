@@ -1,5 +1,15 @@
-import { EmptyState, ResearchShell } from "@/app/components/ResearchShell";
+import Link from "next/link";
+import { ResearchShell } from "@/app/components/ResearchShell";
+import catalog from "@/content/research/catalog.json";
 
 export default function ThemesPage() {
-  return <ResearchShell eyebrow="01 / INDUSTRY" title="板块地图" description="从大产业开始，记录景气方向、产业位置、核心矛盾和未来可能的价值迁移。"><EmptyState label="THEMES / EMPTY" /></ResearchShell>;
+  return <ResearchShell eyebrow="01 / INDUSTRY" title="板块研究" description="先判断大产业与需求方向，再进入该板块下的专题和个股。">
+    <div className="mt-4 grid gap-4 md:grid-cols-2">
+      {catalog.themes.map((theme) => <section className="dashboard-panel" key={theme.id}>
+        <div className="panel-heading"><div><p className="section-label">板块 / {theme.status === "active" ? "研究中" : "待建档"}</p><h2>{theme.name}</h2></div><Link href={`/themes/${theme.id}`}>进入板块 →</Link></div>
+        <p className="mt-4 text-sm leading-7 text-[var(--secondary)]">{theme.summary}</p>
+        <p className="mt-4 border-l-2 border-[var(--accent)] pl-3 text-xs leading-6 text-[var(--muted)]">{theme.description}</p>
+      </section>)}
+    </div>
+  </ResearchShell>;
 }

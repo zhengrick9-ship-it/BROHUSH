@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI全产业链分层详解：六条主线从原材料到AI应用</title>
+<style>
+:root{--ink:#1f2933;--muted:#61707b;--line:#d9e1e5;--paper:#f5f7f6;--card:#fff;--blue:#0f6171;--gold:#a16207;--red:#9f1239;--dark:#17262d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.78}main{max-width:1160px;margin:auto;padding:32px 20px 80px}.eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;color:var(--blue)}header{padding:26px 0 30px;border-bottom:1px solid var(--line)}h1{font-family:Georgia,"Songti SC","SimSun",serif;font-size:clamp(32px,5vw,58px);line-height:1.16;letter-spacing:-.045em;margin:12px 0 15px}h2{font-size:27px;line-height:1.3;border-left:4px solid var(--blue);padding-left:13px;margin:46px 0 14px}h3{font-size:20px;margin:28px 0 7px;color:#25424c}p{margin:9px 0}.lead{font-size:18px;max-width:950px;color:#36444e}.meta,.small{font-size:13px;color:var(--muted)}.notice,.risk{border-radius:9px;padding:16px 18px;margin:20px 0}.notice{background:#eaf4f5;border:1px solid #c5dfe3}.risk{background:#fff4f5;border:1px solid #f1c7d0}.flow{background:var(--dark);color:#e1f4f2;border-radius:9px;padding:20px;font-family:ui-monospace,Consolas,monospace;white-space:pre-wrap;line-height:1.78;overflow:auto}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:16px}.card b{display:block;color:var(--blue);font-size:16px}.card p{font-size:14px}.chain-table{width:100%;border-collapse:collapse;background:var(--card);font-size:14px}.chain-table th,.chain-table td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left}.chain-table th{background:#e9f0f1;color:#25424c}.module{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:19px;margin:17px 0}.module-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.module-id{color:var(--blue);font-weight:800;font-size:13px;letter-spacing:.08em}.module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-top:13px}.fact{border-left:3px solid #b5c8cb;padding-left:11px;font-size:14px}.fact b{display:block;color:#385761;font-size:12px;letter-spacing:.08em}.profit{color:#7c4a03}.tags{margin-top:11px}.tag{display:inline-block;border:1px solid #cbd7da;background:#f7fbfb;color:#3c5a62;border-radius:999px;font-size:12px;padding:2px 8px;margin:3px 4px 3px 0}.rank{display:grid;grid-template-columns:48px 1fr;gap:13px;padding:14px 0;border-bottom:1px solid var(--line)}.rank b{font-size:24px;color:var(--blue)}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}code{font-family:ui-monospace,Consolas,monospace;font-size:12px}.foot{border-top:1px solid var(--line);margin-top:45px;padding-top:20px;color:var(--muted);font-size:13px}@media(max-width:760px){.grid,.module-grid{grid-template-columns:1fr}.chain-table{display:block;overflow:auto;font-size:12px}main{padding:22px 14px 55px}}
+</style>
+</head>
+<body><main>
+<header>
+<div class="eyebrow">YOLO · AI INDUSTRY ENCYCLOPEDIA · DRAFT V2</div>
+<h1>AI全产业链分层详解：六条主线从原材料到AI应用</h1>
+<p class="lead">本文按算力线、存储线、互联线、供电线、应用线、承载线展开，沿着原材料、设备、芯片、服务器、数据中心、模型与应用的真实产业顺序，说明每个环节做什么、价值从哪里来、利润如何分布、技术路线怎样迁移，以及主要公司处在什么位置。</p>
+<p class="meta">待审版本 V0.2｜研究时点 2026-08-22｜本文不提供交易指令，不构成投资建议</p>
+</header>
+
+<div class="notice"><b>先看口径：</b>本文参考了Hermes的“13步主干 + 并行材料设备 + 5条横切线”结构，并结合YOLO前期的需求线、制造线和利润池研究重写。Hermes原文中的2026年7月市值、PE、资金流和“买入/回避”判断没有直接继承，因为它们会随时间变化；本文只保留产业结构和公司角色，个股进入交易研究必须另做点时核验。</div>
+
+<h2>一、六条主线与产业链顺序</h2>
+<p>AI产业的物理制造顺序是从材料和设备开始，经过芯片、存储、互联、供电、服务器和数据中心，最后由模型与应用把基础设施转化为客户结果。六条主线不是六条互相独立的流水线，而是并行输入、在数据中心和应用端汇合。</p>
+<div class="flow">原材料 / 设备
+        ↓
+芯片设计与制造：EDA、GPU/CPU/ASIC、晶圆、先进封装
+        ↓
+存储与互联：HBM/SSD、光芯片/光模块/交换机
+        ↓
+供电线：功率器件、PSU/UPS/PDU、液冷与CDU
+        ↓
+服务器 / 整机柜 / 数据中心 / 算力服务
+        ↓
+算力平台：CUDA、驱动、编译器、运行时、调度和推理框架
+        ↓
+应用线：数据、模型、Agent、行业软件和终端应用</div>
+<p>研究时同时使用两种方向：</p>
+<div class="grid">
+<div class="card"><b>需求线：从客户往下追</b><p>客户想得到什么结果？需要什么模型和数据？需要多大算力、带宽、容量、时延和功率？最终会采购哪些设备与服务？</p></div>
+<div class="card"><b>制造线：从底层往上造</b><p>材料和设备怎样形成芯片？芯片怎样封装成加速器？加速器怎样组成服务器和集群？集群怎样变成可交付算力？</p></div>
+<div class="card"><b>投资研究的交汇点</b><p>只有当需求形成真实订单、技术形成客户认证、产品形成收入和利润，产业链坐标才有可能变成投资价值。</p></div>
+</div>
+
+<h2>二、六条主线总览</h2>
+<table class="chain-table"><thead><tr><th>系统线</th><th>它回答的问题</th><th>向下拆解的关键模块</th></tr></thead><tbody>
+<tr><td>算力线</td><td>模型如何完成计算？</td><td>EDA/IP → GPU/CPU/ASIC → 晶圆 → 先进封装 → 加速卡 → 服务器</td></tr>
+<tr><td>存储线</td><td>数据如何被高速读取、缓存和保存？</td><td>HBM、DDR5/MRDIMM、CXL、NAND、SSD、分布式存储</td></tr>
+<tr><td>互联线</td><td>芯片、服务器和集群如何高带宽通信？</td><td>光芯片、光模块、CPO、交换芯片、网卡、光纤、铜互联</td></tr>
+<tr><td>供电线</td><td>高功率设备如何安全上电并持续运行？</td><td>功率器件、变配电、PSU、UPS、PDU，以及与供电协同的液冷、CDU、冷源</td></tr>
+<tr><td>应用线</td><td>算力如何变成客户可以使用的业务结果？</td><td>数据治理、基础模型、后训练、推理、Agent、行业软件和终端应用</td></tr>
+<tr><td>承载线</td><td>如何把以上系统装起来、部署起来、运营起来？</td><td>材料设备、PCB/CCL/载板、服务器机柜、IDC机房、网络安全、运维</td></tr>
+</tbody></table>
+<p class="small">CUDA、驱动、编译器、运行时、调度和推理框架属于算力线的生态平台底座，不单列为“软件线”；模型、Agent、行业软件和AI终端应用属于应用线。EDA是芯片设计与制造工具，归入算力线前端，不是CUDA，也不是应用软件。承载线不是一个单独零件，而是把各条线组合成可制造、可部署、可运营系统的工程支撑层。</p>
+
+<h2>三、13步主干：AI产品从底层到应用</h2>
+<table class="chain-table"><thead><tr><th>步骤</th><th>它做什么</th><th>利润特征</th><th>代表公司/生态</th></tr></thead><tbody>
+<tr><td>1. 矿物与高纯原料</td><td>提供硅、石英、锗/镓/铟、特种气体、电子化学品等物理起点。</td><td>资源或稀缺纯度带来议价；普通资源利润随周期波动。</td><td>石英股份、三孚股份、驰宏锌锗、云南锗业、巨化股份</td></tr>
+<tr><td>2. 晶圆与硅片</td><td>把高纯硅转成可用于逻辑、存储、功率器件的晶圆。</td><td>资本密集、折旧高；领先工艺和高端材料的利润高于普通产能。</td><td>TSMC、Samsung、沪硅产业、立昂微、天岳先进</td></tr>
+<tr><td>3. 芯片设计、EDA与IP</td><td>把需求变成架构、逻辑、电路、版图和可制造的GDS文件。</td><td>IP/EDA通常轻资产、高毛利；芯片设计受研发投入和产品成败影响。</td><td>NVIDIA、Synopsys、Cadence、华大九天、概伦电子、芯原股份</td></tr>
+<tr><td>4. 晶圆代工</td><td>按设计文件制造逻辑芯片、存储芯片或专用芯片。</td><td>先进制程有技术和规模溢价，但资本开支、良率和产能利用率决定利润。</td><td>TSMC、Samsung、Intel Foundry、中芯国际、华虹公司</td></tr>
+<tr><td>5. 先进封装</td><td>把逻辑芯片、HBM、Chiplet、硅中介层和载板组合成高密度芯片模组。</td><td>工艺、良率和稀缺产能可带来较高价值；扩产和良率风险也高。</td><td>TSMC、ASE、Amkor、长电科技、通富微电、华天科技</td></tr>
+<tr><td>6. 算力芯片与高带宽存储</td><td>提供GPU、CPU、ASIC、DPU、NPU、HBM、DRAM、NAND和接口芯片。</td><td>平台芯片、软件生态和HBM是高利润池；通用存储具有强周期性。</td><td>NVIDIA、AMD、Broadcom、SK hynix、Micron、海光信息、澜起科技、江波龙</td></tr>
+<tr><td>7. PCB、载板与板级互联</td><td>承载芯片、供电和高速信号，连接计算、内存、电源与网络。</td><td>高层数、高速材料、ABF载板和高可靠产品利润优于普通板材。</td><td>Ibiden、Unimicron、深南电路、沪电股份、胜宏科技、生益科技、兴森科技</td></tr>
+<tr><td>8. 光互联与光纤</td><td>完成电信号与光信号转换，让大规模集群远距离、高带宽通信。</td><td>光芯片、器件和客户认证价值较高；模块组装利润随价格和竞争分化。</td><td>中际旭创、新易盛、天孚通信、光迅科技、源杰科技、长飞光纤</td></tr>
+<tr><td>9. 服务器、整机柜与集群设备</td><td>把加速卡、内存、存储、网络、电源、散热和系统软件装成可运行节点。</td><td>收入规模大但OEM装配利润通常较薄；系统适配、交付和服务能改善利润。</td><td>Dell、HPE、Supermicro、浪潮信息、工业富联、中科曙光、紫光股份</td></tr>
+<tr><td>10. 供电与热管理</td><td>把电稳定送进机柜，把热量带走，保证连续运行和能效。</td><td>普通工程集成利润薄；核心电源、CDU、冷板、控制和可靠性方案更有价值。</td><td>Vertiv、Schneider、Eaton、科士达、中恒电气、伊戈尔、英维克、高澜股份</td></tr>
+<tr><td>11. 数据中心与算力服务</td><td>提供机房、电力指标、网络、机柜、运维和GPU/CPU算力服务。</td><td>重资产、折旧和电费高；长期合同、上架率和利用率决定回报。</td><td>Equinix、CoreWeave、阿里云、腾讯云、润泽科技、宝信软件</td></tr>
+<tr><td>12. 应用线：数据、模型与推理</td><td>把算力转成数据资产、模型能力、推理吞吐和Agent执行能力。</td><td>软件毛利潜力高，但训练/推理成本、销售和客户付费决定净利润。</td><td>OpenAI、Anthropic、Google、DeepSeek、百度、阿里、腾讯；A股映射需逐项核验</td></tr>
+<tr><td>13. AI应用与行业交付</td><td>把模型嵌入办公、金融、医药、制造、自动驾驶、安防和机器人流程。</td><td>能形成持续订阅、数据闭环和行业壁垒的应用，长期利润质量可能最高。</td><td>金山办公、恒生电子、海康威视、大华股份、德赛西威、汇川技术、拓普集团</td></tr>
+</tbody></table>
+<p class="small">注意：这些步骤不是所有产品的唯一物理顺序。EDA、材料、设备、网络和电力会以并行方式输入多个环节；应用和模型需求也会反过来改变芯片、存储、互联和服务器设计。</p>
+
+<h2>四、逐层展开：当前路线、下一代路线与价值来源</h2>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 1–2 · 原料 / 晶圆</div><h3>从高纯材料到可制造晶圆</h3></div><span class="tag">底层基础</span></div><div class="module-grid"><div class="fact"><b>做什么</b>高纯石英、电子级硅、特种气体、光刻胶、湿电子化学品等决定晶圆制造的纯度、缺陷率和良率。</div><div class="fact"><b>主流路线</b>石英/硅料 → 拉单晶 → 切片、研磨、抛光 → 逻辑或存储晶圆；化学品和特气同步进入光刻、沉积、刻蚀、清洗。</div><div class="fact"><b>下一代</b>更大尺寸、更低缺陷晶圆、先进节点材料、高纯气体国产替代、SiC/GaN等宽禁带材料。</div><div class="fact"><b>利润与风险</b><span class="profit">高纯稀缺材料可能有较强议价权，普通硅片和资源环节强周期。</span>风险是产能过剩、价格下降、认证周期和技术替代。</div></div><div class="tags"><span class="tag">石英股份</span><span class="tag">三孚股份</span><span class="tag">沪硅产业</span><span class="tag">立昂微</span><span class="tag">天岳先进</span><span class="tag">南大光电</span></div></section>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 3 · 芯片设计 / EDA / IP</div><h3>把需求变成可以制造的电路图</h3></div><span class="tag">轻资产高壁垒</span></div><div class="module-grid"><div class="fact"><b>做什么</b>定义芯片架构、接口、计算单元、内存控制和功耗，再用EDA完成仿真、验证、版图和签核。</div><div class="fact"><b>主流路线</b>GPU/CPU/ASIC/NPU/DPU多路线并存，EDA由设计、仿真、综合、布局布线、验证组成，IP负责复用成熟模块。</div><div class="fact"><b>下一代</b>Chiplet设计、3D封装协同设计、硬件/软件协同优化、面向AI推理的专用加速器和开放互联；CUDA不属于EDA，而是芯片完成后的GPU平台生态。</div><div class="fact"><b>利润与风险</b><span class="profit">成熟EDA/IP具有高毛利和复用收入特征。</span>芯片设计则可能因研发失败、客户自研、软件生态不足而快速失去价值。</div></div><div class="tags"><span class="tag">NVIDIA</span><span class="tag">Cadence</span><span class="tag">Synopsys</span><span class="tag">华大九天</span><span class="tag">概伦电子</span><span class="tag">芯原股份</span></div></section>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 4–5 · 代工 / 先进封装</div><h3>把设计文件变成高密度芯片模组</h3></div><span class="tag">制程与良率</span></div><div class="module-grid"><div class="fact"><b>做什么</b>晶圆代工通过光刻、刻蚀、沉积、清洗和CMP形成芯片；先进封装再把逻辑芯片、HBM和Chiplet组合起来。</div><div class="fact"><b>主流路线</b>先进逻辑制程 + CoWoS-S/R/L + HBM3E + 2.5D集成；封装还包括倒装、TSV、微凸点和高密度载板。</div><div class="fact"><b>下一代</b>HBM4/HBM4E、更大封装尺寸、Chiplet、SoIC混合键合、背面供电、玻璃基板和光电共封装。</div><div class="fact"><b>利润与风险</b><span class="profit">先进制程和高端封装因产能、良率和认证具有溢价。</span>风险是重资本、扩产超前、良率爬坡、出口限制和路线切换。</div></div><div class="tags"><span class="tag">TSMC</span><span class="tag">Samsung</span><span class="tag">中芯国际</span><span class="tag">长电科技</span><span class="tag">通富微电</span><span class="tag">华天科技</span></div></section>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 6 · 算力芯片 / HBM / 存储</div><h3>决定模型能算多快、数据能搬多快</h3></div><span class="tag">最大分化</span></div><div class="module-grid"><div class="fact"><b>做什么</b>GPU、ASIC、CPU、DPU、NPU负责计算；HBM、DRAM、NAND和SSD负责提供高速和大容量数据。</div><div class="fact"><b>主流路线</b>训练以GPU/加速器 + HBM为主，推理更多使用专用芯片、量化、缓存和异构计算；CUDA、驱动、编译器和加速库负责把GPU硬件变成可编程、可调用的平台。</div><div class="fact"><b>下一代</b>HBM4、CXL内存池、计算存储、推理缓存、Chiplet和面向特定模型的ASIC。</div><div class="fact"><b>利润与风险</b><span class="profit">平台芯片、算力生态、HBM和接口芯片可能是高利润池；通用存储强周期。</span>囤货涨价产生的利润不是技术壁垒，必须区分真实产品、主控固件、企业认证和库存收益。</div></div><div class="tags"><span class="tag">NVIDIA</span><span class="tag">AMD</span><span class="tag">SK hynix</span><span class="tag">Micron</span><span class="tag">海光信息</span><span class="tag">澜起科技</span><span class="tag">兆易创新</span><span class="tag">江波龙</span></div></section>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 7 · PCB / CCL / 载板 / MLCC</div><h3>承载芯片、信号和供电</h3></div><span class="tag">材料等级决定价值</span></div><div class="module-grid"><div class="fact"><b>做什么</b>PCB和载板承载芯片与高速信号，CCL提供介电和导电结构，MLCC承担滤波、去耦和电源稳定。</div><div class="fact"><b>主流路线</b>高层数高速PCB、低损耗/超低损耗CCL、ABF载板、高频高速铜箔和高可靠MLCC。</div><div class="fact"><b>下一代</b>更高层数、更低损耗材料、玻璃基板、更密集互联和面向高功率AI机柜的电源滤波升级。</div><div class="fact"><b>利润与风险</b><span class="profit">高端材料、载板、MLCC和高速PCB利润优于普通板材。</span>风险是传统电子周期、扩产、铜箔/树脂价格和客户集中。</div></div><div class="tags"><span class="tag">深南电路</span><span class="tag">沪电股份</span><span class="tag">胜宏科技</span><span class="tag">生益科技</span><span class="tag">兴森科技</span><span class="tag">顺络电子</span></div></section>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 8 · 光互联 / 光纤</div><h3>把集群中的电信号变成可传输的光信号</h3></div><span class="tag">带宽迁移</span></div><div class="module-grid"><div class="fact"><b>做什么</b>激光器、调制器、探测器、DSP、光引擎和光模块完成电—光—光纤—光—电转换。</div><div class="fact"><b>主流路线</b>800G/1.6T可插拔模块、PAM4、EML/DFB激光器、硅光和LPO；铜互联在短距离仍有成本优势。</div><div class="fact"><b>下一代</b>CPO、薄膜铌酸锂、光电共封装、Optical I/O、200G/400G每通道和更低功耗调制。</div><div class="fact"><b>利润与风险</b><span class="profit">高端光芯片、器件、客户认证和新技术平台可能拥有较高价值。</span>模块组装受价格竞争影响；风险是资本开支、客户集中、量产良率和路线迁移。</div></div><div class="tags"><span class="tag">中际旭创</span><span class="tag">新易盛</span><span class="tag">天孚通信</span><span class="tag">源杰科技</span><span class="tag">长光华芯</span><span class="tag">光库科技</span><span class="tag">兆龙互连</span></div></section>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 9–10 · 服务器 / 供电线</div><h3>把零件变成能上电、联网和持续运行的系统</h3></div><span class="tag">部署瓶颈</span></div><div class="module-grid"><div class="fact"><b>做什么</b>服务器把芯片、内存、SSD、网络、电源和散热集成；供电线解决功率转换、稳定供电，并与液冷系统协同解决热管理。</div><div class="fact"><b>主流路线</b>风冷服务器、UPS/PDU、服务器电源、冷板式液冷、CDU和机房级冷源；GPU集群采用高速网络互联。</div><div class="fact"><b>下一代</b>整机柜液冷、浸没式液冷、800VDC/高压直流、机柜级电源、冷板/泵阀控制标准化。</div><div class="fact"><b>利润与风险</b><span class="profit">OEM装配通常利润薄；核心电源、CDU、冷板、控制和可靠性方案更可能产生溢价。</span>风险是项目回款、现场交付、客户认证、路线不统一和价格战。</div></div><div class="tags"><span class="tag">浪潮信息</span><span class="tag">工业富联</span><span class="tag">中科曙光</span><span class="tag">科士达</span><span class="tag">中恒电气</span><span class="tag">伊戈尔</span><span class="tag">英维克</span><span class="tag">高澜股份</span></div></section>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 11 · 数据中心 / 算力服务</div><h3>把设备变成客户可以按量使用的算力</h3></div><span class="tag">重资产运营</span></div><div class="module-grid"><div class="fact"><b>做什么</b>提供机房、土地、电力指标、网络、机柜、消防安防、运维和GPU/CPU算力服务。</div><div class="fact"><b>主流路线</b>传统IDC、云厂商自建、GPU云、专属云、私有化部署和边缘数据中心并存。</div><div class="fact"><b>下一代</b>高功率密度智算中心、液冷机房、绿色电力、算力调度和跨区域资源池。</div><div class="fact"><b>利润与风险</b><span class="profit">长期合同、稳定电力和高上架率可改善回报。</span>重资产导致折旧、能源、融资和利用率风险高，算力租赁价格也可能下行。</div></div><div class="tags"><span class="tag">Equinix</span><span class="tag">CoreWeave</span><span class="tag">阿里云</span><span class="tag">腾讯云</span><span class="tag">润泽科技</span><span class="tag">宝信软件</span></div></section>
+
+<section class="module"><div class="module-title"><div><div class="module-id">STEP 12–13 · 应用线 / 模型 / 行业应用</div><h3>把算力最终转化为客户业务结果</h3></div><span class="tag">应用线</span></div><div class="module-grid"><div class="fact"><b>做什么</b>数据治理、模型训练与后训练、推理、Agent和行业应用把基础设施转化为客户可使用的业务能力。</div><div class="fact"><b>主流路线</b>通用大模型 + RAG/向量库 + 工具调用 + Agent；企业侧采用公有云、私有化和混合部署。</div><div class="fact"><b>下一代</b>推理成本下降、长上下文、Agent工作流、行业模型、端侧AI、机器人和物理AI。</div><div class="fact"><b>利润与风险</b><span class="profit">可持续订阅、数据闭环和行业工作流嵌入，长期利润质量可能高于一次性硬件。</span>风险是算力成本、客户付费不足、开源替代、合规和获客成本。</div></div><div class="tags"><span class="tag">OpenAI</span><span class="tag">Anthropic</span><span class="tag">DeepSeek</span><span class="tag">金山办公</span><span class="tag">恒生电子</span><span class="tag">海康威视</span><span class="tag">德赛西威</span><span class="tag">汇川技术</span></div></section>
+
+<h2>五、承载线与并行支撑：把各条主线装起来、跑起来</h2>
+<p>承载线不是“最后剩下的杂项”，而是AI系统能否真正交付的工程承载。它包括硬件制造承载、系统集成承载和数据中心运营承载；材料、设备、PCB、载板、连接器、服务器、机柜、IDC、电力、制冷、安全和运维会并行输入多个环节。</p>
+<div class="grid">
+<div class="card"><b>半导体材料</b><p>光刻胶、特气、前驱体、CMP抛光液/垫、靶材、封装材料等反复消耗。利润来自纯度、配方、认证和替代成本；风险是价格、客户集中和替代。</p><p class="small">代表：雅克科技、彤程新材、安集科技、鼎龙股份、江丰电子、华特气体。</p></div>
+<div class="card"><b>半导体设备与零部件</b><p>光刻、刻蚀、沉积、清洗、检测、封装和测试设备决定良率与产能。设备本体有较高技术壁垒，但收入受晶圆厂资本开支影响。</p><p class="small">代表：北方华创、中微公司、拓荆科技、盛美上海、华海清科、长川科技。</p></div>
+<div class="card"><b>通信网络、数据和安全</b><p>交换、网卡、光互联、调度、数据治理、权限、审计和安全贯穿整个系统。软件安全可能高毛利，但商业化和客户预算决定兑现。</p><p class="small">代表：盛科通信、紫光股份、中兴通讯、深信服、奇安信、安恒信息。</p></div>
+</div>
+
+<h2>六、利润池怎么分：收入大不等于利润大</h2>
+<p>一台AI服务器的采购价不能直接拆成“某个厂家的利润”。BOM只说明物料构成，实际利润还要扣除上游采购、折旧、研发、认证、库存、物流、售后、融资和回款成本，而且供应链上的利润存在纵向嵌套。</p>
+<table class="chain-table"><thead><tr><th>利润层级</th><th>典型环节</th><th>为什么可能赚钱</th><th>不能忽略的反面</th></tr></thead><tbody>
+<tr><td>高利润潜力</td><td>平台芯片、EDA/IP、部分软件</td><td>知识产权、生态、迁移成本、复用和定价权。</td><td>客户自研、开源替代、技术路线切换、研发失败。</td></tr>
+<tr><td>中高利润但强周期</td><td>HBM、先进封装、光芯片、核心光器件、高端设备</td><td>稀缺产能、良率、认证、技术壁垒和高价值量。</td><td>扩产、价格下降、客户集中、资本开支回撤。</td></tr>
+<tr><td>中等利润</td><td>高端材料、PCB/载板、MLCC、液冷核心部件、UPS/电源</td><td>可靠性、认证、配方、单机价值量和切换成本。</td><td>原材料、项目制、交付、行业周期和产品降价。</td></tr>
+<tr><td>低到中等利润</td><td>普通服务器OEM、机柜装配、工程集成</td><td>规模、交付和服务能够带来收入弹性。</td><td>客户议价、库存、回款和价格战，收入增长可能不转化为利润。</td></tr>
+<tr><td>长期高潜力但不确定</td><td>AI应用、行业软件、Agent和物理AI</td><td>订阅、数据闭环、工作流嵌入和行业壁垒。</td><td>算力成本、客户付费、获客成本、合规和商业化速度。</td></tr>
+</tbody></table>
+<div class="risk"><b>利润核算的三个禁区：</b>不能把上游毛利和下游毛利简单相加；不能把公司整体毛利率当成AI产品毛利率；不能把BOM价值量当作供应商已经确认的收入。真正的公司研究要回到分部收入、产品价格、客户认证、存货、应收、合同负债和经营现金流。</div>
+
+<h2>七、技术路线的迁移：为什么价值会从一个环节扩散到另一个环节</h2>
+<div class="rank"><b>01</b><div><b>计算瓶颈 → 内存带宽</b><p>模型越来越大后，单纯增加算力不能解决数据搬运问题，HBM、缓存、CXL和更高效的内存层级获得价值。</p></div></div>
+<div class="rank"><b>02</b><div><b>单机 → 集群</b><p>GPU从单卡扩展到整机柜和多机柜，交换芯片、网卡、光互联、铜互联、连接器和网络软件的价值上升。</p></div></div>
+<div class="rank"><b>03</b><div><b>风冷 → 液冷与高压直流</b><p>功率密度提高后，传统风冷和低压供电接近边界，冷板/CDU、泵阀、机柜电源、800VDC和能效控制成为新约束。</p></div></div>
+<div class="rank"><b>04</b><div><b>可插拔光模块 → 光电共封装</b><p>800G/1.6T先形成批量收入，CPO、硅光、薄膜铌酸锂和Optical I/O是后续可能迁移，但必须经历样品、客户认证和量产。</p></div></div>
+<div class="rank"><b>05</b><div><b>预训练 → 推理与Agent</b><p>随着模型训练基础设施逐渐成熟，调用量、推理成本、缓存、工具调用和行业工作流可能成为新的需求源。</p></div></div>
+
+<h2>八、代表公司怎样使用：产业坐标不是推荐名单</h2>
+<p>代表公司只是帮助读者定位产业环节。一个公司要进入正式投资研究，至少要通过下面四道门：</p>
+<div class="grid"><div class="card"><b>第一道：真实位置</b><p>公司到底卖什么产品？是核心芯片、关键材料、设备、系统部件，还是仅仅有概念映射？</p></div><div class="card"><b>第二道：客户证据</b><p>是否有公告、客户认证、量产、订单、收入占比或可验证的产品出货？不能用“可能供应”代替事实。</p></div><div class="card"><b>第三道：财务兑现</b><p>收入、毛利、净利、现金流、库存、应收和合同负债是否支持逻辑？囤货收益与技术能力要拆分。</p></div><div class="card"><b>第四道：估值与风险</b><p>当前股价是否已经透支？下一代路线是否还停留在样品？资本开支、供给释放和技术替代是否可承受？</p></div></div>
+
+<h2>九、结论：AI全产业链的六条主线</h2>
+<p>AI产业链不是“硅料—芯片—服务器—应用”的单线故事，而是六条主线的交汇：算力线、存储线、互联线、供电线和承载线共同形成可交付的基础设施，应用线把基础设施转化为模型能力、Agent工作流和行业结果。</p>
+<p>从利润与技术壁垒看，平台芯片/EDA/IP、HBM与先进封装、高速光互联、核心供电液冷和高端材料设备，是更容易形成结构性价值的模块；从收入弹性看，服务器、网络、存储和数据中心可能更快放量，但利润率、库存和资本开支风险更高；从长期变现看，能够嵌入客户流程的模型、Agent和行业应用，才是产业最终的利润出口。</p>
+<p>因此，后续研究不应先问“哪只股票属于AI”，而应按“产业 → 模块 → 专题 → 个股”推进：先判断需求是否真实，再判断价值点是否有壁垒，最后用公告、财务和交易数据确认公司是否真正受益。</p>
+
+<h2>资料边界</h2>
+<ul><li>参考结构：Hermes《AI产业链_v8_完整终极_20260727.html》，路径：<code>G:\HM\hermes-home\cron\output\AI产业链_v8_完整终极_20260727.html</code>。</li><li>YOLO前期研究：AI产业全景图V3、AI硬件价值链细化版V1、AI模块经济性V1、AI服务器利润拆解示例V2。</li><li>QDataHub：接受版 <code>qdh-bj-20260822T165656</code>，完整交易日 20260821；当前消费者状态为 <b>READY_WITH_DEGRADED_ASSETS / ATTENTION_REQUIRED</b>。</li><li>官方路线资料：NVIDIA DGX/GB系列、TSMC CoWoS、Micron HBM3E、Intel Silicon Photonics、Broadcom/Marvell CPO、OCP 800VDC。</li></ul>
+<footer class="foot">YOLO公开专题待审稿 V0.3｜本文只提供产业链研究，不提供个股买卖指令；代表公司不等于确认供应商或投资推荐。</footer>
+</main></body></html>
