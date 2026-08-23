@@ -2,9 +2,9 @@ import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 const updates = [
-  { date: "2026-08-23 12:45", kind: "专题研究", title: "AI互联线：光模块、光芯片、材料与CPO设备复核稿", href: "/reports" },
-  { date: "2026-08-22 18:40", kind: "板块研究", title: "AI产业链全景：算力、存储、互联、供电、应用、承载", href: "/themes/ai-technology" },
-  { date: "2026-08-22 16:20", kind: "专题研究", title: "AI硬件价值链：从芯片、封装到服务器与数据中心", href: "/reports/ai-hardware-value-chain-20260822" },
+  { date: "2026-08-23 19:58", kind: "板块研究", title: "AI科技板块产业链总图：六线总纲与利润池", href: "/reports/ai-panorama-six-lines-20260823" },
+  { date: "2026-08-23 18:58", kind: "专题研究", title: "光模块散热赛道：导热材料、液冷与陶瓷封装", href: "/reports/optical-module-thermal-investment-20260823" },
+  { date: "2026-08-23 18:28", kind: "专题研究", title: "AI互联线：光模块、光芯片、设备、介质与网络服务", href: "/reports/ai-interconnect-investment-20260823" },
   { date: "2026-08-21 15:29", kind: "策略输出", title: "低位双维策略：个股、主题与共振排序", href: "/strategies/outputs" },
   { date: "2026-08-21 09:30", kind: "交易计划", title: "周频作战计划：持仓条件与盘中检查项", href: "/plans" },
 ];
