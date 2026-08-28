@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 const articles = [
+  { slug: "20260828-optical-interconnect-panorama", kind: "板块研究 / 光互连", title: "光互连技术路线全景研究", dek: "从SK海力士一篇论文，到AI光互联的产业链重构：技术路线谱系、产业链映射、价值迁移与跟踪指标。", date: "2026-08-28", status: "已发布" },
   { slug: "ai-panorama-six-lines-20260823", kind: "板块研究", title: "AI科技板块产业链总图（六线总纲）", dek: "从产业链、利润池、技术代际和六条投资线建立AI科技研究总图。", date: "2026-08-23", status: "已发布 · 数据截至2026-08-21" },
   { slug: "ai-interconnect-investment-20260823", kind: "专题研究 / 互联线", title: "AI互联线投资研究报告", dek: "从光模块、光芯片、交换设备、光纤铜缆到网络服务，梳理互联线的需求、技术和代表公司。", date: "2026-08-23", status: "已发布 · 数据截至2026-08-21" },
   { slug: "optical-module-thermal-investment-20260823", kind: "专题研究 / 光模块散热", title: "光模块散热赛道投资研究报告", dek: "围绕高功耗光模块、液冷、导热材料与陶瓷封装，梳理赛道与代表公司。", date: "2026-08-23", status: "已发布 · 数据截至2026-08-21" },

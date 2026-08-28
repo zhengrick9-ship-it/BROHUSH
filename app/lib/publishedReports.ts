@@ -5,6 +5,11 @@ export type PublishedReport = {
 };
 
 export const publishedReports = {
+  opticalPanorama: {
+    slug: "20260828-optical-interconnect-panorama",
+    title: "光互连技术路线全景研究",
+    summary: "从SK海力士论文触发的技术路线重估出发，拆解可插拔光模块、CPO、薄膜铌酸锂、光I/O与全光交换的演进、产业链和跟踪指标。",
+  },
   panorama: {
     slug: "ai-panorama-six-lines-20260823",
     title: "AI科技板块产业链总图（六线总纲）",
@@ -22,15 +27,15 @@ export const publishedReports = {
   },
 } satisfies Record<string, PublishedReport>;
 
-const { panorama, interconnect, thermal } = publishedReports;
+const { opticalPanorama, panorama, interconnect, thermal } = publishedReports;
 
 export const reportsForLine: Record<string, PublishedReport[]> = {
-  "互联线": [panorama, interconnect],
+  "互联线": [panorama, opticalPanorama, interconnect],
   "供电线": [panorama, thermal],
 };
 
 export const reportsForModule: Record<string, PublishedReport[]> = {
-  "optical-interconnect": [panorama, interconnect],
+  "optical-interconnect": [panorama, opticalPanorama, interconnect],
   "switching-and-high-speed-connection": [panorama, interconnect],
   "power-and-ups": [panorama, thermal],
   "cooling-and-thermal-management": [panorama, thermal],
@@ -39,10 +44,10 @@ export const reportsForModule: Record<string, PublishedReport[]> = {
 
 export const reportsForTopic: Record<string, PublishedReport[]> = {
   "800g-and-1-6t-optics": [interconnect],
-  "optical-materials-and-devices": [interconnect],
-  "thin-film-lithium-niobate": [interconnect],
-  "silicon-photonics-and-cpo": [interconnect],
-  "ai-networking": [interconnect],
+  "optical-materials-and-devices": [opticalPanorama, interconnect],
+  "thin-film-lithium-niobate": [opticalPanorama, interconnect],
+  "silicon-photonics-and-cpo": [opticalPanorama, interconnect],
+  "ai-networking": [opticalPanorama, interconnect],
   "ethernet-and-infiniband": [interconnect],
   "high-speed-copper-and-connectors": [interconnect],
   "data-center-thermal-management": [thermal],

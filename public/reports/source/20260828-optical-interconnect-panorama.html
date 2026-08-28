@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>光互连技术路线全景研究：从SK海力士论文到AI光互联产业链重构</title>
+<meta name="description" content="SK海力士Nature Electronics论文拆解、AI光互连技术路线全景谱系、产业链环节与标的映射、价值迁移路径与跟踪指标。">
+<style>
+  :root{
+    --bg:#f3efe6; --paper:#faf8f3; --paper-strong:#fffdf8;
+    --text:#1e1d19; --secondary:#5e5a51; --muted:#8b867b; --faint:#c8c1b3;
+    --line:#ddd6c8; --line-strong:#c9c0b0;
+    --accent:#c56f52; --accent-dark:#a9573e;
+    --green:#2f8055; --red:#b44d3c; --gold:#a8842c;
+    --font-sans:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg); color:var(--text); font-family:var(--font-sans); font-size:16px; line-height:1.9; margin:0; padding:0;}
+  .doc{max-width:880px; margin:0 auto; padding:36px 22px 80px;}
+
+  .section-label{font-size:13px; color:var(--muted); letter-spacing:.12em; margin:0 0 10px;}
+  h1{font-size:28px; line-height:1.45; font-weight:600; color:var(--text); border-bottom:1px solid var(--line-strong); padding-bottom:18px; margin:0 0 14px;}
+  .subtitle{font-size:16px; color:var(--secondary); margin:0 0 16px;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 6px;}
+  .meta-time{font-size:13px; color:var(--muted);}
+  h2{font-size:21px; font-weight:600; color:var(--accent-dark); border-left:4px solid var(--accent); padding-left:12px; margin:52px 0 18px;}
+  h3{font-size:17px; font-weight:600; color:var(--accent-dark); margin:30px 0 12px;}
+  h4{font-size:15px; font-weight:600; color:var(--text); margin:22px 0 8px;}
+  p{margin:10px 0;}
+  a{color:var(--accent-dark); text-decoration:none; border-bottom:1px solid var(--faint);}
+  a:hover{border-bottom-color:var(--accent);}
+  ul,ol{padding-left:24px; margin:10px 0;}
+  li{margin:6px 0;}
+
+  .tw{overflow-x:auto; margin:16px 0;}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; line-height:1.65; background:var(--paper-strong);}
+  th,td{border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top;}
+  th{background:#f1ece0; color:var(--secondary); font-weight:600; white-space:nowrap;}
+  tr:nth-child(even) td{background:#f7f3ea;}
+
+  .card{background:var(--paper-strong); border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:18px 0;}
+  .layer{background:var(--paper); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; padding:18px 22px; margin:20px 0;}
+  .layer-title{font-size:16.5px; font-weight:600; color:var(--text); margin-bottom:6px;}
+  .layer-meta{font-size:13.5px; color:var(--muted); margin-bottom:10px;}
+  .warn{background:#f8ede6; border:1px solid #e5c9b8; border-radius:12px; padding:16px 20px; margin:18px 0;}
+
+  .tag{display:inline-block; padding:1px 10px; border-radius:999px; font-size:12.5px; margin-right:6px; white-space:nowrap;}
+  .t-green{background:#2f805518; color:var(--green); border:1px solid #2f805555;}
+  .t-accent{background:#c56f5218; color:var(--accent-dark); border:1px solid #c56f5255;}
+  .t-gold{background:#a8842c15; color:var(--gold); border:1px solid #a8842c55;}
+  .t-red{background:#b44d3c15; color:var(--red); border:1px solid #b44d3c55;}
+  .t-gray{background:#8b867b14; color:var(--secondary); border:1px solid #c9c0b0;}
+
+  .quote{color:var(--muted); font-size:14px;}
+  .small{font-size:13px; color:var(--muted); line-height:1.8;}
+  .divider{border:none; border-top:1px solid var(--line-strong); margin:44px 0 0;}
+  .foot{margin-top:18px; padding-bottom:20px;}
+  @media (max-width:600px){ .doc{padding:24px 16px 60px;} h1{font-size:23px;} body{font-size:15px;} }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<p class="section-label">YOLO / 研究库 / 板块 / AI科技</p>
+<h1>光互连技术路线全景研究<br></h1>
+<p class="subtitle">从SK海力士一篇论文，到AI光互联的产业链重构</p>
+<div class="meta-row">
+  <span class="tag t-gray">板块研究</span>
+  <span class="tag t-gray">AI科技 · 光互连</span>
+  <span class="meta-time">2026-08-28</span>
+</div>
+
+<h2>一、触发事件：一篇论文砸懵光模块赛道？</h2>
+<div class="card">
+<p><b>事件</b>：8/28（周五）光模块三兄弟集体大跌（中际旭创-7.7%、新易盛-6.8%、天孚通信-8.6%，收盘口径），导火索被市场归因于SK海力士刊登在《Nature Electronics》的一篇技术论文——提出"以光为中心"的远期架构蓝图，市场担忧这会降低对传统光模块整机的需求。</p>
+<p><b>重要澄清</b>：该论文实际发表于<b>2026-08-20</b>，并非8/28的新论文。8/20当天SK海力士股价大涨、国内CPO概念股（太辰光等）反而普涨；8/28的下跌更可能是三重因素的叠加：①利空情绪的二次发酵；②"海外拟限制中国下一代光模块出口"的传闻（媒体报道级，<b>未经证实</b>）；③<b>市场面因素</b>——板块年内涨幅巨大、交易拥挤，中报季后的获利了结与技术性回调本身就有充分动能。</p>
+<p><b>归因验证方法</b>：当日龙虎榜/北向资金结构（机构出逃还是量化扰动）、次日卖方晨会纪要口径、以及9月初机构调研中公司对订单能见度的回应——三者交叉才能确认"论文恐慌"在下跌中的真实权重，不宜把一次大跌整体归因于单篇论文。</p>
+<p><b>出口传闻的量化敞口</b>：若限制属实，冲击集中在海外收入占比高的整机厂（中际旭创、新易盛海外收入占比约八成以上，年报口径），对以国内算力建设为主的上游光源/器件厂影响路径完全不同——这是后续跟踪中必须分开评估的两条逻辑。</p>
+<p><b>论文定性</b>：作者明确——"远期技术不等于短期现实，当下全球AI算力建设依旧离不开传统光模块"，但市场已开始重新定价未来。</p>
+</div>
+
+<h2>二、SK海力士论文拆解（恐慌源头）</h2>
+<div class="tw">
+<table>
+<tr><th style="width:110px">项目</th><th>内容</th></tr>
+<tr><td>标题</td><td>Co-packaged optics for high-performance computing and artificial intelligence</td></tr>
+<tr><td>期刊</td><td>Nature Electronics，2026-08-20（<a href="https://news.skhynix.com/en/cpo-in-nature-electronics/">SK海力士官方新闻稿</a>）</td></tr>
+<tr><td>通讯作者</td><td>Seunghoon Hong（SK海力士AI基础设施团队负责人）、Kyusang Lee（弗吉尼亚大学）</td></tr>
+<tr><td>参与机构</td><td>SK海力士、弗吉尼亚大学、UIUC、南洋理工、MIT、延世大学</td></tr>
+<tr><td>论文性质</td><td>Perspective路线图（非实验突破），SK海力士首次在顶刊公开AI互联架构蓝图，官方口径为"超越HBM、Connect Memory With Light"</td></tr>
+</table>
+</div>
+<h3>核心主张</h3>
+<ul>
+<li><b>问题：带宽墙</b>——算力每2年增长约3倍，互联带宽同期仅增长约1.4倍，数千GPU集群中"数据搬运"成为瓶颈，算力空转。</li>
+<li><b>方案：CPO共封装光学</b>——光引擎集成进处理器封装，芯片间用光替代长距离铜互连。目标：节点带宽&gt;100 Tb/s、能耗&lt;1 pJ/bit、延迟&lt;10ns。</li>
+<li><b>演进路线</b>：2D封装 → 2.5D中介层 → 3D异构集成（波导堆叠）。</li>
+<li><b>远期愿景（市场恐慌源头）</b>："以光为中心"架构——通过<b>光子中介层（Photonic Interposer）</b>直接连接XPU算力池与内存池，多个AI加速器共享大容量内存（内存解耦池化）。近期的现实协议路径是<b>CXL over optics</b>（用光承载CXL内存扩展/池化协议），"池化"并非无协议可依的纯愿景。</li>
+<li><b>落地挑战（论文自认）</b>：①光源良率与热干扰 ②光学TSV制造难、成本高 ③缺乏行业标准 ④光电混合封装良率。</li>
+</ul>
+
+<h2>三、技术路线全景：现在的技术 vs 未来的技术</h2>
+
+<p>AI光互连不是一条技术路线，而是一张<b>并行演进的技术谱系</b>。按"现在在用 / 过渡期 / 未来接棒"三个时间维度展开——每条讲清楚：<b>它是什么、解决什么问题、现在什么状态、何时放量、谁在做（海外+A股）</b>。</p>
+
+<h3>3.1 全景总览</h3>
+<div class="tw">
+<table>
+<tr><th>技术路线</th><th>一句话是什么</th><th>状态</th><th>时间线</th><th>海外核心玩家</th><th>A股映射</th></tr>
+<tr><td><b>可插拔光模块</b>（EML/DSP/硅光）</td><td>U盘式光收发器，插在交换机端口</td><td><span class="tag t-green">现在绝对主流</span></td><td>800G量产/1.6T放量，2025-2027黄金期</td><td>Coherent、Fabrinet</td><td>中际旭创、新易盛、华工科技、光迅</td></tr>
+<tr><td><b>LPO线性驱动</b></td><td>可插拔去掉DSP，省电40%+</td><td><span class="tag t-green">现在上量</span></td><td>2025-2026过渡</td><td>博通、Marvell</td><td>新易盛、中际旭创</td></tr>
+<tr><td><b>铜缆DAC/ACC</b></td><td>机柜内GPU直连铜线</td><td><span class="tag t-green">现在机柜内</span></td><td>现在-2027，逐步被光替代</td><td>安费诺、英伟达NVLink</td><td>沃尔核材、兆龙互连、鼎通科技</td></tr>
+<tr><td><b>VCSEL短距光</b></td><td>垂直面发光激光器，板卡间/机柜内（几十米内）</td><td><span class="tag t-green">现在短距</span></td><td>现在-2028</td><td>博通、Coherent、Lumentum</td><td>长光华芯</td></tr>
+<tr><td><b>相干光</b></td><td>数据中心间长距（80-120km）</td><td><span class="tag t-green">现在长距</span></td><td>现在持续升级</td><td>Ciena、Coherent、诺基亚（Infinera）</td><td>中际旭创、德科立</td></tr>
+<tr><td><b>全光交换OXC/OCS</b></td><td>光直接转光，省掉OEO转换</td><td><span class="tag t-green">已规模商用</span></td><td>现在-未来持续渗透</td><td>谷歌（Palomar OCS）、微软自研</td><td>光迅（WSS）</td></tr>
+<tr><td><b>CPO共封装光学</b></td><td>光引擎焊进芯片封装，替代模块</td><td><span class="tag t-accent">已进入量产</span></td><td>博通2024年首发量产；英伟达2026年两条产品线落地；2026-2028爬坡</td><td><b>博通（Bailly，全球首款量产51.2T CPO）</b>、英伟达、台积电、Marvell</td><td>光源：仕佳/长光华芯/源杰；引擎：天孚；散热：英维克；设备：罗博特科</td></tr>
+<tr><td><b>TFLN铌酸锂调制器</b></td><td>下一代"百叶窗"，带宽200GHz+</td><td><span class="tag t-gold">送样导入</span></td><td>2027+</td><td>HyperLight、Coherent</td><td>光库科技、天通股份</td></tr>
+<tr><td><b>光I/O</b></td><td>芯片边缘直接光端口</td><td><span class="tag t-gold">研发/送样</span></td><td>2028+</td><td>Ayar Labs（英伟达/AMD/Intel投资）、Intel、台积电（COUPE）</td><td>暂无直接标的（上游光芯片潜在受益）</td></tr>
+<tr><td><b>光子中介层+内存池化</b></td><td>芯片间光路立交桥，算力池/内存池分离</td><td><span class="tag t-red">概念/路线图</span></td><td>2028+（论文终点站）</td><td>SK海力士、台积电、三星、<b>Celestial AI（Photonic Fabric，与美光合作）</b></td><td>沃格光电（TGV，主题映射）、长电/通富（封装储备）</td></tr>
+<tr><td><b>微环调制器MRM</b></td><td>极小的环状谐振调制器，CPO下一代</td><td><span class="tag t-red">研发</span></td><td>远期</td><td>Intel、MIT</td><td>暂无</td></tr>
+<tr><td><b>自由空间光FSO</b></td><td>激光束直射传输，不用光纤</td><td><span class="tag t-red">探索</span></td><td>远期/特种场景</td><td>—</td><td>暂无</td></tr>
+<tr><td><b>存算一体CIM</b></td><td>存储里直接计算，消灭搬运</td><td><span class="tag t-red">实验室</span></td><td>远期（与光互连并行独立路线）</td><td>三星、SK海力士</td><td>暂无明确标的</td></tr>
+</table>
+</div>
+
+<h3>3.2 现在的主流技术（2025-2027，正在赚钱的）</h3>
+
+<div class="layer">
+<div class="layer-title">① 可插拔光模块（EML/硅光路线）——现在绝对主流</div>
+<div class="layer-meta">做什么：光模块像U盘一样插在交换机端口，负责机架之间（2-100米）的数据搬运。当前800G量产、1.6T 2026起量，是英伟达AI集群的标配。</div>
+<b>内部解剖（五大件）</b>：
+<div class="tw">
+<table>
+<tr><th>部件</th><th>做什么</th><th>技术路线</th><th>海外玩家</th><th>A股玩家</th></tr>
+<tr><td><b>DSP芯片</b></td><td>把电信号修好再送出去（修音师）</td><td>模块功耗大头；国产差距卡在224G SerDes</td><td>博通、Marvell</td><td>上市公司暂无（未上市：橙科微等在攻）</td></tr>
+<tr><td><b>激光器</b>（光源）</td><td>发射光信号</td><td><b>EML</b>=常亮灯+帘子，800G/1.6T主力光源</td><td>Lumentum、住友、三菱、Coherent</td><td>源杰科技、光迅、仕佳光子</td></tr>
+<tr><td><b>调制器</b></td><td>把0/1刻到光上（百叶窗）</td><td><b>硅光MZM</b>：当前主流</td><td>Intel、博通、Marvell</td><td>光迅（硅光平台）、光库科技（TFLN布局）</td></tr>
+<tr><td><b>光学件</b></td><td>光进芯片最后一厘米（FAU/透镜/滤波片）</td><td>微米级精密对准</td><td>Fabrinet</td><td>天孚通信、腾景科技、福晶科技</td></tr>
+<tr><td><b>光纤连接</b></td><td>模块与光纤的连接器</td><td>MPO/保偏光纤</td><td>US Conec</td><td>太辰光、长飞光纤、亨通光电</td></tr>
+</table>
+</div>
+<b>关键光源说明（EML vs CW）</b>：EML=发光+调制一体（手电筒+帘子），是现在可插拔模块的主力；CW=只发光不调制（永远亮的灯泡），是硅光/CPO时代的外置光源——因为<b>硅本身不发光，硅光芯片必须外挂CW光源</b>。CPO放量= CW光源需求暴增（英伟达官方称其CPO方案激光器用量降至可插拔的约1/4，单颗可靠性要求更高）。
+</div>
+
+<div class="layer">
+<div class="layer-title">② LPO/LRO线性驱动（可插拔的省电进化）</div>
+<div class="layer-meta">做什么：把模块里最费电的DSP拿掉（LPO全去DSP；LRO仅接收端去DSP，是更稳的中间档），靠线性驱动直接传信号。</div>
+<b>优点</b>：省电40%+、成本低、延迟小。　<b>代价</b>：传输距离缩短、对激光器/调制器质量要求极高。<br>
+<b>定位</b>：<span class="tag t-gold">过渡技术</span>——2025-2026上量，给CPO铺路的中间形态。谁在做：海外=博通/Marvell提供线性芯片；A股=新易盛、中际旭创、剑桥科技均有LPO/LRO产品布局。
+</div>
+
+<div class="layer">
+<div class="layer-title">③ 铜缆DAC/ACC（机柜内的最后阵地）</div>
+<div class="layer-meta">做什么：同一机柜内GPU与GPU、GPU与交换机之间的短距连接（0.5-2米），走高速铜缆。</div>
+<b>现状</b>：英伟达NVLink就是铜——GB200 NVL72整个机柜是一个铜互连域（NVLink总带宽约130TB/s）。便宜、低功耗，但速率提升后铜的可达距离正被压缩到1米级。<br>
+<b>未来</b>：scale-up域的铜能撑多久，是"光进铜退"最关键的观察点（详见第四节）。谁在做：海外=安费诺；A股=沃尔核材、兆龙互连、鼎通科技。
+</div>
+
+<div class="layer">
+<div class="layer-title">④ VCSEL（机柜内短距光）</div>
+<div class="layer-meta">做什么：从芯片表面垂直发光的激光器（喷泉式），用于板卡间、机柜内短距离光互连（几十米内）。</div>
+<b>特点</b>：便宜、可做成阵列、良率高；功率小、传不远。<br>
+<b>谁在做</b>：海外=博通、Coherent、Lumentum；A股=长光华芯（高功率激光器+VCSEL）。
+</div>
+
+<div class="layer">
+<div class="layer-title">⑤ 相干光（数据中心之间的长距离）</div>
+<div class="layer-meta">做什么：两个数据中心之间（80-120公里）的海量数据同步，AI训练跨园区必须用。</div>
+<b>原理</b>：同时调制光的相位+振幅+偏振，一个光子传更多信息，传得远还不失真。<br>
+<b>谁在做</b>：海外=Ciena、Coherent、诺基亚（Infinera已于2025年2月完成收购并入诺基亚）；A股=中际旭创（相干模块）、德科立。
+</div>
+
+<div class="layer">
+<div class="layer-title">⑥ 全光交换OXC/OCS（省掉光电转换）</div>
+<div class="layer-meta">做什么：传统网络每过一个节点就要"光→电→光"转换一次（OEO），全光交换让光直接转光。</div>
+<b>意义</b>：省掉转换功耗和延迟。谷歌Palomar OCS已在自家TPU集群规模应用多年，是商用最久的全光交换案例。<br>
+<b>谁在做</b>：海外=谷歌、微软自研；A股=光迅科技（WSS波长选择开关——全光交换核心器件）。
+</div>
+
+<h3>3.3 未来的技术（2026-2030+，接棒的）</h3>
+
+<div class="layer">
+<div class="layer-title">① CPO共封装光学——已越过"从0到1"，正处在"从1到N"爬坡</div>
+<div class="layer-meta">做什么：把光引擎直接焊进交换芯片/GPU的封装里，不再用U盘式可插拔模块。</div>
+<b>为什么</b>：电信号路径从几十厘米缩短到几毫米，带宽密度大增、功耗大降、延迟更低。<br>
+<b>进度：CPO不是2026年才出现的纸上概念</b>——<br>
+&nbsp;&nbsp;① <b>博通Bailly（TH5-Davisson）</b>：业界<b>首款量产51.2T CPO交换机</b>，2024年发布出货——CPO商用化的最硬证据，2026年与英伟达同步扩产；<br>
+&nbsp;&nbsp;② <b>英伟达两条产品线</b>：Quantum-X Photonics（InfiniBand，2026年初先行）、<b>Spectrum-X Photonics（以太网，官方确认已全面量产、2026H2出货</b>，官方口径：激光器用量降至约1/4、功耗降至约1/5，五家供应商链，台积电/鸿海参与制造）；<br>
+&nbsp;&nbsp;③ 博通Tomahawk 6代CPO、Marvell同步推进。<br>
+<b>两大工程难题</b>：<br>
+&nbsp;&nbsp;① <b>光怕热</b>：光器件对温度极敏感，交换芯片动辄500W+，散热是CPO量产最大拦路虎 → 液冷成为刚需配套<br>
+&nbsp;&nbsp;② <b>光源外置</b>：硅光芯片不发光，必须外挂CW激光器（保偏光纤连接）→ CW光源+保偏光纤成为增量<br>
+<b>谁在做</b>：海外=博通、英伟达、台积电、Marvell；A股=模块厂（中际旭创、新易盛、华工、剑桥科技）转型做光引擎，天孚通信做引擎封装+FAU，仕佳/长光华芯/源杰供CW光源，英维克/申菱做液冷，长飞/亨通供保偏光纤，罗博特科（ficonTEC）供组装测试设备。<br>
+<b>产业链含义</b>：价值从"模块整机组装"转移到"光源+光引擎+连接+散热+设备"。
+</div>
+
+<div class="layer">
+<div class="layer-title">② TFLN铌酸锂调制器——2027+下一代"百叶窗"</div>
+<div class="layer-meta">做什么：现有硅光调制器（MZM）带宽有上限，TFLN（薄膜铌酸锂）带宽200GHz+、损耗更低、体积更小。</div>
+<b>定位</b>：1.6T/3.2T可插拔与CPO光引擎的下一代调制方案，正在送样导入（导入客户与批量时点以公司公告为准）。<br>
+<b>谁在做</b>：海外=HyperLight、Coherent；A股=<b>光库科技</b>（A股规模化TFLN布局代表）、天通股份（铌酸锂晶体材料）。
+</div>
+
+<div class="layer">
+<div class="layer-title">③ 光I/O（Optical I/O）——2028+芯片级光互连</div>
+<div class="layer-meta">做什么：在芯片边缘直接做光端口，数据以光形式进出芯片，跳过PCB和封装基板上的长铜线。</div>
+<b>定位</b>：把光从"交换机之间"推进到"芯片之间"，是CPO的下一代。<br>
+<b>谁在做</b>：海外=Ayar Labs（英伟达/AMD/Intel共同投资，全球最领先）、Intel、台积电（COUPE）；A股=暂无直接标的，上游光芯片厂（源杰/光迅）是潜在供应商。
+</div>
+
+<div class="layer">
+<div class="layer-title">④ 光子中介层+内存池化——2028+（SK海力士论文的终点站）</div>
+<div class="layer-meta">做什么：在硅中介层上刻光波导网络（光子中介层），算力池和内存池之间用光直连，配套光学TSV垂直打通。近期协议路径为CXL over optics。</div>
+<b>核心变化</b>：内存从"每颗GPU绑一块HBM"变成"多个GPU共享大内存池"（内存解耦池化）——利用率更高，SK海力士等存储厂借此从卖内存升级为卖系统架构。<br>
+<b>谁在做</b>：海外=SK海力士（论文提出者）、台积电、三星、<b>Celestial AI</b>（初创，Photonic Fabric光子织物=光子中介层+内存池化的最直接工程化对标，2025年3月C轮融资2.5亿美元、与美光合作HBM光互连）；A股=<b>沃格光电</b>（TGV玻璃通孔，<i>主题映射、证据链最弱</i>）、长电科技/通富微电（先进封装能力储备）。
+</div>
+
+<div class="layer">
+<div class="layer-title">⑤ 更远期：微环调制器、自由空间光、存算一体</div>
+<div class="layer-meta">三条更远的线：</div>
+<ul>
+<li><b>微环调制器MRM</b>：极小的环状谐振器做调制，面积是MZM的百分之一，CPO光引擎的下一代选择——Intel、MIT在推，A股暂无标的</li>
+<li><b>自由空间光FSO</b>：激光束不通过光纤直射传输，免布线，但受天气/对准影响，远期特种场景</li>
+<li><b>存算一体CIM</b>：在存储单元里直接做计算，从根上消灭"搬运"——与光互连是两条并行独立路线，实验室阶段，三星/SK海力士在研</li>
+</ul>
+</div>
+
+<h3>3.4 横切视角：数据流动五层，光在哪里接手</h3>
+<div class="tw">
+<table>
+<tr><th>数据层级</th><th>当前方案</th><th>光的介入方案</th></tr>
+<tr><td>芯片内部（1cm内）</td><td>铜互连</td><td>光I/O（2028+）</td></tr>
+<tr><td>封装内（1-5cm）</td><td>CoWoS中介层（电）</td><td>光子中介层+光学TSV（2028+）</td></tr>
+<tr><td>板卡/机柜内（0.5-2m）</td><td>铜缆DAC/ACC</td><td>VCSEL、光I/O</td></tr>
+<tr><td>机架间/交换机（2-100m）</td><td>可插拔光模块+LPO</td><td>CPO（已量产爬坡）</td></tr>
+<tr><td>数据中心间（80-120km）</td><td>相干光+OXC</td><td>全光交换渗透</td></tr>
+</table>
+</div>
+<p>注意一个关键事实：<b>机架间这一层早就是光的主场</b>；真正的攻防战线在<b>机柜内（铜的最后堡垒）和封装内/芯片间（论文的野心）</b>。每一次光向内推进，光的总需求变大，但形态和价值归属在变。</p>
+
+<h2>四、为什么不能"全集成在一起"？——技术演进的本原逻辑</h2>
+<div class="card">
+<p>直觉上，把算力、内存、光引擎都集成在一块芯片上不是最省事吗？物理定律画了五重天花板：</p>
+<ul>
+<li><b>芯片面积极限</b>：光刻单次曝光视场约26mm×33mm，GPU已逼近上限——装完算力装不下内存，装完内存装不下光引擎</li>
+<li><b>良率定律</b>：芯片越大，一个缺陷废掉整片——必须分开造再封装（每块小而精）</li>
+<li><b>工艺不同</b>：逻辑（GPU）与内存（DRAM）工艺无法在同一晶圆最优生产；HBM只能叠罗汉</li>
+<li><b>散热爆炸</b>：旗舰GPU功耗已达1~1.4kW，全集成=热死，且光器件怕热</li>
+<li><b>灵活性与成本</b>：全集成无法按需配比算力/内存比例，内存池化=自助餐，利用率更高</li>
+</ul>
+<p><b>终极原因</b>：AI集群=上万颗GPU分布式协同，物理上不可能挤进一台机器，<b>分布就必须传输</b>。</p>
+<p><b>所以方向不是消灭传输，而是四件事：</b></p>
+<ol>
+<li><b>路径缩短</b>：电信号只走最后1厘米，光接管长距离（电传远衰减、光传远无损）</li>
+<li><b>转换变少</b>：减少光→电→光（OEO）转换次数，去DSP（LPO），极致是全光交换</li>
+<li><b>降功耗</b>：核心KPI是pJ/bit（搬数据的成本），见下方功耗阶梯</li>
+<li><b>资源池化</b>：算力池与内存池分离、光路共享，提升利用率</li>
+</ol>
+
+<h4>功耗阶梯：这次恐慌的物理底层（量级估算，口径不同不可精确对比）</h4>
+<div class="tw">
+<table>
+<tr><th>方案</th><th>典型功耗（pJ/bit，量级）</th><th>说明</th></tr>
+<tr><td>可插拔模块（含DSP）</td><td>~10-15</td><td>DSP占模块功耗大头</td></tr>
+<tr><td>LPO/LRO</td><td>~5-8</td><td>去DSP省电40-50%</td></tr>
+<tr><td>CPO（英伟达官方口径）</td><td>约为可插拔的1/5</td><td>同时激光器用量降至约1/4</td></tr>
+<tr><td>光I/O / 光子中介层（论文目标）</td><td>&lt;1-2</td><td>愿景值，未经大规模验证</td></tr>
+</table>
+</div>
+
+<h4>scale-up / scale-out：理解这篇论文的钥匙——"光铜边界之争"</h4>
+<p>理解SK海力士的野心，必须先分清两个域：</p>
+<ul>
+<li><b>scale-out（横向扩展，机架间/集群间）</b>：早已是光的主场——以太网/InfiniBand交换全走光模块。这一层没有"光替代铜"的故事，只有"CPO替代可插拔"的<b>形态之争</b>。</li>
+<li><b>scale-up（纵向扩展，机柜内GPU互联域）</b>：<b>铜的最后堡垒</b>——NVLink把整个机柜连成一台"大GPU"（NVL72约130TB/s铜背板）。铜便宜、省电，但速率翻倍后可达距离被压到1米级，机柜越做越密已经顶到物理极限。</li>
+</ul>
+<p><b>SK海力士论文的真正主张</b>，不是在scale-out层抢光模块的生意，而是把光推进到从未被光占领的<b>scale-up和内存域</b>（光I/O→光子中介层→内存池化）。所以真正的产业问题是：<b>"光进铜退"的边界什么时候、以什么形态穿过机柜边界？</b> 英伟达CPO交换机先落地（scale-out层形态更替）、光I/O 2028+（芯片边缘）、光子中介层更远（封装内）——这个次序本身就是边界推进的时间表。</p>
+</div>
+
+<div class="warn">
+<b>空头逻辑传导链（这次下跌的"学术依据"到底指什么）</b><br>
+论文愿景 → ①CPO成熟：可插拔端口被共封装光引擎替代（<b>形态替代</b>，2026-2028爬坡）→ ②光I/O：交换层被进一步压缩（2028+）→ ③光子中介层：交换层与内存边界被重构（远期）。<br>
+<b>关键区分</b>：对<b>行业</b>，每一步都是增量（光的用量变大）；但对<b>不同环节的主体</b>，损益完全相反——模块整机厂的核心品类被"换形态"（是替代逻辑，除非拿到光引擎份额）；上游光源/光芯片/连接/散热是纯增量（不管形态怎么变，光总要发出来、总要连起来）。<b>"增量不是减量"这句话必须分主语看。</b>
+</div>
+
+<h2>五、产业链公司全景（按环节×做什么×谁在做）</h2>
+
+<h3>5.1 按数据层级汇总</h3>
+<div class="tw">
+<table>
+<tr><th>层级</th><th>当前方案</th><th>光介入方案</th><th>海外龙头</th><th>A股标的</th></tr>
+<tr><td>芯片内部</td><td>铜互连</td><td>光I/O（2028+）</td><td>Ayar Labs、Intel、台积电</td><td>无直接标的（上游光芯片潜在受益）</td></tr>
+<tr><td>封装内</td><td>CoWoS中介层</td><td>光子中介层+光学TSV（2028+）</td><td>台积电、SK海力士、三星、Celestial AI</td><td>沃格光电（主题映射）、长电科技、通富微电</td></tr>
+<tr><td>板卡/机柜内</td><td>铜缆DAC/ACC</td><td>VCSEL/光I/O</td><td>安费诺、英伟达</td><td>沃尔核材、兆龙互连、鼎通科技、长光华芯</td></tr>
+<tr><td>机架间/交换机</td><td>可插拔光模块+LPO</td><td>CPO（已量产爬坡）</td><td>博通、Coherent、Marvell、英伟达</td><td>中际旭创、新易盛、华工科技、天孚通信、光迅</td></tr>
+<tr><td>数据中心间</td><td>相干光+OXC</td><td>全光交换</td><td>Ciena、Coherent、诺基亚</td><td>中际旭创、光迅（WSS）、德科立</td></tr>
+</table>
+</div>
+
+<h3>5.2 共性器件环节（附证据分级）</h3>
+<p class="small">证据分级口径：<span class="tag t-green">A 已验证</span>有公告/大客户量产配套可查；<span class="tag t-gold">B 送样在测</span>公司披露送样/研发中，无量产订单；<span class="tag t-red">C 主题映射</span>业务形态接近，无直接客户证据。投资决策请以公司公告与财报披露为准。</p>
+<div class="tw">
+<table>
+<tr><th>环节</th><th>做什么</th><th>海外龙头</th><th>A股标的</th><th>证据等级</th></tr>
+<tr><td><b>光源（激光器芯片）</b></td><td>EML=现在可插拔主力；CW=CPO/硅光外置光源（未来核心）</td><td>Lumentum、住友、三菱、Coherent</td><td>源杰科技、仕佳光子、长光华芯、光迅</td><td><span class="tag t-gold">B</span> CW进入海外CPO链的披露程度各家不一</td></tr>
+<tr><td><b>光引擎封装/FAU</b></td><td>光引擎与光纤的微米级耦合封装</td><td>Fabrinet、台积电</td><td>天孚通信、腾景科技</td><td><span class="tag t-green">A</span> 天孚为CPO引擎封装+FAU核心标的</td></tr>
+<tr><td><b>调制器</b></td><td>硅光MZM=当前主流；TFLN=下一代（带宽更高）</td><td>Intel、博通、Marvell</td><td>光库科技（TFLN）、天通股份（材料）、光迅</td><td><span class="tag t-gold">B</span> TFLN处于送样导入期</td></tr>
+<tr><td><b>无源器件/连接</b></td><td>FAU光纤阵列、MPO连接器、保偏光纤、滤波片</td><td>US Conec、Fabrinet</td><td>天孚通信、太辰光、腾景科技、长飞光纤、亨通光电</td><td><span class="tag t-green">A</span> MPO/FAU随CPO端口数增长，太辰光海外大客户配套明确</td></tr>
+<tr><td><b>组装测试设备</b></td><td>CPO光引擎的耦合、封装与测试设备（纯卖铲人）</td><td>—</td><td>罗博特科（ficonTEC）</td><td><span class="tag t-gold">B</span> CPO放量则耦合封装设备需求先行，订单细节以公告为准</td></tr>
+<tr><td><b>散热</b></td><td>CPO最大工程坎——光器件怕热，必须液冷</td><td>CoolIT、Vertiv</td><td>英维克、申菱环境、高澜股份</td><td><span class="tag t-green">A</span> 液冷随AI整机柜放量，逻辑独立于CPO</td></tr>
+<tr><td><b>先进封装</b></td><td>光引擎与芯片的混合封装</td><td>台积电CoWoS</td><td>长电科技、通富微电</td><td><span class="tag t-gold">B</span> 能力储备，光电混合封装收入尚未成规模</td></tr>
+<tr><td><b>基板/中介层</b></td><td>光子中介层、玻璃通孔TGV（最前沿）</td><td>台积电</td><td>沃格光电</td><td><span class="tag t-red">C</span> TGV与光子中介层仅为形态接近，无客户证据</td></tr>
+<tr><td><b>模块整机</b></td><td>1.6T放量主力+CPO/光引擎转型</td><td>Coherent、Fabrinet</td><td>中际旭创、新易盛、华工科技、剑桥科技、博创科技</td><td><span class="tag t-green">A</span> 1.6T已量产；光引擎转型收入占比是跟踪关键</td></tr>
+</table>
+</div>
+<p class="small">注：DSP环节A股无上市公司标的（未上市玩家如橙科微在攻，国产差距主要卡在224G SerDes）。所有"证据等级"为公开信息整理，请以公司公告原文为准。</p>
+
+<h2>六、时间轴：主角切换（附证伪信号）</h2>
+<div class="tw">
+<table>
+<tr><th>阶段</th><th>时间</th><th>赚钱的主角</th><th>关键变化</th><th>证伪信号（出现即重估）</th></tr>
+<tr><td>现在</td><td>2025-2027</td><td>模块厂（旭创/新易盛）+卖铲子（天孚）+光源厂（源杰/仕佳）</td><td>1.6T放量红利期，EML紧缺，可插拔仍是绝对主流</td><td>1.6T出货指引下修；云厂商资本开支指引转弱</td></tr>
+<tr><td>CPO爬坡</td><td>2026-2028</td><td><b>光源厂（仕佳/长光华芯）+连接厂（天孚/太辰光）+散热（英维克）+设备（罗博特科）</b></td><td>价值从模块整机→光引擎/光源/光纤/设备；纯组装环节承压</td><td>Spectrum-X Photonics 2026H2出货不及预期；CPO良率/散热问题延期；CW光源降价不及预期</td></tr>
+<tr><td>光I/O+中介层</td><td>2028+</td><td><b>调制器（光库/TFLN）+先进封装（长电/通富）+中介层</b></td><td>光芯片/光源成核心；存储厂（海力士/三星）入场做系统架构</td><td>光I/O客户导入停滞；内存池化协议（CXL over optics）生态碎片化</td></tr>
+</table>
+</div>
+
+<h2>七、投资视角结论</h2>
+<div class="card">
+<ul>
+<li><b>不崩塌，是演进——但必须分主语</b>：可插拔光模块还有2-3年黄金期（1.6T放量），CPO已越过从0到1（博通2024年Bailly首发量产，英伟达2026年两条产品线落地），正处于并行增量阶段，2028+才是格局重塑期。单篇远期论文改变不了近三年的供需。</li>
+<li><b>价值转移路径</b>：模块整机（旭创/新易盛）→ 光源+光引擎+连接+设备（源杰/仕佳/天孚/太辰光/罗博特科）→ 调制器+封装（光库/长电/通富）→ 系统架构（SK海力士/英伟达/博通）。<b>越往上游、越靠近光芯片和光源的环节，在每一轮演进中越稳</b>——因为无论模块形态怎么变，光总要发出来、总要被调制、总要连接。</li>
+<li><b>对整机厂要一分为二</b>：CPO对旭创/新易盛既是威胁也是门票——它们的1.6T主业在2026-2027仍是印钞机，但2028年后的位置取决于光引擎/硅光转型收入占比能否起量。跟踪它们财报中"CPO/光引擎收入"的首次披露，比争论论文真假更有意义。</li>
+<li><b>风险提示</b>：①CPO爬坡进度不及预期（散热/良率）——注意这反而利多现役可插拔链；②出口限制传闻若落实，直接压制海外收入占比八成以上的整机厂；③远期架构（光子中介层）若由存储厂/系统厂主导，模块厂在价值链中的话语权持续下移；④市场面风险：板块拥挤度高，情绪逆转时好逻辑也挡不住回撤。</li>
+<li><b>跟踪指标（可操作清单）</b>：Spectrum-X Photonics 2026H2出货节奏与五家供应商链名单落地、博通CPO交换机份额、CW激光器用量/单价、天孚/太辰光CPO相关订单公告、液冷渗透率、旭创/新易盛光引擎收入占比首次披露、出口限制传闻的官方化进展。</li>
+</ul>
+</div>
+
+<h2>附录A：术语速查表</h2>
+<div class="tw">
+<table>
+<tr><th>术语</th><th>一句话解释</th></tr>
+<tr><td>DML</td><td>直接调制激光器——开关灯发信号，便宜但慢，短距用</td></tr>
+<tr><td>EML</td><td>电吸收调制激光器——常亮灯+帘子，单通道100G+，现在的主力光源</td></tr>
+<tr><td>CW</td><td>连续波激光器——永远亮的灯泡，CPO/硅光的外置光源（硅不发光）</td></tr>
+<tr><td>硅光MZM</td><td>硅基调制器——百叶窗，把信息刻到光上，当前主流</td></tr>
+<tr><td>TFLN</td><td>薄膜铌酸锂——下一代百叶窗，带宽200GHz+，2027+</td></tr>
+<tr><td>MRM</td><td>微环调制器——极小环状谐振调制，面积是MZM的1%，远期</td></tr>
+<tr><td>DSP</td><td>数字信号处理——修音师，把变形信号修回来，模块功耗大头</td></tr>
+<tr><td>LPO</td><td>线性驱动——去掉DSP直接唱，省电40%+，过渡形态</td></tr>
+<tr><td>LRO</td><td>线性接收光学——只去掉接收端DSP，比LPO更稳的过渡档</td></tr>
+<tr><td>CPO</td><td>共封装光学——光引擎焊进芯片封装，已量产爬坡（博通2024首发，英伟达2026两条产品线）</td></tr>
+<tr><td>Bailly</td><td>博通业界首款量产51.2T CPO交换机（2024），CPO商用化最硬证据</td></tr>
+<tr><td>光I/O</td><td>芯片边缘直接做光端口，2028+</td></tr>
+<tr><td>光子中介层</td><td>芯片间光路立交桥+内存池化，论文终点站，2028+</td></tr>
+<tr><td>FAU</td><td>光纤阵列——几十根光纤微米级对准插进芯片</td></tr>
+<tr><td>VCSEL</td><td>垂直面发光激光器——机柜内短距（几十米内）</td></tr>
+<tr><td>相干光</td><td>同时调制相位+振幅+偏振，数据中心间长距</td></tr>
+<tr><td>OXC/OCS</td><td>全光交换/光路交换——光直接转光，谷歌Palomar OCS为规模商用代表</td></tr>
+<tr><td>OEO</td><td>光→电→光的信号转换，能省则省</td></tr>
+<tr><td>HBM</td><td>高带宽内存——叠罗汉式DRAM，GPU标配</td></tr>
+<tr><td>CXL</td><td>内存扩展/池化互联协议——"CXL over optics"是内存池化最近的协议路径</td></tr>
+<tr><td>scale-up / scale-out</td><td>纵向扩展（机柜内GPU互联域，铜的堡垒）/横向扩展（机架间集群，光的主场）</td></tr>
+<tr><td>pJ/bit</td><td>每传输1比特花的能量——光互连军备竞赛的核心KPI</td></tr>
+<tr><td>带宽墙</td><td>算力2年×3倍 vs 带宽2年×1.4倍，数据搬运成瓶颈</td></tr>
+</table>
+</div>
+
+<h2>附录B：参考来源</h2>
+<p class="small">
+<b>官方/一手来源</b><br>
+- SK hynix Newsroom：SK hynix's technology roadmap for co-packaged optics features in 'Nature Electronics'（2026-08-20）<a href="https://news.skhynix.com/en/cpo-in-nature-electronics/">[链接]</a><br>
+- Nature Electronics 原文（Perspective）<br>
+- NVIDIA：Silicon Photonics Networking 产品页（Spectrum-X Photonics 全面量产、2026H2出货）<a href="https://www.nvidia.com/en-us/networking/products/silicon-photonics/">[链接]</a><br>
+- NVIDIA IR：Spectrum-X Photonics CPO交换机公告（2025年3月GTC首发）<br>
+- StorageReview：NVIDIA Spectrum-X Ethernet Photonics Enters Full Production with 4x Fewer Lasers and a Five-Vendor CPO Supply Chain<br>
+- Electronics360：CPO Switch Production Ramps Up by NVIDIA and Broadcom<br>
+- Broadcom：Bailly 51.2T CPO交换机（2024年发布，业界首款量产CPO）<br>
+- TrendForce：SK hynix Unveils CPO Roadmap, Looks Beyond HBM（2026-08-20）<a href="https://www.trendforce.com/news/2026/08/20/news-sk-hynix-unveils-cpo-roadmap-looks-beyond-hbm-to-ai-infrastructure/">[链接]</a><br>
+- DigiTimes、The Elec、科创板日报相关报道（2026-08-20/21）
+</p>
+
+<hr class="divider">
+<div class="foot">
+<p class="small"><b>数据与免责说明</b>：文中行情为收盘口径，以交易所披露为准；出口限制相关传闻未经官方证实；海外初创公司融资信息为公开报道口径；个股配套与订单信息均以公司公告原文为准。本文为个人公开研究记录，不构成任何投资建议，据此操作风险自负。</p>
+<p class="small">YOLO · 研究站｜板块研究 · AI科技｜2026-08-28</p>
+</div>
+
+</div>
+</body>
+</html>
