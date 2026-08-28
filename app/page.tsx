@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 const updates = [
+  { date: "2026-08-28 17:59", kind: "板块研究", title: "光互连技术路线全景研究：从论文、光模块到下一代技术", href: "/reports/20260828-optical-interconnect-panorama" },
   { date: "2026-08-23 19:58", kind: "板块研究", title: "AI科技板块产业链总图：六线总纲与利润池", href: "/reports/ai-panorama-six-lines-20260823" },
   { date: "2026-08-23 18:58", kind: "专题研究", title: "光模块散热赛道：导热材料、液冷与陶瓷封装", href: "/reports/optical-module-thermal-investment-20260823" },
   { date: "2026-08-23 18:28", kind: "专题研究", title: "AI互联线：光模块、光芯片、设备、介质与网络服务", href: "/reports/ai-interconnect-investment-20260823" },
