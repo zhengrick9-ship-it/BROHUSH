@@ -3,6 +3,7 @@ import { ArticleDocument, ArticleSection } from "@/app/components/ArticleDocumen
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 const articles: Record<string, { kind: string; title: string; dek: string; publishedAt: string; updatedAt: string; status: string; sourceFile?: string; sections?: Array<[string, string]> }> = {
+  "20260830-value-logic-full-research-v3": { kind: "价值逻辑 / 三周期作战", title: "价值逻辑分析报告：36项逻辑全量研究与三周期作战计划", dek: "基于真实需求、产业价值点、公司利润、估值位置和催化验证，整理36项价值逻辑，并给出长线、中线、短线的下周行动边界。", publishedAt: "2026-08-30", updatedAt: "2026-08-30", status: "已发布 · 数据截至2026-08-28", sourceFile: "20260830-value-logic-full-research-v3.html" },
   "20260828-optical-interconnect-panorama": { kind: "板块研究 / 光互连", title: "光互连技术路线全景研究", dek: "从SK海力士一篇论文，到AI光互联的产业链重构：技术路线谱系、产业链映射、价值迁移与跟踪指标。", publishedAt: "2026-08-28", updatedAt: "2026-08-28", status: "已发布", sourceFile: "20260828-optical-interconnect-panorama.html" },
   "ai-panorama-six-lines-20260823": { kind: "板块研究 / AI科技", title: "AI科技板块产业链总图（六线总纲）", dek: "从产业链、利润池、技术代际和六条投资线建立AI科技研究总图。", publishedAt: "2026-08-23", updatedAt: "2026-08-23", status: "已发布 · 数据截至2026-08-21", sourceFile: "ai-panorama-six-lines-20260823.html" },
   "ai-interconnect-investment-20260823": { kind: "专题研究 / 互联线", title: "AI互联线投资研究报告", dek: "从光模块、光芯片、交换设备、光纤铜缆到网络服务，梳理互联线的需求、技术和代表公司。", publishedAt: "2026-08-23", updatedAt: "2026-08-23", status: "已发布 · 数据截至2026-08-21", sourceFile: "ai-interconnect-investment-20260823.html" },

@@ -5,6 +5,11 @@ export type PublishedReport = {
 };
 
 export const publishedReports = {
+  valueLogic: {
+    slug: "20260830-value-logic-full-research-v3",
+    title: "价值逻辑分析报告：36项逻辑与三周期作战计划",
+    summary: "对36项价值逻辑进行全量复核，并按长线价值、中线轮动、短线爆发给出下周研究与行动边界。",
+  },
   opticalPanorama: {
     slug: "20260828-optical-interconnect-panorama",
     title: "光互连技术路线全景研究",
