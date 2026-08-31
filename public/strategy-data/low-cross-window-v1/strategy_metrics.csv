@@ -1,0 +1,4 @@
+﻿strategy,signals,unique_stocks,n_5d,mean_5d_pct,median_5d_pct,win_5d_pct,excess_mean_5d_pct,excess_win_5d_pct,p25_5d_pct,mean_mdd_5d_pct,n_10d,mean_10d_pct,median_10d_pct,win_10d_pct,excess_mean_10d_pct,excess_win_10d_pct,p25_10d_pct,mean_mdd_10d_pct,n_20d,mean_20d_pct,median_20d_pct,win_20d_pct,excess_mean_20d_pct,excess_win_20d_pct,p25_20d_pct,mean_mdd_20d_pct
+early_turn_flow_market,248,238,248,1.783,1.735,64.52,1.338,59.27,-2.513,-3.21,248,2.887,2.598,61.69,1.667,52.82,-3.382,-4.998,248,4.062,3.236,62.5,2.457,56.85,-4.13,-6.909
+early_turn_flow_market_plus,76,75,76,2.902,2.384,75.0,1.994,71.05,-0.055,-2.977,76,3.477,3.941,69.74,1.528,56.58,-0.926,-4.148,76,4.324,4.695,65.79,2.589,57.89,-3.372,-5.917
+pure_shape_window,9266,4491,9266,-0.269,-0.905,42.29,-0.262,40.86,-4.45,-5.211,9266,0.417,-0.365,48.13,0.192,44.23,-6.672,-7.4,9266,0.094,-0.876,47.25,0.255,45.09,-9.407,-10.18

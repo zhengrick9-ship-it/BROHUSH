@@ -1,0 +1,19 @@
+{
+  "release_id": "qdh-bj-20260831T224529",
+  "target_close": "20260831",
+  "factor_end": "20260831",
+  "moneyflow_query_end": "20260831",
+  "moneyflow_coverage": {
+    "20260826": 4968,
+    "20260827": 4969,
+    "20260828": 4968,
+    "20260831": 4965
+  },
+  "universe": 4970,
+  "rows": 50,
+  "ranking_note": "ranking_score is a pre-trade ordering score for display only; it was not used in the historical backtest",
+  "strategies": [
+    "L1_CROSS_WINDOW_PURE",
+    "L2_EARLY_FLOW_MARKET"
+  ]
+}

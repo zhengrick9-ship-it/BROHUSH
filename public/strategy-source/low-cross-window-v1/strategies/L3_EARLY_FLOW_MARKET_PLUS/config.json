@@ -1,0 +1,9 @@
+{
+  "strategy_id": "L3_EARLY_FLOW_MARKET_PLUS",
+  "name": "金叉窗口筑底增强",
+  "version": "V1",
+  "state": "priority_research_candidate",
+  "scope": "L2 + 近5日不再创新低 + 非短线过热 + 连续涨停<2",
+  "rule": "继承L2；adjusted low近5日>=前5日低点*0.99；heat_ratio<0.80；consecutive_limit_up_run<2",
+  "source": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_comparison\\run_walkforward.py::early_turn_flow_market_plus"
+}

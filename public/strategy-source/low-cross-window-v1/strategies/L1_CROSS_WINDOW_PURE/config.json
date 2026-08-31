@@ -1,0 +1,10 @@
+{
+  "strategy_id": "L1_CROSS_WINDOW_PURE",
+  "name": "金叉窗口纯形态",
+  "version": "V1",
+  "state": "discovery_only",
+  "scope": "即将金叉1-3日或刚金叉0-3日",
+  "rule": "green_days>=8 + 绿柱峰值>=1% + 绿柱面积>=8% + slope3>=0.03 + slope_acceleration>=0.04 + hist_expand>=0.20 + pos60<40% + dd250>=20%",
+  "warning": "不含资金流、大盘和过热过滤；用于发现候选，不直接作为买入信号。",
+  "source": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_comparison\\run_walkforward.py::pure_shape_window"
+}

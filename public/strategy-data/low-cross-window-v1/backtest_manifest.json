@@ -1,0 +1,22 @@
+{
+  "experiment": "v4_unified_cross_window_with_baseline_and_heat_filter",
+  "release_id": "qdh-bj-20260831T174450",
+  "data_start": "20250101",
+  "data_end": "20260828",
+  "signal_start": "20260202",
+  "signal_end": "20260807",
+  "entry": "t+1 adjusted open",
+  "exits": "t+5/t+10/t+20 adjusted close",
+  "cooldown_sessions": 10,
+  "strategies": {
+    "pure_shape_window": "pending predicted<=3 or actual cross age<=3; MACD/low-position gates only",
+    "early_turn_flow_market": "previous best baseline: pending only; flow3_ratio>=0.008; r3_pct>=4; SSE 3d return>0",
+    "early_turn_flow_market_plus": "baseline plus adjusted-low base stability and dynamic heat/continuous-limit-up exclusions"
+  },
+  "heat_filter": "single-day heat_ratio<0.80 when limit data available; consecutive limit-up run<2; recent 5-session adjusted intraday low >= prior 5-session low*0.99",
+  "universe_rows": 5263,
+  "factor_rows": 2092350,
+  "moneyflow_rows": 1987221,
+  "signals": 9590,
+  "code_sha256": "6367aee9d4d5d6ec1318a4ca6161e43a6ae58ae15211eb205edb91e556d49ccc"
+}

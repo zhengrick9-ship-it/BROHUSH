@@ -1,0 +1,9 @@
+{
+  "strategy_id": "L2_EARLY_FLOW_MARKET",
+  "name": "金叉窗口资金大盘基准",
+  "version": "V1",
+  "state": "frozen_research_baseline",
+  "scope": "只筛即将金叉1-3日",
+  "rule": "L1形态收紧 + r3>=4% + flow3_ratio>=0.008 + 沪指3日涨幅>0 + 价格/成交确认",
+  "source": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_comparison\\run_walkforward.py::early_turn_flow_market"
+}

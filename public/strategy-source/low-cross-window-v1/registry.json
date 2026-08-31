@@ -1,0 +1,142 @@
+{
+  "registry_id": "low_macd_cross_window_strategy_group",
+  "version": "V1",
+  "frozen_at": "2026-08-31",
+  "purpose": "固化低位即将金叉与刚金叉的独立研究策略，分别保留严格形态、纯形态、资金大盘基准和筑底增强口径。",
+  "execution_model": "independent_select_one",
+  "comparison_mode": "run_multiple_only_for_backtest_and_attribution",
+  "unified_signal_window": {
+    "pending_cross": "predicted_cross_days >= 1 and <= 3",
+    "just_cross": "cross_age_direct >= 0 and <= 3 and DIF > DEA and DIF slope > 0 and histogram rising",
+    "entry": "signal day + 1 trading day adjusted open",
+    "outcomes": [5, 10, 20],
+    "cooldown_sessions": 10
+  },
+  "universe": {
+    "market": "A-share",
+    "exclusions": ["ST", "退市整理", "北交所", "incomplete required fields"],
+    "point_in_time_rule": "Only data visible on or before signal date may be used"
+  },
+  "strategies": [
+    {
+      "id": "L0_SALTLAKE_EXACT",
+      "name": "盐湖式严格形态",
+      "type": "strict_just_cross_shape",
+      "status": "frozen_research_baseline",
+      "purpose": "形态锚点：深跌、长时间处于低位、刚金叉且上穿斜率明显。",
+      "signal_window": "just_cross only, 0-3 sessions",
+      "hard_rules": [
+        "state = 刚金叉",
+        "cross_age <= 3",
+        "dd250 >= 30%",
+        "high_age >= 45 sessions",
+        "pos60 < 30%",
+        "stable = true",
+        "slope >= 0.20",
+        "hist_expand >= 0.40",
+        "green_days >= 8",
+        "dif_pct <= -3.0%",
+        "r3 >= 3% OR vol_ratio >= 1.5"
+      ],
+      "capital_filter": "none",
+      "code_source": "G:\\AI\\Project\\Serenity\\runtime_data\\strategy_research\\低位拐头上穿形态策略_V1\\src\\low_turn_cross_shape_runner.py::fam_exact",
+      "output_source": "G:\\AI\\Project\\Serenity\\runtime_data\\strategy_research\\低位拐头上穿形态策略_V1\\runs\\20260831"
+    },
+    {
+      "id": "L1_CROSS_WINDOW_PURE",
+      "name": "金叉窗口纯形态",
+      "type": "pure_shape_window",
+      "status": "discovery_only",
+      "purpose": "只回答形态是否存在：不加入资金流和大盘过滤，避免漏掉候选。",
+      "signal_window": "pending 1-3 sessions OR just_cross 0-3 sessions",
+      "hard_rules": [
+        "pending_cross OR just_cross",
+        "green_days >= 8",
+        "pre_cross_green_peak_pct >= 1%",
+        "pre_cross_green_area_pct >= 8%",
+        "slope3 >= 0.03",
+        "slope_acceleration >= 0.04",
+        "hist_expand >= 0.20",
+        "pos60 < 40%",
+        "dd250 >= 20%"
+      ],
+      "capital_filter": "none",
+      "backtest_result": {
+        "signals": 9266,
+        "mean_return_5d": "-0.269%",
+        "mean_return_10d": "+0.417%",
+        "mean_return_20d": "+0.094%",
+        "conclusion": "形态发现能力强，但纯形态收益和回撤不稳定，不作为直接买入策略。"
+      },
+      "code_source": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_comparison\\run_walkforward.py::one_symbol (strategy label pure_shape_window)"
+    },
+    {
+      "id": "L2_EARLY_FLOW_MARKET",
+      "name": "金叉窗口资金大盘基准",
+      "type": "early_turn_flow_market",
+      "status": "frozen_research_baseline",
+      "purpose": "保留上一版收益率最高的策略，要求形态、3日资金、大盘和价格/成交同时确认。",
+      "signal_window": "pending only, predicted_cross_days 1-3",
+      "hard_rules": [
+        "pending_cross",
+        "green_days >= 7",
+        "pre_cross_green_peak_pct >= 1%",
+        "pre_cross_green_area_pct >= 8%",
+        "slope3 >= 0.03",
+        "slope_acceleration >= 0.04",
+        "hist_expand >= 0.20",
+        "pos60 < 30%",
+        "dd250 >= 20%",
+        "price_or_vol_confirmation = (r3 >= 0.5% and <= 8%) OR (vol_ratio >= 1.3 and <= 3.0, with r3 <= 8%)",
+        "flow3_ratio >= 0.008",
+        "effective_r3_gate >= 4% and <= 8% (the r3 >= 4% lower gate comes from flow_confirmed)",
+        "SSE 000001.SH 3-day return > 0"
+      ],
+      "capital_filter": "3-day net money-flow amount / 3-day amount",
+      "backtest_result": {
+        "signals": 248,
+        "mean_return_5d": "+1.783%",
+        "mean_return_10d": "+2.887%",
+        "mean_return_20d": "+4.062%",
+        "win_rate_10d": "61.69%",
+        "mean_mdd_10d": "-4.998%"
+      },
+      "code_source": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_comparison\\run_walkforward.py::one_symbol (strategy label early_turn_flow_market)"
+    },
+    {
+      "id": "L3_EARLY_FLOW_MARKET_PLUS",
+      "name": "金叉窗口筑底增强",
+      "type": "early_turn_flow_market_plus",
+      "status": "priority_research_candidate",
+      "purpose": "在 L2 上过滤仍在创新低或短线过热的信号，优先保留有筑底迹象、尚未连续加速的候选。",
+      "signal_window": "pending only, predicted_cross_days 1-3",
+      "inherits": "L2_EARLY_FLOW_MARKET",
+      "execution_dependency": false,
+      "additional_hard_rules": [
+        "no_new_low_5 = adjusted intraday low of latest 5 sessions >= prior 5-session low * 0.99",
+        "heat_ratio < 0.80 when limit_pct is available",
+        "consecutive_limit_up_run < 2"
+      ],
+      "backtest_result": {
+        "signals": 76,
+        "mean_return_5d": "+2.902%",
+        "mean_return_10d": "+3.477%",
+        "mean_return_20d": "+4.324%",
+        "win_rate_10d": "69.74%",
+        "mean_mdd_10d": "-4.148%",
+        "attribution": "主要改善来自 no_new_low_5；过热过滤样本贡献较小，不能单独证明有效。"
+      },
+      "code_source": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_comparison\\run_walkforward.py::one_symbol (strategy label early_turn_flow_market_plus)"
+    }
+  ],
+  "evidence": {
+    "accepted_release_id": "qdh-bj-20260831T224529",
+    "study_as_of": "2026-08-31",
+    "signal_count": 9590,
+    "code_sha256": "6367aee9d4d5d6ec1318a4ca6161e43a6ae58ae15211eb205edb91e556d49ccc",
+    "report": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_current\\20260831_低位金叉窗口四策略当日结果与投资分析.md",
+    "manifest": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_comparison\\manifest.json",
+    "current_scan_as_of": "2026-08-31",
+    "current_scan_manifest": "G:\\AI\\Project\\Serenity\\runtime_data\\reports\\20260831_macd_strategy_current\\current_scan_manifest.json"
+  }
+}

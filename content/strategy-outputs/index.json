@@ -1,6 +1,20 @@
 {
-  "latest": "20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed",
+  "latest": "20260831T224529-low-cross-window-v1",
   "runs": [
+    {
+      "id": "20260831T224529-low-cross-window-v1",
+      "route": "/strategies/outputs/20260831T224529-low-cross-window-v1",
+      "date": "2026-08-31",
+      "runAt": "2026-08-31 22:54 +0800",
+      "version": "low-cross-window-v1",
+      "versionLabel": "四套独立策略 · 2026-08-31 最新收盘扫描",
+      "asOf": "20260831",
+      "releaseId": "qdh-bj-20260831T224529",
+      "status": "ACTIVE_CURRENT_CLOSE / MANUAL_REVIEW_REQUIRED / NO_AUTO_TRADE",
+      "summary": "扫描4,970只；L0严格形态0只，L1纯形态48只，L2资金大盘2只，L3筑底增强0只。人工复核后海光信息进入优先研究池，威胜信息与和而泰进入观察池。",
+      "topStocks": ["海光信息", "威胜信息", "兆威机电", "航锦科技", "和而泰"],
+      "topResonance": []
+    },
     {
       "id": "20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed",
       "route": "/strategies/outputs/20260821T152922-dual-low-v1.5-timeaware-status-macd-coherence-ex-st-bj-fixed",

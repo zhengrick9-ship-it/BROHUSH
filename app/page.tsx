@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 const updates = [
+  { date: "2026-08-31 22:54", kind: "策略输出", title: "低位金叉窗口四策略：2026-08-31收盘结果与投资分析", href: "/strategies/outputs/20260831T224529-low-cross-window-v1" },
+  { date: "2026-08-31 22:50", kind: "交易机制", title: "低位金叉窗口策略组 V1：四套源代码、规则与回测", href: "/strategies/mechanisms" },
   { date: "2026-08-30 22:30", kind: "价值逻辑", title: "价值逻辑分析报告：36项逻辑与三周期作战计划", href: "/reports/20260830-value-logic-full-research-v3" },
   { date: "2026-08-28 17:59", kind: "板块研究", title: "光互连技术路线全景研究：从论文、光模块到下一代技术", href: "/reports/20260828-optical-interconnect-panorama" },
   { date: "2026-08-23 19:58", kind: "板块研究", title: "AI科技板块产业链总图：六线总纲与利润池", href: "/reports/ai-panorama-six-lines-20260823" },
