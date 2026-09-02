@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 const updates = [
+  { date: "2026-09-02 21:47", kind: "板块研究", title: "市场温度计：板块热度、升温变化与四象限分布", href: "/reports/market-temperature-thermometer-20260902" },
   { date: "2026-08-31 22:54", kind: "策略输出", title: "低位金叉窗口四策略：2026-08-31收盘结果与投资分析", href: "/strategies/outputs/20260831T224529-low-cross-window-v1" },
   { date: "2026-08-31 22:50", kind: "交易机制", title: "低位金叉窗口策略组 V1：四套源代码、规则与回测", href: "/strategies/mechanisms" },
   { date: "2026-08-30 22:30", kind: "价值逻辑", title: "价值逻辑分析报告：36项逻辑与三周期作战计划", href: "/reports/20260830-value-logic-full-research-v3" },

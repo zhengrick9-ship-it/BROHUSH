@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import { ArticleDocument, ArticleSection } from "@/app/components/ArticleDocument";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
-const articles: Record<string, { kind: string; title: string; dek: string; publishedAt: string; updatedAt: string; status: string; sourceFile?: string; sections?: Array<[string, string]> }> = {
+const articles: Record<string, { kind: string; title: string; dek: string; publishedAt: string; updatedAt: string; status: string; sourceFile?: string; sourceDescription?: string; sections?: Array<[string, string]> }> = {
+  "market-temperature-thermometer-20260902": { kind: "板块研究 / 市场温度", title: "市场温度计：板块热度、升温变化与四象限分布", dek: "用申万二级行业和同花顺核心主题观察市场温度、三日升温速度与全部板块的象限位置。", publishedAt: "2026-09-02", updatedAt: "2026-09-02", status: "已发布 · 行业截至2026-09-02，主题截至2026-09-01", sourceFile: "market-temperature-thermometer-20260902.html", sourceDescription: "正文为温度计研究产物；申万行业指数截至2026-09-02，同花顺主题指数截至2026-09-01。页面中的温度是相对热度监测，不构成实时交易指令。" },
   "20260830-value-logic-full-research-v3": { kind: "价值逻辑 / 三周期作战", title: "价值逻辑分析报告：36项逻辑全量研究与三周期作战计划", dek: "基于真实需求、产业价值点、公司利润、估值位置和催化验证，整理36项价值逻辑，并给出长线、中线、短线的下周行动边界。", publishedAt: "2026-08-30", updatedAt: "2026-08-30", status: "已发布 · 数据截至2026-08-28", sourceFile: "20260830-value-logic-full-research-v3.html" },
   "20260828-optical-interconnect-panorama": { kind: "板块研究 / 光互连", title: "光互连技术路线全景研究", dek: "从SK海力士一篇论文，到AI光互联的产业链重构：技术路线谱系、产业链映射、价值迁移与跟踪指标。", publishedAt: "2026-08-28", updatedAt: "2026-08-28", status: "已发布", sourceFile: "20260828-optical-interconnect-panorama.html" },
   "ai-panorama-six-lines-20260823": { kind: "板块研究 / AI科技", title: "AI科技板块产业链总图（六线总纲）", dek: "从产业链、利润池、技术代际和六条投资线建立AI科技研究总图。", publishedAt: "2026-08-23", updatedAt: "2026-08-23", status: "已发布 · 数据截至2026-08-21", sourceFile: "ai-panorama-six-lines-20260823.html" },
@@ -20,7 +21,7 @@ export default async function ReportDetailPage({ params }: { params: Promise<{ s
   const article = articles[slug];
   if (!article) notFound();
   if (article.sourceFile) {
-    return <ResearchShell eyebrow="RESEARCH LIBRARY / PUBLISHED REPORT" title={article.title} description="正文保留原研究报告结构；数据截至2026-08-21，研究参考，不构成实时交易指令。"><div className="published-report-shell"><iframe className="published-report-frame" title={article.title} src={`/reports/source/${article.sourceFile}`} /></div></ResearchShell>;
+    return <ResearchShell eyebrow="RESEARCH LIBRARY / PUBLISHED REPORT" title={article.title} description={article.sourceDescription ?? "正文保留原研究报告结构；研究参考，不构成实时交易指令。"}><div className="published-report-shell"><iframe className="published-report-frame" title={article.title} src={`/reports/source/${article.sourceFile}`} /></div></ResearchShell>;
   }
   return <ResearchShell eyebrow="RESEARCH LIBRARY / ARTICLE" title="文章阅读" description="研究成果页面；正文是可读发布层，数据与证据仍以本地研究产物为准。"><ArticleDocument kind={article.kind} title={article.title} dek={article.dek} publishedAt={article.publishedAt} updatedAt={article.updatedAt} status={article.status}>{article.sections?.map(([title, body]) => <ArticleSection title={title} key={title}><p>{body}</p></ArticleSection>)}</ArticleDocument></ResearchShell>;
 }
