@@ -9,7 +9,7 @@ const libraryGroups: LibraryGroup[] = [
     { href: "/themes", label: "板块", children: [{ href: "/themes/ai-technology", label: "AI科技" }, { href: "/themes/biopharma", label: "生物医药" }] },
     { href: "/topics", label: "专题" },
     { href: "/stocks", label: "个股" },
-    { href: "/reports/market-temperature-thermometer-20260902", label: "市场温度" },
+    { href: "/reports/market-temperature-thermometer-20260903", label: "市场温度" },
   ] },
   { label: "交易库", href: "/trading", links: [
     { href: "/portfolio", label: "持仓" }, { href: "/trades", label: "交易明细" },
