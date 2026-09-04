@@ -1,0 +1,167 @@
+[
+  {
+    "yoloThemeId": "ai-technology",
+    "yoloThemeName": "AI科技",
+    "shenwanCodes": [
+      "801080.SI",
+      "801770.SI",
+      "801750.SI",
+      "801730.SI",
+      "801890.SI",
+      "801030.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "biopharma-healthcare",
+    "yoloThemeName": "生物医药与医疗健康",
+    "shenwanCodes": [
+      "801150.SI",
+      "801200.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "power-grid-storage",
+    "yoloThemeName": "电力电网与储能",
+    "shenwanCodes": [
+      "801730.SI",
+      "801160.SI",
+      "801890.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "advanced-manufacturing-robotics",
+    "yoloThemeName": "先进制造与机器人",
+    "shenwanCodes": [
+      "801890.SI",
+      "801880.SI",
+      "801730.SI",
+      "801080.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "semiconductor-domestic-substitution",
+    "yoloThemeName": "半导体与国产替代",
+    "shenwanCodes": [
+      "801080.SI",
+      "801890.SI",
+      "801030.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "new-materials",
+    "yoloThemeName": "新材料",
+    "shenwanCodes": [
+      "801030.SI",
+      "801050.SI",
+      "801080.SI",
+      "801710.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "consumer-export",
+    "yoloThemeName": "消费与出海",
+    "shenwanCodes": [
+      "801110.SI",
+      "801120.SI",
+      "801140.SI",
+      "801200.SI",
+      "801130.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "resources-metals-chemicals",
+    "yoloThemeName": "资源、有色与化工周期",
+    "shenwanCodes": [
+      "801050.SI",
+      "801950.SI",
+      "801960.SI",
+      "801030.SI",
+      "801040.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "transport-logistics",
+    "yoloThemeName": "交通运输与物流",
+    "shenwanCodes": [
+      "801170.SI",
+      "801890.SI",
+      "801200.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "defense-aerospace",
+    "yoloThemeName": "国防军工与商业航天",
+    "shenwanCodes": [
+      "801740.SI",
+      "801080.SI",
+      "801890.SI",
+      "801770.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "finance-insurance-securities",
+    "yoloThemeName": "金融与资本市场",
+    "shenwanCodes": [
+      "801230.SI",
+      "801250.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  },
+  {
+    "yoloThemeId": "infrastructure-urban-renewal",
+    "yoloThemeName": "基础设施与城市更新",
+    "shenwanCodes": [
+      "801720.SI",
+      "801710.SI",
+      "801180.SI",
+      "801160.SI"
+    ],
+    "thsIndustryRefs": [],
+    "thsConceptRefs": [],
+    "mappingStatus": "pending_verification",
+    "evidenceRequired": true
+  }
+]

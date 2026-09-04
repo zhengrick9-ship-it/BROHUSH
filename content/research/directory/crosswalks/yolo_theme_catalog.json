@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "directoryVersion": "yolo-directory-v0.2",
+  "status": "catalog-only",
+  "parentTaxonomy": "taxonomy/shenwan_hierarchy.json",
+  "themes": [
+    {
+      "id": "ai-technology",
+      "name": "AI科技",
+      "status": "active",
+      "swMappings": [
+        "801080.SI",
+        "801770.SI",
+        "801750.SI",
+        "801730.SI",
+        "801890.SI",
+        "801030.SI"
+      ],
+      "thsReferences": [
+        "人工智能",
+        "算力",
+        "AI服务器",
+        "光模块",
+        "存储芯片",
+        "液冷服务器",
+        "数据中心",
+        "机器人"
+      ],
+      "description": "跨申万行业的技术与基础设施主题，后续拆为算力、存储、互联、供电、承载、应用等模块。"
+    },
+    {
+      "id": "biopharma-healthcare",
+      "name": "生物医药与医疗健康",
+      "status": "planned",
+      "swMappings": [
+        "801150.SI",
+        "801200.SI"
+      ],
+      "thsReferences": [
+        "创新药",
+        "CXO",
+        "医疗器械",
+        "生物疫苗",
+        "医美"
+      ],
+      "description": "围绕研发、生产、商业化和医疗服务建立研究目录。"
+    },
+    {
+      "id": "power-grid-storage",
+      "name": "电力电网与储能",
+      "status": "planned",
+      "swMappings": [
+        "801730.SI",
+        "801160.SI",
+        "801890.SI"
+      ],
+      "thsReferences": [
+        "智能电网",
+        "特高压",
+        "储能",
+        "虚拟电厂",
+        "电力设备"
+      ],
+      "description": "围绕电源、电网、配电、储能、调度和电力电子建立目录。"
+    },
+    {
+      "id": "advanced-manufacturing-robotics",
+      "name": "先进制造与机器人",
+      "status": "planned",
+      "swMappings": [
+        "801890.SI",
+        "801880.SI",
+        "801730.SI",
+        "801080.SI"
+      ],
+      "thsReferences": [
+        "机器人",
+        "工业自动化",
+        "人形机器人",
+        "机器视觉",
+        "高端装备"
+      ],
+      "description": "研究设备、零部件、控制系统和终端制造的技术升级。"
+    },
+    {
+      "id": "semiconductor-domestic-substitution",
+      "name": "半导体与国产替代",
+      "status": "planned",
+      "swMappings": [
+        "801080.SI",
+        "801890.SI",
+        "801030.SI"
+      ],
+      "thsReferences": [
+        "国产芯片",
+        "半导体设备",
+        "先进封装",
+        "EDA",
+        "光刻机",
+        "第三代半导体"
+      ],
+      "description": "覆盖芯片设计、制造、封装、设备、材料和EDA，允许与AI科技交叉挂载。"
+    },
+    {
+      "id": "new-materials",
+      "name": "新材料",
+      "status": "planned",
+      "swMappings": [
+        "801030.SI",
+        "801050.SI",
+        "801080.SI",
+        "801710.SI"
+      ],
+      "thsReferences": [
+        "电子化学品",
+        "高端材料",
+        "复合材料",
+        "碳纤维",
+        "玻璃基板",
+        "PTFE"
+      ],
+      "description": "从材料性能、认证周期、供需格局和价值量迁移角度建立专题。"
+    },
+    {
+      "id": "consumer-export",
+      "name": "消费与出海",
+      "status": "planned",
+      "swMappings": [
+        "801110.SI",
+        "801120.SI",
+        "801140.SI",
+        "801200.SI",
+        "801130.SI"
+      ],
+      "thsReferences": [
+        "消费电子",
+        "跨境电商",
+        "品牌出海",
+        "家居",
+        "新消费"
+      ],
+      "description": "研究品牌、渠道、制造能力和海外收入增长。"
+    },
+    {
+      "id": "resources-metals-chemicals",
+      "name": "资源、有色与化工周期",
+      "status": "planned",
+      "swMappings": [
+        "801050.SI",
+        "801950.SI",
+        "801960.SI",
+        "801030.SI",
+        "801040.SI"
+      ],
+      "thsReferences": [
+        "铜",
+        "铝",
+        "锂矿",
+        "稀土",
+        "钨",
+        "油气",
+        "化工"
+      ],
+      "description": "重点区分资源价格周期、供给约束和企业成本曲线。"
+    },
+    {
+      "id": "transport-logistics",
+      "name": "交通运输与物流",
+      "status": "planned",
+      "swMappings": [
+        "801170.SI",
+        "801890.SI",
+        "801200.SI"
+      ],
+      "thsReferences": [
+        "航运",
+        "港口",
+        "物流",
+        "航空机场",
+        "快递"
+      ],
+      "description": "研究运价、运力、基础设施和贸易周期。"
+    },
+    {
+      "id": "defense-aerospace",
+      "name": "国防军工与商业航天",
+      "status": "planned",
+      "swMappings": [
+        "801740.SI",
+        "801080.SI",
+        "801890.SI",
+        "801770.SI"
+      ],
+      "thsReferences": [
+        "商业航天",
+        "卫星互联网",
+        "军工电子",
+        "低空经济"
+      ],
+      "description": "重点研究订单、型号放量、核心零部件和商业化进度。"
+    },
+    {
+      "id": "finance-insurance-securities",
+      "name": "金融与资本市场",
+      "status": "planned",
+      "swMappings": [
+        "801230.SI",
+        "801250.SI"
+      ],
+      "thsReferences": [
+        "证券",
+        "保险",
+        "银行",
+        "金融科技",
+        "中特估"
+      ],
+      "description": "研究利率、信用周期、资本市场活跃度和分红估值。"
+    },
+    {
+      "id": "infrastructure-urban-renewal",
+      "name": "基础设施与城市更新",
+      "status": "planned",
+      "swMappings": [
+        "801720.SI",
+        "801710.SI",
+        "801180.SI",
+        "801160.SI"
+      ],
+      "thsReferences": [
+        "城市更新",
+        "基建",
+        "建筑节能",
+        "物业管理",
+        "水利"
+      ],
+      "description": "研究财政投入、项目订单、设备更新和资产运营。"
+    }
+  ],
+  "statusDefinitions": {
+    "placeholder": "目录位置已建立，研究文章尚未完成",
+    "in_progress": "已有研究草稿，尚未完成验收",
+    "published": "已完成研究并通过发布验收",
+    "pending_verification": "存在来源、映射或业务证据缺口",
+    "archived": "移入垃圾箱，不在正常导航展示"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "status": "reference-snapshot",
+  "sourcePath": "G:\\AI\\Project\\Serenity\\runtime_data\\20260705_zero_rebuild\\inputs\\ths_index_catalog.csv",
+  "sourceSha256": "1d08c6e31e131a9fb5363e53fe05bb9fe64322c7553191652e25fdfe584189f6",
+  "localCopySha256": "1d08c6e31e131a9fb5363e53fe05bb9fe64322c7553191652e25fdfe584189f6",
+  "asOf": "2026-07-03",
+  "rowCount": 1694,
+  "fields": [
+    "ts_code",
+    "name",
+    "count",
+    "exchange",
+    "list_date",
+    "type"
+  ],
+  "use": "reference-only; not the primary YOLO taxonomy",
+  "limitations": [
+    "This snapshot is not treated as a current accepted release.",
+    "Concept membership and business truth require separate evidence checks."
+  ]
+}

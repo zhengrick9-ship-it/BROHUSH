@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "directoryVersion": "yolo-directory-v0.1",
+  "status": "initial-draft",
+  "purpose": "以申万行业建立稳定主干，以同花顺行业和概念补充市场主题，再逐步收敛为YOLO研究目录。此版本只建立目录，不代表投资评级。",
+  "asOf": "2026-08-30",
+  "taxonomySources": {
+    "primary": {
+      "name": "申万行业分类2021版",
+      "levels": {"level2": 134, "level3": 346},
+      "level1CountSource": "swLevel1.length",
+      "url": "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/lastest/rptid/682791709623/index.phtml",
+      "role": "稳定行业主干"
+    },
+    "reference": [
+      {"name": "同花顺行业", "url": "https://q.10jqka.com.cn/thshy/", "role": "市场行业参考"},
+      {"name": "同花顺概念", "url": "https://q.10jqka.com.cn/gn/", "role": "热点与主题参考，成员动态变化"}
+    ],
+    "localMappingSnapshots": [
+      "G:/AI/Project/Serenity/MT/02_data_mapping/20260729/stock_master_sw_ths_mapping.csv",
+      "G:/AI/Project/Serenity/MT/02_data_mapping/20260729/ths_theme_catalog_classified.csv",
+      "G:/AI/Project/Serenity/MT/02_data_mapping/20260729/stock_sw_path_mapping.csv"
+    ]
+  },
+  "swLevel1": [
+    {"code":"801010.SI","name":"农林牧渔"},
+    {"code":"801030.SI","name":"基础化工"},
+    {"code":"801040.SI","name":"钢铁"},
+    {"code":"801050.SI","name":"有色金属"},
+    {"code":"801080.SI","name":"电子"},
+    {"code":"801110.SI","name":"家用电器"},
+    {"code":"801120.SI","name":"食品饮料"},
+    {"code":"801130.SI","name":"纺织服饰"},
+    {"code":"801140.SI","name":"轻工制造"},
+    {"code":"801150.SI","name":"医药生物"},
+    {"code":"801160.SI","name":"公用事业"},
+    {"code":"801170.SI","name":"交通运输"},
+    {"code":"801180.SI","name":"房地产"},
+    {"code":"801200.SI","name":"商贸零售"},
+    {"code":"801210.SI","name":"社会服务"},
+    {"code":"801230.SI","name":"银行"},
+    {"code":"801250.SI","name":"非银金融"},
+    {"code":"801260.SI","name":"综合"},
+    {"code":"801710.SI","name":"建筑材料"},
+    {"code":"801720.SI","name":"建筑装饰"},
+    {"code":"801730.SI","name":"电力设备"},
+    {"code":"801740.SI","name":"国防军工"},
+    {"code":"801750.SI","name":"计算机"},
+    {"code":"801760.SI","name":"传媒"},
+    {"code":"801770.SI","name":"通信"},
+    {"code":"801790.SI","name":"环保"},
+    {"code":"801880.SI","name":"汽车"},
+    {"code":"801890.SI","name":"机械设备"},
+    {"code":"801950.SI","name":"煤炭"},
+    {"code":"801960.SI","name":"石油石化"},
+    {"code":"801980.SI","name":"美容护理"}
+  ],
+  "yoloResearchThemes": [
+    {
+      "id":"ai-technology",
+      "name":"AI科技",
+      "status":"active",
+      "swMappings":["801080.SI","801770.SI","801750.SI","801730.SI","801890.SI","801030.SI"],
+      "thsReferences":["人工智能","算力","AI服务器","光模块","存储芯片","液冷服务器","数据中心","机器人"],
+      "description":"跨申万行业的技术与基础设施主题，后续拆为算力、存储、互联、供电、承载、应用等模块。"
+    },
+    {
+      "id":"biopharma-healthcare",
+      "name":"生物医药与医疗健康",
+      "status":"planned",
+      "swMappings":["801150.SI","801200.SI"],
+      "thsReferences":["创新药","CXO","医疗器械","生物疫苗","医美"],
+      "description":"围绕研发、生产、商业化和医疗服务建立研究目录。"
+    },
+    {
+      "id":"power-grid-storage",
+      "name":"电力电网与储能",
+      "status":"planned",
+      "swMappings":["801730.SI","801160.SI","801890.SI"],
+      "thsReferences":["智能电网","特高压","储能","虚拟电厂","电力设备"],
+      "description":"围绕电源、电网、配电、储能、调度和电力电子建立目录。"
+    },
+    {
+      "id":"advanced-manufacturing-robotics",
+      "name":"先进制造与机器人",
+      "status":"planned",
+      "swMappings":["801890.SI","801880.SI","801730.SI","801080.SI"],
+      "thsReferences":["机器人","工业自动化","人形机器人","机器视觉","高端装备"],
+      "description":"研究设备、零部件、控制系统和终端制造的技术升级。"
+    },
+    {
+      "id":"semiconductor-domestic-substitution",
+      "name":"半导体与国产替代",
+      "status":"planned",
+      "swMappings":["801080.SI","801890.SI","801030.SI"],
+      "thsReferences":["国产芯片","半导体设备","先进封装","EDA","光刻机","第三代半导体"],
+      "description":"覆盖芯片设计、制造、封装、设备、材料和EDA，允许与AI科技交叉挂载。"
+    },
+    {
+      "id":"new-materials",
+      "name":"新材料",
+      "status":"planned",
+      "swMappings":["801030.SI","801050.SI","801080.SI","801710.SI"],
+      "thsReferences":["电子化学品","高端材料","复合材料","碳纤维","玻璃基板","PTFE"],
+      "description":"从材料性能、认证周期、供需格局和价值量迁移角度建立专题。"
+    },
+    {
+      "id":"consumer-export",
+      "name":"消费与出海",
+      "status":"planned",
+      "swMappings":["801110.SI","801120.SI","801140.SI","801200.SI","801130.SI"],
+      "thsReferences":["消费电子","跨境电商","品牌出海","家居","新消费"],
+      "description":"研究品牌、渠道、制造能力和海外收入增长。"
+    },
+    {
+      "id":"resources-metals-chemicals",
+      "name":"资源、有色与化工周期",
+      "status":"planned",
+      "swMappings":["801050.SI","801950.SI","801960.SI","801030.SI","801040.SI"],
+      "thsReferences":["铜","铝","锂矿","稀土","钨","油气","化工"],
+      "description":"重点区分资源价格周期、供给约束和企业成本曲线。"
+    },
+    {
+      "id":"transport-logistics",
+      "name":"交通运输与物流",
+      "status":"planned",
+      "swMappings":["801170.SI","801890.SI","801200.SI"],
+      "thsReferences":["航运","港口","物流","航空机场","快递"],
+      "description":"研究运价、运力、基础设施和贸易周期。"
+    },
+    {
+      "id":"defense-aerospace",
+      "name":"国防军工与商业航天",
+      "status":"planned",
+      "swMappings":["801740.SI","801080.SI","801890.SI","801770.SI"],
+      "thsReferences":["商业航天","卫星互联网","军工电子","低空经济"],
+      "description":"重点研究订单、型号放量、核心零部件和商业化进度。"
+    },
+    {
+      "id":"finance-insurance-securities",
+      "name":"金融与资本市场",
+      "status":"planned",
+      "swMappings":["801230.SI","801250.SI"],
+      "thsReferences":["证券","保险","银行","金融科技","中特估"],
+      "description":"研究利率、信用周期、资本市场活跃度和分红估值。"
+    },
+    {
+      "id":"infrastructure-urban-renewal",
+      "name":"基础设施与城市更新",
+      "status":"planned",
+      "swMappings":["801720.SI","801710.SI","801180.SI","801160.SI"],
+      "thsReferences":["城市更新","基建","建筑节能","物业管理","水利"],
+      "description":"研究财政投入、项目订单、设备更新和资产运营。"
+    }
+  ],
+  "directoryRules": [
+    "申万行业是公司标准归属的主干；同花顺行业和概念只能作为参考标签。",
+    "YOLO主题允许跨申万行业，不强行把AI等跨行业主题塞进单一行业。",
+    "同花顺概念不等于真实业务，个股进入研究库前必须核对公告、年报、中报或客户/产品证据。",
+    "本版本只建立目录和映射，不产生买卖评级。",
+    "后续专题和个股必须挂载到至少一个YOLO主题，并保留申万和同花顺映射。"
+  ]
+}

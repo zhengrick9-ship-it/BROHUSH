@@ -1,0 +1,33 @@
+{
+  "name": "温度计机制",
+  "release": "v3.8-local",
+  "purpose": "用市场温度决定可用策略与风险预算，再进行技术筛选、财务质量核验和仓位约束。",
+  "owner": "YOLO / Serenity",
+  "source_origin": "G:/HM/hermes-home/scripts",
+  "local_snapshot_asof": "2026-09-04",
+  "runtime_entry": "src/run_daily_mechanism.py",
+  "public_site_route": "/strategies/mechanisms/temperature-gated-mechanism",
+  "status": "local_snapshot_ready",
+  "files": [
+    {"path": "src/run_daily_mechanism.py", "sha256": "D7A7181845E46C14A3260A327466AD5E1D3E2846F1052A6DF3C7D73277F9B6B2"},
+    {"path": "src/daily_investment_pipeline.py", "sha256": "699579504E27A1D97965E6121B032AF7389F3121B4CEC013EC5C4C3394DBBABD"},
+    {"path": "src/quality_fn_qdh.py", "sha256": "73CF1C6E3CAB84BB3C10D7EFC72269EBCA552D348B9CF05931B230E085AA12B6"},
+    {"path": "src/generate_daily_report.py", "sha256": "DB378DD58ABD85AF9ACFC467F1927AECCE0036E53977795F6C4DF14DCA8F1AF8"},
+    {"path": "src/build_versionB.py", "sha256": "2AA55C75CB6B7A6FC3D2A405A6CCE8E9CCBAACA11FFE69AB4ABB772BA3324040"},
+    {"path": "docs/README_温度计机制.md", "sha256": "B3F2F10D4BC184C748A2B6B6740EA3497A61EF010ACA2E239F7D76F386A964AF"},
+    {"path": "docs/CODEX_HANDOFF_v3.7.md", "sha256": "1863BCF08AFACC6B0518ACE30786926B82A4ABAA61D552CDF3C46D8805FD3379"},
+    {"path": "evidence/CODEX_INDEPENDENT_REVIEW.md", "sha256": "952B2D01816EF9A1EF31BA9A8A0F578C79628E62AEAD129CE6ADB461743376CC"}
+  ],
+  "verification": {
+    "python_ast_parse": "PASS",
+    "date_guard": "PASS",
+    "fatal_abort_drill": "PASS",
+    "legal_empty_candidate_path": "PASS",
+    "one_click_run_20260904": "PASS"
+  },
+  "known_boundaries": [
+    "温度计板块/主题缓存最新交易日为2026-09-03，机制as-of为2026-09-04，报告会显式披露。",
+    "QDH最新行情仍有一处历史直读路径。",
+    "扣非双条件和完整组合回撤闸门尚未纳入。"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "directoryVersion": "yolo-directory-v0.2",
+  "status": "catalog-empty",
+  "hierarchy": "board -> topic -> company",
+  "items": [],
+  "note": "个股研究目录已建立，尚未将公司研究成果挂载到本目录。"
+}

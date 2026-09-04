@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 3,
+  "directoryVersion": "yolo-directory-v0.3",
+  "generatedAt": "2026-08-30T06:37:08.741855+00:00",
+  "files": [
+    "taxonomy/shenwan_directory.json",
+    "taxonomy/ths_directory.json",
+    "members/stock_master.json",
+    "members/stock_master.csv",
+    "crosswalks/directory_crosswalk_summary.json"
+  ],
+  "qdhReleaseId": "qdh-bj-20260830T124025",
+  "asOf": "20260828"
+}

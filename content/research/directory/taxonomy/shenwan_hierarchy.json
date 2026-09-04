@@ -1,0 +1,3797 @@
+{
+  "schemaVersion": 2,
+  "directoryVersion": "yolo-directory-v0.2",
+  "status": "initial-directory-complete",
+  "generatedAt": "2026-08-30T06:03:42.609915+00:00",
+  "asOf": "2026-08-30",
+  "currentMembershipBoundary": {
+    "rule": "is_new=Y; historical intervals are not included in the current tree",
+    "maxObservedInDate": "20260527"
+  },
+  "source": {
+    "authority": "QDataHub DataClient",
+    "releaseId": "qdh-bj-20260830T124025",
+    "datasetId": "reference.a_share.industry_membership_history",
+    "sourceFamily": "TUSHARE",
+    "qualityTier": "L4_ACCEPTED_RELEASE",
+    "allowedUse": "formal_readonly_research_and_backtest",
+    "method": "client.reference.industry_memberships()",
+    "historicalRowsRead": 7470,
+    "currentMembershipRows": 5530
+  },
+  "counts": {
+    "level1": 31,
+    "level2": 131,
+    "level3": 337
+  },
+  "levels": {
+    "level1": [
+      {
+        "code": "801010.SI",
+        "name": "农林牧渔",
+        "level": 1,
+        "children": [
+          "801011.SI",
+          "801012.SI",
+          "801014.SI",
+          "801015.SI",
+          "801016.SI",
+          "801017.SI",
+          "801018.SI",
+          "801019.SI"
+        ]
+      },
+      {
+        "code": "801030.SI",
+        "name": "基础化工",
+        "level": 1,
+        "children": [
+          "801032.SI",
+          "801033.SI",
+          "801034.SI",
+          "801036.SI",
+          "801037.SI",
+          "801038.SI",
+          "801039.SI"
+        ]
+      },
+      {
+        "code": "801040.SI",
+        "name": "钢铁",
+        "level": 1,
+        "children": [
+          "801043.SI",
+          "801044.SI",
+          "801045.SI"
+        ]
+      },
+      {
+        "code": "801050.SI",
+        "name": "有色金属",
+        "level": 1,
+        "children": [
+          "801051.SI",
+          "801053.SI",
+          "801054.SI",
+          "801055.SI",
+          "801056.SI"
+        ]
+      },
+      {
+        "code": "801080.SI",
+        "name": "电子",
+        "level": 1,
+        "children": [
+          "801081.SI",
+          "801082.SI",
+          "801083.SI",
+          "801084.SI",
+          "801085.SI",
+          "801086.SI"
+        ]
+      },
+      {
+        "code": "801110.SI",
+        "name": "家用电器",
+        "level": 1,
+        "children": [
+          "801111.SI",
+          "801112.SI",
+          "801113.SI",
+          "801114.SI",
+          "801115.SI",
+          "801116.SI",
+          "801117.SI"
+        ]
+      },
+      {
+        "code": "801120.SI",
+        "name": "食品饮料",
+        "level": 1,
+        "children": [
+          "801124.SI",
+          "801125.SI",
+          "801126.SI",
+          "801127.SI",
+          "801128.SI",
+          "801129.SI"
+        ]
+      },
+      {
+        "code": "801130.SI",
+        "name": "纺织服饰",
+        "level": 1,
+        "children": [
+          "801131.SI",
+          "801132.SI",
+          "801133.SI"
+        ]
+      },
+      {
+        "code": "801140.SI",
+        "name": "轻工制造",
+        "level": 1,
+        "children": [
+          "801141.SI",
+          "801142.SI",
+          "801143.SI",
+          "801145.SI"
+        ]
+      },
+      {
+        "code": "801150.SI",
+        "name": "医药生物",
+        "level": 1,
+        "children": [
+          "801151.SI",
+          "801152.SI",
+          "801153.SI",
+          "801154.SI",
+          "801155.SI",
+          "801156.SI"
+        ]
+      },
+      {
+        "code": "801160.SI",
+        "name": "公用事业",
+        "level": 1,
+        "children": [
+          "801161.SI",
+          "801163.SI"
+        ]
+      },
+      {
+        "code": "801170.SI",
+        "name": "交通运输",
+        "level": 1,
+        "children": [
+          "801178.SI",
+          "801179.SI",
+          "801991.SI",
+          "801992.SI"
+        ]
+      },
+      {
+        "code": "801180.SI",
+        "name": "房地产",
+        "level": 1,
+        "children": [
+          "801181.SI",
+          "801183.SI"
+        ]
+      },
+      {
+        "code": "801200.SI",
+        "name": "商贸零售",
+        "level": 1,
+        "children": [
+          "801202.SI",
+          "801203.SI",
+          "801204.SI",
+          "801206.SI",
+          "801207.SI"
+        ]
+      },
+      {
+        "code": "801210.SI",
+        "name": "社会服务",
+        "level": 1,
+        "children": [
+          "801216.SI",
+          "801218.SI",
+          "801219.SI",
+          "801993.SI",
+          "801994.SI"
+        ]
+      },
+      {
+        "code": "801230.SI",
+        "name": "综合",
+        "level": 1,
+        "children": [
+          "801231.SI"
+        ]
+      },
+      {
+        "code": "801710.SI",
+        "name": "建筑材料",
+        "level": 1,
+        "children": [
+          "801711.SI",
+          "801712.SI",
+          "801713.SI"
+        ]
+      },
+      {
+        "code": "801720.SI",
+        "name": "建筑装饰",
+        "level": 1,
+        "children": [
+          "801721.SI",
+          "801722.SI",
+          "801723.SI",
+          "801724.SI",
+          "801726.SI"
+        ]
+      },
+      {
+        "code": "801730.SI",
+        "name": "电力设备",
+        "level": 1,
+        "children": [
+          "801731.SI",
+          "801733.SI",
+          "801735.SI",
+          "801736.SI",
+          "801737.SI",
+          "801738.SI"
+        ]
+      },
+      {
+        "code": "801740.SI",
+        "name": "国防军工",
+        "level": 1,
+        "children": [
+          "801741.SI",
+          "801742.SI",
+          "801743.SI",
+          "801744.SI",
+          "801745.SI"
+        ]
+      },
+      {
+        "code": "801750.SI",
+        "name": "计算机",
+        "level": 1,
+        "children": [
+          "801101.SI",
+          "801103.SI",
+          "801104.SI"
+        ]
+      },
+      {
+        "code": "801760.SI",
+        "name": "传媒",
+        "level": 1,
+        "children": [
+          "801764.SI",
+          "801765.SI",
+          "801766.SI",
+          "801767.SI",
+          "801769.SI",
+          "801995.SI"
+        ]
+      },
+      {
+        "code": "801770.SI",
+        "name": "通信",
+        "level": 1,
+        "children": [
+          "801102.SI",
+          "801223.SI"
+        ]
+      },
+      {
+        "code": "801780.SI",
+        "name": "银行",
+        "level": 1,
+        "children": [
+          "801782.SI",
+          "801783.SI",
+          "801784.SI",
+          "801785.SI"
+        ]
+      },
+      {
+        "code": "801790.SI",
+        "name": "非银金融",
+        "level": 1,
+        "children": [
+          "801191.SI",
+          "801193.SI",
+          "801194.SI"
+        ]
+      },
+      {
+        "code": "801880.SI",
+        "name": "汽车",
+        "level": 1,
+        "children": [
+          "801092.SI",
+          "801093.SI",
+          "801095.SI",
+          "801096.SI",
+          "801881.SI"
+        ]
+      },
+      {
+        "code": "801890.SI",
+        "name": "机械设备",
+        "level": 1,
+        "children": [
+          "801072.SI",
+          "801074.SI",
+          "801076.SI",
+          "801077.SI",
+          "801078.SI"
+        ]
+      },
+      {
+        "code": "801950.SI",
+        "name": "煤炭",
+        "level": 1,
+        "children": [
+          "801951.SI",
+          "801952.SI"
+        ]
+      },
+      {
+        "code": "801960.SI",
+        "name": "石油石化",
+        "level": 1,
+        "children": [
+          "801961.SI",
+          "801962.SI",
+          "801963.SI"
+        ]
+      },
+      {
+        "code": "801970.SI",
+        "name": "环保",
+        "level": 1,
+        "children": [
+          "801971.SI",
+          "801972.SI"
+        ]
+      },
+      {
+        "code": "801980.SI",
+        "name": "美容护理",
+        "level": 1,
+        "children": [
+          "801981.SI",
+          "801982.SI",
+          "801983.SI"
+        ]
+      }
+    ],
+    "level2": [
+      {
+        "code": "801011.SI",
+        "name": "林业Ⅱ",
+        "level": 2,
+        "parentCode": "801010.SI",
+        "children": [
+          "850131.SI"
+        ]
+      },
+      {
+        "code": "801012.SI",
+        "name": "农产品加工",
+        "level": 2,
+        "parentCode": "801010.SI",
+        "children": [
+          "850151.SI",
+          "850152.SI",
+          "850154.SI"
+        ]
+      },
+      {
+        "code": "801014.SI",
+        "name": "饲料",
+        "level": 2,
+        "parentCode": "801010.SI",
+        "children": [
+          "850142.SI",
+          "850143.SI",
+          "850144.SI"
+        ]
+      },
+      {
+        "code": "801015.SI",
+        "name": "渔业",
+        "level": 2,
+        "parentCode": "801010.SI",
+        "children": [
+          "850121.SI",
+          "850122.SI"
+        ]
+      },
+      {
+        "code": "801016.SI",
+        "name": "种植业",
+        "level": 2,
+        "parentCode": "801010.SI",
+        "children": [
+          "850111.SI",
+          "850112.SI",
+          "850113.SI",
+          "850114.SI"
+        ]
+      },
+      {
+        "code": "801017.SI",
+        "name": "养殖业",
+        "level": 2,
+        "parentCode": "801010.SI",
+        "children": [
+          "850172.SI",
+          "850173.SI",
+          "850174.SI"
+        ]
+      },
+      {
+        "code": "801018.SI",
+        "name": "动物保健Ⅱ",
+        "level": 2,
+        "parentCode": "801010.SI",
+        "children": [
+          "850181.SI"
+        ]
+      },
+      {
+        "code": "801019.SI",
+        "name": "农业综合Ⅱ",
+        "level": 2,
+        "parentCode": "801010.SI",
+        "children": [
+          "850191.SI"
+        ]
+      },
+      {
+        "code": "801032.SI",
+        "name": "化学纤维",
+        "level": 2,
+        "parentCode": "801030.SI",
+        "children": [
+          "850341.SI",
+          "850343.SI",
+          "850344.SI",
+          "850345.SI",
+          "850346.SI"
+        ]
+      },
+      {
+        "code": "801033.SI",
+        "name": "化学原料",
+        "level": 2,
+        "parentCode": "801030.SI",
+        "children": [
+          "850321.SI",
+          "850322.SI",
+          "850323.SI",
+          "850324.SI",
+          "850325.SI",
+          "850326.SI"
+        ]
+      },
+      {
+        "code": "801034.SI",
+        "name": "化学制品",
+        "level": 2,
+        "parentCode": "801030.SI",
+        "children": [
+          "850135.SI",
+          "850136.SI",
+          "850137.SI",
+          "850335.SI",
+          "850337.SI",
+          "850338.SI",
+          "850339.SI",
+          "850372.SI",
+          "850382.SI"
+        ]
+      },
+      {
+        "code": "801036.SI",
+        "name": "塑料",
+        "level": 2,
+        "parentCode": "801030.SI",
+        "children": [
+          "850351.SI",
+          "850353.SI",
+          "850354.SI",
+          "850355.SI"
+        ]
+      },
+      {
+        "code": "801037.SI",
+        "name": "橡胶",
+        "level": 2,
+        "parentCode": "801030.SI",
+        "children": [
+          "850362.SI",
+          "850363.SI",
+          "850364.SI"
+        ]
+      },
+      {
+        "code": "801038.SI",
+        "name": "农化制品",
+        "level": 2,
+        "parentCode": "801030.SI",
+        "children": [
+          "850331.SI",
+          "850332.SI",
+          "850333.SI",
+          "850336.SI",
+          "850381.SI"
+        ]
+      },
+      {
+        "code": "801039.SI",
+        "name": "非金属材料Ⅱ",
+        "level": 2,
+        "parentCode": "801030.SI",
+        "children": [
+          "850523.SI"
+        ]
+      },
+      {
+        "code": "801043.SI",
+        "name": "冶钢原料",
+        "level": 2,
+        "parentCode": "801040.SI",
+        "children": [
+          "850431.SI",
+          "850432.SI"
+        ]
+      },
+      {
+        "code": "801044.SI",
+        "name": "普钢",
+        "level": 2,
+        "parentCode": "801040.SI",
+        "children": [
+          "850441.SI",
+          "850442.SI",
+          "850443.SI"
+        ]
+      },
+      {
+        "code": "801045.SI",
+        "name": "特钢Ⅱ",
+        "level": 2,
+        "parentCode": "801040.SI",
+        "children": [
+          "850412.SI"
+        ]
+      },
+      {
+        "code": "801051.SI",
+        "name": "金属新材料",
+        "level": 2,
+        "parentCode": "801050.SI",
+        "children": [
+          "850521.SI",
+          "850522.SI"
+        ]
+      },
+      {
+        "code": "801053.SI",
+        "name": "贵金属",
+        "level": 2,
+        "parentCode": "801050.SI",
+        "children": [
+          "850531.SI",
+          "850532.SI"
+        ]
+      },
+      {
+        "code": "801054.SI",
+        "name": "小金属",
+        "level": 2,
+        "parentCode": "801050.SI",
+        "children": [
+          "850541.SI",
+          "850542.SI",
+          "850544.SI",
+          "850545.SI"
+        ]
+      },
+      {
+        "code": "801055.SI",
+        "name": "工业金属",
+        "level": 2,
+        "parentCode": "801050.SI",
+        "children": [
+          "850551.SI",
+          "850552.SI",
+          "850553.SI"
+        ]
+      },
+      {
+        "code": "801056.SI",
+        "name": "能源金属",
+        "level": 2,
+        "parentCode": "801050.SI",
+        "children": [
+          "850543.SI",
+          "850561.SI",
+          "850562.SI"
+        ]
+      },
+      {
+        "code": "801072.SI",
+        "name": "通用设备",
+        "level": 2,
+        "parentCode": "801890.SI",
+        "children": [
+          "850711.SI",
+          "850713.SI",
+          "850715.SI",
+          "850716.SI",
+          "850731.SI",
+          "850751.SI"
+        ]
+      },
+      {
+        "code": "801074.SI",
+        "name": "专用设备",
+        "level": 2,
+        "parentCode": "801890.SI",
+        "children": [
+          "850721.SI",
+          "850723.SI",
+          "850725.SI",
+          "850726.SI",
+          "850727.SI",
+          "850728.SI"
+        ]
+      },
+      {
+        "code": "801076.SI",
+        "name": "轨交设备Ⅱ",
+        "level": 2,
+        "parentCode": "801890.SI",
+        "children": [
+          "850936.SI"
+        ]
+      },
+      {
+        "code": "801077.SI",
+        "name": "工程机械",
+        "level": 2,
+        "parentCode": "801890.SI",
+        "children": [
+          "850771.SI",
+          "850772.SI"
+        ]
+      },
+      {
+        "code": "801078.SI",
+        "name": "自动化设备",
+        "level": 2,
+        "parentCode": "801890.SI",
+        "children": [
+          "850781.SI",
+          "850782.SI",
+          "850783.SI",
+          "850784.SI"
+        ]
+      },
+      {
+        "code": "801081.SI",
+        "name": "半导体",
+        "level": 2,
+        "parentCode": "801080.SI",
+        "children": [
+          "850812.SI",
+          "850813.SI",
+          "850814.SI",
+          "850815.SI",
+          "850816.SI",
+          "850817.SI",
+          "850818.SI"
+        ]
+      },
+      {
+        "code": "801082.SI",
+        "name": "其他电子Ⅱ",
+        "level": 2,
+        "parentCode": "801080.SI",
+        "children": [
+          "850841.SI"
+        ]
+      },
+      {
+        "code": "801083.SI",
+        "name": "元件",
+        "level": 2,
+        "parentCode": "801080.SI",
+        "children": [
+          "850822.SI",
+          "850823.SI"
+        ]
+      },
+      {
+        "code": "801084.SI",
+        "name": "光学光电子",
+        "level": 2,
+        "parentCode": "801080.SI",
+        "children": [
+          "850831.SI",
+          "850832.SI",
+          "850833.SI"
+        ]
+      },
+      {
+        "code": "801085.SI",
+        "name": "消费电子",
+        "level": 2,
+        "parentCode": "801080.SI",
+        "children": [
+          "850853.SI",
+          "850854.SI"
+        ]
+      },
+      {
+        "code": "801086.SI",
+        "name": "电子化学品Ⅱ",
+        "level": 2,
+        "parentCode": "801080.SI",
+        "children": [
+          "850861.SI"
+        ]
+      },
+      {
+        "code": "801092.SI",
+        "name": "汽车服务",
+        "level": 2,
+        "parentCode": "801880.SI",
+        "children": [
+          "850232.SI",
+          "850233.SI"
+        ]
+      },
+      {
+        "code": "801093.SI",
+        "name": "汽车零部件",
+        "level": 2,
+        "parentCode": "801880.SI",
+        "children": [
+          "850922.SI",
+          "850923.SI",
+          "850924.SI",
+          "850925.SI",
+          "850926.SI"
+        ]
+      },
+      {
+        "code": "801095.SI",
+        "name": "乘用车",
+        "level": 2,
+        "parentCode": "801880.SI",
+        "children": [
+          "850951.SI",
+          "850952.SI"
+        ]
+      },
+      {
+        "code": "801096.SI",
+        "name": "商用车",
+        "level": 2,
+        "parentCode": "801880.SI",
+        "children": [
+          "850912.SI",
+          "850913.SI"
+        ]
+      },
+      {
+        "code": "801101.SI",
+        "name": "计算机设备",
+        "level": 2,
+        "parentCode": "801750.SI",
+        "children": [
+          "850702.SI",
+          "850703.SI"
+        ]
+      },
+      {
+        "code": "801102.SI",
+        "name": "通信设备",
+        "level": 2,
+        "parentCode": "801770.SI",
+        "children": [
+          "851024.SI",
+          "851025.SI",
+          "851026.SI",
+          "851027.SI"
+        ]
+      },
+      {
+        "code": "801103.SI",
+        "name": "IT服务Ⅱ",
+        "level": 2,
+        "parentCode": "801750.SI",
+        "children": [
+          "852226.SI"
+        ]
+      },
+      {
+        "code": "801104.SI",
+        "name": "软件开发",
+        "level": 2,
+        "parentCode": "801750.SI",
+        "children": [
+          "851041.SI",
+          "851042.SI"
+        ]
+      },
+      {
+        "code": "801111.SI",
+        "name": "白色家电",
+        "level": 2,
+        "parentCode": "801110.SI",
+        "children": [
+          "851112.SI",
+          "851116.SI"
+        ]
+      },
+      {
+        "code": "801112.SI",
+        "name": "黑色家电",
+        "level": 2,
+        "parentCode": "801110.SI",
+        "children": [
+          "851121.SI",
+          "851122.SI"
+        ]
+      },
+      {
+        "code": "801113.SI",
+        "name": "小家电",
+        "level": 2,
+        "parentCode": "801110.SI",
+        "children": [
+          "851131.SI",
+          "851132.SI",
+          "851133.SI"
+        ]
+      },
+      {
+        "code": "801114.SI",
+        "name": "厨卫电器",
+        "level": 2,
+        "parentCode": "801110.SI",
+        "children": [
+          "851141.SI",
+          "851142.SI"
+        ]
+      },
+      {
+        "code": "801115.SI",
+        "name": "照明设备Ⅱ",
+        "level": 2,
+        "parentCode": "801110.SI",
+        "children": [
+          "851151.SI"
+        ]
+      },
+      {
+        "code": "801116.SI",
+        "name": "家电零部件Ⅱ",
+        "level": 2,
+        "parentCode": "801110.SI",
+        "children": [
+          "851161.SI"
+        ]
+      },
+      {
+        "code": "801117.SI",
+        "name": "其他家电Ⅱ",
+        "level": 2,
+        "parentCode": "801110.SI",
+        "children": [
+          "851171.SI"
+        ]
+      },
+      {
+        "code": "801124.SI",
+        "name": "食品加工",
+        "level": 2,
+        "parentCode": "801120.SI",
+        "children": [
+          "851241.SI",
+          "851246.SI",
+          "851247.SI"
+        ]
+      },
+      {
+        "code": "801125.SI",
+        "name": "白酒Ⅱ",
+        "level": 2,
+        "parentCode": "801120.SI",
+        "children": [
+          "851251.SI"
+        ]
+      },
+      {
+        "code": "801126.SI",
+        "name": "非白酒",
+        "level": 2,
+        "parentCode": "801120.SI",
+        "children": [
+          "851232.SI",
+          "851233.SI"
+        ]
+      },
+      {
+        "code": "801127.SI",
+        "name": "饮料乳品",
+        "level": 2,
+        "parentCode": "801120.SI",
+        "children": [
+          "851243.SI",
+          "851271.SI"
+        ]
+      },
+      {
+        "code": "801128.SI",
+        "name": "休闲食品",
+        "level": 2,
+        "parentCode": "801120.SI",
+        "children": [
+          "851281.SI",
+          "851282.SI",
+          "851283.SI"
+        ]
+      },
+      {
+        "code": "801129.SI",
+        "name": "调味发酵品Ⅱ",
+        "level": 2,
+        "parentCode": "801120.SI",
+        "children": [
+          "851242.SI"
+        ]
+      },
+      {
+        "code": "801131.SI",
+        "name": "纺织制造",
+        "level": 2,
+        "parentCode": "801130.SI",
+        "children": [
+          "851312.SI",
+          "851314.SI",
+          "851315.SI",
+          "851316.SI",
+          "851317.SI"
+        ]
+      },
+      {
+        "code": "801132.SI",
+        "name": "服装家纺",
+        "level": 2,
+        "parentCode": "801130.SI",
+        "children": [
+          "851325.SI",
+          "851326.SI",
+          "851328.SI",
+          "851329.SI"
+        ]
+      },
+      {
+        "code": "801133.SI",
+        "name": "饰品",
+        "level": 2,
+        "parentCode": "801130.SI",
+        "children": [
+          "851331.SI",
+          "851333.SI"
+        ]
+      },
+      {
+        "code": "801141.SI",
+        "name": "包装印刷",
+        "level": 2,
+        "parentCode": "801140.SI",
+        "children": [
+          "851422.SI",
+          "851423.SI",
+          "851424.SI",
+          "851425.SI",
+          "851426.SI"
+        ]
+      },
+      {
+        "code": "801142.SI",
+        "name": "家居用品",
+        "level": 2,
+        "parentCode": "801140.SI",
+        "children": [
+          "851436.SI",
+          "851437.SI",
+          "851438.SI",
+          "851439.SI",
+          "851491.SI"
+        ]
+      },
+      {
+        "code": "801143.SI",
+        "name": "造纸",
+        "level": 2,
+        "parentCode": "801140.SI",
+        "children": [
+          "851412.SI",
+          "851413.SI"
+        ]
+      },
+      {
+        "code": "801145.SI",
+        "name": "文娱用品",
+        "level": 2,
+        "parentCode": "801140.SI",
+        "children": [
+          "851451.SI",
+          "851452.SI"
+        ]
+      },
+      {
+        "code": "801151.SI",
+        "name": "化学制药",
+        "level": 2,
+        "parentCode": "801150.SI",
+        "children": [
+          "851511.SI",
+          "851512.SI"
+        ]
+      },
+      {
+        "code": "801152.SI",
+        "name": "生物制品",
+        "level": 2,
+        "parentCode": "801150.SI",
+        "children": [
+          "851522.SI",
+          "851523.SI",
+          "851524.SI"
+        ]
+      },
+      {
+        "code": "801153.SI",
+        "name": "医疗器械",
+        "level": 2,
+        "parentCode": "801150.SI",
+        "children": [
+          "851532.SI",
+          "851533.SI",
+          "851534.SI"
+        ]
+      },
+      {
+        "code": "801154.SI",
+        "name": "医药商业",
+        "level": 2,
+        "parentCode": "801150.SI",
+        "children": [
+          "851542.SI",
+          "851543.SI"
+        ]
+      },
+      {
+        "code": "801155.SI",
+        "name": "中药Ⅱ",
+        "level": 2,
+        "parentCode": "801150.SI",
+        "children": [
+          "851521.SI"
+        ]
+      },
+      {
+        "code": "801156.SI",
+        "name": "医疗服务",
+        "level": 2,
+        "parentCode": "801150.SI",
+        "children": [
+          "851562.SI",
+          "851563.SI",
+          "851564.SI",
+          "851565.SI"
+        ]
+      },
+      {
+        "code": "801161.SI",
+        "name": "电力",
+        "level": 2,
+        "parentCode": "801160.SI",
+        "children": [
+          "851610.SI",
+          "851611.SI",
+          "851612.SI",
+          "851614.SI",
+          "851616.SI",
+          "851617.SI",
+          "851618.SI",
+          "851619.SI"
+        ]
+      },
+      {
+        "code": "801163.SI",
+        "name": "燃气Ⅱ",
+        "level": 2,
+        "parentCode": "801160.SI",
+        "children": [
+          "851631.SI"
+        ]
+      },
+      {
+        "code": "801178.SI",
+        "name": "物流",
+        "level": 2,
+        "parentCode": "801170.SI",
+        "children": [
+          "851782.SI",
+          "851783.SI",
+          "851784.SI",
+          "851785.SI",
+          "851786.SI",
+          "851787.SI"
+        ]
+      },
+      {
+        "code": "801179.SI",
+        "name": "铁路公路",
+        "level": 2,
+        "parentCode": "801170.SI",
+        "children": [
+          "851721.SI",
+          "851731.SI",
+          "851771.SI"
+        ]
+      },
+      {
+        "code": "801181.SI",
+        "name": "房地产开发",
+        "level": 2,
+        "parentCode": "801180.SI",
+        "children": [
+          "851811.SI",
+          "851812.SI",
+          "851813.SI"
+        ]
+      },
+      {
+        "code": "801183.SI",
+        "name": "房地产服务",
+        "level": 2,
+        "parentCode": "801180.SI",
+        "children": [
+          "851831.SI",
+          "851832.SI",
+          "851833.SI"
+        ]
+      },
+      {
+        "code": "801191.SI",
+        "name": "多元金融",
+        "level": 2,
+        "parentCode": "801790.SI",
+        "children": [
+          "851922.SI",
+          "851923.SI",
+          "851924.SI",
+          "851925.SI",
+          "851926.SI",
+          "851927.SI",
+          "851928.SI"
+        ]
+      },
+      {
+        "code": "801193.SI",
+        "name": "证券Ⅱ",
+        "level": 2,
+        "parentCode": "801790.SI",
+        "children": [
+          "851931.SI"
+        ]
+      },
+      {
+        "code": "801194.SI",
+        "name": "保险Ⅱ",
+        "level": 2,
+        "parentCode": "801790.SI",
+        "children": [
+          "851941.SI"
+        ]
+      },
+      {
+        "code": "801202.SI",
+        "name": "贸易Ⅱ",
+        "level": 2,
+        "parentCode": "801200.SI",
+        "children": [
+          "852021.SI"
+        ]
+      },
+      {
+        "code": "801203.SI",
+        "name": "一般零售",
+        "level": 2,
+        "parentCode": "801200.SI",
+        "children": [
+          "852031.SI",
+          "852032.SI",
+          "852033.SI",
+          "852034.SI"
+        ]
+      },
+      {
+        "code": "801204.SI",
+        "name": "专业连锁Ⅱ",
+        "level": 2,
+        "parentCode": "801200.SI",
+        "children": [
+          "852041.SI"
+        ]
+      },
+      {
+        "code": "801206.SI",
+        "name": "互联网电商",
+        "level": 2,
+        "parentCode": "801200.SI",
+        "children": [
+          "852061.SI",
+          "852062.SI",
+          "852063.SI"
+        ]
+      },
+      {
+        "code": "801207.SI",
+        "name": "旅游零售Ⅱ",
+        "level": 2,
+        "parentCode": "801200.SI",
+        "children": [
+          "852071.SI"
+        ]
+      },
+      {
+        "code": "801216.SI",
+        "name": "体育Ⅱ",
+        "level": 2,
+        "parentCode": "801210.SI",
+        "children": [
+          "852161.SI"
+        ]
+      },
+      {
+        "code": "801218.SI",
+        "name": "专业服务",
+        "level": 2,
+        "parentCode": "801210.SI",
+        "children": [
+          "852181.SI",
+          "852182.SI",
+          "852183.SI",
+          "852184.SI"
+        ]
+      },
+      {
+        "code": "801219.SI",
+        "name": "酒店餐饮",
+        "level": 2,
+        "parentCode": "801210.SI",
+        "children": [
+          "852121.SI",
+          "852141.SI"
+        ]
+      },
+      {
+        "code": "801223.SI",
+        "name": "通信服务",
+        "level": 2,
+        "parentCode": "801770.SI",
+        "children": [
+          "852212.SI",
+          "852213.SI",
+          "852214.SI"
+        ]
+      },
+      {
+        "code": "801231.SI",
+        "name": "综合Ⅱ",
+        "level": 2,
+        "parentCode": "801230.SI",
+        "children": [
+          "852311.SI"
+        ]
+      },
+      {
+        "code": "801711.SI",
+        "name": "水泥",
+        "level": 2,
+        "parentCode": "801710.SI",
+        "children": [
+          "857111.SI",
+          "857112.SI"
+        ]
+      },
+      {
+        "code": "801712.SI",
+        "name": "玻璃玻纤",
+        "level": 2,
+        "parentCode": "801710.SI",
+        "children": [
+          "857121.SI",
+          "857122.SI"
+        ]
+      },
+      {
+        "code": "801713.SI",
+        "name": "装修建材",
+        "level": 2,
+        "parentCode": "801710.SI",
+        "children": [
+          "850614.SI",
+          "850615.SI",
+          "850616.SI",
+          "850617.SI",
+          "850618.SI"
+        ]
+      },
+      {
+        "code": "801721.SI",
+        "name": "房屋建设Ⅱ",
+        "level": 2,
+        "parentCode": "801720.SI",
+        "children": [
+          "850623.SI"
+        ]
+      },
+      {
+        "code": "801722.SI",
+        "name": "装修装饰Ⅱ",
+        "level": 2,
+        "parentCode": "801720.SI",
+        "children": [
+          "857221.SI"
+        ]
+      },
+      {
+        "code": "801723.SI",
+        "name": "基础建设",
+        "level": 2,
+        "parentCode": "801720.SI",
+        "children": [
+          "857236.SI",
+          "857251.SI"
+        ]
+      },
+      {
+        "code": "801724.SI",
+        "name": "专业工程",
+        "level": 2,
+        "parentCode": "801720.SI",
+        "children": [
+          "857241.SI",
+          "857242.SI",
+          "857243.SI",
+          "857244.SI"
+        ]
+      },
+      {
+        "code": "801726.SI",
+        "name": "工程咨询服务Ⅱ",
+        "level": 2,
+        "parentCode": "801720.SI",
+        "children": [
+          "857261.SI"
+        ]
+      },
+      {
+        "code": "801731.SI",
+        "name": "电机Ⅱ",
+        "level": 2,
+        "parentCode": "801730.SI",
+        "children": [
+          "850741.SI"
+        ]
+      },
+      {
+        "code": "801733.SI",
+        "name": "其他电源设备Ⅱ",
+        "level": 2,
+        "parentCode": "801730.SI",
+        "children": [
+          "857331.SI",
+          "857334.SI",
+          "857336.SI"
+        ]
+      },
+      {
+        "code": "801735.SI",
+        "name": "光伏设备",
+        "level": 2,
+        "parentCode": "801730.SI",
+        "children": [
+          "857351.SI",
+          "857352.SI",
+          "857353.SI",
+          "857354.SI",
+          "857355.SI"
+        ]
+      },
+      {
+        "code": "801736.SI",
+        "name": "风电设备",
+        "level": 2,
+        "parentCode": "801730.SI",
+        "children": [
+          "857361.SI",
+          "857362.SI"
+        ]
+      },
+      {
+        "code": "801737.SI",
+        "name": "电池",
+        "level": 2,
+        "parentCode": "801730.SI",
+        "children": [
+          "857371.SI",
+          "857372.SI",
+          "857373.SI",
+          "857374.SI",
+          "857375.SI"
+        ]
+      },
+      {
+        "code": "801738.SI",
+        "name": "电网设备",
+        "level": 2,
+        "parentCode": "801730.SI",
+        "children": [
+          "857321.SI",
+          "857323.SI",
+          "857344.SI",
+          "857381.SI",
+          "857382.SI"
+        ]
+      },
+      {
+        "code": "801741.SI",
+        "name": "航天装备Ⅱ",
+        "level": 2,
+        "parentCode": "801740.SI",
+        "children": [
+          "857411.SI"
+        ]
+      },
+      {
+        "code": "801742.SI",
+        "name": "航空装备Ⅱ",
+        "level": 2,
+        "parentCode": "801740.SI",
+        "children": [
+          "857421.SI"
+        ]
+      },
+      {
+        "code": "801743.SI",
+        "name": "地面兵装Ⅱ",
+        "level": 2,
+        "parentCode": "801740.SI",
+        "children": [
+          "857431.SI"
+        ]
+      },
+      {
+        "code": "801744.SI",
+        "name": "航海装备Ⅱ",
+        "level": 2,
+        "parentCode": "801740.SI",
+        "children": [
+          "850935.SI"
+        ]
+      },
+      {
+        "code": "801745.SI",
+        "name": "军工电子Ⅱ",
+        "level": 2,
+        "parentCode": "801740.SI",
+        "children": [
+          "857451.SI"
+        ]
+      },
+      {
+        "code": "801764.SI",
+        "name": "游戏Ⅱ",
+        "level": 2,
+        "parentCode": "801760.SI",
+        "children": [
+          "857641.SI"
+        ]
+      },
+      {
+        "code": "801765.SI",
+        "name": "广告营销",
+        "level": 2,
+        "parentCode": "801760.SI",
+        "children": [
+          "857651.SI",
+          "857652.SI"
+        ]
+      },
+      {
+        "code": "801766.SI",
+        "name": "影视院线",
+        "level": 2,
+        "parentCode": "801760.SI",
+        "children": [
+          "857661.SI",
+          "857662.SI"
+        ]
+      },
+      {
+        "code": "801767.SI",
+        "name": "数字媒体",
+        "level": 2,
+        "parentCode": "801760.SI",
+        "children": [
+          "857671.SI",
+          "857673.SI",
+          "857674.SI",
+          "857675.SI",
+          "857676.SI"
+        ]
+      },
+      {
+        "code": "801769.SI",
+        "name": "出版",
+        "level": 2,
+        "parentCode": "801760.SI",
+        "children": [
+          "857691.SI",
+          "857692.SI"
+        ]
+      },
+      {
+        "code": "801782.SI",
+        "name": "国有大型银行Ⅱ",
+        "level": 2,
+        "parentCode": "801780.SI",
+        "children": [
+          "857821.SI"
+        ]
+      },
+      {
+        "code": "801783.SI",
+        "name": "股份制银行Ⅱ",
+        "level": 2,
+        "parentCode": "801780.SI",
+        "children": [
+          "857831.SI"
+        ]
+      },
+      {
+        "code": "801784.SI",
+        "name": "城商行Ⅱ",
+        "level": 2,
+        "parentCode": "801780.SI",
+        "children": [
+          "857841.SI"
+        ]
+      },
+      {
+        "code": "801785.SI",
+        "name": "农商行Ⅱ",
+        "level": 2,
+        "parentCode": "801780.SI",
+        "children": [
+          "857851.SI"
+        ]
+      },
+      {
+        "code": "801881.SI",
+        "name": "摩托车及其他",
+        "level": 2,
+        "parentCode": "801880.SI",
+        "children": [
+          "858811.SI",
+          "858812.SI"
+        ]
+      },
+      {
+        "code": "801951.SI",
+        "name": "煤炭开采",
+        "level": 2,
+        "parentCode": "801950.SI",
+        "children": [
+          "859511.SI",
+          "859512.SI"
+        ]
+      },
+      {
+        "code": "801952.SI",
+        "name": "焦炭Ⅱ",
+        "level": 2,
+        "parentCode": "801950.SI",
+        "children": [
+          "859521.SI"
+        ]
+      },
+      {
+        "code": "801961.SI",
+        "name": "油气开采Ⅱ",
+        "level": 2,
+        "parentCode": "801960.SI",
+        "children": [
+          "859611.SI"
+        ]
+      },
+      {
+        "code": "801962.SI",
+        "name": "油服工程",
+        "level": 2,
+        "parentCode": "801960.SI",
+        "children": [
+          "859621.SI",
+          "859622.SI"
+        ]
+      },
+      {
+        "code": "801963.SI",
+        "name": "炼化及贸易",
+        "level": 2,
+        "parentCode": "801960.SI",
+        "children": [
+          "859631.SI",
+          "859632.SI",
+          "859633.SI"
+        ]
+      },
+      {
+        "code": "801971.SI",
+        "name": "环境治理",
+        "level": 2,
+        "parentCode": "801970.SI",
+        "children": [
+          "859711.SI",
+          "859712.SI",
+          "859713.SI",
+          "859714.SI"
+        ]
+      },
+      {
+        "code": "801972.SI",
+        "name": "环保设备Ⅱ",
+        "level": 2,
+        "parentCode": "801970.SI",
+        "children": [
+          "859721.SI"
+        ]
+      },
+      {
+        "code": "801981.SI",
+        "name": "个护用品",
+        "level": 2,
+        "parentCode": "801980.SI",
+        "children": [
+          "859811.SI",
+          "859812.SI"
+        ]
+      },
+      {
+        "code": "801982.SI",
+        "name": "化妆品",
+        "level": 2,
+        "parentCode": "801980.SI",
+        "children": [
+          "859821.SI",
+          "859822.SI"
+        ]
+      },
+      {
+        "code": "801983.SI",
+        "name": "医疗美容",
+        "level": 2,
+        "parentCode": "801980.SI",
+        "children": [
+          "859831.SI",
+          "859832.SI"
+        ]
+      },
+      {
+        "code": "801991.SI",
+        "name": "航空机场",
+        "level": 2,
+        "parentCode": "801170.SI",
+        "children": [
+          "851741.SI",
+          "851751.SI"
+        ]
+      },
+      {
+        "code": "801992.SI",
+        "name": "航运港口",
+        "level": 2,
+        "parentCode": "801170.SI",
+        "children": [
+          "851711.SI",
+          "851761.SI"
+        ]
+      },
+      {
+        "code": "801993.SI",
+        "name": "旅游及景区",
+        "level": 2,
+        "parentCode": "801210.SI",
+        "children": [
+          "852111.SI",
+          "852112.SI",
+          "852131.SI"
+        ]
+      },
+      {
+        "code": "801994.SI",
+        "name": "教育",
+        "level": 2,
+        "parentCode": "801210.SI",
+        "children": [
+          "859851.SI",
+          "859852.SI",
+          "859853.SI"
+        ]
+      },
+      {
+        "code": "801995.SI",
+        "name": "电视广播Ⅱ",
+        "level": 2,
+        "parentCode": "801760.SI",
+        "children": [
+          "859951.SI"
+        ]
+      }
+    ],
+    "level3": [
+      {
+        "code": "850111.SI",
+        "name": "种子",
+        "level": 3,
+        "parentCode": "801016.SI"
+      },
+      {
+        "code": "850112.SI",
+        "name": "粮食种植",
+        "level": 3,
+        "parentCode": "801016.SI"
+      },
+      {
+        "code": "850113.SI",
+        "name": "其他种植业",
+        "level": 3,
+        "parentCode": "801016.SI"
+      },
+      {
+        "code": "850114.SI",
+        "name": "食用菌",
+        "level": 3,
+        "parentCode": "801016.SI"
+      },
+      {
+        "code": "850121.SI",
+        "name": "海洋捕捞",
+        "level": 3,
+        "parentCode": "801015.SI"
+      },
+      {
+        "code": "850122.SI",
+        "name": "水产养殖",
+        "level": 3,
+        "parentCode": "801015.SI"
+      },
+      {
+        "code": "850131.SI",
+        "name": "林业Ⅲ",
+        "level": 3,
+        "parentCode": "801011.SI"
+      },
+      {
+        "code": "850135.SI",
+        "name": "食品及饲料添加剂",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850136.SI",
+        "name": "有机硅",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850137.SI",
+        "name": "胶黏剂及胶带",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850142.SI",
+        "name": "畜禽饲料",
+        "level": 3,
+        "parentCode": "801014.SI"
+      },
+      {
+        "code": "850143.SI",
+        "name": "水产饲料",
+        "level": 3,
+        "parentCode": "801014.SI"
+      },
+      {
+        "code": "850144.SI",
+        "name": "宠物食品",
+        "level": 3,
+        "parentCode": "801014.SI"
+      },
+      {
+        "code": "850151.SI",
+        "name": "果蔬加工",
+        "level": 3,
+        "parentCode": "801012.SI"
+      },
+      {
+        "code": "850152.SI",
+        "name": "粮油加工",
+        "level": 3,
+        "parentCode": "801012.SI"
+      },
+      {
+        "code": "850154.SI",
+        "name": "其他农产品加工",
+        "level": 3,
+        "parentCode": "801012.SI"
+      },
+      {
+        "code": "850172.SI",
+        "name": "生猪养殖",
+        "level": 3,
+        "parentCode": "801017.SI"
+      },
+      {
+        "code": "850173.SI",
+        "name": "肉鸡养殖",
+        "level": 3,
+        "parentCode": "801017.SI"
+      },
+      {
+        "code": "850174.SI",
+        "name": "其他养殖",
+        "level": 3,
+        "parentCode": "801017.SI"
+      },
+      {
+        "code": "850181.SI",
+        "name": "动物保健Ⅲ",
+        "level": 3,
+        "parentCode": "801018.SI"
+      },
+      {
+        "code": "850191.SI",
+        "name": "农业综合Ⅲ",
+        "level": 3,
+        "parentCode": "801019.SI"
+      },
+      {
+        "code": "850232.SI",
+        "name": "汽车经销商",
+        "level": 3,
+        "parentCode": "801092.SI"
+      },
+      {
+        "code": "850233.SI",
+        "name": "汽车综合服务",
+        "level": 3,
+        "parentCode": "801092.SI"
+      },
+      {
+        "code": "850321.SI",
+        "name": "纯碱",
+        "level": 3,
+        "parentCode": "801033.SI"
+      },
+      {
+        "code": "850322.SI",
+        "name": "氯碱",
+        "level": 3,
+        "parentCode": "801033.SI"
+      },
+      {
+        "code": "850323.SI",
+        "name": "无机盐",
+        "level": 3,
+        "parentCode": "801033.SI"
+      },
+      {
+        "code": "850324.SI",
+        "name": "其他化学原料",
+        "level": 3,
+        "parentCode": "801033.SI"
+      },
+      {
+        "code": "850325.SI",
+        "name": "煤化工",
+        "level": 3,
+        "parentCode": "801033.SI"
+      },
+      {
+        "code": "850326.SI",
+        "name": "钛白粉",
+        "level": 3,
+        "parentCode": "801033.SI"
+      },
+      {
+        "code": "850331.SI",
+        "name": "氮肥",
+        "level": 3,
+        "parentCode": "801038.SI"
+      },
+      {
+        "code": "850332.SI",
+        "name": "磷肥及磷化工",
+        "level": 3,
+        "parentCode": "801038.SI"
+      },
+      {
+        "code": "850333.SI",
+        "name": "农药",
+        "level": 3,
+        "parentCode": "801038.SI"
+      },
+      {
+        "code": "850335.SI",
+        "name": "涂料油墨",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850336.SI",
+        "name": "钾肥",
+        "level": 3,
+        "parentCode": "801038.SI"
+      },
+      {
+        "code": "850337.SI",
+        "name": "民爆制品",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850338.SI",
+        "name": "纺织化学制品",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850339.SI",
+        "name": "其他化学制品",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850341.SI",
+        "name": "涤纶",
+        "level": 3,
+        "parentCode": "801032.SI"
+      },
+      {
+        "code": "850343.SI",
+        "name": "粘胶",
+        "level": 3,
+        "parentCode": "801032.SI"
+      },
+      {
+        "code": "850344.SI",
+        "name": "其他化学纤维",
+        "level": 3,
+        "parentCode": "801032.SI"
+      },
+      {
+        "code": "850345.SI",
+        "name": "氨纶",
+        "level": 3,
+        "parentCode": "801032.SI"
+      },
+      {
+        "code": "850346.SI",
+        "name": "锦纶",
+        "level": 3,
+        "parentCode": "801032.SI"
+      },
+      {
+        "code": "850351.SI",
+        "name": "其他塑料制品",
+        "level": 3,
+        "parentCode": "801036.SI"
+      },
+      {
+        "code": "850353.SI",
+        "name": "改性塑料",
+        "level": 3,
+        "parentCode": "801036.SI"
+      },
+      {
+        "code": "850354.SI",
+        "name": "合成树脂",
+        "level": 3,
+        "parentCode": "801036.SI"
+      },
+      {
+        "code": "850355.SI",
+        "name": "膜材料",
+        "level": 3,
+        "parentCode": "801036.SI"
+      },
+      {
+        "code": "850362.SI",
+        "name": "其他橡胶制品",
+        "level": 3,
+        "parentCode": "801037.SI"
+      },
+      {
+        "code": "850363.SI",
+        "name": "炭黑",
+        "level": 3,
+        "parentCode": "801037.SI"
+      },
+      {
+        "code": "850364.SI",
+        "name": "橡胶助剂",
+        "level": 3,
+        "parentCode": "801037.SI"
+      },
+      {
+        "code": "850372.SI",
+        "name": "聚氨酯",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850381.SI",
+        "name": "复合肥",
+        "level": 3,
+        "parentCode": "801038.SI"
+      },
+      {
+        "code": "850382.SI",
+        "name": "氟化工",
+        "level": 3,
+        "parentCode": "801034.SI"
+      },
+      {
+        "code": "850412.SI",
+        "name": "特钢Ⅲ",
+        "level": 3,
+        "parentCode": "801045.SI"
+      },
+      {
+        "code": "850431.SI",
+        "name": "铁矿石",
+        "level": 3,
+        "parentCode": "801043.SI"
+      },
+      {
+        "code": "850432.SI",
+        "name": "冶钢辅料",
+        "level": 3,
+        "parentCode": "801043.SI"
+      },
+      {
+        "code": "850441.SI",
+        "name": "长材",
+        "level": 3,
+        "parentCode": "801044.SI"
+      },
+      {
+        "code": "850442.SI",
+        "name": "板材",
+        "level": 3,
+        "parentCode": "801044.SI"
+      },
+      {
+        "code": "850443.SI",
+        "name": "钢铁管材",
+        "level": 3,
+        "parentCode": "801044.SI"
+      },
+      {
+        "code": "850521.SI",
+        "name": "其他金属新材料",
+        "level": 3,
+        "parentCode": "801051.SI"
+      },
+      {
+        "code": "850522.SI",
+        "name": "磁性材料",
+        "level": 3,
+        "parentCode": "801051.SI"
+      },
+      {
+        "code": "850523.SI",
+        "name": "非金属材料Ⅲ",
+        "level": 3,
+        "parentCode": "801039.SI"
+      },
+      {
+        "code": "850531.SI",
+        "name": "黄金",
+        "level": 3,
+        "parentCode": "801053.SI"
+      },
+      {
+        "code": "850532.SI",
+        "name": "白银",
+        "level": 3,
+        "parentCode": "801053.SI"
+      },
+      {
+        "code": "850541.SI",
+        "name": "稀土",
+        "level": 3,
+        "parentCode": "801054.SI"
+      },
+      {
+        "code": "850542.SI",
+        "name": "钨",
+        "level": 3,
+        "parentCode": "801054.SI"
+      },
+      {
+        "code": "850543.SI",
+        "name": "锂",
+        "level": 3,
+        "parentCode": "801056.SI"
+      },
+      {
+        "code": "850544.SI",
+        "name": "其他小金属",
+        "level": 3,
+        "parentCode": "801054.SI"
+      },
+      {
+        "code": "850545.SI",
+        "name": "钼",
+        "level": 3,
+        "parentCode": "801054.SI"
+      },
+      {
+        "code": "850551.SI",
+        "name": "铝",
+        "level": 3,
+        "parentCode": "801055.SI"
+      },
+      {
+        "code": "850552.SI",
+        "name": "铜",
+        "level": 3,
+        "parentCode": "801055.SI"
+      },
+      {
+        "code": "850553.SI",
+        "name": "铅锌",
+        "level": 3,
+        "parentCode": "801055.SI"
+      },
+      {
+        "code": "850561.SI",
+        "name": "钴",
+        "level": 3,
+        "parentCode": "801056.SI"
+      },
+      {
+        "code": "850562.SI",
+        "name": "镍",
+        "level": 3,
+        "parentCode": "801056.SI"
+      },
+      {
+        "code": "850614.SI",
+        "name": "其他建材",
+        "level": 3,
+        "parentCode": "801713.SI"
+      },
+      {
+        "code": "850615.SI",
+        "name": "耐火材料",
+        "level": 3,
+        "parentCode": "801713.SI"
+      },
+      {
+        "code": "850616.SI",
+        "name": "管材",
+        "level": 3,
+        "parentCode": "801713.SI"
+      },
+      {
+        "code": "850617.SI",
+        "name": "防水材料",
+        "level": 3,
+        "parentCode": "801713.SI"
+      },
+      {
+        "code": "850618.SI",
+        "name": "涂料",
+        "level": 3,
+        "parentCode": "801713.SI"
+      },
+      {
+        "code": "850623.SI",
+        "name": "房屋建设Ⅲ",
+        "level": 3,
+        "parentCode": "801721.SI"
+      },
+      {
+        "code": "850702.SI",
+        "name": "安防设备",
+        "level": 3,
+        "parentCode": "801101.SI"
+      },
+      {
+        "code": "850703.SI",
+        "name": "其他计算机设备",
+        "level": 3,
+        "parentCode": "801101.SI"
+      },
+      {
+        "code": "850711.SI",
+        "name": "机床工具",
+        "level": 3,
+        "parentCode": "801072.SI"
+      },
+      {
+        "code": "850713.SI",
+        "name": "磨具磨料",
+        "level": 3,
+        "parentCode": "801072.SI"
+      },
+      {
+        "code": "850715.SI",
+        "name": "制冷空调设备",
+        "level": 3,
+        "parentCode": "801072.SI"
+      },
+      {
+        "code": "850716.SI",
+        "name": "其他通用设备",
+        "level": 3,
+        "parentCode": "801072.SI"
+      },
+      {
+        "code": "850721.SI",
+        "name": "纺织服装设备",
+        "level": 3,
+        "parentCode": "801074.SI"
+      },
+      {
+        "code": "850723.SI",
+        "name": "农用机械",
+        "level": 3,
+        "parentCode": "801074.SI"
+      },
+      {
+        "code": "850725.SI",
+        "name": "能源及重型设备",
+        "level": 3,
+        "parentCode": "801074.SI"
+      },
+      {
+        "code": "850726.SI",
+        "name": "印刷包装机械",
+        "level": 3,
+        "parentCode": "801074.SI"
+      },
+      {
+        "code": "850727.SI",
+        "name": "其他专用设备",
+        "level": 3,
+        "parentCode": "801074.SI"
+      },
+      {
+        "code": "850728.SI",
+        "name": "楼宇设备",
+        "level": 3,
+        "parentCode": "801074.SI"
+      },
+      {
+        "code": "850731.SI",
+        "name": "仪器仪表",
+        "level": 3,
+        "parentCode": "801072.SI"
+      },
+      {
+        "code": "850741.SI",
+        "name": "电机Ⅲ",
+        "level": 3,
+        "parentCode": "801731.SI"
+      },
+      {
+        "code": "850751.SI",
+        "name": "金属制品",
+        "level": 3,
+        "parentCode": "801072.SI"
+      },
+      {
+        "code": "850771.SI",
+        "name": "工程机械整机",
+        "level": 3,
+        "parentCode": "801077.SI"
+      },
+      {
+        "code": "850772.SI",
+        "name": "工程机械器件",
+        "level": 3,
+        "parentCode": "801077.SI"
+      },
+      {
+        "code": "850781.SI",
+        "name": "机器人",
+        "level": 3,
+        "parentCode": "801078.SI"
+      },
+      {
+        "code": "850782.SI",
+        "name": "工控设备",
+        "level": 3,
+        "parentCode": "801078.SI"
+      },
+      {
+        "code": "850783.SI",
+        "name": "激光设备",
+        "level": 3,
+        "parentCode": "801078.SI"
+      },
+      {
+        "code": "850784.SI",
+        "name": "其他自动化设备",
+        "level": 3,
+        "parentCode": "801078.SI"
+      },
+      {
+        "code": "850812.SI",
+        "name": "分立器件",
+        "level": 3,
+        "parentCode": "801081.SI"
+      },
+      {
+        "code": "850813.SI",
+        "name": "半导体材料",
+        "level": 3,
+        "parentCode": "801081.SI"
+      },
+      {
+        "code": "850814.SI",
+        "name": "数字芯片设计",
+        "level": 3,
+        "parentCode": "801081.SI"
+      },
+      {
+        "code": "850815.SI",
+        "name": "模拟芯片设计",
+        "level": 3,
+        "parentCode": "801081.SI"
+      },
+      {
+        "code": "850816.SI",
+        "name": "集成电路制造",
+        "level": 3,
+        "parentCode": "801081.SI"
+      },
+      {
+        "code": "850817.SI",
+        "name": "集成电路封测",
+        "level": 3,
+        "parentCode": "801081.SI"
+      },
+      {
+        "code": "850818.SI",
+        "name": "半导体设备",
+        "level": 3,
+        "parentCode": "801081.SI"
+      },
+      {
+        "code": "850822.SI",
+        "name": "印制电路板",
+        "level": 3,
+        "parentCode": "801083.SI"
+      },
+      {
+        "code": "850823.SI",
+        "name": "被动元件",
+        "level": 3,
+        "parentCode": "801083.SI"
+      },
+      {
+        "code": "850831.SI",
+        "name": "面板",
+        "level": 3,
+        "parentCode": "801084.SI"
+      },
+      {
+        "code": "850832.SI",
+        "name": "LED",
+        "level": 3,
+        "parentCode": "801084.SI"
+      },
+      {
+        "code": "850833.SI",
+        "name": "光学元件",
+        "level": 3,
+        "parentCode": "801084.SI"
+      },
+      {
+        "code": "850841.SI",
+        "name": "其他电子Ⅲ",
+        "level": 3,
+        "parentCode": "801082.SI"
+      },
+      {
+        "code": "850853.SI",
+        "name": "品牌消费电子",
+        "level": 3,
+        "parentCode": "801085.SI"
+      },
+      {
+        "code": "850854.SI",
+        "name": "消费电子零部件及组装",
+        "level": 3,
+        "parentCode": "801085.SI"
+      },
+      {
+        "code": "850861.SI",
+        "name": "电子化学品Ⅲ",
+        "level": 3,
+        "parentCode": "801086.SI"
+      },
+      {
+        "code": "850912.SI",
+        "name": "商用载货车",
+        "level": 3,
+        "parentCode": "801096.SI"
+      },
+      {
+        "code": "850913.SI",
+        "name": "商用载客车",
+        "level": 3,
+        "parentCode": "801096.SI"
+      },
+      {
+        "code": "850922.SI",
+        "name": "车身附件及饰件",
+        "level": 3,
+        "parentCode": "801093.SI"
+      },
+      {
+        "code": "850923.SI",
+        "name": "底盘与发动机系统",
+        "level": 3,
+        "parentCode": "801093.SI"
+      },
+      {
+        "code": "850924.SI",
+        "name": "轮胎轮毂",
+        "level": 3,
+        "parentCode": "801093.SI"
+      },
+      {
+        "code": "850925.SI",
+        "name": "其他汽车零部件",
+        "level": 3,
+        "parentCode": "801093.SI"
+      },
+      {
+        "code": "850926.SI",
+        "name": "汽车电子电气系统",
+        "level": 3,
+        "parentCode": "801093.SI"
+      },
+      {
+        "code": "850935.SI",
+        "name": "航海装备Ⅲ",
+        "level": 3,
+        "parentCode": "801744.SI"
+      },
+      {
+        "code": "850936.SI",
+        "name": "轨交设备Ⅲ",
+        "level": 3,
+        "parentCode": "801076.SI"
+      },
+      {
+        "code": "850951.SI",
+        "name": "电动乘用车",
+        "level": 3,
+        "parentCode": "801095.SI"
+      },
+      {
+        "code": "850952.SI",
+        "name": "综合乘用车",
+        "level": 3,
+        "parentCode": "801095.SI"
+      },
+      {
+        "code": "851024.SI",
+        "name": "通信网络设备及器件",
+        "level": 3,
+        "parentCode": "801102.SI"
+      },
+      {
+        "code": "851025.SI",
+        "name": "通信线缆及配套",
+        "level": 3,
+        "parentCode": "801102.SI"
+      },
+      {
+        "code": "851026.SI",
+        "name": "通信终端及配件",
+        "level": 3,
+        "parentCode": "801102.SI"
+      },
+      {
+        "code": "851027.SI",
+        "name": "其他通信设备",
+        "level": 3,
+        "parentCode": "801102.SI"
+      },
+      {
+        "code": "851041.SI",
+        "name": "垂直应用软件",
+        "level": 3,
+        "parentCode": "801104.SI"
+      },
+      {
+        "code": "851042.SI",
+        "name": "横向通用软件",
+        "level": 3,
+        "parentCode": "801104.SI"
+      },
+      {
+        "code": "851112.SI",
+        "name": "空调",
+        "level": 3,
+        "parentCode": "801111.SI"
+      },
+      {
+        "code": "851116.SI",
+        "name": "冰洗",
+        "level": 3,
+        "parentCode": "801111.SI"
+      },
+      {
+        "code": "851121.SI",
+        "name": "彩电",
+        "level": 3,
+        "parentCode": "801112.SI"
+      },
+      {
+        "code": "851122.SI",
+        "name": "其他黑色家电",
+        "level": 3,
+        "parentCode": "801112.SI"
+      },
+      {
+        "code": "851131.SI",
+        "name": "厨房小家电",
+        "level": 3,
+        "parentCode": "801113.SI"
+      },
+      {
+        "code": "851132.SI",
+        "name": "清洁小家电",
+        "level": 3,
+        "parentCode": "801113.SI"
+      },
+      {
+        "code": "851133.SI",
+        "name": "个护小家电",
+        "level": 3,
+        "parentCode": "801113.SI"
+      },
+      {
+        "code": "851141.SI",
+        "name": "厨房电器",
+        "level": 3,
+        "parentCode": "801114.SI"
+      },
+      {
+        "code": "851142.SI",
+        "name": "卫浴电器",
+        "level": 3,
+        "parentCode": "801114.SI"
+      },
+      {
+        "code": "851151.SI",
+        "name": "照明设备Ⅲ",
+        "level": 3,
+        "parentCode": "801115.SI"
+      },
+      {
+        "code": "851161.SI",
+        "name": "家电零部件Ⅲ",
+        "level": 3,
+        "parentCode": "801116.SI"
+      },
+      {
+        "code": "851171.SI",
+        "name": "其他家电Ⅲ",
+        "level": 3,
+        "parentCode": "801117.SI"
+      },
+      {
+        "code": "851232.SI",
+        "name": "啤酒",
+        "level": 3,
+        "parentCode": "801126.SI"
+      },
+      {
+        "code": "851233.SI",
+        "name": "其他酒类",
+        "level": 3,
+        "parentCode": "801126.SI"
+      },
+      {
+        "code": "851241.SI",
+        "name": "肉制品",
+        "level": 3,
+        "parentCode": "801124.SI"
+      },
+      {
+        "code": "851242.SI",
+        "name": "调味发酵品Ⅲ",
+        "level": 3,
+        "parentCode": "801129.SI"
+      },
+      {
+        "code": "851243.SI",
+        "name": "乳品",
+        "level": 3,
+        "parentCode": "801127.SI"
+      },
+      {
+        "code": "851246.SI",
+        "name": "预加工食品",
+        "level": 3,
+        "parentCode": "801124.SI"
+      },
+      {
+        "code": "851247.SI",
+        "name": "保健品",
+        "level": 3,
+        "parentCode": "801124.SI"
+      },
+      {
+        "code": "851251.SI",
+        "name": "白酒Ⅲ",
+        "level": 3,
+        "parentCode": "801125.SI"
+      },
+      {
+        "code": "851271.SI",
+        "name": "软饮料",
+        "level": 3,
+        "parentCode": "801127.SI"
+      },
+      {
+        "code": "851281.SI",
+        "name": "零食",
+        "level": 3,
+        "parentCode": "801128.SI"
+      },
+      {
+        "code": "851282.SI",
+        "name": "烘焙食品",
+        "level": 3,
+        "parentCode": "801128.SI"
+      },
+      {
+        "code": "851283.SI",
+        "name": "熟食",
+        "level": 3,
+        "parentCode": "801128.SI"
+      },
+      {
+        "code": "851312.SI",
+        "name": "棉纺",
+        "level": 3,
+        "parentCode": "801131.SI"
+      },
+      {
+        "code": "851314.SI",
+        "name": "印染",
+        "level": 3,
+        "parentCode": "801131.SI"
+      },
+      {
+        "code": "851315.SI",
+        "name": "辅料",
+        "level": 3,
+        "parentCode": "801131.SI"
+      },
+      {
+        "code": "851316.SI",
+        "name": "其他纺织",
+        "level": 3,
+        "parentCode": "801131.SI"
+      },
+      {
+        "code": "851317.SI",
+        "name": "纺织鞋类制造",
+        "level": 3,
+        "parentCode": "801131.SI"
+      },
+      {
+        "code": "851325.SI",
+        "name": "鞋帽及其他",
+        "level": 3,
+        "parentCode": "801132.SI"
+      },
+      {
+        "code": "851326.SI",
+        "name": "家纺",
+        "level": 3,
+        "parentCode": "801132.SI"
+      },
+      {
+        "code": "851328.SI",
+        "name": "运动服装",
+        "level": 3,
+        "parentCode": "801132.SI"
+      },
+      {
+        "code": "851329.SI",
+        "name": "非运动服装",
+        "level": 3,
+        "parentCode": "801132.SI"
+      },
+      {
+        "code": "851331.SI",
+        "name": "钟表珠宝",
+        "level": 3,
+        "parentCode": "801133.SI"
+      },
+      {
+        "code": "851333.SI",
+        "name": "其他饰品",
+        "level": 3,
+        "parentCode": "801133.SI"
+      },
+      {
+        "code": "851412.SI",
+        "name": "大宗用纸",
+        "level": 3,
+        "parentCode": "801143.SI"
+      },
+      {
+        "code": "851413.SI",
+        "name": "特种纸",
+        "level": 3,
+        "parentCode": "801143.SI"
+      },
+      {
+        "code": "851422.SI",
+        "name": "印刷",
+        "level": 3,
+        "parentCode": "801141.SI"
+      },
+      {
+        "code": "851423.SI",
+        "name": "金属包装",
+        "level": 3,
+        "parentCode": "801141.SI"
+      },
+      {
+        "code": "851424.SI",
+        "name": "塑料包装",
+        "level": 3,
+        "parentCode": "801141.SI"
+      },
+      {
+        "code": "851425.SI",
+        "name": "纸包装",
+        "level": 3,
+        "parentCode": "801141.SI"
+      },
+      {
+        "code": "851426.SI",
+        "name": "综合包装",
+        "level": 3,
+        "parentCode": "801141.SI"
+      },
+      {
+        "code": "851436.SI",
+        "name": "瓷砖地板",
+        "level": 3,
+        "parentCode": "801142.SI"
+      },
+      {
+        "code": "851437.SI",
+        "name": "成品家居",
+        "level": 3,
+        "parentCode": "801142.SI"
+      },
+      {
+        "code": "851438.SI",
+        "name": "定制家居",
+        "level": 3,
+        "parentCode": "801142.SI"
+      },
+      {
+        "code": "851439.SI",
+        "name": "卫浴制品",
+        "level": 3,
+        "parentCode": "801142.SI"
+      },
+      {
+        "code": "851451.SI",
+        "name": "文化用品",
+        "level": 3,
+        "parentCode": "801145.SI"
+      },
+      {
+        "code": "851452.SI",
+        "name": "娱乐用品",
+        "level": 3,
+        "parentCode": "801145.SI"
+      },
+      {
+        "code": "851491.SI",
+        "name": "其他家居用品",
+        "level": 3,
+        "parentCode": "801142.SI"
+      },
+      {
+        "code": "851511.SI",
+        "name": "原料药",
+        "level": 3,
+        "parentCode": "801151.SI"
+      },
+      {
+        "code": "851512.SI",
+        "name": "化学制剂",
+        "level": 3,
+        "parentCode": "801151.SI"
+      },
+      {
+        "code": "851521.SI",
+        "name": "中药Ⅲ",
+        "level": 3,
+        "parentCode": "801155.SI"
+      },
+      {
+        "code": "851522.SI",
+        "name": "血液制品",
+        "level": 3,
+        "parentCode": "801152.SI"
+      },
+      {
+        "code": "851523.SI",
+        "name": "疫苗",
+        "level": 3,
+        "parentCode": "801152.SI"
+      },
+      {
+        "code": "851524.SI",
+        "name": "其他生物制品",
+        "level": 3,
+        "parentCode": "801152.SI"
+      },
+      {
+        "code": "851532.SI",
+        "name": "医疗设备",
+        "level": 3,
+        "parentCode": "801153.SI"
+      },
+      {
+        "code": "851533.SI",
+        "name": "医疗耗材",
+        "level": 3,
+        "parentCode": "801153.SI"
+      },
+      {
+        "code": "851534.SI",
+        "name": "体外诊断",
+        "level": 3,
+        "parentCode": "801153.SI"
+      },
+      {
+        "code": "851542.SI",
+        "name": "医药流通",
+        "level": 3,
+        "parentCode": "801154.SI"
+      },
+      {
+        "code": "851543.SI",
+        "name": "线下药店",
+        "level": 3,
+        "parentCode": "801154.SI"
+      },
+      {
+        "code": "851562.SI",
+        "name": "诊断服务",
+        "level": 3,
+        "parentCode": "801156.SI"
+      },
+      {
+        "code": "851563.SI",
+        "name": "医疗研发外包",
+        "level": 3,
+        "parentCode": "801156.SI"
+      },
+      {
+        "code": "851564.SI",
+        "name": "医院",
+        "level": 3,
+        "parentCode": "801156.SI"
+      },
+      {
+        "code": "851565.SI",
+        "name": "其他医疗服务",
+        "level": 3,
+        "parentCode": "801156.SI"
+      },
+      {
+        "code": "851610.SI",
+        "name": "电能综合服务",
+        "level": 3,
+        "parentCode": "801161.SI"
+      },
+      {
+        "code": "851611.SI",
+        "name": "火力发电",
+        "level": 3,
+        "parentCode": "801161.SI"
+      },
+      {
+        "code": "851612.SI",
+        "name": "水力发电",
+        "level": 3,
+        "parentCode": "801161.SI"
+      },
+      {
+        "code": "851614.SI",
+        "name": "热力服务",
+        "level": 3,
+        "parentCode": "801161.SI"
+      },
+      {
+        "code": "851616.SI",
+        "name": "光伏发电",
+        "level": 3,
+        "parentCode": "801161.SI"
+      },
+      {
+        "code": "851617.SI",
+        "name": "风力发电",
+        "level": 3,
+        "parentCode": "801161.SI"
+      },
+      {
+        "code": "851618.SI",
+        "name": "核力发电",
+        "level": 3,
+        "parentCode": "801161.SI"
+      },
+      {
+        "code": "851619.SI",
+        "name": "其他能源发电",
+        "level": 3,
+        "parentCode": "801161.SI"
+      },
+      {
+        "code": "851631.SI",
+        "name": "燃气Ⅲ",
+        "level": 3,
+        "parentCode": "801163.SI"
+      },
+      {
+        "code": "851711.SI",
+        "name": "港口",
+        "level": 3,
+        "parentCode": "801992.SI"
+      },
+      {
+        "code": "851721.SI",
+        "name": "公交",
+        "level": 3,
+        "parentCode": "801179.SI"
+      },
+      {
+        "code": "851731.SI",
+        "name": "高速公路",
+        "level": 3,
+        "parentCode": "801179.SI"
+      },
+      {
+        "code": "851741.SI",
+        "name": "航空运输",
+        "level": 3,
+        "parentCode": "801991.SI"
+      },
+      {
+        "code": "851751.SI",
+        "name": "机场",
+        "level": 3,
+        "parentCode": "801991.SI"
+      },
+      {
+        "code": "851761.SI",
+        "name": "航运",
+        "level": 3,
+        "parentCode": "801992.SI"
+      },
+      {
+        "code": "851771.SI",
+        "name": "铁路运输",
+        "level": 3,
+        "parentCode": "801179.SI"
+      },
+      {
+        "code": "851782.SI",
+        "name": "原材料供应链服务",
+        "level": 3,
+        "parentCode": "801178.SI"
+      },
+      {
+        "code": "851783.SI",
+        "name": "中间产品及消费品供应链服务",
+        "level": 3,
+        "parentCode": "801178.SI"
+      },
+      {
+        "code": "851784.SI",
+        "name": "快递",
+        "level": 3,
+        "parentCode": "801178.SI"
+      },
+      {
+        "code": "851785.SI",
+        "name": "跨境物流",
+        "level": 3,
+        "parentCode": "801178.SI"
+      },
+      {
+        "code": "851786.SI",
+        "name": "仓储物流",
+        "level": 3,
+        "parentCode": "801178.SI"
+      },
+      {
+        "code": "851787.SI",
+        "name": "公路货运",
+        "level": 3,
+        "parentCode": "801178.SI"
+      },
+      {
+        "code": "851811.SI",
+        "name": "住宅开发",
+        "level": 3,
+        "parentCode": "801181.SI"
+      },
+      {
+        "code": "851812.SI",
+        "name": "商业地产",
+        "level": 3,
+        "parentCode": "801181.SI"
+      },
+      {
+        "code": "851813.SI",
+        "name": "产业地产",
+        "level": 3,
+        "parentCode": "801181.SI"
+      },
+      {
+        "code": "851831.SI",
+        "name": "物业管理",
+        "level": 3,
+        "parentCode": "801183.SI"
+      },
+      {
+        "code": "851832.SI",
+        "name": "房产租赁经纪",
+        "level": 3,
+        "parentCode": "801183.SI"
+      },
+      {
+        "code": "851833.SI",
+        "name": "房地产综合服务",
+        "level": 3,
+        "parentCode": "801183.SI"
+      },
+      {
+        "code": "851922.SI",
+        "name": "金融控股",
+        "level": 3,
+        "parentCode": "801191.SI"
+      },
+      {
+        "code": "851923.SI",
+        "name": "期货",
+        "level": 3,
+        "parentCode": "801191.SI"
+      },
+      {
+        "code": "851924.SI",
+        "name": "信托",
+        "level": 3,
+        "parentCode": "801191.SI"
+      },
+      {
+        "code": "851925.SI",
+        "name": "租赁",
+        "level": 3,
+        "parentCode": "801191.SI"
+      },
+      {
+        "code": "851926.SI",
+        "name": "金融信息服务",
+        "level": 3,
+        "parentCode": "801191.SI"
+      },
+      {
+        "code": "851927.SI",
+        "name": "资产管理",
+        "level": 3,
+        "parentCode": "801191.SI"
+      },
+      {
+        "code": "851928.SI",
+        "name": "其他多元金融",
+        "level": 3,
+        "parentCode": "801191.SI"
+      },
+      {
+        "code": "851931.SI",
+        "name": "证券Ⅲ",
+        "level": 3,
+        "parentCode": "801193.SI"
+      },
+      {
+        "code": "851941.SI",
+        "name": "保险Ⅲ",
+        "level": 3,
+        "parentCode": "801194.SI"
+      },
+      {
+        "code": "852021.SI",
+        "name": "贸易Ⅲ",
+        "level": 3,
+        "parentCode": "801202.SI"
+      },
+      {
+        "code": "852031.SI",
+        "name": "百货",
+        "level": 3,
+        "parentCode": "801203.SI"
+      },
+      {
+        "code": "852032.SI",
+        "name": "超市",
+        "level": 3,
+        "parentCode": "801203.SI"
+      },
+      {
+        "code": "852033.SI",
+        "name": "多业态零售",
+        "level": 3,
+        "parentCode": "801203.SI"
+      },
+      {
+        "code": "852034.SI",
+        "name": "商业物业经营",
+        "level": 3,
+        "parentCode": "801203.SI"
+      },
+      {
+        "code": "852041.SI",
+        "name": "专业连锁Ⅲ",
+        "level": 3,
+        "parentCode": "801204.SI"
+      },
+      {
+        "code": "852061.SI",
+        "name": "综合电商",
+        "level": 3,
+        "parentCode": "801206.SI"
+      },
+      {
+        "code": "852062.SI",
+        "name": "跨境电商",
+        "level": 3,
+        "parentCode": "801206.SI"
+      },
+      {
+        "code": "852063.SI",
+        "name": "电商服务",
+        "level": 3,
+        "parentCode": "801206.SI"
+      },
+      {
+        "code": "852071.SI",
+        "name": "旅游零售Ⅲ",
+        "level": 3,
+        "parentCode": "801207.SI"
+      },
+      {
+        "code": "852111.SI",
+        "name": "人工景区",
+        "level": 3,
+        "parentCode": "801993.SI"
+      },
+      {
+        "code": "852112.SI",
+        "name": "自然景区",
+        "level": 3,
+        "parentCode": "801993.SI"
+      },
+      {
+        "code": "852121.SI",
+        "name": "酒店",
+        "level": 3,
+        "parentCode": "801219.SI"
+      },
+      {
+        "code": "852131.SI",
+        "name": "旅游综合",
+        "level": 3,
+        "parentCode": "801993.SI"
+      },
+      {
+        "code": "852141.SI",
+        "name": "餐饮",
+        "level": 3,
+        "parentCode": "801219.SI"
+      },
+      {
+        "code": "852161.SI",
+        "name": "体育Ⅲ",
+        "level": 3,
+        "parentCode": "801216.SI"
+      },
+      {
+        "code": "852181.SI",
+        "name": "人力资源服务",
+        "level": 3,
+        "parentCode": "801218.SI"
+      },
+      {
+        "code": "852182.SI",
+        "name": "检测服务",
+        "level": 3,
+        "parentCode": "801218.SI"
+      },
+      {
+        "code": "852183.SI",
+        "name": "会展服务",
+        "level": 3,
+        "parentCode": "801218.SI"
+      },
+      {
+        "code": "852184.SI",
+        "name": "其他专业服务",
+        "level": 3,
+        "parentCode": "801218.SI"
+      },
+      {
+        "code": "852212.SI",
+        "name": "电信运营商",
+        "level": 3,
+        "parentCode": "801223.SI"
+      },
+      {
+        "code": "852213.SI",
+        "name": "通信工程及服务",
+        "level": 3,
+        "parentCode": "801223.SI"
+      },
+      {
+        "code": "852214.SI",
+        "name": "通信应用增值服务",
+        "level": 3,
+        "parentCode": "801223.SI"
+      },
+      {
+        "code": "852226.SI",
+        "name": "IT服务Ⅲ",
+        "level": 3,
+        "parentCode": "801103.SI"
+      },
+      {
+        "code": "852311.SI",
+        "name": "综合Ⅲ",
+        "level": 3,
+        "parentCode": "801231.SI"
+      },
+      {
+        "code": "857111.SI",
+        "name": "水泥制造",
+        "level": 3,
+        "parentCode": "801711.SI"
+      },
+      {
+        "code": "857112.SI",
+        "name": "水泥制品",
+        "level": 3,
+        "parentCode": "801711.SI"
+      },
+      {
+        "code": "857121.SI",
+        "name": "玻璃制造",
+        "level": 3,
+        "parentCode": "801712.SI"
+      },
+      {
+        "code": "857122.SI",
+        "name": "玻纤制造",
+        "level": 3,
+        "parentCode": "801712.SI"
+      },
+      {
+        "code": "857221.SI",
+        "name": "装修装饰Ⅲ",
+        "level": 3,
+        "parentCode": "801722.SI"
+      },
+      {
+        "code": "857236.SI",
+        "name": "基建市政工程",
+        "level": 3,
+        "parentCode": "801723.SI"
+      },
+      {
+        "code": "857241.SI",
+        "name": "钢结构",
+        "level": 3,
+        "parentCode": "801724.SI"
+      },
+      {
+        "code": "857242.SI",
+        "name": "化学工程",
+        "level": 3,
+        "parentCode": "801724.SI"
+      },
+      {
+        "code": "857243.SI",
+        "name": "国际工程",
+        "level": 3,
+        "parentCode": "801724.SI"
+      },
+      {
+        "code": "857244.SI",
+        "name": "其他专业工程",
+        "level": 3,
+        "parentCode": "801724.SI"
+      },
+      {
+        "code": "857251.SI",
+        "name": "园林工程",
+        "level": 3,
+        "parentCode": "801723.SI"
+      },
+      {
+        "code": "857261.SI",
+        "name": "工程咨询服务Ⅲ",
+        "level": 3,
+        "parentCode": "801726.SI"
+      },
+      {
+        "code": "857321.SI",
+        "name": "电网自动化设备",
+        "level": 3,
+        "parentCode": "801738.SI"
+      },
+      {
+        "code": "857323.SI",
+        "name": "电工仪器仪表",
+        "level": 3,
+        "parentCode": "801738.SI"
+      },
+      {
+        "code": "857331.SI",
+        "name": "综合电力设备商",
+        "level": 3,
+        "parentCode": "801733.SI"
+      },
+      {
+        "code": "857334.SI",
+        "name": "火电设备",
+        "level": 3,
+        "parentCode": "801733.SI"
+      },
+      {
+        "code": "857336.SI",
+        "name": "其他电源设备Ⅲ",
+        "level": 3,
+        "parentCode": "801733.SI"
+      },
+      {
+        "code": "857344.SI",
+        "name": "线缆部件及其他",
+        "level": 3,
+        "parentCode": "801738.SI"
+      },
+      {
+        "code": "857351.SI",
+        "name": "硅料硅片",
+        "level": 3,
+        "parentCode": "801735.SI"
+      },
+      {
+        "code": "857352.SI",
+        "name": "光伏电池组件",
+        "level": 3,
+        "parentCode": "801735.SI"
+      },
+      {
+        "code": "857353.SI",
+        "name": "逆变器",
+        "level": 3,
+        "parentCode": "801735.SI"
+      },
+      {
+        "code": "857354.SI",
+        "name": "光伏辅材",
+        "level": 3,
+        "parentCode": "801735.SI"
+      },
+      {
+        "code": "857355.SI",
+        "name": "光伏加工设备",
+        "level": 3,
+        "parentCode": "801735.SI"
+      },
+      {
+        "code": "857361.SI",
+        "name": "风电整机",
+        "level": 3,
+        "parentCode": "801736.SI"
+      },
+      {
+        "code": "857362.SI",
+        "name": "风电零部件",
+        "level": 3,
+        "parentCode": "801736.SI"
+      },
+      {
+        "code": "857371.SI",
+        "name": "锂电池",
+        "level": 3,
+        "parentCode": "801737.SI"
+      },
+      {
+        "code": "857372.SI",
+        "name": "电池化学品",
+        "level": 3,
+        "parentCode": "801737.SI"
+      },
+      {
+        "code": "857373.SI",
+        "name": "锂电专用设备",
+        "level": 3,
+        "parentCode": "801737.SI"
+      },
+      {
+        "code": "857374.SI",
+        "name": "燃料电池",
+        "level": 3,
+        "parentCode": "801737.SI"
+      },
+      {
+        "code": "857375.SI",
+        "name": "蓄电池及其他电池",
+        "level": 3,
+        "parentCode": "801737.SI"
+      },
+      {
+        "code": "857381.SI",
+        "name": "输变电设备",
+        "level": 3,
+        "parentCode": "801738.SI"
+      },
+      {
+        "code": "857382.SI",
+        "name": "配电设备",
+        "level": 3,
+        "parentCode": "801738.SI"
+      },
+      {
+        "code": "857411.SI",
+        "name": "航天装备Ⅲ",
+        "level": 3,
+        "parentCode": "801741.SI"
+      },
+      {
+        "code": "857421.SI",
+        "name": "航空装备Ⅲ",
+        "level": 3,
+        "parentCode": "801742.SI"
+      },
+      {
+        "code": "857431.SI",
+        "name": "地面兵装Ⅲ",
+        "level": 3,
+        "parentCode": "801743.SI"
+      },
+      {
+        "code": "857451.SI",
+        "name": "军工电子Ⅲ",
+        "level": 3,
+        "parentCode": "801745.SI"
+      },
+      {
+        "code": "857641.SI",
+        "name": "游戏Ⅲ",
+        "level": 3,
+        "parentCode": "801764.SI"
+      },
+      {
+        "code": "857651.SI",
+        "name": "营销代理",
+        "level": 3,
+        "parentCode": "801765.SI"
+      },
+      {
+        "code": "857652.SI",
+        "name": "广告媒体",
+        "level": 3,
+        "parentCode": "801765.SI"
+      },
+      {
+        "code": "857661.SI",
+        "name": "影视动漫制作",
+        "level": 3,
+        "parentCode": "801766.SI"
+      },
+      {
+        "code": "857662.SI",
+        "name": "院线",
+        "level": 3,
+        "parentCode": "801766.SI"
+      },
+      {
+        "code": "857671.SI",
+        "name": "视频媒体",
+        "level": 3,
+        "parentCode": "801767.SI"
+      },
+      {
+        "code": "857673.SI",
+        "name": "图片媒体",
+        "level": 3,
+        "parentCode": "801767.SI"
+      },
+      {
+        "code": "857674.SI",
+        "name": "门户网站",
+        "level": 3,
+        "parentCode": "801767.SI"
+      },
+      {
+        "code": "857675.SI",
+        "name": "文字媒体",
+        "level": 3,
+        "parentCode": "801767.SI"
+      },
+      {
+        "code": "857676.SI",
+        "name": "其他数字媒体",
+        "level": 3,
+        "parentCode": "801767.SI"
+      },
+      {
+        "code": "857691.SI",
+        "name": "教育出版",
+        "level": 3,
+        "parentCode": "801769.SI"
+      },
+      {
+        "code": "857692.SI",
+        "name": "大众出版",
+        "level": 3,
+        "parentCode": "801769.SI"
+      },
+      {
+        "code": "857821.SI",
+        "name": "国有大型银行Ⅲ",
+        "level": 3,
+        "parentCode": "801782.SI"
+      },
+      {
+        "code": "857831.SI",
+        "name": "股份制银行Ⅲ",
+        "level": 3,
+        "parentCode": "801783.SI"
+      },
+      {
+        "code": "857841.SI",
+        "name": "城商行Ⅲ",
+        "level": 3,
+        "parentCode": "801784.SI"
+      },
+      {
+        "code": "857851.SI",
+        "name": "农商行Ⅲ",
+        "level": 3,
+        "parentCode": "801785.SI"
+      },
+      {
+        "code": "858811.SI",
+        "name": "其他运输设备",
+        "level": 3,
+        "parentCode": "801881.SI"
+      },
+      {
+        "code": "858812.SI",
+        "name": "摩托车",
+        "level": 3,
+        "parentCode": "801881.SI"
+      },
+      {
+        "code": "859511.SI",
+        "name": "动力煤",
+        "level": 3,
+        "parentCode": "801951.SI"
+      },
+      {
+        "code": "859512.SI",
+        "name": "焦煤",
+        "level": 3,
+        "parentCode": "801951.SI"
+      },
+      {
+        "code": "859521.SI",
+        "name": "焦炭Ⅲ",
+        "level": 3,
+        "parentCode": "801952.SI"
+      },
+      {
+        "code": "859611.SI",
+        "name": "油气开采Ⅲ",
+        "level": 3,
+        "parentCode": "801961.SI"
+      },
+      {
+        "code": "859621.SI",
+        "name": "油田服务",
+        "level": 3,
+        "parentCode": "801962.SI"
+      },
+      {
+        "code": "859622.SI",
+        "name": "油气及炼化工程",
+        "level": 3,
+        "parentCode": "801962.SI"
+      },
+      {
+        "code": "859631.SI",
+        "name": "炼油化工",
+        "level": 3,
+        "parentCode": "801963.SI"
+      },
+      {
+        "code": "859632.SI",
+        "name": "油品石化贸易",
+        "level": 3,
+        "parentCode": "801963.SI"
+      },
+      {
+        "code": "859633.SI",
+        "name": "其他石化",
+        "level": 3,
+        "parentCode": "801963.SI"
+      },
+      {
+        "code": "859711.SI",
+        "name": "大气治理",
+        "level": 3,
+        "parentCode": "801971.SI"
+      },
+      {
+        "code": "859712.SI",
+        "name": "水务及水治理",
+        "level": 3,
+        "parentCode": "801971.SI"
+      },
+      {
+        "code": "859713.SI",
+        "name": "固废治理",
+        "level": 3,
+        "parentCode": "801971.SI"
+      },
+      {
+        "code": "859714.SI",
+        "name": "综合环境治理",
+        "level": 3,
+        "parentCode": "801971.SI"
+      },
+      {
+        "code": "859721.SI",
+        "name": "环保设备Ⅲ",
+        "level": 3,
+        "parentCode": "801972.SI"
+      },
+      {
+        "code": "859811.SI",
+        "name": "生活用纸",
+        "level": 3,
+        "parentCode": "801981.SI"
+      },
+      {
+        "code": "859812.SI",
+        "name": "洗护用品",
+        "level": 3,
+        "parentCode": "801981.SI"
+      },
+      {
+        "code": "859821.SI",
+        "name": "化妆品制造及其他",
+        "level": 3,
+        "parentCode": "801982.SI"
+      },
+      {
+        "code": "859822.SI",
+        "name": "品牌化妆品",
+        "level": 3,
+        "parentCode": "801982.SI"
+      },
+      {
+        "code": "859831.SI",
+        "name": "医美耗材",
+        "level": 3,
+        "parentCode": "801983.SI"
+      },
+      {
+        "code": "859832.SI",
+        "name": "医美服务",
+        "level": 3,
+        "parentCode": "801983.SI"
+      },
+      {
+        "code": "859851.SI",
+        "name": "学历教育",
+        "level": 3,
+        "parentCode": "801994.SI"
+      },
+      {
+        "code": "859852.SI",
+        "name": "培训教育",
+        "level": 3,
+        "parentCode": "801994.SI"
+      },
+      {
+        "code": "859853.SI",
+        "name": "教育运营及其他",
+        "level": 3,
+        "parentCode": "801994.SI"
+      },
+      {
+        "code": "859951.SI",
+        "name": "电视广播Ⅲ",
+        "level": 3,
+        "parentCode": "801995.SI"
+      }
+    ]
+  },
+  "rules": [
+    "申万行业是公司标准归属主干。",
+    "同花顺行业和概念只作为参考标签，不能替代申万主干。",
+    "YOLO自定义板块允许跨申万行业，但必须保留申万路径。",
+    "概念标签不等于真实业务；个股挂载前必须保留业务证据状态。",
+    "目录节点与研究文章分离；占位节点不得伪装成已完成研究。"
+  ]
+}

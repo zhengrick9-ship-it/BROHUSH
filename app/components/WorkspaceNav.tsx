@@ -16,7 +16,7 @@ const libraryGroups: LibraryGroup[] = [
     { href: "/plans", label: "作战计划", children: [{ href: "/plans", label: "计划版本" }, { href: "/market", label: "市场复盘" }] },
   ] },
   { label: "策略库", href: "/strategies", links: [
-    { href: "/strategies/mechanisms", label: "交易机制", children: [{ href: "/strategies/mechanisms/L0_SALTLAKE_EXACT", label: "L0 严格盐湖式" }, { href: "/strategies/mechanisms/L1_CROSS_WINDOW_PURE", label: "L1 纯形态" }, { href: "/strategies/mechanisms/L2_EARLY_FLOW_MARKET", label: "L2 资金大盘" }, { href: "/strategies/mechanisms/L3_EARLY_FLOW_MARKET_PLUS", label: "L3 筑底增强" }] },
+    { href: "/strategies/mechanisms", label: "交易机制", children: [{ href: "/strategies/mechanisms/temperature-gated-mechanism", label: "温度计机制" }, { href: "/strategies/mechanisms/L0_SALTLAKE_EXACT", label: "L0 严格盐湖式" }, { href: "/strategies/mechanisms/L1_CROSS_WINDOW_PURE", label: "L1 纯形态" }, { href: "/strategies/mechanisms/L2_EARLY_FLOW_MARKET", label: "L2 资金大盘" }, { href: "/strategies/mechanisms/L3_EARLY_FLOW_MARKET_PLUS", label: "L3 筑底增强" }] },
     { href: "/strategies/outputs", label: "策略输出", children: [{ href: "/strategies/outputs/20260831T224529-low-cross-window-v1", label: "2026-08-31最新" }, { href: "/strategies/outputs#archive", label: "版本归档" }] },
   ] },
 ];

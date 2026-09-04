@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 3,
+  "directoryVersion": "yolo-directory-v0.3",
+  "status": "two-view-directory-complete",
+  "views": [
+    {
+      "id": "shenwan",
+      "name": "申万目录",
+      "path": "taxonomy/shenwan_directory.json",
+      "hierarchy": "一级 → 二级 → 三级 → 个股"
+    },
+    {
+      "id": "ths-industry",
+      "name": "同花顺行业",
+      "path": "taxonomy/ths_directory.json",
+      "hierarchy": "行业 → 个股"
+    },
+    {
+      "id": "ths-theme",
+      "name": "同花顺主题",
+      "path": "taxonomy/ths_directory.json",
+      "hierarchy": "主题 → 个股"
+    }
+  ],
+  "crosswalks": "crosswalks/directory_crosswalk_summary.json",
+  "marketCapSort": "total_mv descending within each category"
+}

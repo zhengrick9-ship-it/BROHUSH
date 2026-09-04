@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 3,
+  "directoryVersion": "yolo-directory-v0.3",
+  "status": "two-view-directory-complete",
+  "asOf": "20260828",
+  "views": {
+    "shenwan": "taxonomy/shenwan_directory.json",
+    "ths": "taxonomy/ths_directory.json",
+    "stocks": "members/stock_master.json",
+    "crosswalks": "crosswalks/directory_crosswalk_summary.json"
+  },
+  "rules": [
+    "申万：一级 → 二级 → 三级 → 个股",
+    "同花顺：行业/主题 → 个股",
+    "个股按最新可用总市值降序",
+    "交叉标签支持跳转到对应分类"
+  ]
+}

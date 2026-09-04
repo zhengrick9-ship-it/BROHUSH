@@ -7,9 +7,34 @@ export type Mechanism = {
   rules: string[];
   result: string;
   recommendation: string;
+  currentRunTitle?: string;
+  currentRunHref?: string;
+  sourceBase?: string;
+  sourceLinks?: { label: string; href: string }[];
 };
 
 export const mechanisms: Mechanism[] = [
+  {
+    id: "temperature-gated-mechanism",
+    name: "温度计机制",
+    short: "先判断市场冷暖，再决定今天用什么策略和多少风险预算。",
+    purpose: "把市场温度、策略筛选、财务质量和仓位约束串成一条可复核的决策链。",
+    runtime: "独立运行；先更新温度计，再运行当日策略候选和质量核验。",
+    rules: ["L1 温度：用赚钱效应、市场量能和涨跌停情绪计算 0–100 市场温度", "L2 门控：按温度档位决定允许的策略、总仓上限和温度系数 T", "L3 扫描：读取与当日 as-of 一致的候选源，执行低位形态、资金和市场条件筛选", "L4 核验：进行多信号共振评分，并用 QDH 已公告财务数据区分错杀、正确定价、扭亏和待验证", "L5 约束：计算候选仓位，执行单票、单行业、总仓和熔断限制后输出观察方案"],
+    result: "2026-09-04 本地回归：市场温度 33°（偏冷），放行 L3/L1，总仓上限 50%；保变电气、继峰股份进入各 5% 观察方案。",
+    recommendation: "这是总控机制，不是单独的买入策略。温度决定风险预算，低位策略负责找形态，财务核验负责过滤基本面陷阱；任何上游日期或质量异常都应停止输出。",
+    currentRunTitle: "2026-09-04 本地回归结果",
+    currentRunHref: "/strategy-source/temperature-gated-mechanism-v3.8/evidence/current-run-20260904.json",
+    sourceBase: "temperature-gated-mechanism-v3.8",
+    sourceLinks: [
+      { label: "完整说明 README.md →", href: "/strategy-source/temperature-gated-mechanism-v3.8/README.md" },
+      { label: "运行入口 run_daily_mechanism.py →", href: "/strategy-source/temperature-gated-mechanism-v3.8/src/run_daily_mechanism.py" },
+      { label: "决策流水线 daily_investment_pipeline.py →", href: "/strategy-source/temperature-gated-mechanism-v3.8/src/daily_investment_pipeline.py" },
+      { label: "财务质量核验 quality_fn_qdh.py →", href: "/strategy-source/temperature-gated-mechanism-v3.8/src/quality_fn_qdh.py" },
+      { label: "验收清单 manifest.json →", href: "/strategy-source/temperature-gated-mechanism-v3.8/manifest.json" },
+      { label: "独立复核 REVIEW.md →", href: "/strategy-source/temperature-gated-mechanism-v3.8/evidence/REVIEW.md" }
+    ]
+  },
   {
     id: "L0_SALTLAKE_EXACT",
     name: "L0 严格盐湖式形态",

@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8">
+<title>温度门控决策机制 · 运行报告 20260903</title>
+<style>
+:root{--bg:#f3efe6;--card:#fff;--border:#e2dccf;--text:#2a2730;--muted:#8a8f98;--accent:#c56f52;--green:#2f8055;--red:#b44d3c}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Songti SC','Georgia','PingFang SC','Microsoft YaHei',serif;line-height:1.7;padding:36px 24px}
+.container{max-width:none;width:96%;margin:0 auto}
+.top-tags{font-size:12px;color:var(--accent);letter-spacing:.05em;margin-bottom:12px}
+h1{font-size:28px;margin-bottom:4px}
+.sub{color:var(--muted);font-size:12.5px;margin-bottom:22px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:20px;overflow-x:auto}
+.card-h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.card-h .emoji{font-size:20px}
+.card-h h2{font-size:18px;border-bottom:2px solid var(--accent);padding-bottom:6px}
+.card-b{max-width:880px}  /* 文字块限宽保可读(CC建议); 表格/指标不受此限(全宽撑满) */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#f6f1e8;text-align:left;padding:9px 10px;font-size:12px;color:var(--accent);border-bottom:2px solid var(--border)}
+td{padding:9px 10px;border-bottom:1px solid #eee7d8}
+tr.hl{background:#fdf6ec}
+td.empty{text-align:center;color:var(--muted);padding:26px}
+.muted{color:var(--muted);font-size:12px}
+.metric-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.metric{background:#faf7f2;border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.metric .label{font-size:11px;color:var(--muted)}
+.metric .val{font-size:22px;font-weight:700;margin-top:4px}
+.green{color:var(--green)}.red{color:var(--red)}
+.note{background:#fdf6ec;border-left:3px solid var(--accent);padding:13px 16px;font-size:12.5px;color:var(--muted);margin-top:16px;line-height:1.8}
+</style></head><body><div class="container">
+<div class="top-tags">投资决策机制 / 温度门控 · 运行于 2026-09-03 22:42</div>
+<h1>🌡️ 温度门控决策机制 · 运行报告</h1>
+<div class="sub">数据截至 20260903｜从「市场温度 → 门控策略 → 共振加权 → 仓位熔断」完整流水线</div>
+<div class="card"><div class="card-h"><span class="emoji">🌡️</span><h2>市场温度</h2></div><div class="card-b"><div class="metric-row"><div class="metric"><div class="label">综合温度</div><div class="val">21°</div></div><div class="metric"><div class="label">温度档</div><div class="val">偏冷</div></div><div class="metric"><div class="label">数据asof</div><div class="val" style="font-size:16px">20260903</div></div></div></div></div>
+<div class="card"><div class="card-h"><span class="emoji">🚦</span><h2>门控策略（温度决定用哪套策略）</h2></div><div class="card-b"><p>今日温度 <b>21°·偏冷</b> → 启用 <b>L3、L1</b>，总仓上限 <b>≤50%</b>，温度系数 <b>T=0.5</b></p><div style="height:8px"></div><table><tr><th>温度档</th><th>启用策略(门控白名单)</th><th>攻防</th><th>总仓上限</th><th>温度系数T</th></tr><tr class="hl"><td>过热</td><td>stop_gain_only</td><td>防御</td><td>50%</td><td>0.4</td></tr><tr class="hl"><td>偏热</td><td>lc_just_cross、codex_just_cross</td><td>进攻</td><td>70%</td><td>0.8</td></tr><tr class="hl"><td>温和</td><td>L1、L3、L2、LC、Codex、USmap</td><td>进攻均衡</td><td>75%</td><td>1.0</td></tr><tr class="hl"><td>偏冷</td><td>L3、L1</td><td>防御均衡</td><td>50%</td><td>0.5</td></tr><tr class="hl"><td>极冷</td><td>lowbuy_leaders</td><td>防御</td><td>30%</td><td>0.3</td></tr></table></div></div>
+<div class="card"><div class="card-h"><span class="emoji">🛡️</span><h2>熔断状态</h2></div><div class="card-b"><div class="metric-row"><div class="metric"><div class="label">熔断触发</div><div class="val green">无</div></div><div class="metric"><div class="label">触发原因</div><div style="font-size:13px;margin-top:6px">—</div></div></div><div class="note">生效范围：已实接:过热/极冷冻结新开仓 核心&gt;3降档 fail-safe冻结 上游失败冻结<br>未接入:组合回撤-8%/-15% 破位联动 温度突变 止跌确认 板块跌&gt;3%</div></div></div>
+<div class="card"><div class="card-h"><span class="emoji">🎯</span><h2>共振候选 · 最终仓位方案</h2></div><div class="card-b"><table><tr><th>标的</th><th>档位</th><th>共振S</th><th>行业</th><th>质量</th><th>目标仓位</th><th>V型分批</th></tr><tr><td colspan="7" class="empty"><b>候选为空</b>（今日温度档 偏冷：真实候选经质量核验均未过 / 无白名单内信号）<br><span class="muted">这是机制 fail-safe 的诚实表现——偏冷档不强行荐票，符合「未核实不荐」纪律。</span></td></tr></table></div></div>
+<div class="note">⚠️ 本报告为机制研究输出，非投资建议。候选需逐股核实基本面前再决策；熔断未接入项(组合回撤/破位联动等)需人工配合执行。</div>
+</div></body></html>
