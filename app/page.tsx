@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ResearchShell } from "@/app/components/ResearchShell";
 
 const updates = [
+  { date: "2026-11-02", kind: "趣味工具", title: "幸运选号室：六种玩法，一点随机的小期待", href: "/lottery" },
   { date: "2026-09-04 22:36", kind: "交易机制", title: "温度计机制：市场温度、策略门控与仓位约束", href: "/strategies/mechanisms/temperature-gated-mechanism" },
   { date: "2026-09-03 23:29", kind: "交易研究", title: "每日A股综合报告：2026年9月3日", href: "/reports/daily-a-share-report-20260903" },
   { date: "2026-09-03 18:48", kind: "板块研究", title: "市场温度计：9月3日运行版（数据截至9月2日）", href: "/reports/market-temperature-thermometer-20260903" },

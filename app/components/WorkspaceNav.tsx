@@ -36,6 +36,7 @@ export function WorkspaceNav() {
       <Link href={group.href} className="workspace-sidebar-group-title">{group.label}</Link>
       <div className="workspace-tree">{group.links.map((item) => <TreeItem item={item} key={item.href} />)}</div>
     </section>)}
+    <section className="workspace-sidebar-group"><Link href="/lottery" className="workspace-sidebar-group-title">小工具</Link><div className="workspace-tree"><TreeItem item={{ href: "/lottery", label: "幸运选号室" }} /></div></section>
     <p className="workspace-sidebar-foot">YOLO · 研究与交易</p>
   </nav>;
 }
